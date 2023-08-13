@@ -33,6 +33,10 @@ const buttonPortfolio = document.getElementById('portfolio');
 buttonPortfolio.addEventListener('click', () => {
     scrollToDiv('sectionThree ');
 });
+const buttonViewPortfolio = document.getElementById('viewPortfolio ');
+buttonViewPortfolio.addEventListener('click', () => {
+    scrollToDiv('sectionThree ');
+});
 const buttonContact = document.getElementById('contact');
 buttonContact.addEventListener('click', () => {
     scrollToDiv('sectionFive');

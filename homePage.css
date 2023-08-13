@@ -171,6 +171,7 @@ textarea{
     font-weight: 1000;
     position: relative;
     top: 30px;
+    cursor: pointer;
 }
 
 #sectionOneB\ {
