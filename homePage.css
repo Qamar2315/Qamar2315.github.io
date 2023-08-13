@@ -323,6 +323,7 @@ background-color: #1a1a1a;
     width: 90px;
     height: 40px;
     transition: 300ms;
+    border-radius: 20px;
 }
 #formSendButton:hover{
     background-color: #bebaba;
