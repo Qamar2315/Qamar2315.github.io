@@ -9,6 +9,7 @@ const scrollToDiv = (divId) => {
 
 const button = document.getElementById('backToTop');
 
+
 window.addEventListener('scroll', () => {
   if (window.scrollY > 100) {
     button.style.display = 'block';
