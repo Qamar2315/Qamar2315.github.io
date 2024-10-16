@@ -19,7 +19,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-
     <link rel="icon" href="icon.png" />
     <style>
       /* Custom CSS for smooth transitions */
@@ -35,6 +34,88 @@
   </head>
 
   <body class="bg-gray-100 font-sans text-gray-800">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-lg">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+          <a href="" class="text-2xl font-bold text-blue-900"
+            >Portfolio</a
+          >
+
+          <div class="hidden md:flex space-x-4">
+            <a href="#introduction" class="text-gray-700 hover:text-blue-500"
+              >Introduction</a
+            >
+            <a href="#skills" class="text-gray-700 hover:text-blue-500"
+              >Skills</a
+            >
+            <a href="#projects" class="text-gray-700 hover:text-blue-500"
+              >Projects</a
+            >
+            <a href="#experience" class="text-gray-700 hover:text-blue-500"
+              >Experience</a
+            >
+            <a href="#freelance" class="text-gray-700 hover:text-blue-500"
+              >Freelance</a
+            >
+            <a href="#contact" class="text-gray-700 hover:text-blue-500"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              class="text-gray-700 hover:text-blue-500 focus:outline-none"
+            >
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+          <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a
+              href="#introduction"
+              class="block text-gray-700 hover:text-blue-500"
+              >Introduction</a
+            >
+            <a href="#skills" class="block text-gray-700 hover:text-blue-500"
+              >Skills</a
+            >
+            <a href="#projects" class="block text-gray-700 hover:text-blue-500"
+              >Projects</a
+            >
+            <a
+              href="#experience"
+              class="block text-gray-700 hover:text-blue-500"
+              >Experience</a
+            >
+            <a href="#freelance" class="block text-gray-700 hover:text-blue-500"
+              >Freelance</a
+            >
+            <a href="#contact" class="block text-gray-700 hover:text-blue-500"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
 
     <!-- Introduction Section -->
     <section
@@ -64,8 +145,9 @@
         <div class="md:w-1/2 flex justify-center md:justify-end">
           <img
             src="dev.png"
-          alt="Qamar Ul Islam" class="rounded-full w-56 h-56 object-cover
-          shadow-lg border-4 border-blue-200" />
+            alt="Qamar Ul Islam"
+            class="rounded-full w-56 h-56 object-cover shadow-lg border-4 border-blue-200"
+          />
         </div>
       </div>
     </section>
@@ -453,8 +535,7 @@
         <p>© 2024 Qamar Ul Islam. All rights reserved.</p>
       </div>
     </footer>
-
-    <script src="script.js"></script>
     <!---for simple email validation --->
+    <script src="script.js"></script>
   </body>
 </html>
