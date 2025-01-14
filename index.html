@@ -115,14 +115,27 @@
       </div>
     </nav>
 
+    <button
+      id="back-to-top"
+      title="Back to Top"
+      class="hidden fixed bottom-8 right-8 p-3 rounded-full bg-blue-500/20 hover:bg-blue-500/50 transition-all text-blue-500 hover:text-white"
+    >
+      <svg
+        class="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 11l7-7 7 7M5 19l7-7 7 7"
+        ></path>
+      </svg>
+    </button>
 
-    <button id="back-to-top" title="Back to Top"
-    class="hidden fixed bottom-8 right-8 p-3 rounded-full bg-blue-500/20 hover:bg-blue-500/50 transition-all text-blue-500 hover:text-white">
-  <svg class="w-8 h-8 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"></path> </svg>
-</button>
-
-
-    
     <!-- Introduction Section -->
     <section
       id="introduction"
@@ -163,30 +176,90 @@
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold mb-8 text-center">Technical Skills</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+          <!-- Programming Languages -->
           <div class="flex flex-col items-center">
             <i class="fab fa-python text-4xl text-blue-500 mb-2"></i>
             <span>Python</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fab fa-node-js text-4xl text-green-500 mb-2"></i>
-            <span>Node.js</span>
-          </div>
-          <!-- Add more skills here (MongoDB, Express, React, etc.) -->
-          <div class="flex flex-col items-center">
-            <i class="fas fa-server text-4xl text-gray-600 mb-2"></i>
-            <span>Backend Development</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fab fa-js text-4xl text-yellow-500 mb-2"></i>
-            <span>Javascript</span>
           </div>
           <div class="flex flex-col items-center">
             <i class="fab fa-html5 text-4xl text-orange-500 mb-2"></i>
             <span>HTML5</span>
           </div>
           <div class="flex flex-col items-center">
-            <i class="fab fa-css3-alt text-4xl text-blue-600 mb-2"></i>
+            <i class="fab fa-css3-alt text-4xl text-blue-700 mb-2"></i>
             <span>CSS3</span>
+          </div>
+
+          <!-- Frontend Frameworks/Libraries -->
+          <div class="flex flex-col items-center">
+            <i class="fab fa-react text-4xl text-blue-500 mb-2"></i>
+            <span>React</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fab fa-angular text-4xl text-red-500 mb-2"></i>
+            <span>Angular</span>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <i class="fas fa-paint-brush text-4xl text-teal-500 mb-2"></i>
+            <span>Tailwind CSS</span>
+          </div>
+
+          <div class="flex flex-col items-center">
+            <i class="fab fa-bootstrap text-4xl text-purple-500 mb-2"></i>
+            <span>Bootstrap</span>
+          </div>
+
+          <!-- Backend/Server Side -->
+          <div class="flex flex-col items-center">
+            <i class="fab fa-node-js text-4xl text-green-500 mb-2"></i>
+            <span>Node.js</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fas fa-flask text-4xl text-gray-700 mb-2"></i>
+            <span>Flask</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fas fa-server text-4xl text-green-600 mb-2"></i>
+            <span>Express.js</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fas fa-code-branch text-4xl text-blue-800 mb-2"></i>
+            <span>Git</span>
+          </div>
+
+          <!-- Databases -->
+          <div class="flex flex-col items-center">
+            <i class="fas fa-database text-4xl text-orange-500 mb-2"></i>
+            <span>MongoDB</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fas fa-database text-4xl text-blue-400 mb-2"></i>
+            <span>MySQL</span>
+          </div>
+
+          <!-- DevOps / Tools -->
+          <div class="flex flex-col items-center">
+            <i class="fab fa-docker text-4xl text-blue-600 mb-2"></i>
+            <span>Docker</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fas fa-cloud text-4xl text-gray-400 mb-2"></i>
+            <span>AWS</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fab fa-github text-4xl text-gray-800 mb-2"></i>
+            <span>GitHub</span>
+          </div>
+
+          <!-- AI / ML -->
+          <div class="flex flex-col items-center">
+            <i class="fas fa-brain text-4xl text-purple-600 mb-2"></i>
+            <span>Scikit-learn</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fas fa-code text-4xl text-gray-500 mb-2"></i>
+            <span>Typescript</span>
           </div>
         </div>
       </div>
@@ -357,6 +430,85 @@
               >GitHub Repo</a
             >
           </div>
+
+          <div
+            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
+          >
+            <h3 class="text-xl font-bold mb-2">VidNote</h3>
+            <p class="text-gray-700 mb-4">
+              VidNote is a web application that allows you to convert YouTube
+              video transcripts into well-structured PDF notes.
+            </p>
+            <a
+              href="https://github.com/Qamar2315/VidNote"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >GitHub Repo</a
+            >
+          </div>
+
+          <div
+            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
+          >
+            <h3 class="text-xl font-bold mb-2">GPX-Generator</h3>
+            <p class="text-gray-700 mb-4">
+              A Python-based tool designed to convert trip data stored in a JSON
+              file into a standard GPX file.
+            </p>
+            <a
+              href="https://github.com/Qamar2315/GPX-Generator"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >GitHub Repo</a
+            >
+          </div>
+
+          <div
+            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
+          >
+            <h3 class="text-xl font-bold mb-2">Blurify</h3>
+            <p class="text-gray-700 mb-4">
+              A face-blurring application designed to enhance privacy.
+            </p>
+            <a
+              href="https://github.com/Qamar2315/Blurify"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >GitHub Repo</a
+            >
+          </div>
+
+          <div
+            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
+          >
+            <h3 class="text-xl font-bold mb-2">LearnXcellence</h3>
+            <p class="text-gray-700 mb-4">
+              A comprehensive Learning Management System (LMS) designed
+              specifically for project-based learning environments.
+            </p>
+            <a
+              href="https://github.com/Qamar2315/LearnXcellence"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >GitHub Repo</a
+            >
+          </div>
+
+          <div
+            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
+          >
+            <h3 class="text-xl font-bold mb-2">MarkDowner</h3>
+            <p class="text-gray-700 mb-4">
+              A simple and elegant web application for converting Markdown text
+              to PDF documents.
+            </p>
+            <a
+              href="https://github.com/Qamar2315/MarkDowner"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >GitHub Repo</a
+            >
+          </div>
         </div>
       </div>
     </section>
@@ -378,7 +530,7 @@
                 class="bg-blue-500 rounded-full w-4 h-4 absolute left-0 z-10 transform -translate-x-1/2"
               ></div>
               <h3 class="text-lg font-semibold ml-8">
-                Freelance Python Developer
+                Freelance Python and NodeJS Developer
               </h3>
             </div>
             <div class="ml-12 text-gray-700">
@@ -390,10 +542,12 @@
                   work and client satisfaction.
                 </li>
                 <li>
-                  Completed 25 projects with a 4.8-star rating and 18 satisfied
+                  Completed 34 projects with a 4.8-star rating and 25 satisfied
                   clients.
                 </li>
-                <li>Consistently exceeded client expectations.</li>
+                <li>
+                  Consistently exceeded client expectations.
+                </li>
               </ul>
             </div>
           </div>
@@ -497,10 +651,12 @@
           <div
             class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
           >
-            <h3 class="text-xl font-bold mb-2">AI/ML Modules for Education</h3>
+            <h3 class="text-xl font-bold mb-2">
+              Backend development for an Education Web Application
+            </h3>
             <p class="text-gray-700 mb-4">
-              Developed AI and ML modules for an educational platform focusing
-              on project-centric learning, AI-powered proctoring, and enhanced
+              Developed a robust backend for an educational platform focusing on
+              project-centric learning, AI-powered proctoring, and enhanced
               assessment and communication.
             </p>
           </div>
@@ -538,7 +694,7 @@
     <!-- Footer -->
     <footer class="py-4 bg-gray-800 text-center text-white">
       <div class="container mx-auto px-4">
-        <p>© 2024 Qamar Ul Islam. All rights reserved.</p>
+        <p>© 2025 Qamar Ul Islam. All rights reserved.</p>
       </div>
     </footer>
     <!---for simple email validation --->
