@@ -5,6 +5,7 @@ This repository contains the source code for my personal portfolio website, show
 ## Features
 
 *   **Clean and Responsive Design:**  Utilizes Tailwind CSS for a visually appealing and responsive layout that adapts to different screen sizes.
+*   **Download Resume Button:** A prominent button in the introduction allows visitors to download my resume directly.
 *   **Smooth Scrolling:**  JavaScript implemented smooth scrolling to different sections of the page.
 *   **Mobile-Friendly Navigation:**  A mobile menu button is included for easy navigation on smaller devices.
 *   **Back to Top Button:** A button appears when scrolling down the page to allow users to quickly return to the top.
@@ -25,6 +26,7 @@ This repository contains the source code for my personal portfolio website, show
 
 *   `index.html`: The main HTML file containing the website content.
 *   `app.js`:  JavaScript file containing the smooth scrolling, mobile menu, and back-to-top button logic.
+*   `resume.pdf`: The resume file to be downloaded.
 *   `icon.png`:  The website favicon.
 *   `dev.png`: The developer image in the introduction section.
 
