@@ -35,7 +35,7 @@
 
   <body class="bg-gray-100 font-sans text-gray-800">
     <!-- Navigation Bar -->
-    <nav class="bg-white shadow-lg">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
       <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-4">
           <a href="" class="text-2xl font-bold text-blue-900">Portfolio</a>
@@ -52,6 +52,9 @@
             >
             <a href="#experience" class="text-gray-700 hover:text-blue-500"
               >Experience</a
+            >
+            <a href="#education" class="text-gray-700 hover:text-blue-500"
+              >Education</a
             >
             <a href="#freelance" class="text-gray-700 hover:text-blue-500"
               >Freelance</a
@@ -104,6 +107,11 @@
               class="block text-gray-700 hover:text-blue-500"
               >Experience</a
             >
+             <a
+              href="#education"
+              class="block text-gray-700 hover:text-blue-500"
+              >Education</a
+            >
             <a href="#freelance" class="block text-gray-700 hover:text-blue-500"
               >Freelance</a
             >
@@ -145,23 +153,29 @@
         class="container mx-auto px-20 flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0"
       >
         <!-- Text Section -->
-        <div class="md:w-1/2 text-center md:text-left">
+        <div class="md:w-2/3 text-center md:text-left">
           <h1 class="text-4xl font-bold mb-3 text-blue-900">Qamar Ul Islam</h1>
           <p class="text-xl text-blue-700 mb-4">
-            Full-Stack Developer | Python & Node.js Expert | Backend Specialist
+            Software Engineer | Backend & AI/ML Specialist
           </p>
           <p class="text-gray-700 mb-6">
-            A passionate and driven software engineer specializing in Python and
-            Node.js backend development. I thrive on building robust and
-            scalable web applications. With a strong foundation in full-stack
-            development, I am adept at both frontend and backend technologies. I
-            enjoy solving complex problems and continuously learning new tools
-            and frameworks to enhance my skill set.
+            A highly motivated Software Engineer specializing in backend development and AI/ML systems. I have a proven record of building scalable, reliable applications using Python, Go, and Node.js. My experience ranges from freelance AI projects and complex API integrations to developing robust microservices for high-engagement platforms. I am passionate about architecting sophisticated RAG pipelines and leveraging LLMs to solve real-world problems.
           </p>
+
+          <!-- Download Resume Button -->
+          <div class="mt-8">
+            <a href="resume.pdf" download="Qamar-Ul-Islam-Resume.pdf" class="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-2xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-3xl active:scale-95">
+              <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+              <span class="relative flex items-center">
+                <i class="fas fa-download mr-3 text-lg group-hover:animate-bounce"></i>
+                <span class="text-lg font-semibold tracking-wide">Download Resume</span>
+              </span>
+            </a>
+          </div>
         </div>
 
         <!-- Image Section -->
-        <div class="md:w-1/2 flex justify-center md:justify-end">
+        <div class="md:w-1/3 flex justify-center md:justify-end">
           <img
             src="dev.png"
             alt="Qamar Ul Islam"
@@ -182,6 +196,18 @@
             <span>Python</span>
           </div>
           <div class="flex flex-col items-center">
+            <i class="fab fa-node-js text-4xl text-green-500 mb-2"></i>
+            <span>Node.js / NestJS</span>
+          </div>
+           <div class="flex flex-col items-center">
+            <i class="fas fa-code text-4xl text-cyan-500 mb-2"></i>
+            <span>Go (Gin)</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fab fa-js text-4xl text-yellow-500 mb-2"></i>
+            <span>JavaScript / TS</span>
+          </div>
+          <div class="flex flex-col items-center">
             <i class="fab fa-html5 text-4xl text-orange-500 mb-2"></i>
             <span>HTML5</span>
           </div>
@@ -193,28 +219,18 @@
           <!-- Frontend Frameworks/Libraries -->
           <div class="flex flex-col items-center">
             <i class="fab fa-react text-4xl text-blue-500 mb-2"></i>
-            <span>React</span>
+            <span>React / Next.js</span>
           </div>
           <div class="flex flex-col items-center">
             <i class="fab fa-angular text-4xl text-red-500 mb-2"></i>
             <span>Angular</span>
           </div>
-
           <div class="flex flex-col items-center">
             <i class="fas fa-paint-brush text-4xl text-teal-500 mb-2"></i>
             <span>Tailwind CSS</span>
           </div>
 
-          <div class="flex flex-col items-center">
-            <i class="fab fa-bootstrap text-4xl text-purple-500 mb-2"></i>
-            <span>Bootstrap</span>
-          </div>
-
           <!-- Backend/Server Side -->
-          <div class="flex flex-col items-center">
-            <i class="fab fa-node-js text-4xl text-green-500 mb-2"></i>
-            <span>Node.js</span>
-          </div>
           <div class="flex flex-col items-center">
             <i class="fas fa-flask text-4xl text-gray-700 mb-2"></i>
             <span>Flask</span>
@@ -222,10 +238,6 @@
           <div class="flex flex-col items-center">
             <i class="fas fa-server text-4xl text-green-600 mb-2"></i>
             <span>Express.js</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fas fa-code-branch text-4xl text-blue-800 mb-2"></i>
-            <span>Git</span>
           </div>
 
           <!-- Databases -->
@@ -235,7 +247,11 @@
           </div>
           <div class="flex flex-col items-center">
             <i class="fas fa-database text-4xl text-blue-400 mb-2"></i>
-            <span>MySQL</span>
+            <span>MySQL / PostgreSQL</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <i class="fas fa-leaf text-4xl text-green-400 mb-2"></i>
+            <span>Pinecone</span>
           </div>
 
           <!-- DevOps / Tools -->
@@ -244,22 +260,22 @@
             <span>Docker</span>
           </div>
           <div class="flex flex-col items-center">
-            <i class="fas fa-cloud text-4xl text-gray-400 mb-2"></i>
-            <span>AWS</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fab fa-github text-4xl text-gray-800 mb-2"></i>
-            <span>GitHub</span>
+            <i class="fab fa-git-alt text-4xl text-red-600 mb-2"></i>
+            <span>Git & GitHub</span>
           </div>
 
           <!-- AI / ML -->
           <div class="flex flex-col items-center">
             <i class="fas fa-brain text-4xl text-purple-600 mb-2"></i>
-            <span>Scikit-learn</span>
+            <span>AI/ML & RAG Systems</span>
           </div>
           <div class="flex flex-col items-center">
-            <i class="fas fa-code text-4xl text-gray-500 mb-2"></i>
-            <span>Typescript</span>
+            <i class="fas fa-cogs text-4xl text-gray-600 mb-2"></i>
+            <span>LangChain</span>
+          </div>
+           <div class="flex flex-col items-center">
+            <i class="fas fa-camera-retro text-4xl text-teal-600 mb-2"></i>
+            <span>OpenCV / YOLO</span>
           </div>
         </div>
       </div>
@@ -270,51 +286,55 @@
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold mb-8 text-center">Personal Projects</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
+          
+          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
+            <h3 class="text-xl font-bold mb-2">AskQuran</h3>
+            <p class="text-gray-700 mb-4">A beautiful, modern web application for asking questions about the Quran and receiving AI-powered responses with relevant verses using a RAG architecture.</p>
+            <span class="text-gray-500 italic">Coming Soon</span>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
+            <h3 class="text-xl font-bold mb-2">Ask Sunnah Online - AI Islamic Scholar</h3>
+            <p class="text-gray-700 mb-4">Creator and lead developer of a live, AI-powered scholar that provides fact-based answers with scriptural references using a RAG pipeline.</p>
+            <a href="https://asksunnah.online" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
+            <h3 class="text-xl font-bold mb-2">Slack Prayer Reminder Bot</h3>
+            <p class="text-gray-700 mb-4">A production-ready bot that sends beautiful, motivational reminders to Slack channels with Quran verses and AI-generated messages.</p>
+            <a href="https://github.com/Qamar2315/slack-prayer-reminder" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
+            <h3 class="text-xl font-bold mb-2">LearnXcellence</h3>
+            <p class="text-gray-700 mb-4">Final Year Project to automate university processes, featuring AI-proctoring, auto quiz generation, and spoof detection with a custom YOLO model.</p>
+            <a href="https://github.com/Qamar2315/LearnXcellence" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
             <h3 class="text-xl font-bold mb-2">QuoteWise</h3>
             <p class="text-gray-700 mb-4">
               Inspire with AI-Generated Quotes. Angular frontend and TypeScript
               backend for a modern user experience.
             </p>
-            <a
-              href="https://github.com/Qamar2315/quotewise"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
+            <a href="https://github.com/Qamar2315/quotewise" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
           </div>
 
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
+          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
             <h3 class="text-xl font-bold mb-2">Chef Connect</h3>
             <p class="text-gray-700 mb-4">
               A Recipe-Sharing Platform with Next.js, Tailwind CSS, and NodeJS.
             </p>
-            <a
-              href="https://github.com/Qamar2315/chefconnect"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
+            <a href="https://github.com/Qamar2315/chefconnect" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
           </div>
 
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
+          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
             <h3 class="text-xl font-bold mb-2">WaterZilla</h3>
             <p class="text-gray-700 mb-4">
               Simplify water purchases and empower administrators with this
               revolutionary MERN stack web app.
             </p>
-            <a
-              href="https://github.com/Qamar2315/Waterzilla"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
+            <a href="https://github.com/Qamar2315/Waterzilla" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
           </div>
 
           <div
@@ -482,22 +502,6 @@
           <div
             class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
           >
-            <h3 class="text-xl font-bold mb-2">LearnXcellence</h3>
-            <p class="text-gray-700 mb-4">
-              A comprehensive Learning Management System (LMS) designed
-              specifically for project-based learning environments.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/LearnXcellence"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
             <h3 class="text-xl font-bold mb-2">MarkDowner</h3>
             <p class="text-gray-700 mb-4">
               A simple and elegant web application for converting Markdown text
@@ -520,42 +524,52 @@
         <h2 class="text-3xl font-bold mb-8 text-center">Experience</h2>
 
         <div class="relative">
-          <div
-            class="border-l-2 border-gray-300 absolute h-full left-4 top-0"
-          ></div>
-          <!-- Vertical Line -->
+          <div class="border-l-2 border-gray-300 absolute h-full left-4 top-0"></div> <!-- Vertical Line -->
 
           <div class="mb-8">
             <div class="flex items-center mb-2">
-              <div
-                class="bg-blue-500 rounded-full w-4 h-4 absolute left-0 z-10 transform -translate-x-1/2"
-              ></div>
-              <h3 class="text-lg font-semibold ml-8">
-                Freelance Python and NodeJS Developer
-              </h3>
+              <div class="bg-blue-500 rounded-full w-4 h-4 absolute left-0 z-10 transform -translate-x-1/2"></div>
+              <h3 class="text-lg font-semibold ml-8">Software Engineer, DevAxl</h3>
             </div>
             <div class="ml-12 text-gray-700">
-              <p>Fiverr (June 2023 - Present)</p>
+              <p>Feb 2025 - Present</p>
               <ul class="list-disc list-inside ml-4">
-                <li>Level 2, Approaching Top Rated Seller.</li>
-                <li>
-                  Earned Fiverr Choice recognition for consistent high-quality
-                  work and client satisfaction.
-                </li>
-                <li>
-                  Completed 34 projects with a 4.8-star rating and 25 satisfied
-                  clients.
-                </li>
-                <li>
-                  Consistently exceeded client expectations.
-                </li>
+                <li>Engineered a scalable microservice in Go (Gin) for an influencer e-commerce application.</li>
+                <li>Developed and deployed a RAG-based AI system using Python for a client's user dashboard.</li>
+                <li>Currently working on the backend development and integration of a new product MVP using NestJS.</li>
               </ul>
             </div>
           </div>
 
-          <!-- Add more experience entries here, following the same structure -->
+          <div class="mb-8">
+            <div class="flex items-center mb-2">
+              <div class="bg-blue-500 rounded-full w-4 h-4 absolute left-0 z-10 transform -translate-x-1/2"></div>
+              <h3 class="text-lg font-semibold ml-8">Freelance Backend & AI Developer, Fiverr</h3>
+            </div>
+            <div class="ml-12 text-gray-700">
+              <p>Feb 2023 - Feb 2025</p>
+              <ul class="list-disc list-inside ml-4">
+                <li>Developed and deployed custom Python backends for AI/ML applications, including computer vision and process automation.</li>
+                <li>Co-developed "Scam Eye," a spam detection tool utilizing custom-trained models and OpenAI LLMs.</li>
+                <li>Built and integrated Node.js (Express) backends with payment gateways (Stripe, PayPal) and third-party APIs (Twilio).</li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
+    </section>
+    
+    <!-- Education Section -->
+    <section id="education" class="py-12 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Educational Background</h2>
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md text-center">
+                <h3 class="text-2xl font-semibold text-blue-900">Bachelor of Science in Software Engineering</h3>
+                <p class="text-lg text-gray-600 mt-2">COMSATS University Islamabad</p>
+                <p class="text-md text-gray-500 mt-1">2021 - 2025</p>
+            </div>
+        </div>
     </section>
 
     <!-- Freelance Work Section -->
@@ -595,102 +609,25 @@
               PostgreSQL.
             </p>
           </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">Payment Gateway Integration</h3>
-            <p class="text-gray-700 mb-4">
-              Integrated payment gateways for seamless transaction processing in
-              multiple projects, enhancing user experience.
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">Lottery Prediction ML Model</h3>
-            <p class="text-gray-700 mb-4">
-              Trained an ML model for lottery prediction, including web scraping
-              to gather the latest data from lottery sites.
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">OpenCV Graph Analysis</h3>
-            <p class="text-gray-700 mb-4">
-              Applied OpenCV to analyze graphs and accurately measure maxima and
-              minima for various datasets.
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">
-              Factory Automation with OpenCV
-            </h3>
-            <p class="text-gray-700 mb-4">
-              Worked on a project to measure sheet length accurately in a
-              factory setting using OpenCV and Python while the sheets were
-              moving on a machine.
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">Tesla Bar Graph Detection</h3>
-            <p class="text-gray-700 mb-4">
-              Developed APIs and used OpenCV to detect and analyze bar graphs
-              related to Tesla data for improved insights.
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">
-              Backend development for an Education Web Application
-            </h3>
-            <p class="text-gray-700 mb-4">
-              Developed a robust backend for an educational platform focusing on
-              project-centric learning, AI-powered proctoring, and enhanced
-              assessment and communication.
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">
-              Code Inspection for Cloud API
-            </h3>
-            <p class="text-gray-700 mb-4">
-              Conducted a code inspection and audit for the cloud compressor API
-              to ensure performance and security.
-            </p>
-          </div>
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-12 bg-gray-100">
+    <section id="contact" class="py-12 bg-white">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold mb-8 text-center">Contact</h2>
-        <p class="text-center text-lg">
-          Send your query at
-          <a
-            href="mailto:qamarislam4496@gmail.com"
-            class="text-blue-500 hover:underline"
-            >qamarislam4496@gmail.com</a
-          >
-        </p>
+        <div class="text-center text-lg">
+          <p class="mb-2">Feel free to reach out:</p>
+          <a href="mailto:qamarislam1232@gmail.com" class="text-blue-500 hover:underline block">
+              <i class="fas fa-envelope mr-2"></i>qamarislam1232@gmail.com
+          </a>
+          <p class="mt-2 text-gray-700"><i class="fas fa-phone mr-2"></i>+923148412001</p>
+          <p class="mt-2 text-gray-700"><i class="fas fa-map-marker-alt mr-2"></i>Islamabad, Pakistan</p>
+        </div>
       </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="py-4 bg-gray-800 text-center text-white">
@@ -698,7 +635,7 @@
         <p>© 2025 Qamar Ul Islam. All rights reserved.</p>
       </div>
     </footer>
-    <!---for simple email validation --->
+    
     <script src="app.js"></script>
   </body>
 </html>
