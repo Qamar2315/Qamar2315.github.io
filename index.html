@@ -1,570 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Qamar Ul Islam - Software Engineer</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdG+geldESX6UMMFqrn79dz7dE9IqtwkRszpLmP8jHLWL2/6i1Q=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <link rel="icon" href="icon.png" />
-    <style>
-      /* Custom CSS for smooth transitions */
-      .transition-all {
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qamar Ul Islam - Software Engineer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="icon.png" />
+  <style>
+    /* Custom CSS for enhanced animations and styling */
+    .transition-all {
         transition: all 0.3s ease-in-out;
-      }
+    }
+    
+    .hover-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .skill-icon:hover {
+        transform: scale(1.1);
+        color: #3b82f6; /* Blue-500 */
+    }
+    
+    .timeline-item::before {
+        content: '';
+        background: #9ca3af; /* Gray-400 */
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        left: 0.5rem;
+        top: 0.5rem;
+    }
+    
+    .timeline-dot {
+        position: absolute;
+        left: 0;
+        transform: translateX(-50%);
+        background-color: white;
+        border-radius: 9999px;
+    }
+    
+    .timeline-dot-inner {
+        background-color: #3b82f6; /* Blue-500 */
+    }
 
-      .hover-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      }
-    </style>
-  </head>
-
-  <body class="bg-gray-100 font-sans text-gray-800">
-    <!-- Navigation Bar -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-      <div class="container mx-auto px-4">
-        <div class="flex justify-between items-center py-4">
-          <a href="" class="text-2xl font-bold text-blue-900">Portfolio</a>
-
-          <div class="hidden md:flex space-x-4">
-            <a href="#introduction" class="text-gray-700 hover:text-blue-500"
-              >Introduction</a
-            >
-            <a href="#skills" class="text-gray-700 hover:text-blue-500"
-              >Skills</a
-            >
-            <a href="#projects" class="text-gray-700 hover:text-blue-500"
-              >Projects</a
-            >
-            <a href="#experience" class="text-gray-700 hover:text-blue-500"
-              >Experience</a
-            >
-            <a href="#education" class="text-gray-700 hover:text-blue-500"
-              >Education</a
-            >
-            <a href="#freelance" class="text-gray-700 hover:text-blue-500"
-              >Freelance</a
-            >
-            <a href="#contact" class="text-gray-700 hover:text-blue-500"
-              >Contact</a
-            >
-          </div>
-
-          <!-- Mobile Menu Button -->
-          <div class="md:hidden">
-            <button
-              id="mobile-menu-button"
-              class="text-gray-700 hover:text-blue-500 focus:outline-none"
-            >
-              <svg
-                class="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </button>
-          </div>
+    /* Scroll animation styles */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .animate-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-700 antialiased">
+  
+<!-- Navigation Bar -->
+<nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full top-0 z-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-18">
+            <a href="#introduction" class="text-2xl font-bold text-slate-800">Portfolio</a>
+            
+            <div id="nav-desktop" class="hidden md:flex items-center space-x-6">
+                <a href="#introduction" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Introduction</a>
+                <a href="#skills" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Skills</a>
+                <a href="#projects" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Projects</a>
+                <a href="#experience" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Experience</a>
+                <a href="#education" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Education</a>
+                <a href="#freelance" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Freelance</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-slate-600 hover:text-blue-500 focus:outline-none p-2">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
         </div>
+    </div>
+</nav>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-          <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
-              href="#introduction"
-              class="block text-gray-700 hover:text-blue-500"
-              >Introduction</a
-            >
-            <a href="#skills" class="block text-gray-700 hover:text-blue-500"
-              >Skills</a
-            >
-            <a href="#projects" class="block text-gray-700 hover:text-blue-500"
-              >Projects</a
-            >
-            <a
-              href="#experience"
-              class="block text-gray-700 hover:text-blue-500"
-              >Experience</a
-            >
-             <a
-              href="#education"
-              class="block text-gray-700 hover:text-blue-500"
-              >Education</a
-            >
-            <a href="#freelance" class="block text-gray-700 hover:text-blue-500"
-              >Freelance</a
-            >
-            <a href="#contact" class="block text-gray-700 hover:text-blue-500"
-              >Contact</a
-            >
-          </div>
-        </div>
-      </div>
-    </nav>
+<!-- Mobile Menu -->
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+    <div class="p-5 flex flex-col space-y-4">
+        <a href="#introduction" class="block text-gray-600 hover:text-blue-500 py-2">Introduction</a>
+        <a href="#skills" class="block text-gray-600 hover:text-blue-500 py-2">Skills</a>
+        <a href="#projects" class="block text-gray-600 hover:text-blue-500 py-2">Projects</a>
+        <a href="#experience" class="block text-gray-600 hover:text-blue-500 py-2">Experience</a>
+        <a href="#education" class="block text-gray-600 hover:text-blue-500 py-2">Education</a>
+        <a href="#freelance" class="block text-gray-600 hover:text-blue-500 py-2">Freelance</a>
+        <a href="#contact" class="block text-gray-600 hover:text-blue-500 py-2">Contact</a>
+    </div>
+</div>
 
-    <button
-      id="back-to-top"
-      title="Back to Top"
-      class="hidden fixed bottom-8 right-8 p-3 rounded-full bg-blue-500/20 hover:bg-blue-500/50 transition-all text-blue-500 hover:text-white"
-    >
-      <svg
-        class="w-8 h-8"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 11l7-7 7 7M5 19l7-7 7 7"
-        ></path>
-      </svg>
-    </button>
+<main class="pt-18">
+    <!-- Back to Top Button -->
+    <a href="#" id="back-to-top" title="Back to Top" class="fixed bottom-8 right-8 p-3 rounded-full bg-blue-500/80 hover:bg-blue-600 text-white shadow-lg transition-all duration-300 opacity-0 pointer-events-none hover:scale-110">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </a>
 
     <!-- Introduction Section -->
-    <section
-      id="introduction"
-      class="py-16 bg-gradient-to-r from-blue-50 to-blue-100"
-    >
-      <div
-        class="container mx-auto px-20 flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0"
-      >
-        <!-- Text Section -->
-        <div class="md:w-2/3 text-center md:text-left">
-          <h1 class="text-4xl font-bold mb-3 text-blue-900">Qamar Ul Islam</h1>
-          <p class="text-xl text-blue-700 mb-4">
-            Software Engineer | Backend & AI/ML Specialist
-          </p>
-          <p class="text-gray-700 mb-6">
-            A highly motivated Software Engineer specializing in backend development and AI/ML systems. I have a proven record of building scalable, reliable applications using Python, Go, and Node.js. My experience ranges from freelance AI projects and complex API integrations to developing robust microservices for high-engagement platforms. I am passionate about architecting sophisticated RAG pipelines and leveraging LLMs to solve real-world problems.
-          </p>
-
-          <!-- Download Resume Button -->
-          <div class="mt-8">
-            <a href="resume.pdf" download="Qamar-Ul-Islam-Resume.pdf" class="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-2xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-3xl active:scale-95">
-              <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-              <span class="relative flex items-center">
-                <i class="fas fa-download mr-3 text-lg group-hover:animate-bounce"></i>
-                <span class="text-lg font-semibold tracking-wide">Download Resume</span>
-              </span>
-            </a>
-          </div>
+    <section id="introduction" class="py-24 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div class="container mx-auto px-6 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-12">
+            <div class="md:w-3/5 text-center md:text-left animate-on-scroll">
+                <h1 class="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-4">Qamar Ul Islam</h1>
+                <p class="text-xl lg:text-2xl text-blue-600 font-semibold mb-6">Software Engineer | Backend & AI/ML Specialist</p>
+                <p class="text-slate-600 leading-relaxed">
+                    A highly motivated Software Engineer specializing in backend development and AI/ML systems. I have a proven record of building scalable, reliable applications using Python, Go, and Node.js. My experience ranges from freelance AI projects and complex API integrations to developing robust microservices for high-engagement platforms. I am passionate about architecting sophisticated RAG pipelines and leveraging LLMs to solve real-world problems.
+                </p>
+                <!-- Download Resume Button -->
+                <div class="mt-8">
+                    <a href="resume.pdf" download="Qamar-Ul-Islam-Resume.pdf" class="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-2xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-3xl active:scale-95">
+                        <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                        <span class="relative flex items-center">
+                            <i class="fas fa-download mr-3 text-lg group-hover:animate-bounce"></i>
+                            <span class="text-lg font-semibold tracking-wide">Download Resume</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-2/5 flex justify-center animate-on-scroll" style="transition-delay: 200ms;">
+                <img src="dev.png" alt="Qamar Ul Islam" class="rounded-full w-60 h-60 object-cover shadow-2xl border-8 border-white" />
+            </div>
         </div>
-
-        <!-- Image Section -->
-        <div class="md:w-1/3 flex justify-center md:justify-end">
-          <img
-            src="dev.png"
-            alt="Qamar Ul Islam"
-            class="rounded-full w-56 h-56 object-cover shadow-lg border-4 border-blue-200"
-          />
-        </div>
-      </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-12 bg-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center">Technical Skills</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-          <!-- Programming Languages -->
-          <div class="flex flex-col items-center">
-            <i class="fab fa-python text-4xl text-blue-500 mb-2"></i>
-            <span>Python</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fab fa-node-js text-4xl text-green-500 mb-2"></i>
-            <span>Node.js / NestJS</span>
-          </div>
-           <div class="flex flex-col items-center">
-            <i class="fas fa-code text-4xl text-cyan-500 mb-2"></i>
-            <span>Go (Gin)</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fab fa-js text-4xl text-yellow-500 mb-2"></i>
-            <span>JavaScript / TS</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fab fa-html5 text-4xl text-orange-500 mb-2"></i>
-            <span>HTML5</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fab fa-css3-alt text-4xl text-blue-700 mb-2"></i>
-            <span>CSS3</span>
-          </div>
-
-          <!-- Frontend Frameworks/Libraries -->
-          <div class="flex flex-col items-center">
-            <i class="fab fa-react text-4xl text-blue-500 mb-2"></i>
-            <span>React / Next.js</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fab fa-angular text-4xl text-red-500 mb-2"></i>
-            <span>Angular</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fas fa-paint-brush text-4xl text-teal-500 mb-2"></i>
-            <span>Tailwind CSS</span>
-          </div>
-
-          <!-- Backend/Server Side -->
-          <div class="flex flex-col items-center">
-            <i class="fas fa-flask text-4xl text-gray-700 mb-2"></i>
-            <span>Flask</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fas fa-server text-4xl text-green-600 mb-2"></i>
-            <span>Express.js</span>
-          </div>
-
-          <!-- Databases -->
-          <div class="flex flex-col items-center">
-            <i class="fas fa-database text-4xl text-orange-500 mb-2"></i>
-            <span>MongoDB</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fas fa-database text-4xl text-blue-400 mb-2"></i>
-            <span>MySQL / PostgreSQL</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fas fa-leaf text-4xl text-green-400 mb-2"></i>
-            <span>Pinecone</span>
-          </div>
-
-          <!-- DevOps / Tools -->
-          <div class="flex flex-col items-center">
-            <i class="fab fa-docker text-4xl text-blue-600 mb-2"></i>
-            <span>Docker</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fab fa-git-alt text-4xl text-red-600 mb-2"></i>
-            <span>Git & GitHub</span>
-          </div>
-
-          <!-- AI / ML -->
-          <div class="flex flex-col items-center">
-            <i class="fas fa-brain text-4xl text-purple-600 mb-2"></i>
-            <span>AI/ML & RAG Systems</span>
-          </div>
-          <div class="flex flex-col items-center">
-            <i class="fas fa-cogs text-4xl text-gray-600 mb-2"></i>
-            <span>LangChain</span>
-          </div>
-           <div class="flex flex-col items-center">
-            <i class="fas fa-camera-retro text-4xl text-teal-600 mb-2"></i>
-            <span>OpenCV / YOLO</span>
-          </div>
+    <section id="skills" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-4 text-center text-slate-800">Technical Skills</h2>
+                <p class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">My toolkit for building modern web applications, from frontend design to backend logic and deployment.</p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 text-center">
+                <!-- Programming Languages -->
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 100ms;"><i class="fab fa-python text-5xl text-gray-400 mb-2 transition-all"></i><span>Python</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 150ms;"><i class="fab fa-node-js text-5xl text-gray-400 mb-2 transition-all"></i><span>Node.js / NestJS</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 200ms;"><i class="fas fa-code text-5xl text-gray-400 mb-2 transition-all"></i><span>Go (Gin)</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 250ms;"><i class="fab fa-js text-5xl text-gray-400 mb-2 transition-all"></i><span>JavaScript / TS</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 300ms;"><i class="fab fa-html5 text-5xl text-gray-400 mb-2 transition-all"></i><span>HTML5</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 350ms;"><i class="fab fa-css3-alt text-5xl text-gray-400 mb-2 transition-all"></i><span>CSS3</span></div>
+                
+                <!-- Frontend Frameworks/Libraries -->
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 400ms;"><i class="fab fa-react text-5xl text-gray-400 mb-2 transition-all"></i><span>React / Next.js</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 450ms;"><i class="fab fa-angular text-5xl text-gray-400 mb-2 transition-all"></i><span>Angular</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 500ms;"><i class="fas fa-paint-brush text-5xl text-gray-400 mb-2 transition-all"></i><span>Tailwind CSS</span></div>
+                
+                <!-- Backend/Server Side -->
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 550ms;"><i class="fas fa-flask text-5xl text-gray-400 mb-2 transition-all"></i><span>Flask</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 600ms;"><i class="fas fa-server text-5xl text-gray-400 mb-2 transition-all"></i><span>Express.js</span></div>
+                
+                <!-- Databases -->
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 650ms;"><i class="fas fa-database text-5xl text-gray-400 mb-2 transition-all"></i><span>MongoDB</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 700ms;"><i class="fas fa-database text-5xl text-gray-400 mb-2 transition-all"></i><span>MySQL / PostgreSQL</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 750ms;"><i class="fas fa-leaf text-5xl text-gray-400 mb-2 transition-all"></i><span>Pinecone</span></div>
+                
+                <!-- DevOps / Tools -->
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 800ms;"><i class="fab fa-docker text-5xl text-gray-400 mb-2 transition-all"></i><span>Docker</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 850ms;"><i class="fab fa-git-alt text-5xl text-gray-400 mb-2 transition-all"></i><span>Git & GitHub</span></div>
+                
+                <!-- AI / ML -->
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 900ms;"><i class="fas fa-brain text-5xl text-gray-400 mb-2 transition-all"></i><span>AI/ML & RAG Systems</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 950ms;"><i class="fas fa-cogs text-5xl text-gray-400 mb-2 transition-all"></i><span>LangChain</span></div>
+                <div class="flex flex-col items-center animate-on-scroll skill-icon" style="transition-delay: 1000ms;"><i class="fas fa-camera-retro text-5xl text-gray-400 mb-2 transition-all"></i><span>OpenCV / YOLO</span></div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-12 bg-gray-100">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center">Personal Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
-            <h3 class="text-xl font-bold mb-2">AskQuran</h3>
-            <p class="text-gray-700 mb-4">A beautiful, modern web application for asking questions about the Quran and receiving AI-powered responses with relevant verses using a RAG architecture.</p>
-            <span class="text-gray-500 italic">Coming Soon</span>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
-            <h3 class="text-xl font-bold mb-2">Ask Sunnah Online - AI Islamic Scholar</h3>
-            <p class="text-gray-700 mb-4">Creator and lead developer of a live, AI-powered scholar that provides fact-based answers with scriptural references using a RAG pipeline.</p>
-            <a href="https://asksunnah.online" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
-            <h3 class="text-xl font-bold mb-2">Slack Prayer Reminder Bot</h3>
-            <p class="text-gray-700 mb-4">A production-ready bot that sends beautiful, motivational reminders to Slack channels with Quran verses and AI-generated messages.</p>
-            <a href="https://github.com/Qamar2315/slack-prayer-reminder" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
-            <h3 class="text-xl font-bold mb-2">LearnXcellence</h3>
-            <p class="text-gray-700 mb-4">Final Year Project to automate university processes, featuring AI-proctoring, auto quiz generation, and spoof detection with a custom YOLO model.</p>
-            <a href="https://github.com/Qamar2315/LearnXcellence" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
-          </div>
-          
-          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
-            <h3 class="text-xl font-bold mb-2">QuoteWise</h3>
-            <p class="text-gray-700 mb-4">
-              Inspire with AI-Generated Quotes. Angular frontend and TypeScript
-              backend for a modern user experience.
-            </p>
-            <a href="https://github.com/Qamar2315/quotewise" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
-            <h3 class="text-xl font-bold mb-2">Chef Connect</h3>
-            <p class="text-gray-700 mb-4">
-              A Recipe-Sharing Platform with Next.js, Tailwind CSS, and NodeJS.
-            </p>
-            <a href="https://github.com/Qamar2315/chefconnect" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md hover-card transition-all p-6">
-            <h3 class="text-xl font-bold mb-2">WaterZilla</h3>
-            <p class="text-gray-700 mb-4">
-              Simplify water purchases and empower administrators with this
-              revolutionary MERN stack web app.
-            </p>
-            <a href="https://github.com/Qamar2315/Waterzilla" target="_blank" class="text-blue-500 hover:underline">GitHub Repo</a>
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">Whirley Bird</h3>
-            <p class="text-gray-700 mb-4">
-              Control the Bird with Your Hands in "Whirley Bird" - A Thrilling
-              Pygame Experience!
-            </p>
-            <a
-              href="https://github.com/Qamar2315/Whirleybird"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">LetterGen</h3>
-            <p class="text-gray-700 mb-4">
-              Streamline Your Job Application Process with Personalized Cover
-              Letters and Emails.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/lettergen"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">PhotoBook</h3>
-            <p class="text-gray-700 mb-4">
-              A social media clone for sharing photos, built with Node.js and
-              MongoDB, focused on visual storytelling.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/Photobook"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">Fertility Diagnoser</h3>
-            <p class="text-gray-700 mb-4">
-              A web app using machine learning to predict fertility levels based
-              on user input like age and hormone levels.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/fertility_diagnoser"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">
-              Personalized Diet Plan Recommender
-            </h3>
-            <p class="text-gray-700 mb-4">
-              A web app generating tailored meal plans using Prolog, React, and
-              Node.js based on user dietary needs.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/diet_recommendation_system"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <!-- <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">Imaginarium</h3>
-            <p class="text-gray-700 mb-4">
-              An AI character creation workshop where users can design and
-              interact with AI-powered characters.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/Imaginarium"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-            
-          </div> -->
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">CryptoWhisper</h3>
-            <p class="text-gray-700 mb-4">
-              A Python program for encrypting and decrypting text using a unique
-              key and permutation-based algorithm.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/cryptowhisper"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">VidNote</h3>
-            <p class="text-gray-700 mb-4">
-              VidNote is a web application that allows you to convert YouTube
-              video transcripts into well-structured PDF notes.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/VidNote"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">GPX-Generator</h3>
-            <p class="text-gray-700 mb-4">
-              A Python-based tool designed to convert trip data stored in a JSON
-              file into a standard GPX file.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/GPX-Generator"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">Blurify</h3>
-            <p class="text-gray-700 mb-4">
-              A face-blurring application designed to enhance privacy.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/Blurify"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">MarkDowner</h3>
-            <p class="text-gray-700 mb-4">
-              A simple and elegant web application for converting Markdown text
-              to PDF documents.
-            </p>
-            <a
-              href="https://github.com/Qamar2315/MarkDowner"
-              target="_blank"
-              class="text-blue-500 hover:underline"
-              >GitHub Repo</a
-            >
-          </div>
+    <section id="projects" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-4 text-center text-slate-800">Personal Projects</h2>
+                <p class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">A selection of projects that demonstrate my passion for building software and solving problems.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Cards -->
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">AskQuran</h3><p class="text-slate-600 mb-4 flex-grow">A beautiful, modern web application for asking questions about the Quran and receiving AI-powered responses with relevant verses using a RAG architecture.</p><span class="text-gray-500 italic">Coming Soon</span></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Ask Sunnah Online - AI Islamic Scholar</h3><p class="text-slate-600 mb-4 flex-grow">Creator and lead developer of a live, AI-powered scholar that provides fact-based answers with scriptural references using a RAG pipeline.</p><a href="https://asksunnah.online" target="_blank" class="text-blue-500 hover:underline font-semibold">Live Demo <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Slack Prayer Reminder Bot</h3><p class="text-slate-600 mb-4 flex-grow">A production-ready bot that sends beautiful, motivational reminders to Slack channels with Quran verses and AI-generated messages.</p><a href="https://github.com/Qamar2315/slack-prayer-reminder" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">LearnXcellence</h3><p class="text-slate-600 mb-4 flex-grow">Final Year Project to automate university processes, featuring AI-proctoring, auto quiz generation, and spoof detection with a custom YOLO model.</p><a href="https://github.com/Qamar2315/LearnXcellence" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">QuoteWise</h3><p class="text-slate-600 mb-4 flex-grow">Inspire with AI-Generated Quotes. Angular frontend and TypeScript backend for a modern user experience.</p><a href="https://github.com/Qamar2315/quotewise" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Chef Connect</h3><p class="text-slate-600 mb-4 flex-grow">A Recipe-Sharing Platform with Next.js, Tailwind CSS, and NodeJS.</p><a href="https://github.com/Qamar2315/chefconnect" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">WaterZilla</h3><p class="text-slate-600 mb-4 flex-grow">Simplify water purchases and empower administrators with this revolutionary MERN stack web app.</p><a href="https://github.com/Qamar2315/Waterzilla" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Whirley Bird</h3><p class="text-slate-600 mb-4 flex-grow">Control the Bird with Your Hands in "Whirley Bird" - A Thrilling Pygame Experience!</p><a href="https://github.com/Qamar2315/Whirleybird" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">LetterGen</h3><p class="text-slate-600 mb-4 flex-grow">Streamline Your Job Application Process with Personalized Cover Letters and Emails.</p><a href="https://github.com/Qamar2315/lettergen" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">PhotoBook</h3><p class="text-slate-600 mb-4 flex-grow">A social media clone for sharing photos, built with Node.js and MongoDB, focused on visual storytelling.</p><a href="https://github.com/Qamar2315/Photobook" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Fertility Diagnoser</h3><p class="text-slate-600 mb-4 flex-grow">A web app using machine learning to predict fertility levels based on user input like age and hormone levels.</p><a href="https://github.com/Qamar2315/fertility_diagnoser" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Personalized Diet Plan Recommender</h3><p class="text-slate-600 mb-4 flex-grow">A web app generating tailored meal plans using Prolog, React, and Node.js based on user dietary needs.</p><a href="https://github.com/Qamar2315/diet_recommendation_system" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">CryptoWhisper</h3><p class="text-slate-600 mb-4 flex-grow">A Python program for encrypting and decrypting text using a unique key and permutation-based algorithm.</p><a href="https://github.com/Qamar2315/cryptowhisper" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">VidNote</h3><p class="text-slate-600 mb-4 flex-grow">VidNote is a web application that allows you to convert YouTube video transcripts into well-structured PDF notes.</p><a href="https://github.com/Qamar2315/VidNote" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">GPX-Generator</h3><p class="text-slate-600 mb-4 flex-grow">A Python-based tool designed to convert trip data stored in a JSON file into a standard GPX file.</p><a href="https://github.com/Qamar2315/GPX-Generator" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Blurify</h3><p class="text-slate-600 mb-4 flex-grow">A face-blurring application designed to enhance privacy.</p><a href="https://github.com/Qamar2315/Blurify" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">MarkDowner</h3><p class="text-slate-600 mb-4 flex-grow">A simple and elegant web application for converting Markdown text to PDF documents.</p><a href="https://github.com/Qamar2315/MarkDowner" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-12 bg-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center">Experience</h2>
-
-        <div class="relative">
-          <div class="border-l-2 border-gray-300 absolute h-full left-4 top-0"></div> <!-- Vertical Line -->
-
-          <div class="mb-8">
-            <div class="flex items-center mb-2">
-              <div class="bg-blue-500 rounded-full w-4 h-4 absolute left-0 z-10 transform -translate-x-1/2"></div>
-              <h3 class="text-lg font-semibold ml-8">Software Engineer, DevAxl</h3>
-            </div>
-            <div class="ml-12 text-gray-700">
-              <p>Feb 2025 - Present</p>
-              <ul class="list-disc list-inside ml-4">
-                <li>Engineered a scalable microservice in Go (Gin) for an influencer e-commerce application.</li>
-                <li>Developed and deployed a RAG-based AI system using Python for a client's user dashboard.</li>
-                <li>Currently working on the backend development and integration of a new product MVP using NestJS.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="mb-8">
-            <div class="flex items-center mb-2">
-              <div class="bg-blue-500 rounded-full w-4 h-4 absolute left-0 z-10 transform -translate-x-1/2"></div>
-              <h3 class="text-lg font-semibold ml-8">Freelance Backend & AI Developer, Fiverr</h3>
-            </div>
-            <div class="ml-12 text-gray-700">
-              <p>Feb 2023 - Feb 2025</p>
-              <ul class="list-disc list-inside ml-4">
-                <li>Developed and deployed custom Python backends for AI/ML applications, including computer vision and process automation.</li>
-                <li>Co-developed "Scam Eye," a spam detection tool utilizing custom-trained models and OpenAI LLMs.</li>
-                <li>Built and integrated Node.js (Express) backends with payment gateways (Stripe, PayPal) and third-party APIs (Twilio).</li>
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    
-    <!-- Education Section -->
-    <section id="education" class="py-12 bg-gray-100">
+    <section id="experience" class="py-20 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-8 text-center">Educational Background</h2>
-            <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md text-center">
+            <div class="animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-12 text-center text-slate-800">Professional Experience</h2>
+            </div>
+            <div class="relative max-w-2xl mx-auto">
+                <!-- Timeline Item -->
+                <div class="timeline-item relative pl-8 pb-8 animate-on-scroll">
+                    <div class="timeline-dot w-4 h-4 border-2 border-blue-500">
+                        <div class="timeline-dot-inner w-2 h-2 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                    </div>
+                    <div class="bg-slate-100/70 p-6 rounded-lg shadow-sm">
+                        <p class="text-sm font-semibold text-blue-600">Feb 2025 - Present</p>
+                        <h3 class="text-lg font-bold text-slate-800 mt-1">Software Engineer, DevAxl</h3>
+                        <ul class="list-disc list-inside text-slate-600 space-y-1 mt-3">
+                            <li>Engineered a scalable microservice in Go (Gin) for an influencer e-commerce application.</li>
+                            <li>Developed and deployed a RAG-based AI system using Python for a client's user dashboard.</li>
+                            <li>Currently working on the backend development and integration of a new product MVP using NestJS.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item relative pl-8 pb-8 animate-on-scroll">
+                    <div class="timeline-dot w-4 h-4 border-2 border-blue-500">
+                        <div class="timeline-dot-inner w-2 h-2 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                    </div>
+                    <div class="bg-slate-100/70 p-6 rounded-lg shadow-sm">
+                        <p class="text-sm font-semibold text-blue-600">Feb 2023 - Feb 2025</p>
+                        <h3 class="text-lg font-bold text-slate-800 mt-1">Freelance Backend & AI Developer, Fiverr</h3>
+                        <ul class="list-disc list-inside text-slate-600 space-y-1 mt-3">
+                            <li>Developed and deployed custom Python backends for AI/ML applications, including computer vision and process automation.</li>
+                            <li>Co-developed "Scam Eye," a spam detection tool utilizing custom-trained models and OpenAI LLMs.</li>
+                            <li>Built and integrated Node.js (Express) backends with payment gateways (Stripe, PayPal) and third-party APIs (Twilio).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-4 text-center text-slate-800">Educational Background</h2>
+                <p class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">My academic journey and qualifications that form the foundation of my technical expertise.</p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md text-center animate-on-scroll">
                 <h3 class="text-2xl font-semibold text-blue-900">Bachelor of Science in Software Engineering</h3>
                 <p class="text-lg text-gray-600 mt-2">COMSATS University Islamabad</p>
                 <p class="text-md text-gray-500 mt-1">2021 - 2025</p>
@@ -573,69 +261,52 @@
     </section>
 
     <!-- Freelance Work Section -->
-    <section id="freelance" class="py-12 bg-gray-100">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center">Freelance Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">Next.js Web Applications</h3>
-            <p class="text-gray-700 mb-4">
-              Developed various web applications using Next.js for server-side
-              rendering and dynamic content generation.
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">
-              Google Calendar & Wix API Integration
-            </h3>
-            <p class="text-gray-700 mb-4">
-              Integrated Google Calendar API with Wix to fetch data and display
-              it seamlessly on Wix-based platforms.
-            </p>
-          </div>
-
-          <div
-            class="bg-white rounded-lg shadow-md hover-card transition-all p-6"
-          >
-            <h3 class="text-xl font-bold mb-2">Voucher Management System</h3>
-            <p class="text-gray-700 mb-4">
-              Built a robust voucher management system with role-based access
-              control, utilizing Node.js, Express.js, MongoDB, MySQL, and
-              PostgreSQL.
-            </p>
-          </div>
+    <section id="freelance" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="animate-on-scroll">
+                <h2 class="text-3xl font-bold mb-4 text-center text-slate-800">Featured Freelance Work</h2>
+                <p class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">Highlights of custom solutions I've delivered for clients worldwide.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Freelance Project Cards -->
+                <div class="bg-slate-50 rounded-xl shadow-md hover-card transition-all p-6 animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Next.js Web Applications</h3><p class="text-slate-600">Developed various web applications using Next.js for server-side rendering and dynamic content generation.</p></div>
+                <div class="bg-slate-50 rounded-xl shadow-md hover-card transition-all p-6 animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">API Integration</h3><p class="text-slate-600">Integrated Google Calendar, Wix, and various payment gateways to automate workflows and enhance functionality.</p></div>
+                <div class="bg-slate-50 rounded-xl shadow-md hover-card transition-all p-6 animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Voucher Management System</h3><p class="text-slate-600">Built a robust voucher system with role-based access control, using Node.js, Express, and multiple SQL/NoSQL databases.</p></div>
+                <div class="bg-slate-50 rounded-xl shadow-md hover-card transition-all p-6 animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Machine Learning Models</h3><p class="text-slate-600">Trained and deployed ML models for tasks like lottery prediction, including web scraping for data collection.</p></div>
+                <div class="bg-slate-50 rounded-xl shadow-md hover-card transition-all p-6 animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Computer Vision with OpenCV</h3><p class="text-slate-600">Applied OpenCV for factory automation (measuring moving sheets) and data analysis from graphs and charts.</p></div>
+                <div class="bg-slate-50 rounded-xl shadow-md hover-card transition-all p-6 animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Cloud API Code Inspection</h3><p class="text-slate-600">Conducted a comprehensive code inspection and audit for a cloud compressor API to ensure performance and security.</p></div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-12 bg-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center">Contact</h2>
-        <div class="text-center text-lg">
-          <p class="mb-2">Feel free to reach out:</p>
-          <a href="mailto:qamarislam1232@gmail.com" class="text-blue-500 hover:underline block">
-              <i class="fas fa-envelope mr-2"></i>qamarislam1232@gmail.com
-          </a>
-          <p class="mt-2 text-gray-700"><i class="fas fa-phone mr-2"></i>+923148412001</p>
-          <p class="mt-2 text-gray-700"><i class="fas fa-map-marker-alt mr-2"></i>Islamabad, Pakistan</p>
+    <section id="contact" class="py-24 bg-gradient-to-br from-blue-600 to-indigo-700">
+        <div class="container mx-auto px-4 text-center animate-on-scroll">
+            <h2 class="text-3xl font-bold text-white mb-4">Let's Build Something Great</h2>
+            <p class="text-indigo-200 text-lg mb-8 max-w-xl mx-auto">Have a project in mind or just want to connect? I'd love to hear from you.</p>
+            <div class="space-y-4 text-white">
+                <a href="mailto:qamarislam1232@gmail.com" class="block text-white hover:text-indigo-200 transition-colors">
+                    <i class="fas fa-envelope mr-2"></i>qamarislam1232@gmail.com
+                </a>
+                <p><i class="fas fa-phone mr-2"></i>+923148412001</p>
+                <p><i class="fas fa-map-marker-alt mr-2"></i>Islamabad, Pakistan</p>
+            </div>
+            <div class="mt-8">
+                <a href="mailto:qamarislam1232@gmail.com" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-100 transition-all transform hover:scale-105 inline-block">
+                    Get in Touch
+                </a>
+            </div>
         </div>
-      </div>
     </section>
+</main>
 
+<!-- Footer -->
+<footer class="py-6 bg-slate-800 text-center text-slate-400">
+    <div class="container mx-auto px-4">
+        <p>© <span id="current-year">2025</span> Qamar Ul Islam. All rights reserved.</p>
+    </div>
+</footer>
 
-    <!-- Footer -->
-    <footer class="py-4 bg-gray-800 text-center text-white">
-      <div class="container mx-auto px-4">
-        <p>© 2025 Qamar Ul Islam. All rights reserved.</p>
-      </div>
-    </footer>
-    
-    <script src="app.js"></script>
-  </body>
+<script src="app.js"></script>
+</body>
 </html>
