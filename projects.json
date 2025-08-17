@@ -1,0 +1,66 @@
+[
+  {
+    "id": "asksunnah-online",
+    "title": "Ask Sunnah Online - AI Islamic Scholar",
+    "short_description": "Creator and lead developer of a live, AI-powered scholar that provides fact-based answers with scriptural references using a RAG pipeline.",
+    "long_description": "Ask Sunnah Online is a real-world application of Retrieval-Augmented Generation (RAG) to provide accurate, referenced answers from Islamic texts. I architected the entire backend using Python and Flask, focusing on creating an efficient pipeline that involves:\n\n1.  **Vectorization:** Processing and embedding a vast corpus of Hadith texts into a Pinecone vector database.\n2.  **Retrieval:** Implementing semantic search to find the most relevant passages for a user's query.\n3.  **Generation:** Using OpenAI's LLMs to synthesize a coherent, easy-to-understand answer based on the retrieved context, complete with source citations.\n\nThe project required careful prompt engineering to ensure accuracy and prevent hallucinations. The frontend is built with Next.js, providing a fast and responsive user experience.",
+    "technologies": ["Python", "Flask", "RAG", "Pinecone", "OpenAI API", "Next.js", "Vercel"],
+    "links": [
+      {
+        "type": "Live Demo",
+        "url": "https://asksunnah.online",
+        "icon": "fas fa-external-link-alt"
+      },
+      {
+        "type": "GitHub",
+        "url": "https://github.com/your-repo-link-here",
+        "icon": "fab fa-github"
+      }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "dev.png",
+        "caption": "System overview"
+      },
+      {
+        "type": "image",
+        "src": "pic.png",
+        "caption": "User interface"
+      }
+    ]
+  },
+  {
+    "id": "learnxcellence",
+    "title": "LearnXcellence",
+    "short_description": "Final Year Project to automate university processes, featuring AI-proctoring, auto quiz generation, and spoof detection with a custom YOLO model.",
+    "long_description": "This comprehensive platform was my final year project, aimed at modernizing university management. The backend was a robust Node.js application, while the frontend used Angular. The AI components were the core of the project:\n\n*   **AI Proctoring:** Utilized OpenCV and facial landmark detection to monitor students during exams for signs of cheating.\n*   **Spoof Detection:** Trained a custom YOLOv7 model to differentiate between a live person and a photo/video, preventing identity fraud.\n*   **Quiz Generation:** Integrated with NLP models to automatically generate multiple-choice questions from lecture notes or textbooks.",
+    "technologies": ["Node.js", "Angular", "Python", "OpenCV", "YOLOv7", "TensorFlow", "MongoDB"],
+    "links": [
+      {
+        "type": "GitHub",
+        "url": "https://github.com/Qamar2315/LearnXcellence",
+        "icon": "fab fa-github"
+      },
+      {
+        "type": "Case Study",
+        "url": "#",
+        "icon": "fas fa-file-alt"
+      }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "pic.png",
+        "caption": "The main admin dashboard."
+      },
+      {
+        "type": "image",
+        "src": "dev.png",
+        "caption": "AI proctoring preview."
+      }
+    ]
+  }
+]
+
+

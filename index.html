@@ -184,9 +184,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project Cards -->
                 <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">AskQuran</h3><p class="text-slate-600 mb-4 flex-grow">A beautiful, modern web application for asking questions about the Quran and receiving AI-powered responses with relevant verses using a RAG architecture.</p><span class="text-gray-500 italic">Coming Soon</span></div>
-                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Ask Sunnah Online - AI Islamic Scholar</h3><p class="text-slate-600 mb-4 flex-grow">Creator and lead developer of a live, AI-powered scholar that provides fact-based answers with scriptural references using a RAG pipeline.</p><a href="https://asksunnah.online" target="_blank" class="text-blue-500 hover:underline font-semibold">Live Demo <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll project-card cursor-pointer" data-project-id="asksunnah-online"><h3 class="text-xl font-bold mb-2 text-slate-800">Ask Sunnah Online - AI Islamic Scholar</h3><p class="text-slate-600 mb-4 flex-grow">Creator and lead developer of a live, AI-powered scholar that provides fact-based answers with scriptural references using a RAG pipeline.</p><a href="https://asksunnah.online" target="_blank" class="text-blue-500 hover:underline font-semibold">Live Demo <i class="fas fa-arrow-right ml-1"></i></a></div>
                 <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Slack Prayer Reminder Bot</h3><p class="text-slate-600 mb-4 flex-grow">A production-ready bot that sends beautiful, motivational reminders to Slack channels with Quran verses and AI-generated messages.</p><a href="https://github.com/Qamar2315/slack-prayer-reminder" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
-                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">LearnXcellence</h3><p class="text-slate-600 mb-4 flex-grow">Final Year Project to automate university processes, featuring AI-proctoring, auto quiz generation, and spoof detection with a custom YOLO model.</p><a href="https://github.com/Qamar2315/LearnXcellence" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
+                <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll project-card cursor-pointer" data-project-id="learnxcellence"><h3 class="text-xl font-bold mb-2 text-slate-800">LearnXcellence</h3><p class="text-slate-600 mb-4 flex-grow">Final Year Project to automate university processes, featuring AI-proctoring, auto quiz generation, and spoof detection with a custom YOLO model.</p><a href="https://github.com/Qamar2315/LearnXcellence" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
                 <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">QuoteWise</h3><p class="text-slate-600 mb-4 flex-grow">Inspire with AI-Generated Quotes. Angular frontend and TypeScript backend for a modern user experience.</p><a href="https://github.com/Qamar2315/quotewise" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
                 <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">Chef Connect</h3><p class="text-slate-600 mb-4 flex-grow">A Recipe-Sharing Platform with Next.js, Tailwind CSS, and NodeJS.</p><a href="https://github.com/Qamar2315/chefconnect" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
                 <div class="bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll"><h3 class="text-xl font-bold mb-2 text-slate-800">WaterZilla</h3><p class="text-slate-600 mb-4 flex-grow">Simplify water purchases and empower administrators with this revolutionary MERN stack web app.</p><a href="https://github.com/Qamar2315/Waterzilla" target="_blank" class="text-blue-500 hover:underline font-semibold">View on GitHub <i class="fas fa-arrow-right ml-1"></i></a></div>
@@ -298,6 +298,49 @@
             </div>
         </div>
     </section>
+    <!-- Project Modal -->
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+      <!-- Modal Content -->
+      <div id="modal-content" class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-screen flex flex-col transform scale-95 transition-transform duration-300" style="max-height: 90vh;">
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center p-5 border-b">
+          <h2 id="modal-title" class="text-2xl font-bold text-slate-800">Project Title</h2>
+          <button id="modal-close-button" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="p-6 overflow-y-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Left Column: Media Gallery -->
+            <div>
+              <div id="modal-media-display" class="mb-4 rounded-lg overflow-hidden bg-slate-200 flex items-center justify-center h-56 md:h-80">
+                <!-- Main image or video will be inserted here by JS -->
+              </div>
+              <div id="modal-media-thumbnails" class="flex space-x-2 overflow-x-auto p-1">
+                <!-- Thumbnails will be inserted here by JS -->
+              </div>
+            </div>
+
+            <!-- Right Column: Details -->
+            <div>
+              <h3 class="text-xl font-semibold text-slate-700 mb-2">About the Project</h3>
+              <p id="modal-description" class="text-slate-600 leading-relaxed"></p>
+
+              <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Technologies Used</h3>
+              <div id="modal-tech-list" class="flex flex-wrap gap-2">
+                <!-- Tech tags will be inserted here by JS -->
+              </div>
+
+              <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Links</h3>
+              <div id="modal-links" class="space-y-2">
+                <!-- Links will be inserted here by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </main>
 
 <!-- Footer -->
