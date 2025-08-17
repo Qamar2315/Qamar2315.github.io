@@ -113,6 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDescription = document.getElementById('modal-description');
     const modalTechList = document.getElementById('modal-tech-list');
     const modalLinks = document.getElementById('modal-links');
+    const modalMeta = document.getElementById('modal-meta');
+    const modalFeatures = document.getElementById('modal-features');
+    const modalChallenges = document.getElementById('modal-challenges');
     const modalMediaDisplay = document.getElementById('modal-media-display');
     const modalMediaThumbnails = document.getElementById('modal-media-thumbnails');
 
@@ -145,14 +148,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // C. Populate Modal with Project Data
+    function formatRichText(text) {
+        if (!text) return '';
+        let html = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1<\/strong>')
+            .replace(/\n\n+/g, '<\/p><p>')
+            .replace(/\n/g, '<br>');
+        return `<p>${html}<\/p>`;
+    }
+
     function populateModal(project) {
         modalTitle.textContent = project.title;
-        modalDescription.innerHTML = (project.long_description || '').replace(/\n/g, '<br>');
+        modalDescription.innerHTML = formatRichText(project.long_description || '');
+
+        // Populate meta badges
+        if (modalMeta) {
+            const metaItems = [];
+            if (project.project_type) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-sm bg-slate-100 text-slate-700">${project.project_type}<\/span>`);
+            if (project.status) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-sm bg-green-100 text-green-800">${project.status}<\/span>`);
+            if (project.role) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-sm bg-blue-100 text-blue-800">${project.role}<\/span>`);
+            if (project.date_range) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-sm bg-purple-100 text-purple-800">${project.date_range}<\/span>`);
+            modalMeta.innerHTML = metaItems.join('');
+        }
 
         // Populate technologies
         modalTechList.innerHTML = (project.technologies || []).map((tech) =>
             `<span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-1 rounded-full">${tech}</span>`
         ).join('');
+
+        // Populate key features
+        if (modalFeatures) {
+            modalFeatures.innerHTML = (project.key_features || []).map((feat) =>
+                `<li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mt-1 mr-2"><\/i><span>${feat}<\/span><\/li>`
+            ).join('');
+        }
 
         // Populate links
         modalLinks.innerHTML = (project.links || []).map((link) =>
@@ -160,6 +189,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 <i class="${link.icon} mr-2"></i> ${link.type}
             </a>`
         ).join('');
+
+        // Populate key challenges
+        if (modalChallenges) {
+            modalChallenges.innerHTML = (project.key_challenges || []).map((item) => `
+                <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                    <div class="font-semibold text-slate-700 mb-1">${item.challenge || ''}<\/div>
+                    <div class="text-slate-600">${item.solution || ''}<\/div>
+                <\/div>
+            `).join('');
+        }
 
         // Populate media gallery
         modalMediaDisplay.innerHTML = '';

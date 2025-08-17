@@ -1,32 +1,100 @@
 [
   {
-    "id": "asksunnah-online",
-    "title": "Ask Sunnah Online - AI Islamic Scholar",
-    "short_description": "Creator and lead developer of a live, AI-powered scholar that provides fact-based answers with scriptural references using a RAG pipeline.",
-    "long_description": "Ask Sunnah Online is a real-world application of Retrieval-Augmented Generation (RAG) to provide accurate, referenced answers from Islamic texts. I architected the entire backend using Python and Flask, focusing on creating an efficient pipeline that involves:\n\n1.  **Vectorization:** Processing and embedding a vast corpus of Hadith texts into a Pinecone vector database.\n2.  **Retrieval:** Implementing semantic search to find the most relevant passages for a user's query.\n3.  **Generation:** Using OpenAI's LLMs to synthesize a coherent, easy-to-understand answer based on the retrieved context, complete with source citations.\n\nThe project required careful prompt engineering to ensure accuracy and prevent hallucinations. The frontend is built with Next.js, providing a fast and responsive user experience.",
-    "technologies": ["Python", "Flask", "RAG", "Pinecone", "OpenAI API", "Next.js", "Vercel"],
+    "id": "ask-sunnah-online",
+    "title": "Ask Sunnah - AI Islamic Scholar",
+    "project_type": "Personal Project",
+    "status": "Live",
+    "role": "Lead Full-Stack & AI Architect",
+    "date_range": "May 2024 - Present",
+    "short_description": "A full-stack AI application that provides users with referenced answers to Islamic questions by querying Hadith collections using a custom RAG pipeline.",
+    "long_description": "Ask Sunnah is a complete, real-world application of Retrieval-Augmented Generation (RAG) designed to provide accurate, verifiable answers from Islamic Hadith collections. The project is architected as a robust three-part system:\n\n1.  **Data Pipeline:** A Python-based ETL process extracts Hadith data from a MySQL database, cleans it, generates vector embeddings using the OpenAI API, and indexes them into a Pinecone vector database. This prepares the foundational knowledge base for the AI.\n\n2.  **Backend API:** A secure and scalable backend built with Flask (Python) serves the core AI logic. It features API key authentication, rate limiting, and an admin panel for user management. When a query is received, it retrieves the most relevant Hadith from Pinecone and uses an LLM to generate a coherent answer, complete with source citations.\n\n3.  **Frontend Application:** A modern, responsive user interface built with Next.js and TypeScript provides a seamless conversational experience. Users can select specific Hadith collections to query, and each AI-generated answer is accompanied by the source texts, ensuring transparency and trust.",
+    "key_features": [
+      "AI-powered conversational Q&A",
+      "Retrieval-Augmented Generation (RAG) pipeline for factual answers",
+      "Verifiable sources with links to original Hadith texts",
+      "Secure backend API with key-based authentication and rate limiting",
+      "Comprehensive admin dashboard for user & API key management",
+      "Dynamic multi-collection search (Bukhari, Muslim, etc.)",
+      "Fully responsive and modern user interface"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Ensuring Factual Accuracy and Preventing AI Hallucination",
+        "solution": "Implemented a strict RAG pipeline to ground the LLM's responses in retrieved scriptural texts. Meticulous prompt engineering was used to instruct the model to only use the provided context, minimizing false information and citing sources for every claim."
+      },
+      {
+        "challenge": "Designing a Scalable and Maintainable System Architecture",
+        "solution": "Decoupled the project into three distinct services: a Data Pipeline for ETL, a Backend API for core logic, and a Frontend Application for user interaction. This architecture ensures modularity, allowing for independent development, deployment, and scaling of each component."
+      },
+      {
+        "challenge": "Processing and Indexing a Large Corpus of Hadith Texts",
+        "solution": "Developed an automated data pipeline to extract data from a MySQL database, clean HTML content, generate high-dimensional embeddings, and efficiently index millions of vectors into Pinecone. The pipeline is designed to be runnable for specific collections, making data updates manageable."
+      }
+    ],
+    "technologies": [
+      "Python",
+      "Flask",
+      "Next.js",
+      "TypeScript",
+      "React",
+      "RAG",
+      "OpenAI API",
+      "Pinecone",
+      "SQLite",
+      "MySQL",
+      "Tailwind CSS",
+      "JWT",
+      "Gunicorn",
+      "Vercel",
+      "Git"
+    ],
     "links": [
       {
         "type": "Live Demo",
-        "url": "https://asksunnah.online",
+        "url": "http://asksunnah.online/",
         "icon": "fas fa-external-link-alt"
       },
       {
-        "type": "GitHub",
-        "url": "https://github.com/your-repo-link-here",
+        "type": "Backend GitHub (Private)",
+        "url": "https://github.com/Qamar2315/ask-sunnah-api",
+        "icon": "fab fa-github"
+      },
+      {
+        "type": "Frontend GitHub (Private)",
+        "url": "https://github.com/Qamar2315/ask-sunnah-frontend",
+        "icon": "fab fa-github"
+      },
+      {
+        "type": "Data Pipeline GitHub (Private)",
+        "url": "https://github.com/Qamar2315/ask-sunnah-data-pipeline",
         "icon": "fab fa-github"
       }
     ],
     "media": [
       {
-        "type": "image",
-        "src": "dev.png",
-        "caption": "System overview"
+        "type": "video",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755446262/Ask%20Sunnah/Vento_-_4_August_2025_vb74kj.mp4",
+        "caption": "Project Demo Video"
       },
       {
         "type": "image",
-        "src": "pic.png",
-        "caption": "User interface"
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446248/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.44.59_AM_2_pzej6p.jpg",
+        "caption": "User interface showing a query and response"
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446246/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.44.59_AM_1_xmvmqj.jpg",
+        "caption": "Example of AI-generated answer with sources"
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446241/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.45.01_AM_1_gbarev.jpg",
+        "caption": "Selecting specific Hadith collections for search"
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446237/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.44.59_AM_lld1m9.jpg",
+        "caption": "Mobile responsive view of the chat interface"
       }
     ]
   },
@@ -35,7 +103,15 @@
     "title": "LearnXcellence",
     "short_description": "Final Year Project to automate university processes, featuring AI-proctoring, auto quiz generation, and spoof detection with a custom YOLO model.",
     "long_description": "This comprehensive platform was my final year project, aimed at modernizing university management. The backend was a robust Node.js application, while the frontend used Angular. The AI components were the core of the project:\n\n*   **AI Proctoring:** Utilized OpenCV and facial landmark detection to monitor students during exams for signs of cheating.\n*   **Spoof Detection:** Trained a custom YOLOv7 model to differentiate between a live person and a photo/video, preventing identity fraud.\n*   **Quiz Generation:** Integrated with NLP models to automatically generate multiple-choice questions from lecture notes or textbooks.",
-    "technologies": ["Node.js", "Angular", "Python", "OpenCV", "YOLOv7", "TensorFlow", "MongoDB"],
+    "technologies": [
+      "Node.js",
+      "Angular",
+      "Python",
+      "OpenCV",
+      "YOLOv7",
+      "TensorFlow",
+      "MongoDB"
+    ],
     "links": [
       {
         "type": "GitHub",
@@ -60,7 +136,78 @@
         "caption": "AI proctoring preview."
       }
     ]
+  },
+  {
+    "id": "slack-prayer-reminder-bot",
+    "title": "Slack Prayer Reminder Bot",
+    "project_type": "Personal Project",
+    "status": "Completed",
+    "role": "Creator & Lead Developer",
+    "date_range": "July 2024 - August 2024",
+    "short_description": "A production-ready bot that sends beautiful, motivational reminders to Slack channels with Quran verses and AI-generated messages.",
+    "long_description": "This is a robust, automated bot designed to enrich a Slack workspace with timely and inspiring prayer reminders. The application runs on a continuous schedule, performing two key jobs:\n\n1.  **Daily Setup:** Each morning, the bot fetches the day's prayer times from the AlAdhan API for a specific location. It then uses the Google Gemini AI to generate a unique, motivational message for each of the five prayers and stores this data in a local SQLite database.\n\n2.  **Reminder Dispatch:** Every minute, the bot checks the database for upcoming prayers. When a prayer is due (e.g., 10 minutes beforehand), it pairs the AI-generated message with a randomly selected Quran verse (in both Arabic and Urdu) and sends a beautifully formatted, multi-section message to the designated Slack channel. This ensures that reminders are not only punctual but also fresh and engaging every day.",
+    "key_features": [
+      "Automated, scheduled prayer reminders for Slack",
+      "Unique AI-generated motivational messages via Google Gemini",
+      "Integrated Quran verses with Arabic and Urdu text",
+      "Richly formatted, visually appealing Slack messages",
+      "SQLite persistence to prevent duplicate reminders and ensure reliability",
+      "Secure configuration using environment variables for API keys",
+      "Configurable for any location and prayer calculation method"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Ensuring Reliability and Punctuality",
+        "solution": "Architected the bot with a two-part scheduling system. A daily job pre-fetches and stores all necessary data (prayer times, AI messages) in an SQLite database. A separate, frequent job then only checks the local database. This decouples the bot from real-time API dependencies, making it resilient to network failures and ensuring reminders are always sent on time."
+      },
+      {
+        "challenge": "Creating Engaging and Non-Repetitive Content",
+        "solution": "To avoid message fatigue, I integrated Google's Gemini AI to generate a fresh, context-aware motivational message for each prayer, every single day. This was combined with a system that randomly selects from a large corpus of Quran verses, guaranteeing that the content remains inspiring and varied."
+      }
+    ],
+    "technologies": [
+      "Python",
+      "Google Gemini API",
+      "Slack API",
+      "AlAdhan API",
+      "SQLite",
+      "APScheduler",
+      "Requests",
+      "python-dotenv"
+    ],
+    "links": [
+      {
+        "type": "Video Demo",
+        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755448651/Slack%20Prayer%20Reminder/2_naigex.mp4",
+        "icon": "fas fa-video"
+      },
+      {
+        "type": "GitHub",
+        "url": "https://github.com/Qamar2315/slack-prayer-reminder",
+        "icon": "fab fa-github"
+      }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448640/Slack%20Prayer%20Reminder/7.898Z_gzcqbp.png",
+        "caption": "Example Fajr prayer reminder in Slack"
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448641/Slack%20Prayer%20Reminder/9.342Z_ltu6oy.png",
+        "caption": "Isha prayer notification with Quran verse"
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448639/Slack%20Prayer%20Reminder/6.547Z_carm16.png",
+        "caption": "A motivational message for Maghrib prayer"
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448636/Slack%20Prayer%20Reminder/1_nkr1nn.png",
+        "caption": "Overview of the project's file structure"
+      }
+    ]
   }
 ]
-
-
