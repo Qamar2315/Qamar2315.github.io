@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalContent = document.getElementById('modal-content');
     const closeModalButton = document.getElementById('modal-close-button');
     const projectsSection = document.getElementById('projects');
+    const freelanceSection = document.getElementById('freelance');
 
     // Placeholders for dynamic content
     const modalTitle = document.getElementById('modal-title');
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalMediaThumbnails = document.getElementById('modal-media-thumbnails');
 
     let projectsData = [];
+    let freelanceData = [];
 
     // B. Fetch Project Data on Load
     async function fetchProjects() {
@@ -127,6 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
             projectsData = await response.json();
         } catch (error) {
             console.error('Could not fetch projects data:', error);
+        }
+    }
+
+    async function fetchFreelanceWork() {
+        try {
+            const response = await fetch('freelance.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            freelanceData = await response.json();
+        } catch (error) {
+            console.error('Could not fetch freelance data:', error);
         }
     }
 
@@ -175,6 +189,72 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function populateFreelanceModal(work) {
+        modalTitle.textContent = work.title;
+
+        // --- NEW: Media Gallery Logic ---
+        modalMediaDisplay.innerHTML = '';
+        modalMediaThumbnails.innerHTML = '';
+
+        if (work.media && work.media.length > 0) {
+            // Display the first media item by default
+            displayMedia(work.media[0]);
+
+            // Create thumbnails
+            work.media.forEach((mediaItem) => {
+                const thumbSrc = mediaItem.type === 'video'
+                    ? 'https://via.placeholder.com/150/22c55e/FFFFFF?text=Demo'
+                    : mediaItem.src;
+                const thumb = document.createElement('img');
+                thumb.src = thumbSrc;
+                thumb.alt = mediaItem.caption || '';
+                thumb.className = 'w-20 h-20 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-green-500';
+                thumb.onclick = () => displayMedia(mediaItem);
+                modalMediaThumbnails.appendChild(thumb);
+            });
+        } else {
+            // Provide a default placeholder if no media is available
+            modalMediaDisplay.innerHTML = `<div class="p-4 h-full flex items-center justify-center bg-slate-100 rounded-lg">
+                                           <i class="fas fa-briefcase text-4xl text-slate-400"></i>
+                                       </div>`;
+        }
+
+        // --- EXISTING: Details Logic (with slight adjustments) ---
+        const descriptionHTML = `
+            <h3 class="text-xl font-semibold text-slate-700 mb-2">The Challenge</h3>
+            <p class="text-slate-600 mb-4">${work.problem_statement || ''}</p>
+            <h3 class="text-xl font-semibold text-slate-700 mb-2">My Solution</h3>
+            <p class="text-slate-600">${work.solution_delivered || ''}</p>
+        `;
+        modalDescription.innerHTML = descriptionHTML;
+
+        modalTechList.innerHTML = (work.technologies || []).map((tech) =>
+            `<span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-1 rounded-full">${tech}</span>`
+        ).join('');
+
+        const achievementsHTML = (work.key_achievements || []).map((ach) =>
+            `<li class="flex items-start">
+            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+            <span>${ach}</span>
+        </li>`
+        ).join('');
+
+        const feedbackHTML = work.client_feedback ? `
+            <div class="mt-6 p-4 bg-slate-100 border-l-4 border-blue-500 rounded-r-lg">
+                <p class="italic text-slate-600">"${work.client_feedback.quote}"</p>
+                <p class="text-right font-semibold text-slate-700 mt-2">- ${work.client_feedback.client_name}</p>
+            </div>
+        ` : '';
+
+        modalLinks.innerHTML = `
+            <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Key Achievements</h3>
+            <ul class="space-y-2 list-none text-slate-600">
+            ${achievementsHTML}
+            </ul>
+            ${feedbackHTML}
+        `;
+    }
+
     // D. Modal Control Functions
     const openModal = () => {
         if (!modal || !modalContent) return;
@@ -193,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // E. Event Listeners
     // Fetch data when the page loads
     fetchProjects();
+    fetchFreelanceWork();
 
     // Open modal on project card click (using event delegation)
     if (projectsSection) {
@@ -209,6 +290,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const project = projectsData.find((p) => p.id === projectId);
             if (project) {
                 populateModal(project);
+                openModal();
+            }
+        });
+    }
+
+    if (freelanceSection) {
+        freelanceSection.addEventListener('click', (e) => {
+            const card = e.target.closest('.freelance-card');
+            if (!card) return;
+
+            if (e.target.closest('a')) return;
+
+            if (e.preventDefault) e.preventDefault();
+            const freelanceId = card.dataset.freelanceId;
+            const work = freelanceData.find((w) => w.id === freelanceId);
+            if (work) {
+                populateFreelanceModal(work);
                 openModal();
             }
         });

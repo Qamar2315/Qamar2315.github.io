@@ -1,0 +1,159 @@
+[
+  {
+    "id": "api-integration",
+    "title": "Complex API Integration",
+    "short_description": "Integrated Google Calendar, Wix, and various payment gateways to automate workflows and enhance functionality.",
+    "problem_statement": "Clients often came with disjointed systems. For example, a booking made on their Wix website wouldn't automatically create a Google Calendar event or process a payment through their preferred gateway, leading to manual work and potential errors.",
+    "solution_delivered": "I developed custom middleware using Node.js and serverless functions (like AWS Lambda or Vercel Functions) to act as a bridge between these services. When a trigger event occurred (e.g., a new booking), my code would securely authenticate with the necessary APIs (Google, Stripe, PayPal) and perform a sequence of actions, ensuring data consistency and full automation.",
+    "key_achievements": [
+      "Automated over 95% of the manual booking and scheduling process for a client, saving them an estimated 10 hours per week.",
+      "Built a resilient system with error handling and logging, ensuring high reliability.",
+      "Created a secure payment flow by integrating Stripe and PayPal webhooks."
+    ],
+    "technologies": ["Node.js", "Express.js", "Serverless Functions", "Google Calendar API", "Stripe API", "Wix API", "OAuth 2.0"],
+    "client_feedback": {
+      "quote": "Qamar's solution was a game-changer for my business. What used to take hours of manual data entry is now completely automated and flawless.",
+      "client_name": "Business Owner, E-commerce Startup"
+    },
+    "media": [
+      {
+        "type": "image",
+        "src": "dev.png",
+        "caption": "System architecture diagram for the automation workflow."
+      },
+      {
+        "type": "video",
+        "src": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        "caption": "Live demo of a booking automatically creating a calendar event."
+      },
+      {
+        "type": "image",
+        "src": "pic.png",
+        "caption": "The custom dashboard integration within the Wix site."
+      }
+    ]
+  },
+  {
+    "id": "voucher-system",
+    "title": "Voucher Management System",
+    "short_description": "Built a robust voucher system with role-based access control, using Node.js, Express, and multiple SQL/NoSQL databases.",
+    "problem_statement": "A retail client needed a system to generate, distribute, and validate promotional vouchers. The system had to be secure to prevent fraud and flexible enough to support different campaign types (e.g., percentage-off, fixed amount). It also required different access levels for managers and cashiers.",
+    "solution_delivered": "I architected and built a complete backend API using Node.js and Express. It featured a secure JWT-based authentication system for role-based access control (RBAC). I used MongoDB for flexibility in storing voucher data and PostgreSQL for transactional integrity of redemption records. The API exposed endpoints for creating, validating, and revoking vouchers.",
+    "key_achievements": [
+      "Designed a database schema that supported complex voucher rules and tracking.",
+      "Implemented a secure RBAC system to protect sensitive administrative functions.",
+      "Delivered a well-documented RESTful API that the client's frontend team could easily integrate with."
+    ],
+    "technologies": ["Node.js", "Express.js", "JWT", "MongoDB", "PostgreSQL", "REST API", "Docker"],
+    "client_feedback": null,
+    "media": [
+      {
+        "type": "image",
+        "src": "dev.png",
+        "caption": "Admin panel for generating and managing voucher codes."
+      },
+      {
+        "type": "image",
+        "src": "pic.png",
+        "caption": "Flowchart illustrating the Role-Based Access Control logic."
+      }
+    ]
+  },
+  {
+    "id": "nextjs-web-applications",
+    "title": "Next.js Web Applications",
+    "short_description": "Developed various web applications using Next.js for server-side rendering and dynamic content generation.",
+    "problem_statement": "Clients needed fast, SEO-friendly web apps with dynamic content and integrations.",
+    "solution_delivered": "Built SSR/SSG applications with Next.js, integrated APIs, and optimized Core Web Vitals.",
+    "key_achievements": [
+      "Delivered Lighthouse performance scores >90 for multiple pages.",
+      "Reduced Time-to-Interactive by 35% through code-splitting and caching."
+    ],
+    "technologies": ["Next.js", "React", "Tailwind CSS", "Vercel", "ISR"],
+    "client_feedback": null,
+    "media": [
+      {
+        "type": "image",
+        "src": "dev.png",
+        "caption": "Landing page built with Next.js and Tailwind CSS."
+      },
+      {
+        "type": "image",
+        "src": "pic.png",
+        "caption": "Dynamic content dashboard leveraging ISR."
+      }
+    ]
+  },
+  {
+    "id": "machine-learning-models",
+    "title": "Machine Learning Models",
+    "short_description": "Trained and deployed ML models for tasks like lottery prediction, including web scraping for data collection.",
+    "problem_statement": "Clients required predictive models and automated data pipelines for ongoing insights.",
+    "solution_delivered": "Implemented scraping pipelines, feature engineering, and model training; deployed using FastAPI.",
+    "key_achievements": [
+      "Automated daily data ingestion with retry logic and monitoring.",
+      "Improved baseline model metrics by 20-30% using ensemble techniques."
+    ],
+    "technologies": ["Python", "Pandas", "scikit-learn", "FastAPI", "BeautifulSoup", "Selenium"],
+    "client_feedback": null,
+    "media": [
+      {
+        "type": "image",
+        "src": "dev.png",
+        "caption": "Model training metrics and evaluation charts."
+      },
+      {
+        "type": "image",
+        "src": "pic.png",
+        "caption": "Automated scraping pipeline architecture."
+      }
+    ]
+  },
+  {
+    "id": "computer-vision-opencv",
+    "title": "Computer Vision with OpenCV",
+    "short_description": "Applied OpenCV for factory automation (measuring moving sheets) and data analysis from graphs and charts.",
+    "problem_statement": "Industrial client required accurate, real-time measurements from video feeds and analysis from static images.",
+    "solution_delivered": "Developed calibration and edge-detection pipelines; extracted quantitative data from plots and charts.",
+    "key_achievements": [
+      "Achieved sub-millimeter measurement accuracy on test footage.",
+      "Deployed a robust pipeline with configurable thresholds for different environments."
+    ],
+    "technologies": ["Python", "OpenCV", "NumPy", "Flask"],
+    "client_feedback": null,
+    "media": [
+      {
+        "type": "video",
+        "src": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        "caption": "Edge-detection pipeline demonstration on sample footage."
+      },
+      {
+        "type": "image",
+        "src": "dev.png",
+        "caption": "Measurement calibration setup."
+      }
+    ]
+  },
+  {
+    "id": "cloud-api-inspection",
+    "title": "Cloud API Code Inspection",
+    "short_description": "Comprehensive code inspection and audit for a cloud compressor API to ensure performance and security.",
+    "problem_statement": "Client needed a performance and security review before scaling their customer base.",
+    "solution_delivered": "Performed profiling, identified hotspots, added rate limiting and structured logging, and proposed architectural improvements.",
+    "key_achievements": [
+      "Reduced average response latency by ~25% through targeted optimizations.",
+      "Introduced a security checklist and CI checks for secrets and dependency vulnerabilities."
+    ],
+    "technologies": ["Node.js", "Express", "NGINX", "JWT", "OWASP"],
+    "client_feedback": null,
+    "media": [
+      {
+        "type": "image",
+        "src": "pic.png",
+        "caption": "Performance profiling report summary."
+      }
+    ]
+  }
+]
+
+
