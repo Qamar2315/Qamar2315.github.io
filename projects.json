@@ -209,5 +209,84 @@
         "caption": "Overview of the project's file structure"
       }
     ]
+  },
+  {
+    "id": "sweettales-chat-pdf-creator",
+    "title": "SweetTales - Chat to PDF Memory Book",
+    "project_type": "Personal Project",
+    "status": "Completed",
+    "role": "Creator & Full-Stack Developer",
+    "date_range": "August 2024",
+    "short_description": "A web application that transforms WhatsApp chat exports into beautifully themed, printable PDF memory books, with optional AI-powered highlights.",
+    "long_description": "SweetTales is a Flask-based web application created to turn digital conversations into tangible keepsakes. The user journey is simple: upload a standard WhatsApp chat export (.txt file), choose from a selection of visual themes, and add a custom title and name. \n\nThe backend then performs a multi-step process: \n1. **Parsing:** It intelligently parses the unstructured text file, identifying senders, timestamps, messages, and filtering out system notifications (e.g., 'user was added'). \n2. **HTML Generation:** The parsed data is dynamically rendered into a styled HTML document using a Jinja2 template corresponding to the user's chosen theme. \n3. **AI Highlights (Optional):** If an API key is provided, the entire chat transcript is sent to the Google Gemini API to generate a summary of key moments, which is added as a special 'Highlights' section in the book. \n4. **PDF Conversion:** The application uses Playwright's headless browser engine to convert the final HTML into a high-fidelity, print-ready PDF, perfectly preserving the theme's styling and layout.",
+    "key_features": [
+      "Parses standard WhatsApp chat export (.txt) files",
+      "Multiple customizable themes for PDF styling",
+      "High-quality, print-ready PDF generation via Playwright",
+      "Optional AI-powered conversation highlights using Google Gemini",
+      "Simple and intuitive web interface for upload and customization",
+      "Asynchronous PDF generation to prevent request timeouts on large chats",
+      "Modular code structure for easy maintenance and theme additions"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Reliably Parsing Unstructured WhatsApp Chat Data",
+        "solution": "Developed a robust chat parser using regular expressions to accurately handle various message formats, including multi-line messages, different timestamp patterns (12h/24h), and special characters. The parser was designed to effectively filter out non-message system entries to create a clean conversation log."
+      },
+      {
+        "challenge": "Generating High-Fidelity PDFs with Complex CSS",
+        "solution": "Standard PDF libraries struggled to render modern CSS themes accurately. I chose to integrate Playwright, a headless browser automation tool, to render the chat into an HTML page first and then 'print' it to PDF. This ensures that any theme, no matter how complex its CSS, is rendered with perfect fidelity, exactly as it would appear in a Chrome browser."
+      }
+    ],
+    "technologies": [
+      "Python",
+      "Flask",
+      "Playwright",
+      "Google Gemini API",
+      "HTML5",
+      "CSS3",
+      "Jinja2",
+      "JavaScript (Async)",
+      "python-dotenv"
+    ],
+    "links": [
+      {
+        "type": "Video Demo",
+        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755463068/Sweet%20Tales/demo_qhkkq9.mp4",
+        "icon": "fas fa-video"
+      },
+      {
+        "type": "GitHub (Private)",
+        "url": "https://github.com/Qamar2315/SweetTales",
+        "icon": "fab fa-github"
+      }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463040/Sweet%20Tales/91_rsnbr5.png",
+        "caption": "The main application UI for file upload and customization."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463039/Sweet%20Tales/1_bvmpqz.png",
+        "caption": "The professional landing page for the SweetTales application."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463036/Sweet%20Tales/2_oo4kvi.png",
+        "caption": "Example of a generated PDF cover page."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463031/Sweet%20Tales/7_luhuyq.png",
+        "caption": "An inside page of the generated PDF showing the chat layout."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463030/Sweet%20Tales/9_xlcfrp.png",
+        "caption": "Another example of the PDF output with a different theme."
+      }
+    ]
   }
 ]
