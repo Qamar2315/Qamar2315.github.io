@@ -288,5 +288,185 @@
         "caption": "Another example of the PDF output with a different theme."
       }
     ]
+  },
+  {
+    "id": "ask-quran-rag",
+    "title": "AskQuran - AI Quranic Scholar",
+    "project_type": "Personal Project",
+    "status": "Completed",
+    "role": "Lead Full-Stack & AI Architect",
+    "date_range": "August 2024",
+    "short_description": "A beautiful, modern web application for asking questions about the Quran and receiving AI-powered responses with relevant verses using a RAG architecture.",
+    "long_description": "AskQuran is an end-to-end AI application designed to make Quranic knowledge accessible through a natural language interface. The system is built on a decoupled, three-part architecture to ensure scalability and maintainability:\n\n1.  **Data Pipeline:** A Python-based ETL pipeline processes raw Quranic text and its metadata. It uses Google's Gemini models to generate high-quality vector embeddings for each verse and then indexes this data into a Pinecone serverless vector database, creating the core knowledge base.\n\n2.  **Backend API:** A stateless Flask API serves as the brain of the application. It employs a sophisticated RAG workflow: upon receiving a query, it first classifies whether the question is Quran-related or conversational. For Quranic questions, it generates an embedding, retrieves the most relevant verses from Pinecone, and then uses Gemini's powerful generative model to synthesize a final, source-backed answer. \n\n3.  **Frontend Application:** Built with Next.js and TypeScript, the frontend offers a visually stunning and responsive user experience. It features an elegant, Islamic-themed design where users can interact with the AI in real-time. Each generated answer is displayed alongside the retrieved verses, complete with links to Quran.com for verification and further study.",
+    "key_features": [
+      "AI-powered Quranic Q&A with conversational interface",
+      "Retrieval-Augmented Generation (RAG) for factual, source-based answers",
+      "Smart query classification to handle both topical questions and small talk",
+      "Verifiable source verses displayed with each answer, linking to Quran.com",
+      "Elegant, responsive, and mobile-friendly UI with Islamic design elements",
+      "Built on a modern stack including Next.js, Google Gemini, and Pinecone",
+      "Modular three-part architecture (Data Pipeline, API, Frontend)"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Achieving Factual Accuracy and Contextual Relevance",
+        "solution": "The RAG architecture was chosen specifically to mitigate AI hallucinations. By first retrieving relevant Quranic verses from a Pinecone vector database, the generative model is provided with a factual, grounded context. The prompt is engineered to compel the AI to construct its answer solely based on these provided verses, ensuring accuracy."
+      },
+      {
+        "challenge": "Differentiating Between Quranic Questions and Small Talk",
+        "solution": "To create a more natural user experience, I implemented a classification layer in the API. Before performing a vector search, the user's query is first sent to a Gemini model with a prompt that asks it to categorize the input as either 'quran_question' or 'conversational'. This allows the API to provide a direct, friendly response for small talk without unnecessarily querying the database."
+      }
+    ],
+    "technologies": [
+      "Python",
+      "Flask",
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Google Gemini API",
+      "Pinecone",
+      "LangChain",
+      "Tailwind CSS",
+      "Radix UI"
+    ],
+    "links": [
+      {
+        "type": "Video Demo",
+        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755464910/Ask%20Quran/demo_omv2ll.mp4",
+        "icon": "fas fa-video"
+      },
+      {
+        "type": "Backend GitHub (Private)",
+        "url": "https://github.com/Qamar2315/ask-quran-api",
+        "icon": "fab fa-github"
+      },
+      {
+        "type": "Frontend GitHub (Private)",
+        "url": "https://github.com/Qamar2315/ask-quran-frontend",
+        "icon": "fab fa-github"
+      },
+      {
+        "type": "Data Pipeline GitHub (Private)",
+        "url": "https://github.com/Qamar2315/ask-quran-data-pipeline",
+        "icon": "fab fa-github"
+      }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464881/Ask%20Quran/5_diwcbc.png",
+        "caption": "Main user interface showing an AI-generated answer with source verses."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464879/Ask%20Quran/1_fdfp4b.png",
+        "caption": "The clean and inviting chat interface."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464877/Ask%20Quran/2_p8dflt.png",
+        "caption": "Display of retrieved Quranic verses that support the AI's answer."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464875/Ask%20Quran/4_lchzsy.png",
+        "caption": "Responsive design for mobile devices."
+      }
+    ]
+  },
+  {
+    "id": "learnxcellence-lms",
+    "title": "LearnXcellence: AI-Powered E-Learning & Proctoring Platform",
+    "project_type": "Academic Project (Final Year)",
+    "status": "Completed",
+    "role": "Co-creator & Full-Stack/AI Developer",
+    "date_range": "Sep 2023 - May 2024",
+    "short_description": "A full-stack e-learning platform featuring custom-trained AI models for intelligent proctoring, AI-assisted content generation, and biometric identity verification.",
+    "long_description": "LearnXcellence is a sophisticated e-learning platform built from the ground up to address the needs of modern education, with a strong focus on academic integrity. The platform is built on a decoupled, three-tier architecture: a React.js frontend for a dynamic user experience, a Node.js/Express backend for core business logic and API services, and a dedicated Python/Flask microservice for handling all intensive AI/ML operations. \n\nFor instructors, it offers a full suite of course management tools, including AI-powered quiz and project idea generation. The standout feature is the intelligent proctoring system, which analyzes a student's webcam feed in real-time for violations like phone usage, multiple people, and gaze deviation. \n\nFor students, the platform provides a secure and engaging learning environment. A key innovation is the use of a custom-trained AI model for facial liveness detection during registration and quiz initiation, preventing identity spoofing with photos or screens. The system culminates in generating a data-backed 'cheating probability' score, providing instructors with actionable insights and detailed reports.",
+    "key_features": [
+      "Advanced AI Proctoring with custom-trained models (phone, gaze, multi-person detection)",
+      "AI-Based Liveness & Anti-Spoof Detection for secure identity verification",
+      "AI Content Generation for quizzes, project suggestions, and viva questions",
+      "Decoupled Microservice Architecture (React, Node.js, Python/Flask)",
+      "Distinct Role-Based Dashboards for Instructors and Students",
+      "Comprehensive Course & User Management functionalities",
+      "Automated Grading with manual override and detailed PDF reporting",
+      "Secure user authentication with facial biometrics and JWT"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Ensuring Robust Academic Integrity in Online Exams",
+        "solution": "Developed a multi-faceted AI proctoring system. This involved training separate YOLOv8 models for mobile phone and multi-person detection, and integrating MediaPipe for gaze and mouth movement analysis. The data from these analyses was fed into a custom-trained Scikit-learn classifier to generate a nuanced cheating probability score, moving beyond simple rule-based flags."
+      },
+      {
+        "challenge": "Preventing Identity Spoofing during Registration and Exams",
+        "solution": "Instead of relying on basic face recognition, I trained a custom YOLOv8 model specifically for liveness detection. This model was trained on a proprietary dataset of real faces vs. spoofing attempts (e.g., photos on screens, printed images), allowing the system to reliably verify that a real, live person is in front of the camera."
+      },
+      {
+        "challenge": "Architecting a Scalable System for Intensive AI Tasks",
+        "solution": "Designed a microservice architecture to separate the main application logic (Node.js) from the computationally heavy AI processing (Python/Flask). This prevents AI tasks like image analysis from blocking the user interface, ensures independent scalability of the services, and allows for using the best technology for each specific job."
+      }
+    ],
+    "technologies": [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "Python",
+      "Flask",
+      "MongoDB",
+      "YOLOv8",
+      "MediaPipe",
+      "Scikit-learn",
+      "OpenCV",
+      "face_recognition",
+      "JWT",
+      "Tailwind CSS",
+      "Mongoose",
+      "Axios"
+    ],
+    "links": [
+      {
+        "type": "Video Demo",
+        "url": "https://youtu.be/TXzUpTni7DI?si=NSW2EHPbLJ264JKa",
+        "icon": "fas fa-video"
+      },
+      {
+        "type": "GitHub (Private)",
+        "url": "https://github.com/qamar2315/learnxcellence",
+        "icon": "fab fa-github"
+      }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/4_yuy75t.png",
+        "caption": "Instructor's dashboard for managing courses and students."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547802/Learnxcellence/9_wylrao.png",
+        "caption": "Detailed AI Proctoring report with cheating probability and violation evidence."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/6_cegck3.png",
+        "caption": "Student's dashboard showing enrolled courses."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/1_x5dqzt.png",
+        "caption": "The landing page for the LearnXcellence platform."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/8_bdlvds.png",
+        "caption": "The student's view of an ongoing proctored quiz."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547802/Learnxcellence/3_zfdljw.png",
+        "caption": "Secure login page for students and instructors."
+      }
+    ]
   }
 ]
