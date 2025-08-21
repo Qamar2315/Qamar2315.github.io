@@ -748,5 +748,73 @@
         "caption": "The game in action, showing the bird, obstacles, score, and the OpenCV hand-tracking window."
       }
     ]
+  },
+  {
+    "id": "lettergen-ai-cover-letter",
+    "title": "LetterGen - AI Cover Letter & Email Generator",
+    "project_type": "Personal Project",
+    "status": "Completed",
+    "role": "Creator & Full-Stack Developer",
+    "short_description": "A modern web app that uses Google Gemini AI to generate personalized cover letters and emails by parsing a user's PDF resume and a job description.",
+    "long_description": "LetterGen is a productivity tool designed to automate the tedious task of writing unique cover letters. The application allows a user to upload their PDF resume and paste a job description. It then leverages a sophisticated, decoupled three-tier architecture to deliver results. The React frontend sends the data to a Node.js API server, which handles the file upload. The Node server then forwards the request to a dedicated Python/Flask microservice. This AI service parses the text from the PDF using PDFPlumber, combines it with the job description, and uses the Google Gemini API to generate 5 distinct, high-quality variations of a cover letter or application email. For user privacy, uploaded resumes are deleted immediately after processing.",
+    "key_features": [
+      "AI-powered generation of cover letters & emails via Google Gemini",
+      "Automatic text extraction from user-uploaded PDF resumes",
+      "Generates 5 distinct variations for each request",
+      "Decoupled microservice architecture (React, Node.js, Python/Flask)",
+      "Privacy-focused: resumes are deleted from the server after processing",
+      "Clean, responsive, and intuitive user interface with animations"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Designing a Scalable and Efficient System for AI Tasks",
+        "solution": "Architected a decoupled microservice system to separate concerns. A Node.js server handles lightweight API requests and file management, while a separate Python/Flask service manages the computationally intensive tasks of PDF parsing and communication with the Gemini AI. This prevents the main API from being blocked by long-running AI jobs and allows for using the best language for each task."
+      },
+      {
+        "challenge": "Securely Handling and Processing User-Uploaded Files",
+        "solution": "Implemented a secure workflow for handling sensitive documents. The Node.js server uses Multer for in-memory file handling, forwards the file to the Python service for immediate processing, and is designed to delete the temporary file from the server as soon as the AI generation is complete, ensuring user data is not stored."
+      }
+    ],
+    "technologies": [
+      "React",
+      "Node.js",
+      "Express.js",
+      "Python",
+      "Flask",
+      "Google Gemini API",
+      "PDFPlumber",
+      "Multer",
+      "Axios",
+      "Framer Motion"
+    ],
+    "links": [
+      {
+        "type": "Video Demo",
+        "url": "https://www.youtube.com/watch?v=4OXoCcdx-zQ",
+        "icon": "fas fa-video"
+      },
+      {
+        "type": "GitHub",
+        "url": "https://github.com/Qamar2315/lettergen",
+        "icon": "fab fa-github"
+      }
+    ],
+    "media": [
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755809319/lettergen/Home_zuikky.png",
+        "caption": "The clean and simple landing page of the application."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755809318/lettergen/ResumeUploader_husjpr.png",
+        "caption": "The main interface for uploading a resume and providing a job description."
+      },
+      {
+        "type": "image",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755809318/lettergen/AboutUs_rndak5.png",
+        "caption": "The 'About Us' page explaining the application's purpose."
+      }
+    ]
   }
 ]

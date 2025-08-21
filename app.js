@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             projectsData = await response.json();
+            renderProjectsGrid(projectsData);
         } catch (error) {
             console.error('Could not fetch projects data:', error);
         }
@@ -226,6 +227,53 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             modalMediaDisplay.innerHTML = `<img src="${mediaItem.src}" alt="${mediaItem.caption || ''}" class="w-full h-full object-contain">`;
         }
+    }
+
+    // --- New: Render Projects Grid Dynamically ---
+    function createProjectCard(project) {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll project-card cursor-pointer';
+        card.dataset.projectId = project.id || '';
+
+        const title = document.createElement('h3');
+        title.className = 'text-xl font-bold mb-2 text-slate-800';
+        title.textContent = project.title || 'Untitled Project';
+
+        const desc = document.createElement('p');
+        desc.className = 'text-slate-600 mb-4 flex-grow';
+        desc.textContent = project.short_description || '';
+
+        const primaryLink = (project.links || [])[0];
+        const link = document.createElement('a');
+        if (primaryLink && primaryLink.url) {
+            link.href = primaryLink.url;
+            link.target = '_blank';
+            link.className = 'text-blue-500 hover:underline font-semibold';
+            link.innerHTML = `${primaryLink.type || 'Link'} <i class="fas fa-arrow-right ml-1"></i>`;
+        } else {
+            link.href = '#';
+            link.className = 'text-slate-400 cursor-default';
+            link.textContent = 'Details';
+        }
+
+        card.appendChild(title);
+        card.appendChild(desc);
+        card.appendChild(link);
+        return card;
+    }
+
+    function renderProjectsGrid(projects) {
+        const grid = document.getElementById('projects-grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        (projects || []).forEach((p) => {
+            const card = createProjectCard(p);
+            grid.appendChild(card);
+        });
+
+        // Re-observe newly created elements for scroll animations
+        const newAnimated = grid.querySelectorAll('.animate-on-scroll');
+        newAnimated.forEach(el => observer.observe(el));
     }
 
     function populateFreelanceModal(work) {
