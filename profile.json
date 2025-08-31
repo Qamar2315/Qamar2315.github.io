@@ -1,0 +1,121 @@
+{
+  "personal_info": {
+    "name": "Qamar Ul Islam",
+    "title": "Software Engineer | Backend & AI/ML Specialist",
+    "description": "A highly motivated Software Engineer specializing in backend development and AI/ML systems. I have a proven record of building scalable, reliable applications using Python, Go, and Node.js. My experience ranges from freelance AI projects and complex API integrations to developing robust microservices for high-engagement platforms. I am passionate about architecting sophisticated RAG pipelines and leveraging LLMs to solve real-world problems.",
+    "resume_file": "resume.pdf",
+    "profile_image": "dev.png"
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "subtitle": "My toolkit for building modern web applications, from frontend design to backend logic and deployment.",
+    "categories": [
+      {
+        "name": "Programming Languages",
+        "skills": [
+          {
+            "name": "Python",
+            "icon": "fab fa-python"
+          },
+          {
+            "name": "Node.js / NestJS",
+            "icon": "fab fa-node-js"
+          },
+          {
+            "name": "Go (Gin)",
+            "icon": "fas fa-code"
+          },
+          {
+            "name": "JavaScript / TS",
+            "icon": "fab fa-js"
+          },
+          {
+            "name": "HTML5",
+            "icon": "fab fa-html5"
+          },
+          {
+            "name": "CSS3",
+            "icon": "fab fa-css3-alt"
+          }
+        ]
+      },
+      {
+        "name": "Frontend Frameworks/Libraries",
+        "skills": [
+          {
+            "name": "React / Next.js",
+            "icon": "fab fa-react"
+          },
+          {
+            "name": "Angular",
+            "icon": "fab fa-angular"
+          },
+          {
+            "name": "Tailwind CSS",
+            "icon": "fas fa-paint-brush"
+          }
+        ]
+      },
+      {
+        "name": "Backend/Server Side",
+        "skills": [
+          {
+            "name": "Flask",
+            "icon": "fas fa-flask"
+          },
+          {
+            "name": "Express.js",
+            "icon": "fas fa-server"
+          }
+        ]
+      },
+      {
+        "name": "Databases",
+        "skills": [
+          {
+            "name": "MongoDB",
+            "icon": "fas fa-database"
+          },
+          {
+            "name": "MySQL / PostgreSQL",
+            "icon": "fas fa-database"
+          },
+          {
+            "name": "Pinecone",
+            "icon": "fas fa-leaf"
+          }
+        ]
+      },
+      {
+        "name": "DevOps / Tools",
+        "skills": [
+          {
+            "name": "Docker",
+            "icon": "fab fa-docker"
+          },
+          {
+            "name": "Git & GitHub",
+            "icon": "fab fa-git-alt"
+          }
+        ]
+      },
+      {
+        "name": "AI / ML",
+        "skills": [
+          {
+            "name": "AI/ML & RAG Systems",
+            "icon": "fas fa-brain"
+          },
+          {
+            "name": "LangChain",
+            "icon": "fas fa-cogs"
+          },
+          {
+            "name": "OpenCV / YOLO",
+            "icon": "fas fa-camera-retro"
+          }
+        ]
+      }
+    ]
+  }
+}

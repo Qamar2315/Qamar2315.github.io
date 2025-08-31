@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let projectsData = [];
     let freelanceData = [];
+    let profileData = {};
 
     // B. Fetch Project Data on Load
     async function fetchProjects() {
@@ -146,6 +147,20 @@ document.addEventListener('DOMContentLoaded', () => {
             renderFreelanceGrid(freelanceData);
         } catch (error) {
             console.error('Could not fetch freelance data:', error);
+        }
+    }
+
+    async function fetchProfileData() {
+        try {
+            const response = await fetch('profile.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            profileData = await response.json();
+            renderProfileData(profileData);
+            renderSkillsGrid(profileData.skills);
+        } catch (error) {
+            console.error('Could not fetch profile data:', error);
         }
     }
 
@@ -310,6 +325,72 @@ document.addEventListener('DOMContentLoaded', () => {
         newAnimated.forEach(el => observer.observe(el));
     }
 
+    // --- New: Render Profile Data ---
+    function renderProfileData(data) {
+        const personalInfo = data.personal_info;
+        
+        // Update profile information
+        const profileName = document.getElementById('profile-name');
+        const profileTitle = document.getElementById('profile-title');
+        const profileDescription = document.getElementById('profile-description');
+        const profileImage = document.getElementById('profile-image');
+        const resumeDownload = document.getElementById('resume-download');
+        
+        if (profileName) profileName.textContent = personalInfo.name;
+        if (profileTitle) profileTitle.textContent = personalInfo.title;
+        if (profileDescription) profileDescription.textContent = personalInfo.description;
+        if (profileImage) {
+            profileImage.src = personalInfo.profile_image;
+            profileImage.alt = personalInfo.name;
+        }
+        if (resumeDownload) {
+            resumeDownload.href = personalInfo.resume_file;
+            resumeDownload.download = `${personalInfo.name.replace(/\s+/g, '-')}-Resume.pdf`;
+        }
+    }
+
+    // --- New: Render Skills Grid ---
+    function renderSkillsGrid(skillsData) {
+        const grid = document.getElementById('skills-grid');
+        const title = document.getElementById('skills-title');
+        const subtitle = document.getElementById('skills-subtitle');
+        
+        if (!grid) return;
+        
+        // Update title and subtitle
+        if (title) title.textContent = skillsData.title;
+        if (subtitle) subtitle.textContent = skillsData.subtitle;
+        
+        // Clear existing content
+        grid.innerHTML = '';
+        
+        // Flatten all skills from all categories
+        const allSkills = [];
+        skillsData.categories.forEach(category => {
+            category.skills.forEach(skill => {
+                allSkills.push(skill);
+            });
+        });
+        
+        // Create skill elements with staggered animation delays
+        allSkills.forEach((skill, index) => {
+            const skillElement = document.createElement('div');
+            skillElement.className = 'flex flex-col items-center animate-on-scroll skill-icon';
+            skillElement.style.transitionDelay = `${(index + 1) * 50}ms`;
+            
+            skillElement.innerHTML = `
+                <i class="${skill.icon} text-5xl text-gray-400 mb-2 transition-all"></i>
+                <span>${skill.name}</span>
+            `;
+            
+            grid.appendChild(skillElement);
+        });
+        
+        // Re-observe newly created elements for scroll animations
+        const newAnimated = grid.querySelectorAll('.animate-on-scroll');
+        newAnimated.forEach(el => observer.observe(el));
+    }
+
     function populateFreelanceModal(work) {
         modalTitle.textContent = work.title;
 
@@ -395,6 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch data when the page loads
     fetchProjects();
     fetchFreelanceWork();
+    fetchProfileData();
 
     // Open modal on project card click (using event delegation)
     if (projectsSection) {
