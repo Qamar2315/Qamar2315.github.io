@@ -122,11 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let projectsData = [];
     let freelanceData = [];
     let profileData = {};
+    let experienceData = [];
+    let educationData = {};
 
     // B. Fetch Project Data on Load
     async function fetchProjects() {
         try {
-            const response = await fetch('projects.json');
+            const response = await fetch('json_data/projects.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -139,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchFreelanceWork() {
         try {
-            const response = await fetch('freelance.json');
+            const response = await fetch('json_data/freelance.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -152,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchProfileData() {
         try {
-            const response = await fetch('profile.json');
+            const response = await fetch('json_data/profile.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -161,6 +163,32 @@ document.addEventListener('DOMContentLoaded', () => {
             renderSkillsGrid(profileData.skills);
         } catch (error) {
             console.error('Could not fetch profile data:', error);
+        }
+    }
+
+    async function fetchExperience() {
+        try {
+            const response = await fetch('json_data/experience.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            experienceData = await response.json();
+            renderExperienceTimeline(experienceData);
+        } catch (error) {
+            console.error('Could not fetch experience data:', error);
+        }
+    }
+
+    async function fetchEducation() {
+        try {
+            const response = await fetch('json_data/education.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            educationData = await response.json();
+            renderEducation(educationData);
+        } catch (error) {
+            console.error('Could not fetch education data:', error);
         }
     }
 
@@ -391,6 +419,70 @@ document.addEventListener('DOMContentLoaded', () => {
         newAnimated.forEach(el => observer.observe(el));
     }
 
+    // --- New: Render Experience Timeline ---
+    function renderExperienceTimeline(experience) {
+        const timelineContainer = document.getElementById('experience-timeline');
+        if (!timelineContainer) return;
+
+        timelineContainer.innerHTML = ''; // Clear any existing content
+
+        (experience || []).forEach(job => {
+            const timelineItem = document.createElement('div');
+            timelineItem.className = 'timeline-item relative pl-8 pb-8 animate-on-scroll';
+
+            // Create the list of responsibilities
+            const responsibilitiesHTML = (job.responsibilities || []).map(item => `<li>${item}</li>`).join('');
+
+            timelineItem.innerHTML = `
+                <div class="timeline-dot w-4 h-4 border-2 border-blue-500">
+                    <div class="timeline-dot-inner w-2 h-2 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                </div>
+                <div class="bg-slate-100/70 p-6 rounded-lg shadow-sm">
+                    <p class="text-sm font-semibold text-blue-600">${job.date_range}</p>
+                    <h3 class="text-lg font-bold text-slate-800 mt-1">${job.title}, ${job.company}</h3>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1 mt-3">
+                        ${responsibilitiesHTML}
+                    </ul>
+                </div>
+            `;
+            timelineContainer.appendChild(timelineItem);
+        });
+        
+        // Re-observe newly created elements for scroll animations
+        const newAnimated = timelineContainer.querySelectorAll('.animate-on-scroll');
+        newAnimated.forEach(el => observer.observe(el));
+    }
+
+    // --- New: Render Education ---
+    function renderEducation(data) {
+        const titleEl = document.getElementById('education-title');
+        const subtitleEl = document.getElementById('education-subtitle');
+        const listEl = document.getElementById('education-list');
+
+        if (!titleEl || !subtitleEl || !listEl) return;
+
+        // Populate title and subtitle
+        titleEl.textContent = data.title || 'Educational Background';
+        subtitleEl.textContent = data.subtitle || '';
+
+        // Clear and populate the list of degrees
+        listEl.innerHTML = '';
+        (data.items || []).forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'bg-white p-8 rounded-xl shadow-md text-center animate-on-scroll';
+            card.innerHTML = `
+                <h3 class="text-2xl font-semibold text-blue-900">${item.degree}</h3>
+                <p class="text-lg text-gray-600 mt-2">${item.institution}</p>
+                <p class="text-md text-gray-500 mt-1">${item.date_range}</p>
+            `;
+            listEl.appendChild(card);
+        });
+
+        // Re-observe newly created elements for scroll animations
+        const newAnimated = listEl.querySelectorAll('.animate-on-scroll');
+        newAnimated.forEach(el => observer.observe(el));
+    }
+
     function populateFreelanceModal(work) {
         modalTitle.textContent = work.title;
 
@@ -477,6 +569,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProjects();
     fetchFreelanceWork();
     fetchProfileData();
+    fetchExperience();
+    fetchEducation();
 
     // Open modal on project card click (using event delegation)
     if (projectsSection) {

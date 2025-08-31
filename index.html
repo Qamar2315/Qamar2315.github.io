@@ -162,37 +162,9 @@
             <div class="animate-on-scroll">
                 <h2 class="text-3xl font-bold mb-12 text-center text-slate-800">Professional Experience</h2>
             </div>
-            <div class="relative max-w-2xl mx-auto">
-                <!-- Timeline Item -->
-                <div class="timeline-item relative pl-8 pb-8 animate-on-scroll">
-                    <div class="timeline-dot w-4 h-4 border-2 border-blue-500">
-                        <div class="timeline-dot-inner w-2 h-2 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                    </div>
-                    <div class="bg-slate-100/70 p-6 rounded-lg shadow-sm">
-                        <p class="text-sm font-semibold text-blue-600">Feb 2025 - Present</p>
-                        <h3 class="text-lg font-bold text-slate-800 mt-1">Software Engineer, DevAxl</h3>
-                        <ul class="list-disc list-inside text-slate-600 space-y-1 mt-3">
-                            <li>Engineered a scalable microservice in Go (Gin) for an influencer e-commerce application.</li>
-                            <li>Developed and deployed a RAG-based AI system using Python for a client's user dashboard.</li>
-                            <li>Currently working on the backend development and integration of a new product MVP using NestJS.</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="timeline-item relative pl-8 pb-8 animate-on-scroll">
-                    <div class="timeline-dot w-4 h-4 border-2 border-blue-500">
-                        <div class="timeline-dot-inner w-2 h-2 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                    </div>
-                    <div class="bg-slate-100/70 p-6 rounded-lg shadow-sm">
-                        <p class="text-sm font-semibold text-blue-600">Feb 2023 - Feb 2025</p>
-                        <h3 class="text-lg font-bold text-slate-800 mt-1">Freelance Backend & AI Developer, Fiverr</h3>
-                        <ul class="list-disc list-inside text-slate-600 space-y-1 mt-3">
-                            <li>Developed and deployed custom Python backends for AI/ML applications, including computer vision and process automation.</li>
-                            <li>Co-developed "Scam Eye," a spam detection tool utilizing custom-trained models and OpenAI LLMs.</li>
-                            <li>Built and integrated Node.js (Express) backends with payment gateways (Stripe, PayPal) and third-party APIs (Twilio).</li>
-                        </ul>
-                    </div>
-                </div>
+            <!-- This is the container where the timeline will be dynamically inserted -->
+            <div id="experience-timeline" class="relative max-w-2xl mx-auto">
+                <!-- Experience items will be loaded here by app.js -->
             </div>
         </div>
     </section>
@@ -201,13 +173,11 @@
     <section id="education" class="py-20 bg-slate-50">
         <div class="container mx-auto px-4">
             <div class="animate-on-scroll">
-                <h2 class="text-3xl font-bold mb-4 text-center text-slate-800">Educational Background</h2>
-                <p class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">My academic journey and qualifications that form the foundation of my technical expertise.</p>
+                <h2 id="education-title" class="text-3xl font-bold mb-4 text-center text-slate-800">Loading...</h2>
+                <p id="education-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">Loading...</p>
             </div>
-            <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md text-center animate-on-scroll">
-                <h3 class="text-2xl font-semibold text-blue-900">Bachelor of Science in Software Engineering</h3>
-                <p class="text-lg text-gray-600 mt-2">COMSATS University Islamabad</p>
-                <p class="text-md text-gray-500 mt-1">2021 - 2025</p>
+            <div id="education-list" class="max-w-2xl mx-auto space-y-8">
+                <!-- Education items will be loaded here by app.js -->
             </div>
         </div>
     </section>

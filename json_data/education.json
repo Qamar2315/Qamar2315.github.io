@@ -1,0 +1,11 @@
+{
+  "title": "Educational Background",
+  "subtitle": "My academic journey and qualifications that form the foundation of my technical expertise.",
+  "items": [
+    {
+      "degree": "Bachelor of Science in Software Engineering",
+      "institution": "COMSATS University Islamabad",
+      "date_range": "2021 - 2025"
+    }
+  ]
+}

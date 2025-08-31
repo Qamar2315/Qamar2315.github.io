@@ -1,0 +1,25 @@
+[
+  {
+    "id": "devaxl-swe",
+    "date_range": "Feb 2025 - Present",
+    "title": "Software Engineer",
+    "company": "DevAxl",
+    "responsibilities": [
+      "Engineered a scalable microservice in Go (Gin) for an influencer e-commerce application, single-handedly developing modules for authentication, video handling, and user engagement.",
+      "Migrated and enhanced a RAG-based AI assistant (PMA-GPT) using Python Firebase Functions and Pinecone, adding features like chat session management and multi-modal interaction with videos and PDFs.",
+      "Developed and integrated a backend module using NestJS for the PromptLab platform, connecting it with the frontend.",
+      "Integrated a Next.js (TypeScript) application into a WordPress environment for Vetsie AI, enabling communication with its member system and database."
+    ]
+  },
+  {
+    "id": "fiverr-freelance",
+    "date_range": "Feb 2023 - Feb 2025",
+    "title": "Freelance Backend & AI Developer",
+    "company": "Fiverr",
+    "responsibilities": [
+      "Developed and deployed custom Python backends for AI/ML applications, including computer vision and process automation.",
+      "Co-developed 'Scam Eye,' a spam detection tool utilizing custom-trained models and OpenAI LLMs.",
+      "Built and integrated Node.js (Express) backends with payment gateways (Stripe, PayPal) and third-party APIs (Twilio)."
+    ]
+  }
+]
