@@ -1,159 +1,103 @@
 [
   {
-    "id": "api-integration",
-    "title": "Complex API Integration",
-    "short_description": "Integrated Google Calendar, Wix, and various payment gateways to automate workflows and enhance functionality.",
-    "problem_statement": "Clients often came with disjointed systems. For example, a booking made on their Wix website wouldn't automatically create a Google Calendar event or process a payment through their preferred gateway, leading to manual work and potential errors.",
-    "solution_delivered": "I developed custom middleware using Node.js and serverless functions (like AWS Lambda or Vercel Functions) to act as a bridge between these services. When a trigger event occurred (e.g., a new booking), my code would securely authenticate with the necessary APIs (Google, Stripe, PayPal) and perform a sequence of actions, ensuring data consistency and full automation.",
+    "id": "voucher-management-system",
+    "title": "Full-Stack Voucher Management System with Stripe Integration",
+    "short_description": "Developed a comprehensive voucher management platform with a React admin dashboard, Node.js backend, and integrated Stripe payments to automate sales and distribution.",
+    "problem_statement": "The client required a centralized system to create, manage, sell, and track digital vouchers for their business. They needed a secure way for administrators to manage inventory, including bulk uploads, and a seamless, automated payment process for customers to purchase and receive vouchers.",
+    "solution_delivered": "I engineered a full-stack solution featuring a React-based admin dashboard and a secure Node.js/Express.js backend with a MongoDB database. The system provides complete CRUD functionality for vouchers, secure admin authentication using JWT, and role-based access control. Key features include bulk voucher import via CSV and a customizable payment page. The project was delivered in two phases: first, the core management dashboard, and second, a full integration with the Stripe API to handle payment intents and automate the voucher dispensing process upon successful payment.",
     "key_achievements": [
-      "Automated over 95% of the manual booking and scheduling process for a client, saving them an estimated 10 hours per week.",
-      "Built a resilient system with error handling and logging, ensuring high reliability.",
-      "Created a secure payment flow by integrating Stripe and PayPal webhooks."
+      "Built a multi-tenant ready system where each admin receives a unique API key to securely dispense vouchers.",
+      "Integrated the Stripe API to create a fully automated payment and voucher delivery workflow.",
+      "Developed a bulk upload feature, allowing admins to import thousands of vouchers from a CSV file, saving significant manual effort.",
+      "Designed and implemented a comprehensive RESTful API with clear documentation for all system functionalities."
     ],
-    "technologies": ["Node.js", "Express.js", "Serverless Functions", "Google Calendar API", "Stripe API", "Wix API", "OAuth 2.0"],
+    "technologies": [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "Stripe API",
+      "RESTful API",
+      "JWT",
+      "JavaScript"
+    ],
     "client_feedback": {
-      "quote": "Qamar's solution was a game-changer for my business. What used to take hours of manual data entry is now completely automated and flawless.",
-      "client_name": "Business Owner, E-commerce Startup"
+      "quote": "Hi, I have checked the video, looks good and functional.",
+      "client_name": "rumaratetekirua, Food Delivery Service"
     },
     "media": [
       {
-        "type": "image",
-        "src": "dev.png",
-        "caption": "System architecture diagram for the automation workflow."
-      },
-      {
         "type": "video",
-        "src": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-        "caption": "Live demo of a booking automatically creating a calendar event."
-      },
-      {
-        "type": "image",
-        "src": "pic.png",
-        "caption": "The custom dashboard integration within the Wix site."
+        "src": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1756670270/Freelance/bandicam_2024-08-09_02-38-45-377_y2g6zk.mp4",
+        "caption": "Demo video showcasing the complete voucher management system and Stripe payment flow."
       }
     ]
   },
   {
-    "id": "voucher-system",
-    "title": "Voucher Management System",
-    "short_description": "Built a robust voucher system with role-based access control, using Node.js, Express, and multiple SQL/NoSQL databases.",
-    "problem_statement": "A retail client needed a system to generate, distribute, and validate promotional vouchers. The system had to be secure to prevent fraud and flexible enough to support different campaign types (e.g., percentage-off, fixed amount). It also required different access levels for managers and cashiers.",
-    "solution_delivered": "I architected and built a complete backend API using Node.js and Express. It featured a secure JWT-based authentication system for role-based access control (RBAC). I used MongoDB for flexibility in storing voucher data and PostgreSQL for transactional integrity of redemption records. The API exposed endpoints for creating, validating, and revoking vouchers.",
+    "id": "computer-vision-measurement",
+    "title": "Automated Object Dimension Measurement using OpenCV",
+    "short_description": "Developed a Python script using OpenCV to automatically detect cardboard objects in a video and measure their dimensions (length, width) and distance from a reference point in millimeters.",
+    "problem_statement": "The client needed an automated method to accurately measure the physical dimensions of multiple cardboard objects shown in a video. Manual measurement was impractical and time-consuming. The required measurements included the length, width, and distance of each object from the video's starting point.",
+    "solution_delivered": "I created a custom Python script leveraging the OpenCV library for computer vision tasks. The script processes the input video, identifies object contours using image processing techniques, and calculates the bounding box for each detected cardboard object. By using a known reference object for scale calibration, the script accurately converts pixel measurements into millimeters, providing the precise length, width, and positional data for each object as requested.",
     "key_achievements": [
-      "Designed a database schema that supported complex voucher rules and tracking.",
-      "Implemented a secure RBAC system to protect sensitive administrative functions.",
-      "Delivered a well-documented RESTful API that the client's frontend team could easily integrate with."
+      "Achieved high-precision measurements by implementing a robust calibration and object detection algorithm.",
+      "Delivered a complete solution, including the Python source code and a demonstration video, ahead of schedule.",
+      "The solution successfully handled multiple objects within the video frame, measuring each one individually.",
+      "Received a 5-star rating and a significant tip for exceeding client expectations in quality and service."
     ],
-    "technologies": ["Node.js", "Express.js", "JWT", "MongoDB", "PostgreSQL", "REST API", "Docker"],
-    "client_feedback": null,
-    "media": [
-      {
-        "type": "image",
-        "src": "dev.png",
-        "caption": "Admin panel for generating and managing voucher codes."
-      },
-      {
-        "type": "image",
-        "src": "pic.png",
-        "caption": "Flowchart illustrating the Role-Based Access Control logic."
-      }
-    ]
-  },
-  {
-    "id": "nextjs-web-applications",
-    "title": "Next.js Web Applications",
-    "short_description": "Developed various web applications using Next.js for server-side rendering and dynamic content generation.",
-    "problem_statement": "Clients needed fast, SEO-friendly web apps with dynamic content and integrations.",
-    "solution_delivered": "Built SSR/SSG applications with Next.js, integrated APIs, and optimized Core Web Vitals.",
-    "key_achievements": [
-      "Delivered Lighthouse performance scores >90 for multiple pages.",
-      "Reduced Time-to-Interactive by 35% through code-splitting and caching."
+    "technologies": [
+      "Python",
+      "OpenCV"
     ],
-    "technologies": ["Next.js", "React", "Tailwind CSS", "Vercel", "ISR"],
-    "client_feedback": null,
-    "media": [
-      {
-        "type": "image",
-        "src": "dev.png",
-        "caption": "Landing page built with Next.js and Tailwind CSS."
-      },
-      {
-        "type": "image",
-        "src": "pic.png",
-        "caption": "Dynamic content dashboard leveraging ISR."
-      }
-    ]
-  },
-  {
-    "id": "machine-learning-models",
-    "title": "Machine Learning Models",
-    "short_description": "Trained and deployed ML models for tasks like lottery prediction, including web scraping for data collection.",
-    "problem_statement": "Clients required predictive models and automated data pipelines for ongoing insights.",
-    "solution_delivered": "Implemented scraping pipelines, feature engineering, and model training; deployed using FastAPI.",
-    "key_achievements": [
-      "Automated daily data ingestion with retry logic and monitoring.",
-      "Improved baseline model metrics by 20-30% using ensemble techniques."
-    ],
-    "technologies": ["Python", "Pandas", "scikit-learn", "FastAPI", "BeautifulSoup", "Selenium"],
-    "client_feedback": null,
-    "media": [
-      {
-        "type": "image",
-        "src": "dev.png",
-        "caption": "Model training metrics and evaluation charts."
-      },
-      {
-        "type": "image",
-        "src": "pic.png",
-        "caption": "Automated scraping pipeline architecture."
-      }
-    ]
-  },
-  {
-    "id": "computer-vision-opencv",
-    "title": "Computer Vision with OpenCV",
-    "short_description": "Applied OpenCV for factory automation (measuring moving sheets) and data analysis from graphs and charts.",
-    "problem_statement": "Industrial client required accurate, real-time measurements from video feeds and analysis from static images.",
-    "solution_delivered": "Developed calibration and edge-detection pipelines; extracted quantitative data from plots and charts.",
-    "key_achievements": [
-      "Achieved sub-millimeter measurement accuracy on test footage.",
-      "Deployed a robust pipeline with configurable thresholds for different environments."
-    ],
-    "technologies": ["Python", "OpenCV", "NumPy", "Flask"],
-    "client_feedback": null,
+    "client_feedback": {
+      "quote": "Brilliant programmer, completed my vision system project above my expectations and on time also. Qamar kept me updated throughout the process. Highly recommended, 10/10 for quality of work and service.",
+      "client_name": "tonyc2000"
+    },
     "media": [
       {
         "type": "video",
-        "src": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
-        "caption": "Edge-detection pipeline demonstration on sample footage."
-      },
-      {
-        "type": "image",
-        "src": "dev.png",
-        "caption": "Measurement calibration setup."
+        "src": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1756670400/Freelance/bandicam_2024-09-06_04-27-23-399_zbnrws.mp4",
+        "caption": "Live demonstration of the Python script analyzing a video to measure object dimensions in real-time."
       }
     ]
   },
   {
-    "id": "cloud-api-inspection",
-    "title": "Cloud API Code Inspection",
-    "short_description": "Comprehensive code inspection and audit for a cloud compressor API to ensure performance and security.",
-    "problem_statement": "Client needed a performance and security review before scaling their customer base.",
-    "solution_delivered": "Performed profiling, identified hotspots, added rate limiting and structured logging, and proposed architectural improvements.",
+    "id": "custom-coloring-book-maker",
+    "title": "Full-Stack Custom Coloring Book Generator",
+    "short_description": "Developed a web application that converts images into printable color-by-number pages, featuring a custom designer, palette management, and multiple backend services.",
+    "problem_statement": "Artists, educators, and hobbyists needed a flexible tool to create custom color-by-number puzzles from their own images or original designs. Existing solutions were either too simple, lacking customization, or required expensive desktop software.",
+    "solution_delivered": "I built a feature-rich frontend using React and Tailwind CSS, offering two creation modes: 'Image Upload' and a 'Designer' for drawing on a grid. The application is powered by a polyglot microservices architecture. The core image processing and PDF generation is handled by a Python/Flask backend, using libraries like Pillow for image manipulation and Playwright for high-fidelity PDF creation. For robust user management, authentication (JWT), role-based access, and API key generation for 'Designer' roles, I developed a separate, high-performance backend service in Go (Golang) using the Gin framework and MongoDB. This architecture ensures scalability and separates concerns effectively.",
     "key_achievements": [
-      "Reduced average response latency by ~25% through targeted optimizations.",
-      "Introduced a security checklist and CI checks for secrets and dependency vulnerabilities."
+      "Created a dual-mode system allowing users to either upload existing images or design puzzles from scratch on a grid.",
+      "Implemented extensive customization, including various pixel shapes (squares, triangles, hexagons), palette management, and multiple PDF/PNG export settings.",
+      "Engineered a polyglot backend using Python/Flask for complex media processing and Go/Gin for scalable user management and authentication.",
+      "Developed a robust PDF generation pipeline using Playwright and Jinja2 to create high-quality, printable coloring pages with optional color keys."
     ],
-    "technologies": ["Node.js", "Express", "NGINX", "JWT", "OWASP"],
-    "client_feedback": null,
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Python",
+      "Flask",
+      "Pillow (PIL)",
+      "Playwright",
+      "Go (Golang)",
+      "Gin-Gonic",
+      "MongoDB",
+      "REST API",
+      "JWT",
+      "SQLite"
+    ],
+    "client_feedback": {
+      "quote": "Great Work Qamar. Long term partner.",
+      "client_name": "Floris, Project Stakeholder"
+    },
     "media": [
       {
-        "type": "image",
-        "src": "pic.png",
-        "caption": "Performance profiling report summary."
+        "type": "video",
+        "src": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1756672896/Freelance/Recording_2025-09-01_013955_hdiqx5.mp4",
+        "caption": "A comprehensive demo of the Coloring Book Maker, showing image upload, the designer grid, palette customization, and final PDF generation."
       }
     ]
   }
 ]
-
-

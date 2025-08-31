@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             freelanceData = await response.json();
+            renderFreelanceGrid(freelanceData);
         } catch (error) {
             console.error('Could not fetch freelance data:', error);
         }
@@ -268,6 +269,39 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.innerHTML = '';
         (projects || []).forEach((p) => {
             const card = createProjectCard(p);
+            grid.appendChild(card);
+        });
+
+        // Re-observe newly created elements for scroll animations
+        const newAnimated = grid.querySelectorAll('.animate-on-scroll');
+        newAnimated.forEach(el => observer.observe(el));
+    }
+
+    // --- New: Render Freelance Grid Dynamically ---
+    function createFreelanceCard(work) {
+        const card = document.createElement('div');
+        card.className = 'bg-slate-50 rounded-xl shadow-md hover-card transition-all p-6 animate-on-scroll freelance-card cursor-pointer';
+        card.dataset.freelanceId = work.id || '';
+
+        const title = document.createElement('h3');
+        title.className = 'text-xl font-bold mb-2 text-slate-800';
+        title.textContent = work.title || 'Untitled Project';
+
+        const desc = document.createElement('p');
+        desc.className = 'text-slate-600';
+        desc.textContent = work.short_description || '';
+
+        card.appendChild(title);
+        card.appendChild(desc);
+        return card;
+    }
+
+    function renderFreelanceGrid(freelanceWork) {
+        const grid = document.querySelector('#freelance .grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        (freelanceWork || []).forEach((work) => {
+            const card = createFreelanceCard(work);
             grid.appendChild(card);
         });
 
