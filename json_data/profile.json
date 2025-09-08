@@ -39,6 +39,104 @@
       ]
     }
   },
+  "freelancing_profile": {
+    "platform": "Fiverr",
+    "username": "qamar_editor_10",
+    "level": "Level 2",
+    "member_since": "2023-02-01T00:00:00Z",
+    "profile_summary": "As a seasoned and graduated Software Engineer on Fiverr, I transform complex ideas into reality using cutting-edge technologies like Python, GoLang, and JavaScript (Express, Next.js). My expertise lies in architecting robust, scalable backend systems (Microservices, N-Tier/MVC, Cloud Functions) and integrating AI/ML solutions (Sklearn, OpenCV, RAG & LLMs) to deliver high-impact, well-engineered results.",
+    "performance_metrics": {
+      "overall_rating": 4.8,
+      "total_reviews": 30,
+      "rating_breakdown": {
+        "five_star": 28,
+        "four_star": 1,
+        "three_star": 0,
+        "two_star": 1,
+        "one_star": 0
+      },
+      "success_score": 8,
+      "response_rate_percent": 100,
+      "orders_completed": 51,
+      "unique_clients": 35
+    },
+    "service_categories": [
+      "AI Developer",
+      "Full Stack Developer",
+      "Backend Developer"
+    ],
+    "gigs": [
+      {
+        "title": "Develop a custom AI powered Chrome extension to automate your work"
+      },
+      {
+        "title": "Build and host a custom Slack bot for you using Python"
+      },
+      {
+        "title": "Be your professional MERN or MEAN stack developer"
+      },
+      {
+        "title": "Do your Python project using Tkinter, PyQt, OpenCV or Pygame"
+      },
+      {
+        "title": "Build your NestJS backend API with advanced AI and LLM integration"
+      },
+      {
+        "title": "Develop a custom MCP server and client for your AI models"
+      },
+      {
+        "title": "Develop a custom RAG chatbot using Pinecone and LLM"
+      },
+      {
+        "title": "Be your expert Golang backend developer for APIs, databases, and integrations"
+      },
+      {
+        "title": "Be your Node.js developer for APIs, backend and API integration"
+      }
+    ],
+    "client_testimonials": [
+      {
+        "client_name": "physicalbitcoin",
+        "country": "United States",
+        "rating": 5,
+        "comment": "Amazing person to work with",
+        "is_repeat_client": true,
+        "date": "2025-07-01T00:00:00Z"
+      },
+      {
+        "client_name": "physicalbitcoin",
+        "country": "United States",
+        "rating": 5,
+        "comment": "Amazing work!",
+        "is_repeat_client": true,
+        "date": "2025-06-01T00:00:00Z"
+      },
+      {
+        "client_name": "physicalbitcoin",
+        "country": "United States",
+        "rating": 5,
+        "comment": "10 out of 10👏",
+        "is_repeat_client": true,
+        "date": "2025-05-01T00:00:00Z"
+      },
+      {
+        "client_name": "m_ruumi",
+        "country": "United Kingdom",
+        "rating": 5,
+        "comment": "Brother helped so much within a matter of one day. I was skepical going to someone but i can assure you hes clutch.",
+        "is_repeat_client": false,
+        "date": "2025-05-01T00:00:00Z"
+      },
+      {
+        "client_name": "andregtr",
+        "country": "Mexico",
+        "rating": 3.7,
+        "comment": "Very fast, and quickly done, thanks.",
+        "is_repeat_client": false,
+        "date": "2025-03-01T00:00:00Z"
+      }
+    ]
+  },
   "skills": {
     "title": "Technical Skills",
     "subtitle": "My toolkit for building modern web applications, from frontend design to backend logic and deployment.",
