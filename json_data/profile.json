@@ -4,7 +4,40 @@
     "title": "Software Engineer | Backend & AI/ML Specialist",
     "description": "A highly motivated Software Engineer specializing in backend development and AI/ML systems. I have a proven record of building scalable, reliable applications using Python, Go, and Node.js. My experience ranges from freelance AI projects and complex API integrations to developing robust microservices for high-engagement platforms. I am passionate about architecting sophisticated RAG pipelines and leveraging LLMs to solve real-world problems.",
     "resume_file": "resume.pdf",
-    "profile_image": "dev.png"
+    "profile_image": "dev.png",
+    "bio_details": {
+      "professional_links": [
+        {
+          "name": "LinkedIn",
+          "url": "https://www.linkedin.com/in/qamar-ul-islam-193378202/"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/Qamar2315"
+        }
+      ],
+      "spoken_languages": [
+        {
+          "language": "Urdu",
+          "proficiency": "Native"
+        },
+        {
+          "language": "English",
+          "proficiency": "Fluent"
+        }
+      ],
+      "career_aspirations": {
+        "summary": "To evolve into a dedicated AI Engineer role by deepening my expertise at the intersection of backend development and artificial intelligence.",
+        "details": "My primary career focus for the next five years is to specialize in building scalable, production-grade AI systems. I am passionate about creating practical AI-powered solutions and automation tools that solve real-world problems. My goal is to leverage my strong backend foundation to architect and deploy robust AI/ML models and infrastructure."
+      },
+      "key_strengths": [
+        "Problem-Solving",
+        "Fast Learner",
+        "Team Collaboration",
+        "Adaptability",
+        "Communication"
+      ]
+    }
   },
   "skills": {
     "title": "Technical Skills",
