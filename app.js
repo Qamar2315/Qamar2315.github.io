@@ -100,24 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // --- 7. Project Modal Functionality ---
-    // A. DOM Element Selection
-    const modal = document.getElementById('project-modal');
-    const modalContent = document.getElementById('modal-content');
-    const closeModalButton = document.getElementById('modal-close-button');
-    const projectsSection = document.getElementById('projects');
-    const freelanceSection = document.getElementById('freelance');
-
-    // Placeholders for dynamic content
-    const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    const modalTechList = document.getElementById('modal-tech-list');
-    const modalLinks = document.getElementById('modal-links');
-    const modalMeta = document.getElementById('modal-meta');
-    const modalFeatures = document.getElementById('modal-features');
-    const modalChallenges = document.getElementById('modal-challenges');
-    const modalMediaDisplay = document.getElementById('modal-media-display');
-    const modalMediaThumbnails = document.getElementById('modal-media-thumbnails');
 
     let projectsData = [];
     let freelanceData = [];
@@ -192,86 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // C. Populate Modal with Project Data
-    function formatRichText(text) {
-        if (!text) return '';
-        let html = text
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1<\/strong>')
-            .replace(/\n\n+/g, '<\/p><p>')
-            .replace(/\n/g, '<br>');
-        return `<p>${html}<\/p>`;
-    }
-
-    function populateModal(project) {
-        modalTitle.textContent = project.title;
-        modalDescription.innerHTML = formatRichText(project.long_description || '');
-
-        // Populate meta badges
-        if (modalMeta) {
-            const metaItems = [];
-            if (project.project_type) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-sm bg-slate-100 text-slate-700">${project.project_type}<\/span>`);
-            if (project.status) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-sm bg-green-100 text-green-800">${project.status}<\/span>`);
-            if (project.role) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-sm bg-blue-100 text-blue-800">${project.role}<\/span>`);
-            if (project.date_range) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-sm bg-purple-100 text-purple-800">${project.date_range}<\/span>`);
-            modalMeta.innerHTML = metaItems.join('');
-        }
-
-        // Populate technologies
-        modalTechList.innerHTML = (project.technologies || []).map((tech) =>
-            `<span class="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-1 rounded-full">${tech}</span>`
-        ).join('');
-
-        // Populate key features
-        if (modalFeatures) {
-            modalFeatures.innerHTML = (project.key_features || []).map((feat) =>
-                `<li class="flex items-start"><i class="fas fa-check-circle text-blue-500 mt-1 mr-2"><\/i><span>${feat}<\/span><\/li>`
-            ).join('');
-        }
-
-        // Populate links
-        modalLinks.innerHTML = (project.links || []).map((link) =>
-            `<a href="${link.url}" target="_blank" class="inline-flex items-center text-blue-600 hover:underline">
-                <i class="${link.icon} mr-2"></i> ${link.type}
-            </a>`
-        ).join('');
-
-        // Populate key challenges
-        if (modalChallenges) {
-            modalChallenges.innerHTML = (project.key_challenges || []).map((item) => `
-                <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                    <div class="font-semibold text-slate-700 mb-1">${item.challenge || ''}<\/div>
-                    <div class="text-slate-600">${item.solution || ''}<\/div>
-                <\/div>
-            `).join('');
-        }
-
-        // Populate media gallery
-        modalMediaDisplay.innerHTML = '';
-        modalMediaThumbnails.innerHTML = '';
-
-        if (project.media && project.media.length > 0) {
-            // Display the first media item by default
-            displayMedia(project.media[0]);
-
-            // Create thumbnails
-            project.media.forEach((mediaItem) => {
-                const thumb = document.createElement('img');
-                thumb.src = mediaItem.type === 'video' ? 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Video' : mediaItem.src;
-                thumb.alt = mediaItem.caption || '';
-                thumb.className = 'w-20 h-20 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-blue-500';
-                thumb.onclick = () => displayMedia(mediaItem);
-                modalMediaThumbnails.appendChild(thumb);
-            });
-        }
-    }
-
-    function displayMedia(mediaItem) {
-        if (mediaItem.type === 'video') {
-            modalMediaDisplay.innerHTML = `<video controls autoplay muted class="w-full h-full object-contain"><source src="${mediaItem.src}" type="video/mp4">Your browser does not support the video tag.</video>`;
-        } else {
-            modalMediaDisplay.innerHTML = `<img src="${mediaItem.src}" alt="${mediaItem.caption || ''}" class="w-full h-full object-contain">`;
-        }
-    }
 
     // --- New: Render Projects Grid Dynamically ---
     function createProjectCard(project) {
@@ -309,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderProjectsGrid(projects) {
         const grid = document.getElementById('projects-grid');
         if (!grid) return;
-        grid.innerHTML = '';
+        grid.innerHTML = ''; // This will clear the skeleton loaders
         (projects || []).forEach((p) => {
             const card = createProjectCard(p);
             grid.appendChild(card);
@@ -318,6 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Re-observe newly created elements for scroll animations
         const newAnimated = grid.querySelectorAll('.animate-on-scroll');
         newAnimated.forEach(el => observer.observe(el));
+
+        // Set up modal listener after data is loaded
+        setupModalOpenListener(projectsSection, projectsData, 'data-project-id');
     }
 
     // --- New: Render Freelance Grid Dynamically ---
@@ -342,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderFreelanceGrid(freelanceWork) {
         const grid = document.querySelector('#freelance .grid');
         if (!grid) return;
-        grid.innerHTML = '';
+        grid.innerHTML = ''; // This will clear the skeleton loaders
         (freelanceWork || []).forEach((work) => {
             const card = createFreelanceCard(work);
             grid.appendChild(card);
@@ -351,18 +256,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // Re-observe newly created elements for scroll animations
         const newAnimated = grid.querySelectorAll('.animate-on-scroll');
         newAnimated.forEach(el => observer.observe(el));
+
+        // Set up modal listener after data is loaded
+        setupModalOpenListener(freelanceSection, freelanceData, 'data-freelance-id');
     }
 
     // --- New: Render Profile Data ---
     function renderProfileData(data) {
         const personalInfo = data.personal_info;
         
-        // Update profile information
-        const profileName = document.getElementById('profile-name');
-        const profileTitle = document.getElementById('profile-title');
-        const profileDescription = document.getElementById('profile-description');
+        // Select skeleton and content containers
+        const skeleton = document.getElementById('introduction-skeleton');
+        const content = document.getElementById('introduction-content');
+        const imageSkeleton = document.getElementById('profile-image-skeleton');
         const profileImage = document.getElementById('profile-image');
-        const resumeDownload = document.getElementById('resume-download');
+        
+        // Update profile information (select elements within the content container)
+        const profileName = content.querySelector('#profile-name');
+        const profileTitle = content.querySelector('#profile-title');
+        const profileDescription = content.querySelector('#profile-description');
+        const resumeDownload = content.querySelector('#resume-download');
         
         if (profileName) profileName.textContent = personalInfo.name;
         if (profileTitle) profileTitle.textContent = personalInfo.title;
@@ -375,47 +288,70 @@ document.addEventListener('DOMContentLoaded', () => {
             resumeDownload.href = personalInfo.resume_file;
             resumeDownload.download = `${personalInfo.name.replace(/\s+/g, '-')}-Resume.pdf`;
         }
+        
+        // Hide skeleton and show content
+        if (skeleton) skeleton.classList.add('hidden');
+        if (content) content.classList.remove('hidden');
+        if (imageSkeleton) imageSkeleton.classList.add('hidden');
+        if (profileImage) profileImage.classList.remove('hidden');
     }
 
     // --- New: Render Skills Grid ---
     function renderSkillsGrid(skillsData) {
+        const container = document.getElementById('skills'); // Target the whole section
         const grid = document.getElementById('skills-grid');
         const title = document.getElementById('skills-title');
         const subtitle = document.getElementById('skills-subtitle');
-        
-        if (!grid) return;
-        
+        const skeleton = document.getElementById('skills-skeleton');
+        const content = document.getElementById('skills-content');
+
+        if (!grid || !container) return;
+
         // Update title and subtitle
         if (title) title.textContent = skillsData.title;
         if (subtitle) subtitle.textContent = skillsData.subtitle;
-        
-        // Clear existing content
+
+        // Hide skeleton and show content
+        if (skeleton) skeleton.classList.add('hidden');
+        if (content) content.classList.remove('hidden');
+
+        // Clear the placeholder grid
         grid.innerHTML = '';
-        
-        // Flatten all skills from all categories
-        const allSkills = [];
-        skillsData.categories.forEach(category => {
-            category.skills.forEach(skill => {
-                allSkills.push(skill);
+        // We will append category sections directly to the main container,
+        // so we'll adjust the main grid to be a flex container.
+        grid.className = 'flex flex-col gap-12'; // Change grid to a flex column
+
+        // Create a section for each category
+        (skillsData.categories || []).forEach(category => {
+            const categorySection = document.createElement('div');
+            categorySection.className = 'animate-on-scroll';
+
+            const categoryTitle = document.createElement('h3');
+            categoryTitle.className = 'text-xl font-semibold text-center text-slate-700 mb-6';
+            categoryTitle.textContent = category.name;
+
+            const skillsContainer = document.createElement('div');
+            skillsContainer.className = 'flex flex-wrap justify-center gap-8';
+
+            category.skills.forEach((skill, index) => {
+                const skillElement = document.createElement('div');
+                skillElement.className = 'flex flex-col items-center skill-icon w-24'; // Give it a fixed width
+                skillElement.style.transitionDelay = `${(index + 1) * 50}ms`;
+                
+                skillElement.innerHTML = `
+                    <i class="${skill.icon} text-5xl text-gray-400 mb-2 transition-all"></i>
+                    <span class="text-center">${skill.name}</span>
+                `;
+                skillsContainer.appendChild(skillElement);
             });
+
+            categorySection.appendChild(categoryTitle);
+            categorySection.appendChild(skillsContainer);
+            grid.appendChild(categorySection);
         });
-        
-        // Create skill elements with staggered animation delays
-        allSkills.forEach((skill, index) => {
-            const skillElement = document.createElement('div');
-            skillElement.className = 'flex flex-col items-center animate-on-scroll skill-icon';
-            skillElement.style.transitionDelay = `${(index + 1) * 50}ms`;
-            
-            skillElement.innerHTML = `
-                <i class="${skill.icon} text-5xl text-gray-400 mb-2 transition-all"></i>
-                <span>${skill.name}</span>
-            `;
-            
-            grid.appendChild(skillElement);
-        });
-        
-        // Re-observe newly created elements for scroll animations
-        const newAnimated = grid.querySelectorAll('.animate-on-scroll');
+
+        // Re-observe newly created elements
+        const newAnimated = container.querySelectorAll('.animate-on-scroll');
         newAnimated.forEach(el => observer.observe(el));
     }
 
@@ -458,12 +394,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const titleEl = document.getElementById('education-title');
         const subtitleEl = document.getElementById('education-subtitle');
         const listEl = document.getElementById('education-list');
+        const skeleton = document.getElementById('education-skeleton');
+        const content = document.getElementById('education-content');
 
         if (!titleEl || !subtitleEl || !listEl) return;
 
         // Populate title and subtitle
         titleEl.textContent = data.title || 'Educational Background';
         subtitleEl.textContent = data.subtitle || '';
+
+        // Hide skeleton and show content
+        if (skeleton) skeleton.classList.add('hidden');
+        if (content) content.classList.remove('hidden');
 
         // Clear and populate the list of degrees
         listEl.innerHTML = '';
@@ -483,70 +425,163 @@ document.addEventListener('DOMContentLoaded', () => {
         newAnimated.forEach(el => observer.observe(el));
     }
 
-    function populateFreelanceModal(work) {
-        modalTitle.textContent = work.title;
 
-        // --- NEW: Media Gallery Logic ---
-        modalMediaDisplay.innerHTML = '';
-        modalMediaThumbnails.innerHTML = '';
+    // Fetch data when the page loads
+    fetchProjects();
+    fetchFreelanceWork();
+    fetchProfileData();
+    fetchExperience();
+    fetchEducation();
 
-        if (work.media && work.media.length > 0) {
-            // Display the first media item by default
-            displayMedia(work.media[0]);
+    // --- 8. UNIFIED PROJECT MODAL LOGIC ---
 
-            // Create thumbnails
-            work.media.forEach((mediaItem) => {
-                const thumbSrc = mediaItem.type === 'video'
-                    ? 'https://via.placeholder.com/150/22c55e/FFFFFF?text=Demo'
-                    : mediaItem.src;
+    // A. DOM Element Selection
+    const modal = document.getElementById('project-modal');
+    const modalContent = document.getElementById('modal-content');
+    const closeModalButton = document.getElementById('modal-close-button');
+    const projectsSection = document.getElementById('projects');
+    const freelanceSection = document.getElementById('freelance');
+
+    // Modal Content Placeholders
+    const modalTitle = document.getElementById('modal-title');
+    const modalMetaTags = document.getElementById('modal-meta-tags');
+    const modalMediaDisplay = document.getElementById('modal-media-display');
+    const modalMediaThumbnails = document.getElementById('modal-media-thumbnails');
+    const modalMainDescription = document.getElementById('modal-main-description');
+    const modalFeaturesBlock = document.getElementById('modal-features-block');
+    const modalFeaturesTitle = document.getElementById('modal-features-title');
+    const modalFeaturesList = document.getElementById('modal-features-list');
+    const modalFeedbackBlock = document.getElementById('modal-feedback-block');
+    const modalFeedbackQuote = document.getElementById('modal-feedback-quote');
+    const modalFeedbackClient = document.getElementById('modal-feedback-client');
+    const modalChallengesBlock = document.getElementById('modal-challenges-block');
+    const modalChallengesList = document.getElementById('modal-challenges-list');
+    const modalTechBlock = document.getElementById('modal-tech-block');
+    const modalTechList = document.getElementById('modal-tech-list');
+    const modalLinksBlock = document.getElementById('modal-links-block');
+    const modalLinksList = document.getElementById('modal-links-list');
+
+    // B. Helper function to display media
+    function displayMedia(mediaItem) {
+        if (!modalMediaDisplay) return;
+        if (mediaItem.type === 'video') {
+            modalMediaDisplay.innerHTML = `<video controls autoplay muted loop class="w-full h-full object-contain"><source src="${mediaItem.src}" type="video/mp4">Your browser does not support the video tag.</video>`;
+        } else {
+            modalMediaDisplay.innerHTML = `<img src="${mediaItem.src}" alt="${mediaItem.caption || ''}" class="w-full h-full object-contain">`;
+        }
+    }
+
+    // C. The New Unified Populate Modal Function
+    function populateModal(item) {
+        if (!modal) return;
+
+        // --- 1. Reset Modal State ---
+        // Hide all optional blocks to ensure a clean slate for every open
+        [modalFeaturesBlock, modalFeedbackBlock, modalChallengesBlock, modalTechBlock, modalLinksBlock].forEach(block => {
+            if (block) block.classList.add('hidden');
+        });
+        // Clear dynamic content
+        [modalMetaTags, modalMediaThumbnails, modalMainDescription, modalFeaturesList, modalChallengesList, modalTechList, modalLinksList].forEach(el => {
+            if (el) el.innerHTML = '';
+        });
+        modalTitle.textContent = item.title || 'Details';
+
+
+        // --- 2. Populate Header & Meta Tags ---
+        const metaItems = [];
+        if (item.role) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">${item.role}</span>`);
+        if (item.project_type) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">${item.project_type}</span>`);
+        if (item.status) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">${item.status}</span>`);
+        if (item.date_range) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">${item.date_range}</span>`);
+        modalMetaTags.innerHTML = metaItems.join('');
+
+
+        // --- 3. Populate Media Gallery ---
+        modalMediaDisplay.innerHTML = '<div class="p-4 h-full flex items-center justify-center bg-slate-100 rounded-lg"><i class="fas fa-image text-4xl text-slate-400"></i></div>'; // Default
+        if (item.media && item.media.length > 0) {
+            displayMedia(item.media[0]); // Display first item
+            item.media.forEach((mediaItem, index) => {
+                const thumbSrc = mediaItem.type === 'video' ? 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Video' : mediaItem.src;
                 const thumb = document.createElement('img');
                 thumb.src = thumbSrc;
                 thumb.alt = mediaItem.caption || '';
-                thumb.className = 'w-20 h-20 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-green-500';
-                thumb.onclick = () => displayMedia(mediaItem);
+                thumb.className = `w-16 h-16 object-cover rounded-md cursor-pointer border-2 hover:border-blue-500 ${index === 0 ? 'border-blue-500' : 'border-transparent'}`;
+                thumb.onclick = (e) => {
+                    displayMedia(mediaItem);
+                    // Update active thumbnail border
+                    modalMediaThumbnails.querySelectorAll('img').forEach(img => img.classList.remove('border-blue-500'));
+                    e.target.classList.add('border-blue-500');
+                };
                 modalMediaThumbnails.appendChild(thumb);
             });
-        } else {
-            // Provide a default placeholder if no media is available
-            modalMediaDisplay.innerHTML = `<div class="p-4 h-full flex items-center justify-center bg-slate-100 rounded-lg">
-                                           <i class="fas fa-briefcase text-4xl text-slate-400"></i>
-                                       </div>`;
         }
 
-        // --- EXISTING: Details Logic (with slight adjustments) ---
-        const descriptionHTML = `
-            <h3 class="text-xl font-semibold text-slate-700 mb-2">The Challenge</h3>
-            <p class="text-slate-600 mb-4">${work.problem_statement || ''}</p>
-            <h3 class="text-xl font-semibold text-slate-700 mb-2">My Solution</h3>
-            <p class="text-slate-600">${work.solution_delivered || ''}</p>
-        `;
-        modalDescription.innerHTML = descriptionHTML;
+        // --- 4. Populate Main Description ---
+        let descriptionHTML = '';
+        if (item.long_description) {
+            descriptionHTML = `<p>${item.long_description.replace(/\n/g, '</p><p>')}</p>`;
+        } else if (item.problem_statement) {
+            descriptionHTML = `
+                <h4 class="font-semibold text-slate-800">The Challenge</h4>
+                <p class="mb-4">${item.problem_statement}</p>
+                <h4 class="font-semibold text-slate-800">My Solution</h4>
+                <p>${item.solution_delivered}</p>
+            `;
+        }
+        modalMainDescription.innerHTML = descriptionHTML;
 
-        modalTechList.innerHTML = (work.technologies || []).map((tech) =>
-            `<span class="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-1 rounded-full">${tech}</span>`
-        ).join('');
 
-        const achievementsHTML = (work.key_achievements || []).map((ach) =>
-            `<li class="flex items-start">
-            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-            <span>${ach}</span>
-        </li>`
-        ).join('');
+        // --- 5. Populate Key Features / Achievements ---
+        const features = item.key_features || item.key_achievements;
+        if (features && features.length > 0) {
+            modalFeaturesBlock.classList.remove('hidden');
+            const isAchievement = !!item.key_achievements;
+            modalFeaturesTitle.innerHTML = `<i class="fas ${isAchievement ? 'fa-trophy text-yellow-500' : 'fa-star text-blue-500'} mr-2"></i>Key ${isAchievement ? 'Achievements' : 'Features'}`;
+            modalFeaturesList.innerHTML = features.map(feat => `
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                    <span>${feat}</span>
+                </li>
+            `).join('');
+        }
 
-        const feedbackHTML = work.client_feedback ? `
-            <div class="mt-6 p-4 bg-slate-100 border-l-4 border-blue-500 rounded-r-lg">
-                <p class="italic text-slate-600">"${work.client_feedback.quote}"</p>
-                <p class="text-right font-semibold text-slate-700 mt-2">- ${work.client_feedback.client_name}</p>
-            </div>
-        ` : '';
+        // --- 6. Populate Client Feedback (Freelance Only) ---
+        if (item.client_feedback) {
+            modalFeedbackBlock.classList.remove('hidden');
+            modalFeedbackQuote.textContent = `"${item.client_feedback.quote}"`;
+            modalFeedbackClient.textContent = `- ${item.client_feedback.client_name}`;
+        }
 
-        modalLinks.innerHTML = `
-            <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Key Achievements</h3>
-            <ul class="space-y-2 list-none text-slate-600">
-            ${achievementsHTML}
-            </ul>
-            ${feedbackHTML}
-        `;
+        // --- 7. Populate Key Challenges (Projects Only) ---
+        if (item.key_challenges && item.key_challenges.length > 0) {
+            modalChallengesBlock.classList.remove('hidden');
+            modalChallengesList.innerHTML = item.key_challenges.map(c => `
+                <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
+                    <div class="font-semibold text-slate-700 mb-1">${c.challenge}</div>
+                    <div class="text-slate-600">${c.solution}</div>
+                </div>
+            `).join('');
+        }
+
+        // --- 8. Populate Technologies ---
+        if (item.technologies && item.technologies.length > 0) {
+            modalTechBlock.classList.remove('hidden');
+            const techColor = item.problem_statement ? 'green' : 'blue'; // Green for freelance, blue for personal
+            modalTechList.innerHTML = item.technologies.map(tech =>
+                `<span class="bg-${techColor}-100 text-${techColor}-800 text-sm font-medium px-2.5 py-1 rounded-full">${tech}</span>`
+            ).join('');
+        }
+
+        // --- 9. Populate Links ---
+        if (item.links && item.links.length > 0) {
+            modalLinksBlock.classList.remove('hidden');
+            modalLinksList.innerHTML = item.links.map(link =>
+                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 font-medium hover:underline hover:text-blue-800 transition-colors">
+                    <i class="${link.icon || 'fas fa-external-link-alt'} mr-2"></i>
+                    <span>${link.type}</span>
+                </a>`
+            ).join('');
+        }
     }
 
     // D. Modal Control Functions
@@ -562,54 +597,40 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.classList.add('opacity-0', 'pointer-events-none');
         modalContent.classList.add('scale-95');
         document.body.classList.remove('overflow-hidden');
+        // Stop any video that might be playing
+        const video = modal.querySelector('video');
+        if (video) {
+            video.pause();
+            video.src = '';
+        }
     };
 
-    // E. Event Listeners
-    // Fetch data when the page loads
-    fetchProjects();
-    fetchFreelanceWork();
-    fetchProfileData();
-    fetchExperience();
-    fetchEducation();
+    // E. NEW Event Listeners
+    function setupModalOpenListener(section, data, idAttribute) {
+        if (section) {
+            section.addEventListener('click', (e) => {
+                const card = e.target.closest(`[${idAttribute}]`);
+                if (!card) return;
 
-    // Open modal on project card click (using event delegation)
-    if (projectsSection) {
-        projectsSection.addEventListener('click', (e) => {
-            const card = e.target.closest('.project-card');
-            if (!card) return;
+                // Allow normal navigation if a link inside the card was clicked
+                if (e.target.closest('a') && e.target.closest('a').getAttribute('target') === '_blank') return;
 
-            // If the click originated on a link inside the card, allow normal navigation
-            if (e.target.closest('a')) return;
-
-            // Open modal for card clicks
-            if (e.preventDefault) e.preventDefault();
-            const projectId = card.dataset.projectId;
-            const project = projectsData.find((p) => p.id === projectId);
-            if (project) {
-                populateModal(project);
-                openModal();
-            }
-        });
+                e.preventDefault();
+                const itemId = card.getAttribute(idAttribute);
+                const item = data.find((p) => p.id === itemId);
+                if (item) {
+                    populateModal(item);
+                    openModal();
+                }
+            });
+        }
     }
 
-    if (freelanceSection) {
-        freelanceSection.addEventListener('click', (e) => {
-            const card = e.target.closest('.freelance-card');
-            if (!card) return;
+    // Set up listeners for both sections (will be called after data loads)
+    // setupModalOpenListener(projectsSection, projectsData, 'data-project-id');
+    // setupModalOpenListener(freelanceSection, freelanceData, 'data-freelance-id');
 
-            if (e.target.closest('a')) return;
-
-            if (e.preventDefault) e.preventDefault();
-            const freelanceId = card.dataset.freelanceId;
-            const work = freelanceData.find((w) => w.id === freelanceId);
-            if (work) {
-                populateFreelanceModal(work);
-                openModal();
-            }
-        });
-    }
-
-    // Close modal listeners
+    // Close modal listeners (should already be in your code, but here for completeness)
     if (closeModalButton) {
         closeModalButton.addEventListener('click', closeModal);
     }
@@ -620,8 +641,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Close modal with Escape key
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal && !modal.classList.contains('pointer-events-none')) {
             closeModal();

@@ -99,45 +99,6 @@
     ]
   },
   {
-    "id": "learnxcellence",
-    "title": "LearnXcellence",
-    "short_description": "Final Year Project to automate university processes, featuring AI-proctoring, auto quiz generation, and spoof detection with a custom YOLO model.",
-    "long_description": "This comprehensive platform was my final year project, aimed at modernizing university management. The backend was a robust Node.js application, while the frontend used Angular. The AI components were the core of the project:\n\n*   **AI Proctoring:** Utilized OpenCV and facial landmark detection to monitor students during exams for signs of cheating.\n*   **Spoof Detection:** Trained a custom YOLOv7 model to differentiate between a live person and a photo/video, preventing identity fraud.\n*   **Quiz Generation:** Integrated with NLP models to automatically generate multiple-choice questions from lecture notes or textbooks.",
-    "technologies": [
-      "Node.js",
-      "Angular",
-      "Python",
-      "OpenCV",
-      "YOLOv7",
-      "TensorFlow",
-      "MongoDB"
-    ],
-    "links": [
-      {
-        "type": "GitHub",
-        "url": "https://github.com/Qamar2315/LearnXcellence",
-        "icon": "fab fa-github"
-      },
-      {
-        "type": "Case Study",
-        "url": "#",
-        "icon": "fas fa-file-alt"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "pic.png",
-        "caption": "The main admin dashboard."
-      },
-      {
-        "type": "image",
-        "src": "dev.png",
-        "caption": "AI proctoring preview."
-      }
-    ]
-  },
-  {
     "id": "slack-prayer-reminder-bot",
     "title": "Slack Prayer Reminder Bot",
     "project_type": "Personal Project",

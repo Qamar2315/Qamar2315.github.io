@@ -56,6 +56,26 @@
         opacity: 1;
         transform: translateY(0);
     }
+
+    /* Navigation hover effects */
+    #nav-desktop a {
+        position: relative;
+        padding-bottom: 4px;
+    }
+    #nav-desktop a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #3b82f6; /* Blue-500 */
+        transition: width 0.3s ease;
+    }
+    #nav-desktop a:hover::after,
+    #nav-desktop a.text-blue-500::after {
+        width: 100%;
+    }
   </style>
 </head>
 <body class="bg-slate-50 font-sans text-slate-700 antialiased">
@@ -107,27 +127,47 @@
     </a>
 
     <!-- Introduction Section -->
-    <section id="introduction" class="py-24 bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div class="container mx-auto px-6 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-12">
+    <section id="introduction" class="relative py-24 bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
+        <!-- Add subtle background pattern -->
+        <div class="absolute inset-0 z-0 opacity-5">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="a" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M16 4.57L19.43 11H27l-5.72 4.14L24.57 22 16 17.14 7.43 22l3.29-6.86L5 11h7.57z" fill-rule="evenodd" fill="#000"/></pattern></defs><rect width="100%" height="100%" fill="url(#a)"/></svg>
+        </div>
+        <div class="container relative z-10 mx-auto px-6 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-12">
             <div class="md:w-3/5 text-center md:text-left animate-on-scroll">
-                <h1 id="profile-name" class="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-4">Loading...</h1>
-                <p id="profile-title" class="text-xl lg:text-2xl text-blue-600 font-semibold mb-6">Loading...</p>
-                <p id="profile-description" class="text-slate-600 leading-relaxed">
-                    Loading...
-                </p>
-                <!-- Download Resume Button -->
-                <div class="mt-8">
-                    <a id="resume-download" href="#" download class="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-2xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-3xl active:scale-95">
-                        <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                        <span class="relative flex items-center">
-                            <i class="fas fa-download mr-3 text-lg group-hover:animate-bounce"></i>
-                            <span class="text-lg font-semibold tracking-wide">Download Resume</span>
-                        </span>
-                    </a>
+                <!-- Skeleton for Introduction -->
+                <div id="introduction-skeleton" class="space-y-4">
+                    <div class="h-12 bg-slate-200 rounded-md w-3/4 animate-pulse"></div>
+                    <div class="h-8 bg-slate-200 rounded-md w-1/2 animate-pulse"></div>
+                    <div class="space-y-2">
+                        <div class="h-4 bg-slate-200 rounded-md animate-pulse"></div>
+                        <div class="h-4 bg-slate-200 rounded-md animate-pulse"></div>
+                        <div class="h-4 bg-slate-200 rounded-md w-5/6 animate-pulse"></div>
+                    </div>
+                    <div class="mt-8">
+                        <div class="h-12 bg-slate-200 rounded-full w-48 animate-pulse"></div>
+                    </div>
+                </div>
+                <!-- Real content (initially hidden) -->
+                <div id="introduction-content" class="hidden">
+                    <h1 id="profile-name" class="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-4"></h1>
+                    <p id="profile-title" class="text-xl lg:text-2xl text-blue-600 font-semibold mb-6"></p>
+                    <p id="profile-description" class="text-slate-600 leading-relaxed"></p>
+                    <!-- Download Resume Button -->
+                    <div class="mt-8">
+                        <a id="resume-download" href="#" download class="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-2xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-3xl active:scale-95">
+                            <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                            <span class="relative flex items-center">
+                                <i class="fas fa-download mr-3 text-lg group-hover:animate-bounce"></i>
+                                <span class="text-lg font-semibold tracking-wide">Download Resume</span>
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="md:w-2/5 flex justify-center animate-on-scroll" style="transition-delay: 200ms;">
-                <img id="profile-image" src="dev.png" alt="Loading..." class="rounded-full w-60 h-60 object-cover shadow-2xl border-8 border-white" />
+                <!-- Skeleton for profile image -->
+                <div id="profile-image-skeleton" class="rounded-full w-60 h-60 bg-slate-200 animate-pulse"></div>
+                <img id="profile-image" src="dev.png" alt="Loading..." class="rounded-full w-60 h-60 object-cover shadow-2xl border-8 border-white hidden" />
             </div>
         </div>
     </section>
@@ -136,11 +176,67 @@
     <section id="skills" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="animate-on-scroll">
-                <h2 id="skills-title" class="text-3xl font-bold mb-4 text-center text-slate-800">Loading...</h2>
-                <p id="skills-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">Loading...</p>
+                <!-- Skeleton for title and subtitle -->
+                <div id="skills-skeleton" class="space-y-4">
+                    <div class="h-8 bg-slate-200 rounded-md w-64 mx-auto animate-pulse"></div>
+                    <div class="h-4 bg-slate-200 rounded-md w-96 mx-auto animate-pulse"></div>
+                </div>
+                <!-- Real content (initially hidden) -->
+                <div id="skills-content" class="hidden">
+                    <h2 id="skills-title" class="text-3xl font-bold mb-4 text-center text-slate-800"></h2>
+                    <p id="skills-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto"></p>
+                </div>
             </div>
             <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 text-center">
-                <!-- Skills will be dynamically loaded from profile.json -->
+                <!-- Skeleton for Skills (repeat this block 12 times) -->
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
+                <div class="flex flex-col items-center space-y-2 animate-pulse">
+                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -152,7 +248,27 @@
                 <h2 class="text-3xl font-bold mb-4 text-center text-slate-800">Personal Projects</h2>
                 <p class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">A selection of projects that demonstrate my passion for building software and solving problems.</p>
             </div>
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skeleton for Project Card (repeat this block 3 times) -->
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col space-y-3 animate-pulse">
+                    <div class="h-6 w-3/4 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 w-5/6 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 w-1/4 bg-slate-200 rounded-md pt-4"></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col space-y-3 animate-pulse">
+                    <div class="h-6 w-3/4 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 w-5/6 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 w-1/4 bg-slate-200 rounded-md pt-4"></div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col space-y-3 animate-pulse">
+                    <div class="h-6 w-3/4 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 w-5/6 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 w-1/4 bg-slate-200 rounded-md pt-4"></div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -173,11 +289,24 @@
     <section id="education" class="py-20 bg-slate-50">
         <div class="container mx-auto px-4">
             <div class="animate-on-scroll">
-                <h2 id="education-title" class="text-3xl font-bold mb-4 text-center text-slate-800">Loading...</h2>
-                <p id="education-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">Loading...</p>
+                <!-- Skeleton for title and subtitle -->
+                <div id="education-skeleton" class="space-y-4">
+                    <div class="h-8 bg-slate-200 rounded-md w-64 mx-auto animate-pulse"></div>
+                    <div class="h-4 bg-slate-200 rounded-md w-96 mx-auto animate-pulse"></div>
+                </div>
+                <!-- Real content (initially hidden) -->
+                <div id="education-content" class="hidden">
+                    <h2 id="education-title" class="text-3xl font-bold mb-4 text-center text-slate-800"></h2>
+                    <p id="education-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto"></p>
+                </div>
             </div>
             <div id="education-list" class="max-w-2xl mx-auto space-y-8">
-                <!-- Education items will be loaded here by app.js -->
+                <!-- Skeleton for Education Card -->
+                <div class="bg-white p-8 rounded-xl shadow-md text-center animate-pulse">
+                    <div class="h-6 w-3/4 bg-slate-200 rounded-md mx-auto"></div>
+                    <div class="h-4 w-1/2 bg-slate-200 rounded-md mx-auto mt-2"></div>
+                    <div class="h-4 w-1/3 bg-slate-200 rounded-md mx-auto mt-1"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -190,7 +319,22 @@
                 <p class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">Highlights of custom solutions I've delivered for clients worldwide.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Freelance Project Cards will be dynamically loaded from freelance.json -->
+                <!-- Skeleton for Freelance Card (repeat this block 3 times) -->
+                <div class="bg-slate-50 rounded-xl shadow-md p-6 animate-pulse">
+                    <div class="h-6 w-3/4 bg-slate-200 rounded-md mb-2"></div>
+                    <div class="h-4 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 w-5/6 bg-slate-200 rounded-md mt-2"></div>
+                </div>
+                <div class="bg-slate-50 rounded-xl shadow-md p-6 animate-pulse">
+                    <div class="h-6 w-3/4 bg-slate-200 rounded-md mb-2"></div>
+                    <div class="h-4 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 w-5/6 bg-slate-200 rounded-md mt-2"></div>
+                </div>
+                <div class="bg-slate-50 rounded-xl shadow-md p-6 animate-pulse">
+                    <div class="h-6 w-3/4 bg-slate-200 rounded-md mb-2"></div>
+                    <div class="h-4 bg-slate-200 rounded-md"></div>
+                    <div class="h-4 w-5/6 bg-slate-200 rounded-md mt-2"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -208,61 +352,100 @@
                 <p><i class="fas fa-map-marker-alt mr-2"></i>Islamabad, Pakistan</p>
             </div>
             <div class="mt-8">
-                <a href="mailto:qamarislam1232@gmail.com" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-100 transition-all transform hover:scale-105 inline-block">
+                <a href="mailto:qamarislam1232@gmail.com" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-100 transition-all transform hover:scale-105 hover:-translate-y-1 inline-block shadow-lg hover:shadow-xl">
                     Get in Touch
                 </a>
             </div>
         </div>
     </section>
-    <!-- Project Modal -->
+    <!-- START: New Project Modal -->
     <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
       <!-- Modal Content -->
-      <div id="modal-content" class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-screen flex flex-col transform scale-95 transition-transform duration-300" style="max-height: 90vh;">
+      <div id="modal-content" class="bg-white rounded-lg shadow-2xl w-full max-w-5xl max-h-screen flex flex-col transform scale-95 transition-transform duration-300" style="max-height: 90vh;">
+        
         <!-- Modal Header -->
-        <div class="flex justify-between items-center p-5 border-b">
-          <h2 id="modal-title" class="text-2xl font-bold text-slate-800">Project Title</h2>
-          <button id="modal-close-button" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+        <div class="flex justify-between items-start p-5 border-b sticky top-0 bg-white z-10">
+          <div>
+            <h2 id="modal-title" class="text-2xl font-bold text-slate-800">Project Title</h2>
+            <div id="modal-meta-tags" class="flex flex-wrap items-center gap-2 mt-2">
+              <!-- Meta tags like Role, Status, Date will be injected here -->
+            </div>
+          </div>
+          <button id="modal-close-button" class="text-gray-400 hover:text-red-500 text-3xl font-light leading-none">&times;</button>
         </div>
 
         <!-- Modal Body -->
         <div class="p-6 overflow-y-auto">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
             <!-- Left Column: Media Gallery -->
-            <div>
-              <div id="modal-media-display" class="mb-4 rounded-lg overflow-hidden bg-slate-200 flex items-center justify-center h-56 md:h-80">
-                <!-- Main image or video will be inserted here by JS -->
+            <div class="lg:col-span-1">
+              <div id="modal-media-display" class="mb-3 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center h-56">
+                <!-- Main image or video will be inserted here -->
               </div>
-              <div id="modal-media-thumbnails" class="flex space-x-2 overflow-x-auto p-1">
-                <!-- Thumbnails will be inserted here by JS -->
+              <div id="modal-media-thumbnails" class="flex flex-wrap gap-2">
+                <!-- Thumbnails will be inserted here -->
               </div>
             </div>
 
             <!-- Right Column: Details -->
-            <div>
-              <h3 class="text-xl font-semibold text-slate-700 mb-2">About the Project</h3>
-              <div id="modal-meta" class="flex flex-wrap items-center gap-3 mb-3"></div>
-              <div id="modal-description" class="text-slate-600 leading-relaxed"></div>
-
-              <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Key Features</h3>
-              <ul id="modal-features" class="space-y-2 list-none text-slate-600"></ul>
-
-              <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Technologies Used</h3>
-              <div id="modal-tech-list" class="flex flex-wrap gap-2">
-                <!-- Tech tags will be inserted here by JS -->
+            <div class="lg:col-span-2 space-y-6">
+              
+              <!-- Main Description Block -->
+              <div id="modal-description-block">
+                <h3 class="text-lg font-semibold text-slate-700 mb-2 flex items-center"><i class="fas fa-info-circle mr-2 text-blue-500"></i>About this Project</h3>
+                <div id="modal-main-description" class="prose prose-sm max-w-none text-slate-600 leading-relaxed">
+                  <!-- Long description or problem/solution will go here -->
+                </div>
+              </div>
+              
+              <!-- Key Features / Achievements Block -->
+              <div id="modal-features-block" class="hidden">
+                <h3 id="modal-features-title" class="text-lg font-semibold text-slate-700 mb-3 flex items-center"></h3>
+                <ul id="modal-features-list" class="space-y-2 text-slate-600">
+                  <!-- Feature/Achievement list items will be injected here -->
+                </ul>
+              </div>
+              
+              <!-- Client Feedback Block -->
+              <div id="modal-feedback-block" class="hidden">
+                 <h3 class="text-lg font-semibold text-slate-700 mb-2 flex items-center"><i class="fas fa-comment-dots mr-2 text-blue-500"></i>Client Feedback</h3>
+                 <div class="p-4 bg-slate-50 border-l-4 border-blue-500 rounded-r-lg">
+                    <p id="modal-feedback-quote" class="italic text-slate-600"></p>
+                    <p id="modal-feedback-client" class="text-right font-semibold text-slate-700 mt-2"></p>
+                </div>
               </div>
 
-              <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Key Challenges</h3>
-              <div id="modal-challenges" class="space-y-3"></div>
-
-              <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Links</h3>
-              <div id="modal-links" class="space-y-2">
-                <!-- Links will be inserted here by JS -->
+              <!-- Key Challenges Block -->
+              <div id="modal-challenges-block" class="hidden">
+                <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i class="fas fa-puzzle-piece mr-2 text-blue-500"></i>Key Challenges & Solutions</h3>
+                <div id="modal-challenges-list" class="space-y-3">
+                  <!-- Challenge/Solution pairs will be injected here -->
+                </div>
               </div>
+              
+              <!-- Technologies Block -->
+              <div id="modal-tech-block" class="hidden">
+                <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i class="fas fa-cogs mr-2 text-blue-500"></i>Technologies Used</h3>
+                <div id="modal-tech-list" class="flex flex-wrap gap-2">
+                  <!-- Tech tags will be inserted here -->
+                </div>
+              </div>
+              
+              <!-- Links Block -->
+              <div id="modal-links-block" class="hidden">
+                <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i class="fas fa-link mr-2 text-blue-500"></i>Project Links</h3>
+                <div id="modal-links-list" class="flex flex-wrap gap-4">
+                  <!-- Links will be inserted here -->
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- END: New Project Modal -->
 
 </main>
 
