@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let profileData = {};
     let experienceData = [];
     let educationData = {};
+    let sectionsData = {};
 
     // B. Fetch Project Data on Load
     async function fetchProjects() {
@@ -171,6 +172,19 @@ document.addEventListener('DOMContentLoaded', () => {
             renderEducation(educationData);
         } catch (error) {
             console.error('Could not fetch education data:', error);
+        }
+    }
+
+    async function fetchSections() {
+        try {
+            const response = await fetch('json_data/sections.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            sectionsData = await response.json();
+            renderSections(sectionsData);
+        } catch (error) {
+            console.error('Could not fetch sections data:', error);
         }
     }
 
@@ -287,6 +301,30 @@ document.addEventListener('DOMContentLoaded', () => {
         if (resumeDownload) {
             resumeDownload.href = personalInfo.resume_file;
             resumeDownload.download = `${personalInfo.name.replace(/\s+/g, '-')}-Resume.pdf`;
+        }
+        
+        // Update contact information
+        if (personalInfo.contact_info) {
+            const contactEmail = document.getElementById('contact-email');
+            const contactEmailText = document.getElementById('contact-email-text');
+            const contactPhone = document.getElementById('contact-phone');
+            const contactLocation = document.getElementById('contact-location');
+            const contactCtaButton = document.getElementById('contact-cta-button');
+            
+            if (contactEmail) contactEmail.href = `mailto:${personalInfo.contact_info.email}`;
+            if (contactEmailText) contactEmailText.textContent = personalInfo.contact_info.email;
+            if (contactPhone) contactPhone.textContent = personalInfo.contact_info.phone;
+            if (contactLocation) contactLocation.textContent = personalInfo.contact_info.location;
+            if (contactCtaButton) contactCtaButton.href = `mailto:${personalInfo.contact_info.email}`;
+        }
+        
+        // Update footer information
+        if (personalInfo.footer) {
+            const footerName = document.getElementById('footer-name');
+            const footerCopyright = document.getElementById('footer-copyright');
+            
+            if (footerName) footerName.textContent = personalInfo.name;
+            if (footerCopyright) footerCopyright.textContent = personalInfo.footer.copyright_text;
         }
         
         // Hide skeleton and show content
@@ -425,6 +463,43 @@ document.addEventListener('DOMContentLoaded', () => {
         newAnimated.forEach(el => observer.observe(el));
     }
 
+    // --- New: Render Sections Data ---
+    function renderSections(data) {
+        // Update projects section
+        if (data.projects) {
+            const projectsTitle = document.getElementById('projects-title');
+            const projectsSubtitle = document.getElementById('projects-subtitle');
+            
+            if (projectsTitle) projectsTitle.textContent = data.projects.title;
+            if (projectsSubtitle) projectsSubtitle.textContent = data.projects.subtitle;
+        }
+        
+        // Update experience section
+        if (data.experience) {
+            const experienceTitle = document.getElementById('experience-title');
+            
+            if (experienceTitle) experienceTitle.textContent = data.experience.title;
+        }
+        
+        // Update freelance section
+        if (data.freelance) {
+            const freelanceTitle = document.getElementById('freelance-title');
+            const freelanceSubtitle = document.getElementById('freelance-subtitle');
+            
+            if (freelanceTitle) freelanceTitle.textContent = data.freelance.title;
+            if (freelanceSubtitle) freelanceSubtitle.textContent = data.freelance.subtitle;
+        }
+        
+        // Update contact section
+        if (data.contact) {
+            const contactTitle = document.getElementById('contact-title');
+            const contactSubtitle = document.getElementById('contact-subtitle');
+            
+            if (contactTitle) contactTitle.textContent = data.contact.title;
+            if (contactSubtitle) contactSubtitle.textContent = data.contact.subtitle;
+        }
+    }
+
 
     // Fetch data when the page loads
     fetchProjects();
@@ -432,6 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProfileData();
     fetchExperience();
     fetchEducation();
+    fetchSections();
 
     // --- 8. UNIFIED PROJECT MODAL LOGIC ---
 

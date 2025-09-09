@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "title": "Personal Projects",
+    "subtitle": "A selection of projects that demonstrate my passion for building software and solving problems."
+  },
+  "experience": {
+    "title": "Professional Experience"
+  },
+  "freelance": {
+    "title": "Featured Freelance Work",
+    "subtitle": "Highlights of custom solutions I've delivered for clients worldwide."
+  },
+  "contact": {
+    "title": "Let's Build Something Great",
+    "subtitle": "Have a project in mind or just want to connect? I'd love to hear from you."
+  }
+}
