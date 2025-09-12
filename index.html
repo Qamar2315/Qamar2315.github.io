@@ -1,461 +1,758 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Qamar Ul Islam - Software Engineer</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="icon" href="icon.png" />
-  <style>
-    /* Custom CSS for enhanced animations and styling */
-    .transition-all {
-        transition: all 0.3s ease-in-out;
-    }
-    
-    .hover-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
-    }
-    
-    .skill-icon:hover {
-        transform: scale(1.1);
-        color: #3b82f6; /* Blue-500 */
-    }
-    
-    .timeline-item::before {
-        content: '';
-        background: #9ca3af; /* Gray-400 */
-        width: 2px;
-        height: 100%;
-        position: absolute;
-        left: 0.5rem;
-        top: 0.5rem;
-    }
-    
-    .timeline-dot {
-        position: absolute;
-        left: 0;
-        transform: translateX(-50%);
-        background-color: white;
-        border-radius: 9999px;
-    }
-    
-    .timeline-dot-inner {
-        background-color: #3b82f6; /* Blue-500 */
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qamar Ul Islam - Software Engineer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    /* Scroll animation styles */
-    .animate-on-scroll {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    
-    .animate-on-scroll.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="icon.png" />
+    <style>
+        /* Custom CSS for enhanced animations and styling */
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
 
-    /* Navigation hover effects */
-    #nav-desktop a {
-        position: relative;
-        padding-bottom: 4px;
-    }
-    #nav-desktop a::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: #3b82f6; /* Blue-500 */
-        transition: width 0.3s ease;
-    }
-    #nav-desktop a:hover::after,
-    #nav-desktop a.text-blue-500::after {
-        width: 100%;
-    }
-  </style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+        }
+
+        .transition-all {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            color: var(--primary);
+        }
+
+        .timeline-item::before {
+            content: '';
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            width: 3px;
+            height: 100%;
+            position: absolute;
+            left: 0.75rem;
+            top: 1rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            transform: translateX(-50%);
+            background-color: white;
+            border-radius: 9999px;
+            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+        }
+
+        .timeline-dot-inner {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        /* Scroll animation styles */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation hover effects */
+        #nav-desktop a {
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        #nav-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        #nav-desktop a:hover::after,
+        #nav-desktop a.active::after {
+            width: 100%;
+        }
+
+        /* Custom CSS for the Chatbot V2 */
+        .glow-animation {
+            animation: glow 2.5s infinite ease-in-out;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 5px rgba(67, 97, 238, 0.2), 0 0 10px rgba(67, 97, 238, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 15px rgba(67, 97, 238, 0.5), 0 0 25px rgba(67, 97, 238, 0.5);
+            }
+        }
+
+        /* This is the key for the working scrollbar */
+        #chat-messages {
+            scrollbar-width: thin;
+            scrollbar-color: #94a3b8 #f1f5f9;
+        }
+        #chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+        #chat-messages::-webkit-scrollbar-track {
+            background: #f1f5f9; /* slate-100 */
+            border-radius: 10px;
+        }
+        #chat-messages::-webkit-scrollbar-thumb {
+            background-color: #94a3b8; /* slate-400 */
+            border-radius: 10px;
+            border: 2px solid #f1f5f9; /* slate-100 */
+        }
+        #chat-messages::-webkit-scrollbar-thumb:hover {
+            background-color: #64748b; /* slate-500 */
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #94a3b8;
+            border-radius: 50%;
+            animation: typing-blink 1.4s infinite both;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing-blink {
+            0% {
+                opacity: 0.2;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4361ee 0%, #7209b7 100%);
+        }
+
+        /* New styles for formatted AI responses */
+        .assistant-bubble a {
+            color: #4361ee;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .assistant-bubble a:hover {
+            color: #3b4ccb;
+        }
+        .assistant-bubble strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+        .assistant-bubble p {
+            margin-bottom: 0.5rem;
+        }
+        .assistant-bubble p:last-child {
+            margin-bottom: 0;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Custom shapes and patterns */
+        .custom-shape-divider-bottom-1693085394 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .custom-shape-divider-bottom-1693085394 svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 84px;
+        }
+
+        .custom-shape-divider-bottom-1693085394 .shape-fill {
+            fill: #FFFFFF;
+        }
+
+        /* Improved section spacing */
+        section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        /* Enhanced button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
+        }
+    </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-700 antialiased">
-  
-<!-- Navigation Bar -->
-<nav class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full top-0 z-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-18">
-            <a href="#introduction" class="text-2xl font-bold text-slate-800">Portfolio</a>
-            
-            <div id="nav-desktop" class="hidden md:flex items-center space-x-6">
-                <a href="#introduction" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Introduction</a>
-                <a href="#skills" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Skills</a>
-                <a href="#projects" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Projects</a>
-                <a href="#experience" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Experience</a>
-                <a href="#education" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Education</a>
-                <a href="#freelance" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Freelance</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Contact</a>
-            </div>
-            
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-slate-600 hover:text-blue-500 focus:outline-none p-2">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </div>
-    </div>
-</nav>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
-<div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-    <div class="p-5 flex flex-col space-y-4">
-        <a href="#introduction" class="block text-gray-600 hover:text-blue-500 py-2">Introduction</a>
-        <a href="#skills" class="block text-gray-600 hover:text-blue-500 py-2">Skills</a>
-        <a href="#projects" class="block text-gray-600 hover:text-blue-500 py-2">Projects</a>
-        <a href="#experience" class="block text-gray-600 hover:text-blue-500 py-2">Experience</a>
-        <a href="#education" class="block text-gray-600 hover:text-blue-500 py-2">Education</a>
-        <a href="#freelance" class="block text-gray-600 hover:text-blue-500 py-2">Freelance</a>
-        <a href="#contact" class="block text-gray-600 hover:text-blue-500 py-2">Contact</a>
-    </div>
-</div>
+<body class="bg-slate-50 antialiased">
 
-<main class="pt-18">
-    <!-- Back to Top Button -->
-    <a href="#" id="back-to-top" title="Back to Top" class="fixed bottom-8 right-8 p-3 rounded-full bg-blue-500/80 hover:bg-blue-600 text-white shadow-lg transition-all duration-300 opacity-0 pointer-events-none hover:scale-110">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-    </a>
-
-    <!-- Introduction Section -->
-    <section id="introduction" class="relative py-24 bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
-        <!-- Add subtle background pattern -->
-        <div class="absolute inset-0 z-0 opacity-5">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="a" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M16 4.57L19.43 11H27l-5.72 4.14L24.57 22 16 17.14 7.43 22l3.29-6.86L5 11h7.57z" fill-rule="evenodd" fill="#000"/></pattern></defs><rect width="100%" height="100%" fill="url(#a)"/></svg>
-        </div>
-        <div class="container relative z-10 mx-auto px-6 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-12">
-            <div class="md:w-3/5 text-center md:text-left animate-on-scroll">
-                <!-- Skeleton for Introduction -->
-                <div id="introduction-skeleton" class="space-y-4">
-                    <div class="h-12 bg-slate-200 rounded-md w-3/4 animate-pulse"></div>
-                    <div class="h-8 bg-slate-200 rounded-md w-1/2 animate-pulse"></div>
-                    <div class="space-y-2">
-                        <div class="h-4 bg-slate-200 rounded-md animate-pulse"></div>
-                        <div class="h-4 bg-slate-200 rounded-md animate-pulse"></div>
-                        <div class="h-4 bg-slate-200 rounded-md w-5/6 animate-pulse"></div>
-                    </div>
-                    <div class="mt-8">
-                        <div class="h-12 bg-slate-200 rounded-full w-48 animate-pulse"></div>
-                    </div>
-                </div>
-                <!-- Real content (initially hidden) -->
-                <div id="introduction-content" class="hidden">
-                    <h1 id="profile-name" class="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-4"></h1>
-                    <p id="profile-title" class="text-xl lg:text-2xl text-blue-600 font-semibold mb-6"></p>
-                    <p id="profile-description" class="text-slate-600 leading-relaxed"></p>
-                    <!-- Download Resume Button -->
-                    <div class="mt-8">
-                        <a id="resume-download" href="#" download class="group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-2xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-3xl active:scale-95">
-                            <span class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                            <span class="relative flex items-center">
-                                <i class="fas fa-download mr-3 text-lg group-hover:animate-bounce"></i>
-                                <span class="text-lg font-semibold tracking-wide">Download Resume</span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="md:w-2/5 flex justify-center animate-on-scroll" style="transition-delay: 200ms;">
-                <!-- Skeleton for profile image -->
-                <div id="profile-image-skeleton" class="rounded-full w-60 h-60 bg-slate-200 animate-pulse"></div>
-                <img id="profile-image" src="dev.png" alt="Loading..." class="rounded-full w-60 h-60 object-cover shadow-2xl border-8 border-white hidden" />
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="animate-on-scroll">
-                <!-- Skeleton for title and subtitle -->
-                <div id="skills-skeleton" class="space-y-4">
-                    <div class="h-8 bg-slate-200 rounded-md w-64 mx-auto animate-pulse"></div>
-                    <div class="h-4 bg-slate-200 rounded-md w-96 mx-auto animate-pulse"></div>
-                </div>
-                <!-- Real content (initially hidden) -->
-                <div id="skills-content" class="hidden">
-                    <h2 id="skills-title" class="text-3xl font-bold mb-4 text-center text-slate-800"></h2>
-                    <p id="skills-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto"></p>
-                </div>
-            </div>
-            <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 text-center">
-                <!-- Skeleton for Skills (repeat this block 12 times) -->
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-                <div class="flex flex-col items-center space-y-2 animate-pulse">
-                    <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                    <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-slate-50">
-        <div class="container mx-auto px-4">
-            <div class="animate-on-scroll">
-                <h2 id="projects-title" class="text-3xl font-bold mb-4 text-center text-slate-800">Personal Projects</h2>
-                <p id="projects-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">A selection of projects that demonstrate my passion for building software and solving problems.</p>
-            </div>
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Skeleton for Project Card (repeat this block 3 times) -->
-                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col space-y-3 animate-pulse">
-                    <div class="h-6 w-3/4 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 w-5/6 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 w-1/4 bg-slate-200 rounded-md pt-4"></div>
-                </div>
-                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col space-y-3 animate-pulse">
-                    <div class="h-6 w-3/4 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 w-5/6 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 w-1/4 bg-slate-200 rounded-md pt-4"></div>
-                </div>
-                <div class="bg-white rounded-xl shadow-md p-6 flex flex-col space-y-3 animate-pulse">
-                    <div class="h-6 w-3/4 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 w-5/6 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 w-1/4 bg-slate-200 rounded-md pt-4"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="animate-on-scroll">
-                <h2 id="experience-title" class="text-3xl font-bold mb-12 text-center text-slate-800">Professional Experience</h2>
-            </div>
-            <!-- This is the container where the timeline will be dynamically inserted -->
-            <div id="experience-timeline" class="relative max-w-2xl mx-auto">
-                <!-- Experience items will be loaded here by app.js -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-20 bg-slate-50">
-        <div class="container mx-auto px-4">
-            <div class="animate-on-scroll">
-                <!-- Skeleton for title and subtitle -->
-                <div id="education-skeleton" class="space-y-4">
-                    <div class="h-8 bg-slate-200 rounded-md w-64 mx-auto animate-pulse"></div>
-                    <div class="h-4 bg-slate-200 rounded-md w-96 mx-auto animate-pulse"></div>
-                </div>
-                <!-- Real content (initially hidden) -->
-                <div id="education-content" class="hidden">
-                    <h2 id="education-title" class="text-3xl font-bold mb-4 text-center text-slate-800"></h2>
-                    <p id="education-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto"></p>
-                </div>
-            </div>
-            <div id="education-list" class="max-w-2xl mx-auto space-y-8">
-                <!-- Skeleton for Education Card -->
-                <div class="bg-white p-8 rounded-xl shadow-md text-center animate-pulse">
-                    <div class="h-6 w-3/4 bg-slate-200 rounded-md mx-auto"></div>
-                    <div class="h-4 w-1/2 bg-slate-200 rounded-md mx-auto mt-2"></div>
-                    <div class="h-4 w-1/3 bg-slate-200 rounded-md mx-auto mt-1"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Freelance Work Section -->
-    <section id="freelance" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="animate-on-scroll">
-                <h2 id="freelance-title" class="text-3xl font-bold mb-4 text-center text-slate-800">Featured Freelance Work</h2>
-                <p id="freelance-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">Highlights of custom solutions I've delivered for clients worldwide.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Skeleton for Freelance Card (repeat this block 3 times) -->
-                <div class="bg-slate-50 rounded-xl shadow-md p-6 animate-pulse">
-                    <div class="h-6 w-3/4 bg-slate-200 rounded-md mb-2"></div>
-                    <div class="h-4 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 w-5/6 bg-slate-200 rounded-md mt-2"></div>
-                </div>
-                <div class="bg-slate-50 rounded-xl shadow-md p-6 animate-pulse">
-                    <div class="h-6 w-3/4 bg-slate-200 rounded-md mb-2"></div>
-                    <div class="h-4 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 w-5/6 bg-slate-200 rounded-md mt-2"></div>
-                </div>
-                <div class="bg-slate-50 rounded-xl shadow-md p-6 animate-pulse">
-                    <div class="h-6 w-3/4 bg-slate-200 rounded-md mb-2"></div>
-                    <div class="h-4 bg-slate-200 rounded-md"></div>
-                    <div class="h-4 w-5/6 bg-slate-200 rounded-md mt-2"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-gradient-to-br from-blue-600 to-indigo-700">
-        <div class="container mx-auto px-4 text-center animate-on-scroll">
-            <h2 id="contact-title" class="text-3xl font-bold text-white mb-4">Let's Build Something Great</h2>
-            <p id="contact-subtitle" class="text-indigo-200 text-lg mb-8 max-w-xl mx-auto">Have a project in mind or just want to connect? I'd love to hear from you.</p>
-            <div class="space-y-4 text-white">
-                <a id="contact-email" href="#" class="block text-white hover:text-indigo-200 transition-colors">
-                    <i class="fas fa-envelope mr-2"></i><span id="contact-email-text">qamarislam1232@gmail.com</span>
+    <!-- Navigation Bar -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-18">
+                <a href="#introduction" class="text-2xl font-bold text-slate-800 flex items-center">
+                    <span class="gradient-text font-bold">Portfolio</span>
                 </a>
-                <p><i class="fas fa-phone mr-2"></i><span id="contact-phone">+923148412001</span></p>
-                <p><i class="fas fa-map-marker-alt mr-2"></i><span id="contact-location">Islamabad, Pakistan</span></p>
-            </div>
-            <div class="mt-8">
-                <a id="contact-cta-button" href="#" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-100 transition-all transform hover:scale-105 hover:-translate-y-1 inline-block shadow-lg hover:shadow-xl">
-                    Get in Touch
-                </a>
-            </div>
-        </div>
-    </section>
-    <!-- START: New Project Modal -->
-    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-      <!-- Modal Content -->
-      <div id="modal-content" class="bg-white rounded-lg shadow-2xl w-full max-w-5xl max-h-screen flex flex-col transform scale-95 transition-transform duration-300" style="max-height: 90vh;">
-        
-        <!-- Modal Header -->
-        <div class="flex justify-between items-start p-5 border-b sticky top-0 bg-white z-10">
-          <div>
-            <h2 id="modal-title" class="text-2xl font-bold text-slate-800">Project Title</h2>
-            <div id="modal-meta-tags" class="flex flex-wrap items-center gap-2 mt-2">
-              <!-- Meta tags like Role, Status, Date will be injected here -->
-            </div>
-          </div>
-          <button id="modal-close-button" class="text-gray-400 hover:text-red-500 text-3xl font-light leading-none">&times;</button>
-        </div>
 
-        <!-- Modal Body -->
-        <div class="p-6 overflow-y-auto">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div id="nav-desktop" class="hidden md:flex items-center space-x-6">
+                    <a href="#introduction"
+                        class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Introduction</a>
+                    <a href="#skills"
+                        class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Skills</a>
+                    <a href="#projects"
+                        class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Projects</a>
+                    <a href="#experience"
+                        class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Experience</a>
+                    <a href="#education"
+                        class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Education</a>
+                    <a href="#freelance"
+                        class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Freelance</a>
+                    <a href="#contact"
+                        class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-slate-600 hover:text-blue-500 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+    <div id="mobile-menu"
+        class="fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <div class="p-5 flex flex-col space-y-4">
+            <a href="#introduction" class="block text-gray-600 hover:text-blue-500 py-2">Introduction</a>
+            <a href="#skills" class="block text-gray-600 hover:text-blue-500 py-2">Skills</a>
+            <a href="#projects" class="block text-gray-600 hover:text-blue-500 py-2">Projects</a>
+            <a href="#experience" class="block text-gray-600 hover:text-blue-500 py-2">Experience</a>
+            <a href="#education" class="block text-gray-600 hover:text-blue-500 py-2">Education</a>
+            <a href="#freelance" class="block text-gray-600 hover:text-blue-500 py-2">Freelance</a>
+            <a href="#contact" class="block text-gray-600 hover:text-blue-500 py-2">Contact</a>
+        </div>
+    </div>
+
+    <main class="pt-18">
+        <!-- Back to Top Button -->
+        <a href="#" id="back-to-top" title="Back to Top"
+            class="fixed bottom-8 right-8 p-3 rounded-full bg-blue-500/80 hover:bg-blue-600 text-white shadow-lg transition-all duration-300 opacity-0 pointer-events-none hover:scale-110">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+            </svg>
+        </a>
+
+        <!-- Introduction Section -->
+        <section id="introduction" class="relative py-24 bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
+            <!-- Background pattern -->
+            <div class="absolute inset-0 z-0 opacity-10">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="circuit-board" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"
+                            patternTransform="rotate(45)">
+                            <rect x="0" y="0" width="100%" height="100%" fill="rgba(67, 97, 238, 0.03)" />
+                            <path d="M0,20h40M20,0v40" stroke="rgba(67, 97, 238, 0.1)" stroke-width="0.5" fill="none" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#circuit-board)" />
+                </svg>
+            </div>
+
+            <!-- Shape divider -->
+            <div class="custom-shape-divider-bottom-1693085394">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                    preserveAspectRatio="none">
+                    <path
+                        d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                        class="shape-fill"></path>
+                </svg>
+            </div>
+
+            <div
+                class="container relative z-10 mx-auto px-6 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-3/5 text-center md:text-left animate-on-scroll">
+                    <!-- Skeleton for Introduction -->
+                    <div id="introduction-skeleton" class="space-y-4">
+                        <div class="h-12 bg-slate-200 rounded-md w-3/4 animate-pulse"></div>
+                        <div class="h-8 bg-slate-200 rounded-md w-1/2 animate-pulse"></div>
+                        <div class="space-y-2">
+                            <div class="h-4 bg-slate-200 rounded-md animate-pulse"></div>
+                            <div class="h-4 bg-slate-200 rounded-md animate-pulse"></div>
+                            <div class="h-4 bg-slate-200 rounded-md w-5/6 animate-pulse"></div>
+                        </div>
+                        <div class="mt-8">
+                            <div class="h-12 bg-slate-200 rounded-full w-48 animate-pulse"></div>
+                        </div>
+                    </div>
+                    <!-- Real content (initially hidden) -->
+                    <div id="introduction-content" class="hidden">
+                        <h1 id="profile-name" class="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-4"></h1>
+                        <p id="profile-title" class="text-xl lg:text-2xl gradient-text font-semibold mb-6"></p>
+                        <p id="profile-description" class="text-slate-600 leading-relaxed text-lg"></p>
+                        <!-- Download Resume Button -->
+                        <div class="mt-8">
+                            <a id="resume-download" href="#" download
+                                class="btn-primary group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white rounded-full shadow-2xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-3xl active:scale-95">
+                                <span
+                                    class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                                <span class="relative flex items-center">
+                                    <i class="fas fa-download mr-3 text-lg group-hover:animate-bounce"></i>
+                                    <span class="text-lg font-semibold tracking-wide">Download Resume</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/5 flex justify-center animate-on-scroll" style="transition-delay: 200ms;">
+                    <!-- Skeleton for profile image -->
+                    <div id="profile-image-skeleton" class="rounded-full w-60 h-60 bg-slate-200 animate-pulse"></div>
+                    <div class="relative">
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-20 blur">
+                        </div>
+                        <img id="profile-image" src="dev.png" alt="Loading..."
+                            class="relative rounded-full w-60 h-60 object-cover shadow-2xl border-4 border-white z-10 hidden" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="animate-on-scroll text-center mb-16">
+                    <!-- Skeleton for title and subtitle -->
+                    <div id="skills-skeleton" class="space-y-4">
+                        <div class="h-8 bg-slate-200 rounded-md w-64 mx-auto animate-pulse"></div>
+                        <div class="h-4 bg-slate-200 rounded-md w-96 mx-auto animate-pulse"></div>
+                    </div>
+                    <!-- Real content (initially hidden) -->
+                    <div id="skills-content" class="hidden">
+                        <h2 id="skills-title" class="text-3xl font-bold mb-4 text-center text-slate-800"></h2>
+                        <p id="skills-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto"></p>
+                    </div>
+                </div>
+                <div id="skills-grid"
+                    class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 text-center">
+                    <!-- Skeleton for Skills (repeat this block 12 times) -->
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2 animate-pulse">
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-slate-50">
+            <div class="container mx-auto px-4">
+                <div class="animate-on-scroll text-center mb-16">
+                    <h2 id="projects-title" class="text-3xl font-bold mb-4 text-center text-slate-800">Personal Projects
+                    </h2>
+                    <p id="projects-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">A selection of
+                        projects that demonstrate my passion for building software and solving problems.</p>
+                </div>
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Skeleton for Project Card (repeat this block 3 times) -->
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col space-y-3 animate-pulse">
+                        <div class="h-6 w-3/4 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 w-5/6 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 w-1/4 bg-slate-200 rounded-md pt-4"></div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col space-y-3 animate-pulse">
+                        <div class="h-6 w-3/4 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 w-5/6 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 w-1/4 bg-slate-200 rounded-md pt-4"></div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col space-y-3 animate-pulse">
+                        <div class="h-6 w-3/4 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 w-5/6 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 w-1/4 bg-slate-200 rounded-md pt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="animate-on-scroll text-center mb-16">
+                    <h2 id="experience-title" class="text-3xl font-bold mb-12 text-center text-slate-800">Professional
+                        Experience</h2>
+                </div>
+                <!-- This is the container where the timeline will be dynamically inserted -->
+                <div id="experience-timeline" class="relative max-w-2xl mx-auto">
+                    <!-- Experience items will be loaded here by app.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 bg-slate-50">
+            <div class="container mx-auto px-4">
+                <div class="animate-on-scroll text-center mb-16">
+                    <!-- Skeleton for title and subtitle -->
+                    <div id="education-skeleton" class="space-y-4">
+                        <div class="h-8 bg-slate-200 rounded-md w-64 mx-auto animate-pulse"></div>
+                        <div class="h-4 bg-slate-200 rounded-md w-96 mx-auto animate-pulse"></div>
+                    </div>
+                    <!-- Real content (initially hidden) -->
+                    <div id="education-content" class="hidden">
+                        <h2 id="education-title" class="text-3xl font-bold mb-4 text-center text-slate-800"></h2>
+                        <p id="education-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto"></p>
+                    </div>
+                </div>
+                <div id="education-list" class="max-w-2xl mx-auto space-y-8">
+                    <!-- Skeleton for Education Card -->
+                    <div class="bg-white p-8 rounded-xl shadow-md text-center animate-pulse">
+                        <div class="h-6 w-3/4 bg-slate-200 rounded-md mx-auto"></div>
+                        <div class="h-4 w-1/2 bg-slate-200 rounded-md mx-auto mt-2"></div>
+                        <div class="h-4 w-1/3 bg-slate-200 rounded-md mx-auto mt-1"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Freelance Work Section -->
+        <section id="freelance" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="animate-on-scroll text-center mb-16">
+                    <h2 id="freelance-title" class="text-3xl font-bold mb-4 text-center text-slate-800">Featured
+                        Freelance Work</h2>
+                    <p id="freelance-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">Highlights of
+                        custom solutions I've delivered for clients worldwide.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Skeleton for Freelance Card (repeat this block 3 times) -->
+                    <div class="bg-slate-50 rounded-xl shadow-md p-6 animate-pulse">
+                        <div class="h-6 w-3/4 bg-slate-200 rounded-md mb-2"></div>
+                        <div class="h-4 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 w-5/6 bg-slate-200 rounded-md mt-2"></div>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl shadow-md p-6 animate-pulse">
+                        <div class="h-6 w-3/4 bg-slate-200 rounded-md mb-2"></div>
+                        <div class="h-4 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 w-5/6 bg-slate-200 rounded-md mt-2"></div>
+                    </div>
+                    <div class="bg-slate-50 rounded-xl shadow-md p-6 animate-pulse">
+                        <div class="h-6 w-3/4 bg-slate-200 rounded-md mb-2"></div>
+                        <div class="h-4 bg-slate-200 rounded-md"></div>
+                        <div class="h-4 w-5/6 bg-slate-200 rounded-md mt-2"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 gradient-bg">
+            <div class="container mx-auto px-4 text-center animate-on-scroll">
+                <h2 id="contact-title" class="text-3xl font-bold text-white mb-4">Let's Build Something Great</h2>
+                <p id="contact-subtitle" class="text-blue-100 text-lg mb-8 max-w-xl mx-auto">Have a project in mind or
+                    just want to connect? I'd love to hear from you.</p>
+                <div class="space-y-4 text-white">
+                    <a id="contact-email" href="#" class="block text-white hover:text-blue-200 transition-colors">
+                        <i class="fas fa-envelope mr-2"></i><span
+                            id="contact-email-text">qamarislam1232@gmail.com</span>
+                    </a>
+                    <p><i class="fas fa-phone mr-2"></i><span id="contact-phone">+923148412001</span></p>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i><span id="contact-location">Islamabad, Pakistan</span>
+                    </p>
+                </div>
+                <div class="mt-8">
+                    <a id="contact-cta-button" href="#"
+                        class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-100 transition-all transform hover:scale-105 hover:-translate-y-1 inline-block shadow-lg hover:shadow-xl">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- START: New Project Modal -->
+        <div id="project-modal"
+            class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+            <!-- Modal Content -->
+            <div id="modal-content"
+                class="bg-white rounded-lg shadow-2xl w-full max-w-5xl max-h-screen flex flex-col transform scale-95 transition-transform duration-300"
+                style="max-height: 90vh;">
+
+                <!-- Modal Header -->
+                <div class="flex justify-between items-start p-5 border-b sticky top-0 bg-white z-10">
+                    <div>
+                        <h2 id="modal-title" class="text-2xl font-bold text-slate-800">Project Title</h2>
+                        <div id="modal-meta-tags" class="flex flex-wrap items-center gap-2 mt-2">
+                            <!-- Meta tags like Role, Status, Date will be injected here -->
+                        </div>
+                    </div>
+                    <button id="modal-close-button"
+                        class="text-gray-400 hover:text-red-500 text-3xl font-light leading-none">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="p-6 overflow-y-auto">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                        <!-- Left Column: Media Gallery -->
+                        <div class="lg:col-span-1">
+                            <div id="modal-media-display"
+                                class="mb-3 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center h-56">
+                                <!-- Main image or video will be inserted here -->
+                            </div>
+                            <div id="modal-media-thumbnails" class="flex flex-wrap gap-2">
+                                <!-- Thumbnails will be inserted here -->
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Details -->
+                        <div class="lg:col-span-2 space-y-6">
+
+                            <!-- Main Description Block -->
+                            <div id="modal-description-block">
+                                <h3 class="text-lg font-semibold text-slate-700 mb-2 flex items-center"><i
+                                        class="fas fa-info-circle mr-2 text-blue-500"></i>About this Project</h3>
+                                <div id="modal-main-description"
+                                    class="prose prose-sm max-w-none text-slate-600 leading-relaxed">
+                                    <!-- Long description or problem/solution will go here -->
+                                </div>
+                            </div>
+
+                            <!-- Key Features / Achievements Block -->
+                            <div id="modal-features-block" class="hidden">
+                                <h3 id="modal-features-title"
+                                    class="text-lg font-semibold text-slate-700 mb-3 flex items-center"></h3>
+                                <ul id="modal-features-list" class="space-y-2 text-slate-600">
+                                    <!-- Feature/Achievement list items will be injected here -->
+                                </ul>
+                            </div>
+
+                            <!-- Client Feedback Block -->
+                            <div id="modal-feedback-block" class="hidden">
+                                <h3 class="text-lg font-semibold text-slate-700 mb-2 flex items-center"><i
+                                        class="fas fa-comment-dots mr-2 text-blue-500"></i>Client Feedback</h3>
+                                <div class="p-4 bg-slate-50 border-l-4 border-blue-500 rounded-r-lg">
+                                    <p id="modal-feedback-quote" class="italic text-slate-600"></p>
+                                    <p id="modal-feedback-client" class="text-right font-semibold text-slate-700 mt-2">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Key Challenges Block -->
+                            <div id="modal-challenges-block" class="hidden">
+                                <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i
+                                        class="fas fa-puzzle-piece mr-2 text-blue-500"></i>Key Challenges & Solutions
+                                </h3>
+                                <div id="modal-challenges-list" class="space-y-3">
+                                    <!-- Challenge/Solution pairs will be injected here -->
+                                </div>
+                            </div>
+
+                            <!-- Technologies Block -->
+                            <div id="modal-tech-block" class="hidden">
+                                <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i
+                                        class="fas fa-cogs mr-2 text-blue-500"></i>Technologies Used</h3>
+                                <div id="modal-tech-list" class="flex flex-wrap gap-2">
+                                    <!-- Tech tags will be inserted here -->
+                                </div>
+                            </div>
+
+                            <!-- Links Block -->
+                            <div id="modal-links-block" class="hidden">
+                                <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i
+                                        class="fas fa-link mr-2 text-blue-500"></i>Project Links</h3>
+                                <div id="modal-links-list" class="flex flex-wrap gap-4">
+                                    <!-- Links will be inserted here -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: New Project Modal -->
+
+
+    <!-- START: AI Chatbot V3 (Final & Corrected) -->
+    <!-- Main trigger button at the bottom-center -->
+    <div id="ai-chat-trigger" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 cursor-pointer">
+        <div class="flex items-center justify-center px-6 py-3 bg-white/90 backdrop-blur-md rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 glow-animation">
+            <i class="fas fa-comments text-blue-500 text-xl mr-3"></i>
+            <span class="font-semibold text-slate-700 hidden sm:block">Chat with My AI</span>
+            <span class="font-semibold text-slate-700 sm:hidden">Ask AI</span>
+        </div>
+    </div>
+
+    <!-- Chat Modal Overlay -->
+    <div id="chat-overlay" class="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <!-- The Chat Window (Large and Centered) -->
+        <div id="chat-window" class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl flex flex-col transform scale-95 transition-all duration-300" style="max-height: 85vh;">
+            <!-- Header -->
+            <div class="gradient-bg p-4 rounded-t-2xl text-white flex justify-between items-center">
+                <div>
+                    <h3 class="font-bold text-lg">Portfolio Assistant</h3>
+                    <p class="text-xs text-blue-200">I can answer questions about Qamar's portfolio.</p>
+                </div>
+                <button id="chat-close-button" class="text-blue-200 hover:text-white text-3xl leading-none">&times;</button>
+            </div>
             
-            <!-- Left Column: Media Gallery -->
-            <div class="lg:col-span-1">
-              <div id="modal-media-display" class="mb-3 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center h-56">
-                <!-- Main image or video will be inserted here -->
-              </div>
-              <div id="modal-media-thumbnails" class="flex flex-wrap gap-2">
-                <!-- Thumbnails will be inserted here -->
-              </div>
+            <!-- Messages -->
+            <div id="chat-messages" class="flex-1 p-6 space-y-4 overflow-y-auto">
+                <!-- Messages will be dynamically inserted here -->
+            </div>
+            
+            <!-- Typing Indicator -->
+            <div id="typing-indicator" class="hidden px-6 pb-2">
+                <div class="flex items-center space-x-1">
+                    <span class="text-sm text-slate-500">Assistant is typing</span>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
             </div>
 
-            <!-- Right Column: Details -->
-            <div class="lg:col-span-2 space-y-6">
-              
-              <!-- Main Description Block -->
-              <div id="modal-description-block">
-                <h3 class="text-lg font-semibold text-slate-700 mb-2 flex items-center"><i class="fas fa-info-circle mr-2 text-blue-500"></i>About this Project</h3>
-                <div id="modal-main-description" class="prose prose-sm max-w-none text-slate-600 leading-relaxed">
-                  <!-- Long description or problem/solution will go here -->
-                </div>
-              </div>
-              
-              <!-- Key Features / Achievements Block -->
-              <div id="modal-features-block" class="hidden">
-                <h3 id="modal-features-title" class="text-lg font-semibold text-slate-700 mb-3 flex items-center"></h3>
-                <ul id="modal-features-list" class="space-y-2 text-slate-600">
-                  <!-- Feature/Achievement list items will be injected here -->
-                </ul>
-              </div>
-              
-              <!-- Client Feedback Block -->
-              <div id="modal-feedback-block" class="hidden">
-                 <h3 class="text-lg font-semibold text-slate-700 mb-2 flex items-center"><i class="fas fa-comment-dots mr-2 text-blue-500"></i>Client Feedback</h3>
-                 <div class="p-4 bg-slate-50 border-l-4 border-blue-500 rounded-r-lg">
-                    <p id="modal-feedback-quote" class="italic text-slate-600"></p>
-                    <p id="modal-feedback-client" class="text-right font-semibold text-slate-700 mt-2"></p>
-                </div>
-              </div>
-
-              <!-- Key Challenges Block -->
-              <div id="modal-challenges-block" class="hidden">
-                <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i class="fas fa-puzzle-piece mr-2 text-blue-500"></i>Key Challenges & Solutions</h3>
-                <div id="modal-challenges-list" class="space-y-3">
-                  <!-- Challenge/Solution pairs will be injected here -->
-                </div>
-              </div>
-              
-              <!-- Technologies Block -->
-              <div id="modal-tech-block" class="hidden">
-                <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i class="fas fa-cogs mr-2 text-blue-500"></i>Technologies Used</h3>
-                <div id="modal-tech-list" class="flex flex-wrap gap-2">
-                  <!-- Tech tags will be inserted here -->
-                </div>
-              </div>
-              
-              <!-- Links Block -->
-              <div id="modal-links-block" class="hidden">
-                <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i class="fas fa-link mr-2 text-blue-500"></i>Project Links</h3>
-                <div id="modal-links-list" class="flex flex-wrap gap-4">
-                  <!-- Links will be inserted here -->
-                </div>
-              </div>
-
+            <!-- Input Area (WITH THE FIX) -->
+            <div class="p-4 border-t border-slate-200 bg-slate-50 rounded-b-2xl">
+                <form id="chat-form" class="flex items-center bg-white border border-slate-300 rounded-full focus-within:ring-2 focus-within:ring-blue-500">
+                    <!-- *** THE FIX IS HERE: flex-1 instead of w-full *** -->
+                    <input type="text" id="chat-input" placeholder="e.g., Tell me about your AI projects..." class="flex-1 bg-transparent px-5 py-3 border-none focus:ring-0 text-slate-800 placeholder-slate-400">
+                    <button id="chat-send" type="submit" class="p-2 text-white bg-blue-500 hover:bg-blue-600 rounded-full m-1.5 transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    </button>
+                </form>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    <!-- END: New Project Modal -->
+    <!-- END: AI Chatbot V3 (Final & Corrected) -->
 
-</main>
+    </main>
 
-<!-- Footer -->
-<footer class="py-6 bg-slate-800 text-center text-slate-400">
-    <div class="container mx-auto px-4">
-        <p>© <span id="current-year">2025</span> <span id="footer-name">Qamar Ul Islam</span>. <span id="footer-copyright">All rights reserved</span>.</p>
-    </div>
-</footer>
 
-<script src="app.js"></script>
+    <!-- Footer -->
+    <footer class="py-6 bg-slate-800 text-center text-slate-400">
+        <div class="container mx-auto px-4">
+            <p>© <span id="current-year">2025</span> <span id="footer-name">Qamar Ul Islam</span>. <span
+                    id="footer-copyright">All rights reserved</span>.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
+
 </html>

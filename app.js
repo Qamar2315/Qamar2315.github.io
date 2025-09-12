@@ -722,4 +722,150 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
+    // --- 9. AI CHATBOT IMPLEMENTATION V3 (Final) ---
+    // A. DOM Element Selection
+    const chatTrigger = document.getElementById('ai-chat-trigger');
+    const chatOverlay = document.getElementById('chat-overlay');
+    const chatWindow = document.getElementById('chat-window');
+    const chatCloseButton = document.getElementById('chat-close-button');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatSendButton = document.getElementById('chat-send');
+    const typingIndicator = document.getElementById('typing-indicator');
+
+    const API_URL = 'http://127.0.0.1:5000/api/chat';
+    let conversationHistory = [];
+
+    // B. Core Functions
+    const openChat = () => {
+        chatOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+
+        // Trick to trigger CSS transition
+        setTimeout(() => {
+            chatOverlay.classList.remove('opacity-0');
+            chatWindow.classList.remove('scale-95');
+        }, 10);
+
+        if (chatMessages.children.length === 0) {
+            addMessageToUI('assistant', "Hello! I'm Qamar's AI assistant, trained on his portfolio data. Ask me anything about his projects, skills, or professional experience.");
+        }
+        chatInput.focus();
+    };
+
+    const closeChat = () => {
+        chatOverlay.classList.add('opacity-0');
+        chatWindow.classList.add('scale-95');
+        document.body.style.overflow = ''; // Restore background scroll
+
+        setTimeout(() => {
+            chatOverlay.classList.add('hidden');
+        }, 300); // Match transition duration
+    };
+
+    const addMessageToUI = (sender, message) => {
+        const messageElement = document.createElement('div');
+        messageElement.className = `flex mb-4 ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+        
+        const messageWrapper = document.createElement('div');
+        messageWrapper.className = 'animate-on-scroll is-visible'; 
+        
+        const messageContent = document.createElement('div');
+
+        if (sender === 'user') {
+            // User messages are plain text
+            messageContent.textContent = message;
+        } else {
+            // AI messages are parsed as Markdown
+            // The 'prose' class from Tailwind helps style the HTML nicely
+            messageContent.className += ' prose prose-sm max-w-none'; 
+            messageContent.innerHTML = marked.parse(message);
+        }
+        
+        // Add base classes
+        messageContent.classList.add('max-w-md', 'p-3', 'rounded-2xl', 'text-sm');
+        
+        // Add sender-specific classes
+        if (sender === 'user') {
+            messageContent.classList.add('bg-blue-600', 'text-white', 'rounded-br-none');
+        } else {
+            messageContent.classList.add('bg-slate-100', 'text-slate-800', 'rounded-bl-none', 'assistant-bubble');
+        }
+        
+        messageWrapper.appendChild(messageContent);
+        messageElement.appendChild(messageWrapper);
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    const handleSendMessage = async (event) => {
+        event.preventDefault();
+        const userText = chatInput.value.trim();
+        if (!userText) return;
+
+        addMessageToUI('user', userText);
+        conversationHistory.push({ role: 'user', content: userText });
+        
+        chatInput.value = '';
+        chatSendButton.disabled = true;
+        typingIndicator.classList.remove('hidden');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    question: userText,
+                    history: conversationHistory.slice(-5)
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'API request failed');
+            }
+            const data = await response.json();
+            
+            // --- NEW: Pre-process the response to clean up links ---
+            let formattedAnswer = data.answer.replace(/\[(https?:\/\/[^\s\]]+)\]/g, (match, url) => {
+                let linkText = "Link";
+                if (url.includes('youtu.be') || url.includes('cloudinary.com/dmiqkr7ja/video')) linkText = "Video Demo";
+                else if (url.includes('github.com')) linkText = "GitHub Repo";
+                else if (url.includes('asksunnah.online')) linkText = "Live Site";
+                return `[${linkText}](${url})`;
+            });
+
+            addMessageToUI('assistant', formattedAnswer);
+            conversationHistory.push({ role: 'assistant', content: data.answer }); // Still save original answer
+        } catch (error) {
+            console.error('Chatbot Error:', error);
+            addMessageToUI('assistant', "I apologize, but I'm unable to connect to my knowledge base at the moment. Please try again soon.");
+        } finally {
+            typingIndicator.classList.add('hidden');
+            chatSendButton.disabled = false;
+            chatInput.focus();
+        }
+    };
+
+    // C. Event Listeners
+    if (chatTrigger) {
+        chatTrigger.addEventListener('click', openChat);
+        chatCloseButton.addEventListener('click', closeChat);
+        chatForm.addEventListener('submit', handleSendMessage);
+        
+        chatOverlay.addEventListener('click', (event) => {
+            if (event.target === chatOverlay) {
+                closeChat();
+            }
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !chatOverlay.classList.contains('hidden')) {
+                closeChat();
+            }
+        });
+    }
 });
