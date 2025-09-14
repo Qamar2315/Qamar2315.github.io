@@ -740,6 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
     const chatSendButton = document.getElementById('chat-send');
     const typingIndicator = document.getElementById('typing-indicator');
+    const suggestedPromptsContainer = document.getElementById('suggested-prompts');
 
     const API_URL = 'http://192.168.18.29:5000/api/chat';
     let conversationHistory = [];
@@ -806,6 +807,20 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
+    // NEW FUNCTION: To render the prompt bubbles
+    const renderSuggestedPrompts = (prompts) => {
+        suggestedPromptsContainer.innerHTML = ''; // Clear old prompts
+        if (!prompts || prompts.length === 0) return;
+
+        prompts.forEach(promptText => {
+            const button = document.createElement('button');
+            button.textContent = promptText;
+            button.className = 'bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1.5 rounded-full transition-colors';
+            suggestedPromptsContainer.appendChild(button);
+        });
+        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to show them
+    };
+
     const handleSendMessage = async (event) => {
         event.preventDefault();
         const userText = chatInput.value.trim();
@@ -816,6 +831,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         chatInput.value = '';
         chatSendButton.disabled = true;
+        suggestedPromptsContainer.innerHTML = ''; // Clear prompts when user sends a message
         typingIndicator.classList.remove('hidden');
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
@@ -846,6 +862,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             addMessageToUI('assistant', formattedAnswer);
             conversationHistory.push({ role: 'assistant', content: data.answer }); // Still save original answer
+            
+            // RENDER NEW PROMPTS (this assumes your API can return them)
+            const prompts = data.suggested_prompts || ["Tell me more about Ask Sunnah", "What are your top skills?", "Show me your AI projects", "Tell me about your backend experience"];
+            renderSuggestedPrompts(prompts);
         } catch (error) {
             console.error('Chatbot Error:', error);
             addMessageToUI('assistant', "I apologize, but I'm unable to connect to my knowledge base at the moment. Please try again soon.");
@@ -855,6 +875,18 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.focus();
         }
     };
+
+    // NEW EVENT LISTENER: To handle clicks on the bubbles
+    if (suggestedPromptsContainer) {
+        suggestedPromptsContainer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const promptText = e.target.textContent;
+                chatInput.value = promptText;
+                chatForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+                suggestedPromptsContainer.innerHTML = ''; // Clear prompts after click
+            }
+        });
+    }
 
     // C. Event Listeners
     if (chatTrigger) {
