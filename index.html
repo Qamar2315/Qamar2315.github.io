@@ -244,6 +244,23 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(67, 97, 238, 0.3);
         }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            padding: 0.65rem 2rem; /* Slightly smaller padding */
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(67, 97, 238, 0.2);
+        }
     </style>
 </head>
 
@@ -355,22 +372,23 @@
                     <div id="introduction-content" class="hidden">
                         <h1 id="profile-name" class="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-4"></h1>
                         <p id="profile-title" class="text-xl lg:text-2xl gradient-text font-semibold mb-6"></p>
-                        <p id="profile-description" class="text-slate-600 leading-relaxed text-lg"></p>
-                        <!-- Social Links -->
-                        <div id="social-links-container" class="mt-6 flex items-center justify-center md:justify-start space-x-6">
-                            <!-- Social links will be injected here -->
-                        </div>
-                        <!-- Download Resume Button -->
-                        <div class="mt-8">
-                            <a id="resume-download" href="#" download
-                                class="btn-primary group relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-medium text-white rounded-full shadow-2xl transition-all duration-300 ease-out hover:scale-105 hover:shadow-3xl active:scale-95">
-                                <span
-                                    class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                                <span class="relative flex items-center">
-                                    <i class="fas fa-download mr-3 text-lg group-hover:animate-bounce"></i>
-                                    <span class="text-lg font-semibold tracking-wide">Download Resume</span>
-                                </span>
+                        <p id="profile-description" class="text-slate-600 leading-loose text-lg"></p>
+                        <!-- NEW: Centered CTA block -->
+                        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+                            <!-- Primary Button -->
+                            <a id="resume-download" href="#" download class="btn-primary">
+                                <i class="fas fa-download mr-2"></i>
+                                Download Resume
                             </a>
+                            <!-- Secondary Button -->
+                            <a href="#projects" class="btn-secondary">
+                                View Projects
+                            </a>
+                        </div>
+
+                        <!-- Social links container below the buttons -->
+                        <div id="social-links-container" class="mt-6 flex items-center justify-center md:justify-start space-x-6">
+                            <!-- Social links will be injected here by JS -->
                         </div>
                     </div>
                 </div>
@@ -409,21 +427,21 @@
                         <div class="h-6 bg-slate-200 rounded-md w-48 mx-auto"></div>
                         <div class="flex flex-wrap justify-center gap-8">
                             <div class="flex flex-col items-center space-y-2 w-24">
-                                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                            </div>
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
                             <div class="flex flex-col items-center space-y-2 w-24">
-                                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                            </div>
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
                             <div class="flex flex-col items-center space-y-2 w-24">
-                                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                            </div>
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
                             <div class="flex flex-col items-center space-y-2 w-24">
-                                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                            </div>
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
                         </div>
                     </div>
                     <!-- Second category skeleton -->
@@ -431,30 +449,30 @@
                         <div class="h-6 bg-slate-200 rounded-md w-48 mx-auto"></div>
                         <div class="flex flex-wrap justify-center gap-8">
                             <div class="flex flex-col items-center space-y-2 w-24">
-                                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                            </div>
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
                             <div class="flex flex-col items-center space-y-2 w-24">
-                                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                            </div>
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
                             <div class="flex flex-col items-center space-y-2 w-24">
-                                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                            </div>
-                        </div>
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
+                    </div>
                     </div>
                     <!-- Third category skeleton -->
                     <div class="space-y-6 animate-pulse">
                         <div class="h-6 bg-slate-200 rounded-md w-48 mx-auto"></div>
                         <div class="flex flex-wrap justify-center gap-8">
                             <div class="flex flex-col items-center space-y-2 w-24">
-                                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
-                            </div>
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                    </div>
                             <div class="flex flex-col items-center space-y-2 w-24">
-                                <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
-                                <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
+                        <div class="w-12 h-12 bg-slate-200 rounded-full"></div>
+                        <div class="h-4 w-20 bg-slate-200 rounded-md"></div>
                             </div>
                         </div>
                     </div>
@@ -694,7 +712,7 @@
 
     <!-- START: AI Chatbot V3 (Final & Corrected) -->
     <!-- Main trigger button at the bottom-center -->
-    <div id="ai-chat-trigger" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 cursor-pointer">
+    <div id="ai-chat-trigger" class="fixed bottom-8 right-8 z-40 cursor-pointer">
         <div class="flex items-center justify-center px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 pulse-animation">
             <i class="fas fa-comments text-blue-500 text-xl mr-3"></i>
             <span class="font-semibold text-slate-700 hidden sm:block">Chat with Me</span>

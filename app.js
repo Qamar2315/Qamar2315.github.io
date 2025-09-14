@@ -77,8 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const id = entry.target.getAttribute('id');
                 const updateLinks = (links) => {
                     links.forEach(link => {
-                        link.classList.toggle('text-blue-500', link.getAttribute('href') === `#${id}`);
-                        link.classList.toggle('text-gray-600', link.getAttribute('href') !== `#${id}`);
+                        const isActive = link.getAttribute('href') === `#${id}`;
+                        link.classList.toggle('text-blue-500', isActive);
+                        link.classList.toggle('font-bold', isActive);
+                        link.classList.toggle('text-gray-600', !isActive);
+                        link.classList.toggle('font-normal', !isActive);
                     });
                 };
                 updateLinks(navLinksDesktop);
@@ -280,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (profileName) profileName.textContent = personalInfo.name;
         if (profileTitle) profileTitle.textContent = personalInfo.title;
-        if (profileDescription) profileDescription.textContent = personalInfo.description;
+        if (profileDescription) profileDescription.innerHTML = personalInfo.description;
         if (profileImage) {
             profileImage.src = personalInfo.profile_image;
             profileImage.alt = personalInfo.name;
@@ -324,8 +327,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
                 a.title = link.name;
-                a.className = 'text-slate-500 hover:text-blue-500 transition-colors duration-300';
-                a.innerHTML = `<i class="${link.icon} text-3xl"></i>`; // Assumes an icon class is provided
+                a.className = 'text-slate-500 hover:text-blue-600 transition-all duration-300 transform hover:-translate-y-1';
+                a.innerHTML = `<i class="${link.icon} text-4xl"></i>`; // Updated size
                 socialLinksContainer.appendChild(a);
             });
         }
@@ -738,7 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatSendButton = document.getElementById('chat-send');
     const typingIndicator = document.getElementById('typing-indicator');
 
-    const API_URL = 'https://your-deployed-backend-url.com/api/chat';
+    const API_URL = 'http://192.168.18.29:5000/api/chat';
     let conversationHistory = [];
 
     // B. Core Functions

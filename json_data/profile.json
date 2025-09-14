@@ -2,7 +2,7 @@
   "personal_info": {
     "name": "Qamar Ul Islam",
     "title": "Software Engineer | Backend & AI/ML Specialist",
-    "description": "A highly motivated Software Engineer specializing in backend development and AI/ML systems. I have a proven record of building scalable, reliable applications using Python, Go, and Node.js. My experience ranges from freelance AI projects and complex API integrations to developing robust microservices for high-engagement platforms. I am passionate about architecting sophisticated RAG pipelines and leveraging LLMs to solve real-world problems.",
+    "description": "I build scalable backend systems and intelligent AI/ML solutions. With expertise in <strong>Python</strong>, <strong>Go</strong>, and <strong>Node.js</strong>, I architect everything from robust <strong>microservices</strong> for high-engagement platforms to sophisticated <strong>RAG pipelines</strong> that leverage <strong>LLMs</strong> to solve real-world problems.",
     "resume_file": "resume.pdf",
     "profile_image": "dev.png",
     "bio_details": {
