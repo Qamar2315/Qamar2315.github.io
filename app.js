@@ -192,33 +192,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- New: Render Projects Grid Dynamically ---
     function createProjectCard(project) {
         const card = document.createElement('div');
-        card.className = 'bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll project-card cursor-pointer';
+        card.className = 'group bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll project-card cursor-pointer relative';
         card.dataset.projectId = project.id || '';
 
-        const title = document.createElement('h3');
-        title.className = 'text-xl font-bold mb-2 text-slate-800';
-        title.textContent = project.title || 'Untitled Project';
-
-        const desc = document.createElement('p');
-        desc.className = 'text-slate-600 mb-4 flex-grow';
-        desc.textContent = project.short_description || '';
-
-        const primaryLink = (project.links || [])[0];
-        const link = document.createElement('a');
-        if (primaryLink && primaryLink.url) {
-            link.href = primaryLink.url;
-            link.target = '_blank';
-            link.className = 'text-blue-500 hover:underline font-semibold';
-            link.innerHTML = `${primaryLink.type || 'Link'} <i class="fas fa-arrow-right ml-1"></i>`;
-        } else {
-            link.href = '#';
-            link.className = 'text-slate-400 cursor-default';
-            link.textContent = 'Details';
-        }
-
-        card.appendChild(title);
-        card.appendChild(desc);
-        card.appendChild(link);
+        // Add an icon in the corner that appears on hover
+        card.innerHTML = `
+            <div class="absolute top-4 right-4 text-slate-300 group-hover:text-blue-500 transition-colors">
+                <i class="fas fa-expand-alt"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-slate-800">${project.title || 'Untitled Project'}</h3>
+            <p class="text-slate-600 mb-4 flex-grow">${project.short_description || ''}</p>
+            <div class="mt-auto">
+                <span class="text-blue-500 font-semibold">View Details <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+            </div>
+        `;
         return card;
     }
 
@@ -325,6 +312,22 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (footerName) footerName.textContent = personalInfo.name;
             if (footerCopyright) footerCopyright.textContent = personalInfo.footer.copyright_text;
+        }
+        
+        // Add Social Links
+        const socialLinksContainer = document.getElementById('social-links-container');
+        if (socialLinksContainer && personalInfo.bio_details.professional_links) {
+            socialLinksContainer.innerHTML = ''; // Clear previous
+            personalInfo.bio_details.professional_links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.title = link.name;
+                a.className = 'text-slate-500 hover:text-blue-500 transition-colors duration-300';
+                a.innerHTML = `<i class="${link.icon} text-3xl"></i>`; // Assumes an icon class is provided
+                socialLinksContainer.appendChild(a);
+            });
         }
         
         // Hide skeleton and show content
@@ -735,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatSendButton = document.getElementById('chat-send');
     const typingIndicator = document.getElementById('typing-indicator');
 
-    const API_URL = 'http://127.0.0.1:5000/api/chat';
+    const API_URL = 'https://your-deployed-backend-url.com/api/chat';
     let conversationHistory = [];
 
     // B. Core Functions

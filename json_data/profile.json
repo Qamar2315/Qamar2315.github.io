@@ -9,11 +9,13 @@
       "professional_links": [
         {
           "name": "LinkedIn",
-          "url": "https://www.linkedin.com/in/qamar-ul-islam-193378202/"
+          "url": "https://www.linkedin.com/in/qamar-ul-islam-193378202/",
+          "icon": "fab fa-linkedin"
         },
         {
           "name": "GitHub",
-          "url": "https://github.com/Qamar2315"
+          "url": "https://github.com/Qamar2315",
+          "icon": "fab fa-github"
         }
       ],
       "spoken_languages": [
@@ -109,7 +111,7 @@
         "rating": 5,
         "comment": "Amazing person to work with",
         "is_repeat_client": true,
-        "date": "2025-07-01T00:00:00Z"
+        "date": "2024-07-01T00:00:00Z"
       },
       {
         "client_name": "physicalbitcoin",
@@ -117,7 +119,7 @@
         "rating": 5,
         "comment": "Amazing work!",
         "is_repeat_client": true,
-        "date": "2025-06-01T00:00:00Z"
+        "date": "2024-06-01T00:00:00Z"
       },
       {
         "client_name": "physicalbitcoin",
@@ -125,7 +127,7 @@
         "rating": 5,
         "comment": "10 out of 10👏",
         "is_repeat_client": true,
-        "date": "2025-05-01T00:00:00Z"
+        "date": "2024-05-01T00:00:00Z"
       },
       {
         "client_name": "m_ruumi",
@@ -133,7 +135,7 @@
         "rating": 5,
         "comment": "Brother helped so much within a matter of one day. I was skepical going to someone but i can assure you hes clutch.",
         "is_repeat_client": false,
-        "date": "2025-05-01T00:00:00Z"
+        "date": "2024-05-01T00:00:00Z"
       },
       {
         "client_name": "andregtr",
@@ -141,7 +143,7 @@
         "rating": 3.7,
         "comment": "Very fast, and quickly done, thanks.",
         "is_repeat_client": false,
-        "date": "2025-03-01T00:00:00Z"
+        "date": "2024-03-01T00:00:00Z"
       }
     ]
   },
@@ -256,183 +258,5 @@
         ]
       }
     ]
-  },
-  "interview_knowledge_base": [
-    {
-      "id": "backend-experience-overview",
-      "question": "Can you describe your experience in backend development and list your preferred technologies?",
-      "tags": [
-        "backend",
-        "experience",
-        "overview",
-        "technologies",
-        "javascript",
-        "golang",
-        "python",
-        "typescript",
-        "nestjs",
-        "gin",
-        "expressjs",
-        "firebase"
-      ],
-      "answer": {
-        "summary": "My backend development experience spans multiple languages and frameworks, focusing on building scalable, secure, and AI-integrated systems. I have a proven ability to architect and deliver complete services, from academic projects to professional, production-level applications.",
-        "experience_highlights": [
-          "**Academic (Final Year Project):** Developed a full-stack e-learning platform with a Node.js/Express backend following a clean three-tier architecture. It integrated with a Python/Flask microservice for AI features like face recognition and automated quiz generation, secured with JWT and role-based access control.",
-          "**Professional (Golang):** Architected and single-handedly developed a complete Influencer microservice in Go (Gin) for a TikTok-style beauty app. This included authentication, video handling, and engagement features (likes, comments, shares).",
-          "**Professional (Python & RAG):** Migrated and significantly enhanced a RAG-based AI assistant using Python Firebase Functions and Pinecone DB. I added features for session management and interaction with videos/PDFs.",
-          "**Professional (TypeScript):** Worked with TypeScript in multiple contexts, including integrating a Next.js app into a WordPress environment (Vetsie AI) and developing a backend module for a NestJS application (PromptLab).",
-          "**Independent (Full-Stack AI):** Solely built the 'AskSunnah' app, including the entire frontend, backend, and RAG data pipeline, to provide AI-driven answers from Islamic sources."
-        ],
-        "preferred_technologies": [
-          {
-            "language": "Python",
-            "frameworks": [
-              "Flask",
-              "Firebase Cloud Functions"
-            ],
-            "use_case": "Ideal for AI/ML integration, RAG pipelines, and rapid prototyping."
-          },
-          {
-            "language": "Go (Golang)",
-            "frameworks": [
-              "Gin"
-            ],
-            "use_case": "Excellent for high-performance, concurrent microservices where speed and reliability are critical."
-          },
-          {
-            "language": "TypeScript/Node.js",
-            "frameworks": [
-              "NestJS",
-              "Express.js"
-            ],
-            "use_case": "Great for building robust, scalable, and type-safe applications, especially in larger teams or complex codebases."
-          }
-        ]
-      }
-    },
-    {
-      "id": "project-deep-dive-influencers-app",
-      "question": "Can you discuss a back-end project you've been a part of, detailing the tech stack and your contributions?",
-      "tags": [
-        "project",
-        "deep-dive",
-        "backend",
-        "golang",
-        "gin",
-        "microservices",
-        "aws",
-        "s3",
-        "postgresql",
-        "docker"
-      ],
-      "answer": {
-        "project_name": "Influencer Microservice for 'Right Back Beauty' App",
-        "summary": "One of my key projects was designing and implementing the entire Influencer microservice from scratch for a TikTok-style platform. The backend was developed using the Gin framework in GoLang, designed to be scalable and maintainable.",
-        "technologies_used": [
-          "**Language/Framework:** Go (Gin Framework)",
-          "**Database:** PostgreSQL with GORM (ORM)",
-          "**Storage:** AWS S3 for video assets",
-          "**Authentication:** JWT (JSON Web Tokens)",
-          "**Containerization:** Docker",
-          "**API Documentation:** Swagger"
-        ],
-        "my_contributions": [
-          "**Architecture:** Designed and implemented a clean 3-tier architecture (controller -> service -> repository) to ensure code modularity and scalability.",
-          "**Core Functionality:** Single-handedly developed all core influencer-related features, including user authentication, video content uploading and management, and engagement systems for likes, comments, and shares.",
-          "**Database Design:** Created the database schemas and API endpoints for seamless interaction between the frontend and backend.",
-          "**Background Processing Design:** Architected a background job workflow using AWS MediaConvert to transcode uploaded videos into multiple resolutions, although a simpler direct-upload approach was later adopted.",
-          "**Best Practices:** Ensured high code quality by implementing robust error handling, logging, a modular structure, and comprehensive API documentation with Swagger for frontend developers."
-        ]
-      }
-    },
-    {
-      "id": "oop-concepts",
-      "question": "Have you worked with Object-Oriented Programming (OOP) concepts in your backend projects?",
-      "tags": [
-        "oop",
-        "object-oriented",
-        "nestjs",
-        "typescript",
-        "java",
-        "concepts"
-      ],
-      "answer": "Yes, I have applied OOP principles in several key projects. My most direct professional experience with OOP was while working as a NestJS backend developer for PromptLab. NestJS is heavily influenced by OOP and concepts like dependency injection, modules, and classes are core to its architecture. I developed a complete module within this paradigm. Additionally, during my university studies, I built projects using Java, where I gained a strong foundational understanding of OOP concepts like encapsulation, inheritance, and polymorphism."
-    },
-    {
-      "id": "api-architecture-style",
-      "question": "Could you elaborate on the API architectural style you typically prefer to use?",
-      "tags": [
-        "api",
-        "architecture",
-        "three-tier",
-        "microservices",
-        "design-pattern",
-        "scalability"
-      ],
-      "answer": {
-        "primary_preference": "Three-Tier Architecture",
-        "details": "I typically prefer and have implemented a three-tier (or n-tier) architecture in most of my projects. This pattern separates concerns cleanly, which significantly improves maintainability and scalability.",
-        "layers": [
-          "**1. Controller/Presentation Layer:** Responsible for handling incoming HTTP requests, validating input, and routing the request to the appropriate service. It acts as the entry point.",
-          "**2. Service/Business Logic Layer:** Contains the core business logic of the application. It orchestrates operations, processes data, and is decoupled from both the web and data layers.",
-          "**3. Repository/Data Access Layer:** Responsible for all communication with the database. It abstracts the database operations, making it easy to switch databases or mock data for testing."
-        ],
-        "secondary_preference": "I am also a strong advocate for microservice architecture, especially for large, complex applications. While few of my projects have required a full microservice implementation, the principles of decoupling services and single responsibility are concepts I apply even within monolithic applications."
-      }
-    },
-    {
-      "id": "typescript-experience",
-      "question": "Are you familiar with TypeScript, and have you used it in backend projects?",
-      "tags": [
-        "typescript",
-        "nestjs",
-        "nextjs",
-        "backend",
-        "type-safety"
-      ],
-      "answer": {
-        "summary": "Yes, I am familiar with TypeScript and have used it in several professional backend and full-stack projects. I enjoy using it because the strong typing enhances code reliability, improves maintainability, and provides a much better developer experience, especially on larger projects.",
-        "projects": [
-          {
-            "name": "Vetsie AI",
-            "description": "I modified a Next.js application written in TypeScript to integrate it into a WordPress environment. My work involved writing TypeScript code to enable communication between the Next.js app and the WordPress member system and its database."
-          },
-          {
-            "name": "PromptLab",
-            "description": "I worked with NestJS, a TypeScript-based backend framework, to develop and integrate a new module into their existing infrastructure."
-          }
-        ]
-      }
-    },
-    {
-      "id": "background-job-processing",
-      "question": "Have you worked with background job processing? If yes, which technologies have you used and can you describe a scenario?",
-      "tags": [
-        "background-jobs",
-        "async",
-        "transcoding",
-        "aws",
-        "mediaconvert",
-        "celery",
-        "bullmq"
-      ],
-      "answer": {
-        "context": "While I haven't deployed a background job system to production myself, I have designed and partially implemented one, giving me strong practical insight into the architecture and challenges of asynchronous processing.",
-        "scenario": {
-          "project": "TikTok-like Influencers App (Go/Gin)",
-          "task": "To transcode user-uploaded videos into multiple resolutions for adaptive streaming.",
-          "process_design": [
-            "A user uploads a high-resolution video via the API.",
-            "The main request cycle ends immediately after saving the video's metadata to the database with a 'processing' status.",
-            "A background job is triggered, sending the video to AWS MediaConvert for transcoding.",
-            "The system was designed to either poll AWS for the job status or listen for a completion event (e.g., via SNS/SQS).",
-            "Upon completion, the database record is updated with the links to the newly transcoded video files."
-          ],
-          "outcome": "Although this specific feature was later simplified to a direct-upload model for business reasons, the design process provided me with valuable experience in decoupling long-running tasks from the main request-response cycle and managing job statuses."
-        },
-        "future_readiness": "I am confident in my ability to implement robust background job systems using standard tools for the job, such as Celery with Python, BullMQ with Node.js, or native Goroutines and channels in Go."
-      }
-    }
-  ]
+  }
 }
