@@ -741,7 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatSendButton = document.getElementById('chat-send');
     const typingIndicator = document.getElementById('typing-indicator');
     const suggestedPromptsContainer = document.getElementById('suggested-prompts');
-    const API_URL = 'http://37.27.210.196:5500/api/chat';
+    const API_URL = 'https://qamarcodes.online/api/chat';
     let conversationHistory = [];
 
     // B. Core Functions
