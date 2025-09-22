@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
             profileImage.alt = personalInfo.name;
         }
         if (resumeDownload) {
-            resumeDownload.href = `https://qamar2315.github.io/${personalInfo.resume_file}`;
+            resumeDownload.href = `/${personalInfo.resume_file}`;
             resumeDownload.download = `${personalInfo.name.replace(/\s+/g, '-')}-Resume.pdf`;
         }
         
