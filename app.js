@@ -289,8 +289,30 @@ document.addEventListener('DOMContentLoaded', () => {
             profileImage.alt = personalInfo.name;
         }
         if (resumeDownload) {
-            resumeDownload.href = `/${personalInfo.resume_file}`;
-            resumeDownload.download = `${personalInfo.name.replace(/\s+/g, '-')}-Resume.pdf`;
+            // Remove the default href and download attributes
+            resumeDownload.removeAttribute('href');
+            resumeDownload.removeAttribute('download');
+            
+            // Add click handler to force download
+            resumeDownload.addEventListener('click', async function(e) {
+                e.preventDefault();
+                try {
+                    const response = await fetch(`/${personalInfo.resume_file}`);
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `${personalInfo.name.replace(/\s+/g, '-')}-Resume.pdf`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(url);
+                } catch (error) {
+                    console.error('Download failed:', error);
+                    // Fallback: open in new tab
+                    window.open(`/${personalInfo.resume_file}`, '_blank');
+                }
+            });
         }
         
         // Update contact information
