@@ -5,13 +5,13 @@
     "title": "Software Engineer",
     "company": "DevAxl",
     "responsibilities": [
-      "Engineered a scalable backend microservice in **Go (Gin)** for a TikTok-like influencer application, implementing modules for **JWT authentication**, **S3 storage**, and user engagement using a **PostgreSQL** database.",
-      "Significantly enhanced a **Python-based RAG chat system** (PMA-GPT) using **Firebase Functions**, **OpenAI**, and **Firestore**, implementing advanced chat session/history management and multi-modal analysis (video highlights, PDF summaries).",
-      "Architected and built a unified **ETL data-pipeline** from scratch, automating the ingestion, cleaning, and embedding of company data from diverse sources (**YouTube Data API, Wistia API, Ghost API**) into a **Pinecone** vector database.",
-      "Developed the backend MVP for an AI-powered supplier quote system using **NestJS**, **MongoDB**, and **OpenAI**, integrating the **Gmail API (OAuth)** for sending customized, templated emails.",
-      "Architected a solution to integrate a **Next.js** and **GraphQL**-based AI web app (Vetsie AI) with a **WordPress** membership system, restricting application access exclusively to paying subscribers.",
-      "Engineered a full-stack financial module, developing a **NestJS** and **MySQL** backend from scratch to handle **Xero API (OAuth)** data synchronization, and an **Angular** frontend with **AG Grid** to display interactive financial data (balance sheets, transactions, cash flow).",
-      "Created and deployed automated workflows using **n8n** and **Make.com** to scrape, clean, and process web data, leveraging **Gemini** and **OpenAI** for data enrichment and automated email processing."
+      "Engineered a scalable backend microservice in Go (Gin) for a TikTok-like influencer application, implementing modules for JWT authentication, S3 storage, and user engagement using a PostgreSQL database.",
+      "Significantly enhanced a Python-based RAG chat system (PMA-GPT) using Firebase Functions, OpenAI, and Firestore, implementing advanced chat session/history management and multi-modal analysis (video highlights, PDF summaries).",
+      "Architected and built a unified ETL data-pipeline from scratch, automating the ingestion, cleaning, and embedding of company data from diverse sources (YouTube Data API, Wistia API, Ghost API) into a Pinecone vector database.",
+      "Developed the backend MVP for an AI-powered supplier quote system using NestJS, MongoDB, and OpenAI, integrating the Gmail API (OAuth) for sending customized, templated emails.",
+      "Architected a solution to integrate a Next.js and GraphQL-based AI web app (Vetsie AI) with a WordPress membership system, restricting application access exclusively to paying subscribers.",
+      "Engineered a full-stack financial module, developing a NestJS and MySQL backend from scratch to handle Xero API (OAuth) data synchronization, and an Angular frontend with AG Grid to display interactive financial data (balance sheets, transactions, cash flow).",
+      "Created and deployed automated workflows using n8n and Make.com to scrape, clean, and process web data, leveraging Gemini and OpenAI for data enrichment and automated email processing."
     ]
   },
   {
