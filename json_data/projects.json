@@ -1,5 +1,214 @@
 [
   {
+    "id": "clean-md-to-multi-format",
+    "title": "Clean MD to Multi-Format — VS Code Extension",
+    "project_type": "Personal Project",
+    "status": "Live",
+    "role": "Creator & Lead Developer",
+    "date_range": "2024 - Present",
+    "short_description": "Developed and published a feature-rich VS Code Extension that converts Markdown files into professional, publication-ready documents (PDF, HTML, DOCX) with advanced theming.",
+    "long_description": "Developed and published a feature-rich VS Code Extension that converts Markdown files into professional, publication-ready documents. The extension prioritizes clean, watermark-free output and offers advanced theming options for various use cases (Academic, Corporate, Tech).\n\nKey capabilities include:\n1. **Multi-Format Conversion Engine:** Engineered a conversion pipeline using markdown-it and Puppeteer (headless Chrome) for high-fidelity PDF rendering, with adapters for HTML and DOCX export.\n2. **Advanced Theming System:** Created 10 professional CSS-based themes that dynamically inject styling into the rendering pipeline, supporting syntax highlighting and complex layouts.\n3. **VS Code Integration:** Deeply integrated with the VS Code API for command palette commands, context menu actions, and reactive configuration settings.",
+    "key_features": [
+      "Convert Markdown to PDF, HTML, DOCX",
+      "High-fidelity rendering with Puppeteer",
+      "10+ Professional CSS Themes (Academic, GitHub, Dark)",
+      "Batch File Processing from File Explorer",
+      "Syntax Highlighting with highlight.js",
+      "Deep VS Code API Integration (Commands, Settings)",
+      "No Watermarks & Clean Output"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Ensuring High-Fidelity PDF Output",
+        "solution": "Integrated Puppeteer (headless Chrome) into the extension to render the markdown as HTML first, ensuring exact visual fidelity and support for complex CSS layouts before generating the PDF."
+      },
+      {
+        "challenge": "Seamless VS Code Integration",
+        "solution": "Utilized the VS Code API to provide a native experience, registering commands, context menu items, and configuration listeners that react immediately to user changes."
+      }
+    ],
+    "technologies": [
+      "TypeScript",
+      "VS Code API",
+      "Puppeteer",
+      "Markdown-it",
+      "CSS3",
+      "Webpack"
+    ],
+    "links": [
+      {
+        "type": "Release",
+        "url": "https://github.com/Qamar2315/clean-md-pdf/releases",
+        "icon": "fas fa-download"
+      }
+    ],
+    "media": []
+  },
+  {
+    "id": "color-by-numb3r",
+    "title": "Color by Numb3r — Full-Stack E-Commerce & Content Platform",
+    "project_type": "Freelance Project",
+    "status": "Live",
+    "role": "Lead Full-Stack Architect",
+    "date_range": "2024 - Present",
+    "short_description": "Architected and deployed a multi-tenant e-commerce and content platform for a creative business, featuring a custom React CMS, automated product syncing, and a robust FastAPI backend.",
+    "long_description": "Architected and deployed a comprehensive e-commerce and content management platform for a niche creative business. The system features a multi-tenant architecture serving three distinct user groups: Customers (Storefront), Designers (Creative Tools), and Admins (Management).\n\nKey capabilities include:\n1. **High-Performance Infrastructure:** Hosted on a custom Linux VPS with Nginx reverse proxy and fully automated CI/CD via GitHub Actions.\n2. **Advanced Backend Engineering:** Powered by FastAPI and MongoDB (Beanie), featuring an automated background sync engine that aggregates products from external marketplaces (Bol.com) and a ScrapingAnt service to bypass anti-bot protections.\n3. **Modular Frontend:** A complex React 19 SPA with distinct layouts for Public, Admin, and Designer portals, plus a bespoke CMS with rich-text editing and Cloudinary image optimization.",
+    "key_features": [
+      "Multi-Tenant Architecture (Customer, Designer, Admin)",
+      "Automated External Product Sync (Bol.com) with ScrapingAnt",
+      "Asynchronous Job Queue using FastAPI BackgroundTasks",
+      "Custom React CMS with Rich-Text & Cloudinary Integration",
+      "Role-Based Access Control (RBAC) & API Key Management",
+      "Automated CI/CD Pipeline (GitHub Actions -> VPS)",
+      "Performance optimized with Nginx & In-memory Caching"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Synchronizing Data from External Marketplaces",
+        "solution": "Engineered a robust scraping service using ScrapingAnt and an async job queue to reliably fetch and normalize product data and reviews from Bol.com without blocking the main API."
+      },
+      {
+        "challenge": "Managing Complex User Roles and Content",
+        "solution": "Built a modular SPA with React Router v7 to handle distinct layouts for different user roles and developed a bespoke CMS to allow admins to manage blogs and layout content easily."
+      }
+    ],
+    "technologies": [
+      "Python",
+      "FastAPI",
+      "React 19",
+      "MongoDB (Beanie)",
+      "Tailwind CSS v4",
+      "Nginx",
+      "Linux VPS",
+      "GitHub Actions",
+      "ScrapingAnt",
+      "Cloudinary"
+    ],
+    "links": [
+      {
+        "type": "Live Site",
+        "url": "https://colorbynumb3r.com/",
+        "icon": "fas fa-globe"
+      },
+      {
+        "type": "Video Demo",
+        "url": "https://www.loom.com/share/9d3eb9001e744aa097b26f20e631c52b",
+        "icon": "fas fa-video"
+      }
+    ],
+    "media": [
+      {
+        "type": "video",
+        "src": "https://www.loom.com/share/9d3eb9001e744aa097b26f20e631c52b",
+        "caption": "Project Demo Video"
+      }
+    ]
+  },
+  {
+    "id": "autonomous-lead-generation-ai",
+    "title": "Autonomous Lead Generation AI",
+    "project_type": "Professional Project",
+    "status": "Live",
+    "role": "Lead Python Automation Engineer",
+    "date_range": "2024",
+    "short_description": "Developed a proprietary, modular Python application designed to autonomously identify, verify, and qualify real estate leads, fully integrated with the Zoho Ecosystem.",
+    "long_description": "Developed a proprietary, modular Python application designed to autonomously identify, verify, and qualify real estate leads (Residential, Commercial, Hospitality). The system is deployed on a Virtual Private Server (VPS) and runs on a strict weekly schedule to ensure a continuous pipeline of high-quality leads.\n\nKey capabilities include:\n1. **High-Availability Infrastructure:** Hosted on a Linux VPS for performance, executing complex scraping and AI tasks without local resource constraints, with orchestration via Zoho.\n2. **5-Stage Data Pipeline:** Engineered robust scrapers (ALN, Crexi, Yelp, Google Maps) with rotation logic, followed by a normalization engine to unify data structures.\n3. **AI Verification & Enrichment:** Integrated OpenAI (GPT-5 Nano) to verify facility services from property websites and utilized Apollo.io/RocketReach to retrieve and validate decision-maker contact info.\n4. **Scoring & Routing:** Implemented a logic-based scoring engine (0-100) to route high-confidence leads (>75) directly to Zoho CRM via OAuth 2.0.",
+    "key_features": [
+      "Multi-Source Extraction (ALN, Crexi, Yelp, Google Maps)",
+      "AI Service Verification using OpenAI GPT-5 Nano",
+      "Deep Enrichment via Apollo.io & RocketReach",
+      "Logic-based Scoring Engine & Territory Router",
+      "Automated Zoho CRM Injection (OAuth 2.0)",
+      "Modular CLI Interface for granular control",
+      "Deployed on Linux VPS with weekly batch schedules"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Bypassing Sophisticated Bot Detection",
+        "solution": "Implemented undetected_chromedriver with robust rotation logic and proxy management to scrape data from high-security sources like Google Maps and Yelp without interruption."
+      },
+      {
+        "challenge": "Ensuring Data Quality and Relevance",
+        "solution": "Integrated OpenAI's GPT-5 Nano with Pydantic structured outputs to analyze unstructured property descriptions, verifying specific amenities (e.g., Valet Parking) to strictly qualify leads before enrichment."
+      }
+    ],
+    "technologies": [
+      "Python 3.12",
+      "Selenium",
+      "OpenAI API",
+      "Zoho CRM API",
+      "Apollo.io API",
+      "Pandas",
+      "Linux VPS",
+      "Click (CLI)"
+    ],
+    "links": [
+      {
+        "type": "Video Demo",
+        "url": "https://www.loom.com/share/92da611e33ea472fa4cab72dfba451e3",
+        "icon": "fas fa-video"
+      }
+    ],
+    "media": [
+      {
+        "type": "video",
+        "src": "https://www.loom.com/share/92da611e33ea472fa4cab72dfba451e3",
+        "caption": "Project Demo Video"
+      }
+    ]
+  },
+  {
+    "id": "intelligent-invoice-automation",
+    "title": "Intelligent Invoice Processing Automation",
+    "project_type": "Professional Project",
+    "status": "Live",
+    "role": "Automation Architect & Developer",
+    "date_range": "2024",
+    "short_description": "Architected and deployed a sophisticated low-code/code-full workflow using n8n to automate financial operations, bridging Gmail and Airtable with Generative AI for invoice parsing.",
+    "long_description": "Architected and deployed a sophisticated low-code/code-full workflow using n8n to automate financial operations. The system serves as a bridge between communication channels (Gmail) and database systems (Airtable), utilizing Generative AI to parse unstructured invoice data into structured financial records.\n\nKey capabilities include:\n1. **Event-Driven Architecture:** Configured webhooks and triggers within n8n to monitor Gmail in real-time for specific invoice attachments or subject line patterns.\n2. **AI Data Extraction:** Integrated Google’s Gemini LLM via API to act as an intelligent parser. The AI agent analyzes PDF/Image invoices, extracting key fields (Invoice ID, Line Items, Tax, Vendor Details) regardless of the document layout, replacing rigid OCR templates.\n3. **Cloud Sync & Management:** Automated file handling to archive raw documents into structured Google Drive directories and orchestrated record creation in Airtable for finance team approval.",
+    "key_features": [
+      "Event-Driven Architecture with n8n webhooks",
+      "Real-time Gmail monitoring for invoices",
+      "AI Data Extraction using Google Gemini LLM",
+      "Layout-agnostic parsing (PDF/Image)",
+      "Custom JavaScript logic for currency conversion",
+      "Automated Google Drive archiving",
+      "Seamless Airtable integration for approvals"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "Handling Unstructured Invoice Data",
+        "solution": "Integrated Google Gemini LLM to analyze PDFs and images, extracting structured data without rigid OCR templates."
+      },
+      {
+        "challenge": "Automating Complex Financial Logic",
+        "solution": "Utilized custom JavaScript nodes in n8n to handle currency conversion, data sanitization, and conditional logic based on totals."
+      }
+    ],
+    "technologies": [
+      "n8n",
+      "Google Gemini API",
+      "JavaScript",
+      "Gmail API",
+      "Google Drive API",
+      "Airtable"
+    ],
+    "links": [
+      {
+        "type": "Video Demo",
+        "url": "https://www.loom.com/share/3a98b36d9a1d40b19e92b97fab7778a1",
+        "icon": "fas fa-video"
+      }
+    ],
+    "media": [
+      {
+        "type": "video",
+        "src": "https://www.loom.com/share/3a98b36d9a1d40b19e92b97fab7778a1",
+        "caption": "Project Demo Video"
+      }
+    ]
+  },
+  {
     "id": "ask-sunnah-online",
     "title": "Ask Sunnah - AI Islamic Scholar",
     "project_type": "Personal Project",

@@ -5,13 +5,16 @@
     "title": "Software Engineer",
     "company": "DevAxl",
     "responsibilities": [
+      "Developed a modular Autonomous Lead Generation AI on a Linux VPS, integrating multi-source scraping (Google Maps, Yelp), AI-based verification (GPT-5 Nano), and automated enrichment (Apollo.io) to push high-quality leads directly into Zoho CRM.",
+      "Architected and deployed an intelligent invoice processing system using n8n and Google Gemini, automating data extraction from unstructured PDF/image invoices and syncing structured financial records to Airtable for real-time approval workflows.",
       "Engineered a scalable backend microservice in Go (Gin) for a TikTok-like influencer application, implementing modules for JWT authentication, S3 storage, and user engagement using a PostgreSQL database.",
-      "Significantly enhanced a Python-based RAG chat system (PMA-GPT) using Firebase Functions, OpenAI, and Firestore, implementing advanced chat session/history management and multi-modal analysis (video highlights, PDF summaries).",
-      "Architected and built a unified ETL data-pipeline from scratch, automating the ingestion, cleaning, and embedding of company data from diverse sources (YouTube Data API, Wistia API, Ghost API) into a Pinecone vector database.",
+      "Architected a full-stack AI ecosystem on Google Cloud (Firebase Gen 2, Firestore), featuring a modular Python ETL pipeline to ingest and vectorize content (YouTube, Wistia, Ghost) into Pinecone, and a Serverless RAG Backend utilizing GPT-4.1 for intelligent chat, JIT video analysis, and real-time PDF intelligence.",
       "Developed the backend MVP for an AI-powered supplier quote system using NestJS, MongoDB, and OpenAI, integrating the Gmail API (OAuth) for sending customized, templated emails.",
       "Architected a solution to integrate a Next.js and GraphQL-based AI web app (Vetsie AI) with a WordPress membership system, restricting application access exclusively to paying subscribers.",
-      "Engineered a full-stack financial module, developing a NestJS and MySQL backend from scratch to handle Xero API (OAuth) data synchronization, and an Angular frontend with AG Grid to display interactive financial data (balance sheets, transactions, cash flow).",
-      "Created and deployed automated workflows using n8n and Make.com to scrape, clean, and process web data, leveraging Gemini and OpenAI for data enrichment and automated email processing."
+      "Engineered an enterprise-grade financial platform using NestJS, MySQL (TypeORM), and Docker. Built a resilient dual-sync engine for Xero General Ledger data featuring self-healing OAuth2 authentication, advanced rate limiting with exponential backoff, and real-time reporting (Aged Debtors, Cash Flow) via automated Cron jobs.",
+      "Created and deployed automated workflows using n8n and Make.com to scrape, clean, and process web data, leveraging Gemini and OpenAI for data enrichment and automated email processing.",
+      "Designed and published 'ContextCrafter', a CLI tool (NPM) for preparing large codebases for LLM context windows, featuring intelligent aggregation, custom ignore logic (.contextignore), and architectural tree generation.",
+      "Designed and deployed a production-grade AI-to-Human contact center platform using FreeSWITCH, Docker, and React. Implemented real-time SIP/WebRTC call bridging, intelligent agent routing with barge-in capabilities, and a Python (FastAPI/Redis) backend for event-driven call state management."
     ]
   },
   {

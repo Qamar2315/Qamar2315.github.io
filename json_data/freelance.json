@@ -63,30 +63,27 @@
     ]
   },
   {
-    "id": "custom-coloring-book-maker",
-    "title": "Full-Stack Custom Coloring Book Generator",
-    "short_description": "Developed a web application that converts images into printable color-by-number pages, featuring a custom designer, palette management, and multiple backend services.",
-    "problem_statement": "Artists, educators, and hobbyists needed a flexible tool to create custom color-by-number puzzles from their own images or original designs. Existing solutions were either too simple, lacking customization, or required expensive desktop software.",
-    "solution_delivered": "I built a feature-rich frontend using React and Tailwind CSS, offering two creation modes: 'Image Upload' and a 'Designer' for drawing on a grid. The application is powered by a polyglot microservices architecture. The core image processing and PDF generation is handled by a Python/Flask backend, using libraries like Pillow for image manipulation and Playwright for high-fidelity PDF creation. For robust user management, authentication (JWT), role-based access, and API key generation for 'Designer' roles, I developed a separate, high-performance backend service in Go (Golang) using the Gin framework and MongoDB. This architecture ensures scalability and separates concerns effectively.",
+    "id": "color-by-numb3r",
+    "title": "Color by Numb3r — Full-Stack E-Commerce & Content Platform",
+    "short_description": "Architected and deployed a multi-tenant e-commerce and content platform for a creative business, featuring a custom React CMS, automated product syncing, and a robust FastAPI backend.",
+    "problem_statement": "The client required a scalable, production-ready platform to sell custom coloring books and digital content. The existing tools were insufficient for managing a growing catalog of products, serving different user roles (Designers vs Customers), and handling high-volume traffic. They needed a system that could automatically sync product data from external marketplaces like Bol.com and provide a seamless, branded experience for users to create and purchase custom designs.",
+    "solution_delivered": "I engineered a complete digital ecosystem hosted on a custom Linux VPS. The backend, built with FastAPI and MongoDB (Beanie), features an automated background sync engine that keeps product inventory and reviews up-to-date with Bol.com. The frontend is a complex React 19 SPA with distinct portals for Customers, Designers, and Admins. I implemented a CI/CD pipeline via GitHub Actions for zero-downtime deployments and optimized performance using Nginx and in-memory caching. The result is a robust, high-performance platform that handles real-time customization and e-commerce transactions.",
     "key_achievements": [
-      "Created a dual-mode system allowing users to either upload existing images or design puzzles from scratch on a grid.",
-      "Implemented extensive customization, including various pixel shapes (squares, triangles, hexagons), palette management, and multiple PDF/PNG export settings.",
-      "Engineered a polyglot backend using Python/Flask for complex media processing and Go/Gin for scalable user management and authentication.",
-      "Developed a robust PDF generation pipeline using Playwright and Jinja2 to create high-quality, printable coloring pages with optional color keys."
+      "Launched a production-live platform serving real customers and designers.",
+      "Automated product and review synchronization from Bol.com, reducing manual data entry by 100%.",
+      "Implemented a comprehensive Role-Based Access Control (RBAC) system to securely manage different user types.",
+      "Established a fully automated CI/CD pipeline, enabling rapid and safe iteration.",
+      "Optimized site performance and security with Nginx reverse proxy and SSL termination."
     ],
     "technologies": [
-      "React",
-      "Tailwind CSS",
       "Python",
-      "Flask",
-      "Pillow (PIL)",
-      "Playwright",
-      "Go (Golang)",
-      "Gin-Gonic",
+      "FastAPI",
+      "React 19",
       "MongoDB",
-      "REST API",
-      "JWT",
-      "SQLite"
+      "Tailwind CSS v4",
+      "Nginx",
+      "GitHub Actions",
+      "ScrapingAnt"
     ],
     "client_feedback": {
       "quote": "Great Work Qamar. Long term partner.",
@@ -95,8 +92,8 @@
     "media": [
       {
         "type": "video",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1756672896/Freelance/Recording_2025-09-01_013955_hdiqx5.mp4",
-        "caption": "A comprehensive demo of the Coloring Book Maker, showing image upload, the designer grid, palette customization, and final PDF generation."
+        "src": "https://www.loom.com/share/9d3eb9001e744aa097b26f20e631c52b",
+        "caption": "Overview of the Color by Numb3r platform, showcasing the store, designer tools, and admin capabilities."
       }
     ]
   }
