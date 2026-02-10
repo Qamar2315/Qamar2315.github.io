@@ -433,7 +433,24 @@ document.addEventListener('DOMContentLoaded', () => {
             timelineItem.className = 'timeline-item relative pl-8 pb-8 animate-on-scroll';
 
             // Create the list of responsibilities
-            const responsibilitiesHTML = (job.responsibilities || []).map(item => `<li>${item}</li>`).join('');
+            const responsibilitiesHTML = (job.responsibilities || []).map((item, index) => {
+                if (typeof item === 'string') {
+                    return `<li class="mb-2">${item}</li>`;
+                } else if (typeof item === 'object' && item.summary) {
+                    // It's a detailed object
+                    // We'll add a data attribute to the button to identify which item it is
+                    // But since 'job' is the parent, we need a way to pass the 'details' to the modal.
+                    // A simple way is to attach the details object to the button element directly after render,
+                    // or store it in a temporary lookup.
+                    // BETTER APPROACH: Assign a unique ID to the button and store data in a global map or 
+                    // attach the click listener immediately after creating the element if we were building via DOM nodes.
+                    // Since we are using template strings, let's use a class to identify these triggers and 
+                    // attach listeners after innerHTML is set? 
+                    // NO, that's messy. Let's build the list items as DOM nodes instead of a string.
+                    return ''; // We will handle this in the loop below
+                }
+                return '';
+            }).join('');
 
             timelineItem.innerHTML = `
                 <div class="timeline-dot w-4 h-4 border-2 border-blue-500">
@@ -442,12 +459,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="bg-slate-100/70 p-6 rounded-lg shadow-sm">
                     <p class="text-sm font-semibold text-blue-600">${job.date_range}</p>
                     <h3 class="text-lg font-bold text-slate-800 mt-1">${job.title}, ${job.company}</h3>
-                    <ul class="list-disc list-inside text-slate-600 space-y-1 mt-3">
-                        ${responsibilitiesHTML}
+                    <ul class="list-disc list-inside text-slate-600 space-y-1 mt-3" id="resp-list-${job.id}">
+                        <!-- String items will be injected here first, then we append objects -->
                     </ul>
                 </div>
             `;
+            
             timelineContainer.appendChild(timelineItem);
+
+            // Now, let's populate the list properly including the interactive items
+            const listContainer = timelineItem.querySelector(`#resp-list-${job.id}`);
+            if (listContainer) {
+                (job.responsibilities || []).forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = "mb-3 leading-relaxed"; // Added spacing and line-height
+
+                    if (typeof item === 'string') {
+                        li.textContent = item;
+                    } else if (typeof item === 'object' && item.summary) {
+                        // Detailed Item Container
+                        const container = document.createElement('div');
+                        container.className = "inline"; 
+
+                        const summaryText = document.createElement('span');
+                        summaryText.textContent = item.summary + " ";
+                        container.appendChild(summaryText);
+
+                        const viewDetailsBtn = document.createElement('button');
+                        viewDetailsBtn.className = "inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors cursor-pointer focus:outline-none ml-1";
+                        viewDetailsBtn.innerHTML = `<i class="fas fa-external-link-alt text-xs mr-1"></i>View Details`;
+                        
+                        viewDetailsBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            populateModal(item.details);
+                            openModal();
+                        });
+
+                        container.appendChild(viewDetailsBtn);
+                        li.appendChild(container);
+                    }
+                    listContainer.appendChild(li);
+                });
+            }
         });
         
         // Re-observe newly created elements for scroll animations

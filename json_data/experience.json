@@ -5,16 +5,189 @@
     "title": "Software Engineer",
     "company": "DevAxl",
     "responsibilities": [
-      "Developed a modular Autonomous Lead Generation AI on a Linux VPS, integrating multi-source scraping (Google Maps, Yelp), AI-based verification (GPT-5 Nano), and automated enrichment (Apollo.io) to push high-quality leads directly into Zoho CRM.",
-      "Architected and deployed an intelligent invoice processing system using n8n and Google Gemini, automating data extraction from unstructured PDF/image invoices and syncing structured financial records to Airtable for real-time approval workflows.",
+      {
+        "summary": "Developed a modular Autonomous Lead Generation AI on a Linux VPS, integrating multi-source scraping (Google Maps, Yelp), AI-based verification (GPT-5 Nano), and automated enrichment (Apollo.io) to push high-quality leads directly into Zoho CRM.",
+        "details": {
+          "title": "Autonomous Lead Generation AI",
+          "role": "Lead Python Automation Engineer",
+          "short_description": "A modular AI system for autonomous lead discovery, verification, and CRM injection.",
+          "long_description": "Developed a modular Autonomous Lead Generation AI on a Linux VPS. The system integrates multi-source scraping (Google Maps, Yelp), AI-based verification using GPT-5 Nano (or GPT-4o-mini), and automated enrichment via Apollo.io to push high-quality, verified leads directly into Zoho CRM.\\n\\nKey capabilities include:\\n1. **Multi-Source Scraping:** Aggregates leads from Google Maps and Yelp.\\n2. **AI Verification:** Uses LLMs to verify lead relevance and quality.\\n3. **CRM Integration:** Direct sync to Zoho CRM for sales team action.",
+          "key_features": [
+            "Multi-Source Scraping (Google Maps, Yelp)",
+            "AI-Based Lead Verification (GPT-5 Nano)",
+            "Automated Enrichment (Apollo.io, RocketReach)",
+            "Direct Integration with Zoho CRM",
+            "Deployed on Linux VPS for 24/7 Operation"
+          ],
+          "technologies": [
+            "Python",
+            "Selenium",
+            "OpenAI API",
+            "Zoho CRM API",
+            "Pandas",
+            "Linux VPS"
+          ],
+          "media": [
+            {
+              "type": "video",
+              "src": "https://www.loom.com/share/92da611e33ea472fa4cab72dfba451e3",
+              "caption": "Project Demo Video"
+            }
+          ]
+        }
+      },
+      {
+        "summary": "Architected and deployed an intelligent invoice processing system using n8n and Google Gemini, automating data extraction from unstructured PDF/image invoices and syncing structured financial records to Airtable for real-time approval workflows.",
+        "details": {
+          "title": "Intelligent Invoice Processing Automation",
+          "role": "Automation Architect",
+          "short_description": "End-to-end invoice automation workflow using n8n and Generative AI.",
+          "long_description": "Architected and deployed an intelligent invoice processing system using n8n and Google Gemini. The solution automates data extraction from unstructured PDF and image invoices received via Gmail, parses them using GenAI, and syncs structured financial records to Airtable for real-time approval workflows.\\n\\nKey capabilities include:\\n1. **AI-Powered Extraction:** Uses Gemini to parse complex invoice layouts.\\n2. **Seamless Integrations:** Connects Gmail, Drive, and Airtable via n8n.\\n3. **Human-in-the-Loop:** Airtable powered approval flows.",
+          "key_features": [
+            "AI Data Extraction (Google Gemini)",
+            "Automated Workflow Orchestration (n8n)",
+            "Gmail & Google Drive Integration",
+            "Structured Sync to Airtable",
+            "Real-time Approval Workflows"
+          ],
+          "technologies": [
+            "n8n",
+            "Google Gemini API",
+            "JavaScript",
+            "Gmail API",
+            "Airtable",
+            "Google Drive API"
+          ],
+          "media": [
+            {
+              "type": "video",
+              "src": "https://www.loom.com/share/3a98b36d9a1d40b19e92b97fab7778a1",
+              "caption": "Workflow Demo"
+            }
+          ]
+        }
+      },
       "Engineered a scalable backend microservice in Go (Gin) for a TikTok-like influencer application, implementing modules for JWT authentication, S3 storage, and user engagement using a PostgreSQL database.",
-      "Architected a full-stack AI ecosystem on Google Cloud (Firebase Gen 2, Firestore), featuring a modular Python ETL pipeline to ingest and vectorize content (YouTube, Wistia, Ghost) into Pinecone, and a Serverless RAG Backend utilizing GPT-4.1 for intelligent chat, JIT video analysis, and real-time PDF intelligence.",
+      {
+        "summary": "Architected a full-stack AI ecosystem on Google Cloud (Firebase Gen 2, Firestore), featuring a modular Python ETL pipeline to ingest and vectorize content (YouTube, Wistia, Ghost) into Pinecone, and a Serverless RAG Backend utilizing GPT-4.1 for intelligent chat, JIT video analysis, and real-time PDF intelligence.",
+        "details": {
+          "title": "Serverless RAG Knowledge Engine",
+          "role": "Lead Full-Stack AI Engineer",
+          "short_description": "A serverless RAG platform with multi-source ingestion and just-in-time video analysis.",
+          "long_description": "Architected and developed a full-stack AI ecosystem for Product Marketing Alliance (PMA). The system consists of two core components: a robust Data Pipeline that ingests and vectorizes content from multiple platforms (YouTube, Wistia, Ghost CMS), and a Serverless Backend that powers a user-facing AI dashboard for chat, video analysis, and document querying.\\n\\n**Component 1: Unified Data Pipeline**\\nModular Python pipeline for multi-source ingestion, AI enrichment with Instructor, and smart chunking.\\n\\n**Component 2: Intelligent Backend API**\\nFirebase Cloud Functions powering advanced RAG, Just-In-Time video analysis, and on-the-fly PDF intelligence.",
+          "key_features": [
+            "Serverless Architecture (Firebase Gen 2)",
+            "Multi-Source Ingestion (YouTube, Wistia, Ghost)",
+            "Vector Search with Pinecone",
+            "Just-In-Time Video Analysis",
+            "Real-time PDF Parsing & Summarization"
+          ],
+          "key_challenges": [
+            {
+              "challenge": "JIT Video Analysis",
+              "solution": "Engineered an on-demand flow to fetch raw transcripts, generate summaries via GPT-4 realtime, and cache results in Firestore."
+            }
+          ],
+          "technologies": [
+            "Python",
+            "Firebase Functions",
+            "Firestore",
+            "Pinecone",
+            "OpenAI GPT-4.1",
+            "Instructor",
+            "YouTube Data API"
+          ],
+          "media": []
+        }
+      },
       "Developed the backend MVP for an AI-powered supplier quote system using NestJS, MongoDB, and OpenAI, integrating the Gmail API (OAuth) for sending customized, templated emails.",
       "Architected a solution to integrate a Next.js and GraphQL-based AI web app (Vetsie AI) with a WordPress membership system, restricting application access exclusively to paying subscribers.",
-      "Engineered an enterprise-grade financial platform using NestJS, MySQL (TypeORM), and Docker. Built a resilient dual-sync engine for Xero General Ledger data featuring self-healing OAuth2 authentication, advanced rate limiting with exponential backoff, and real-time reporting (Aged Debtors, Cash Flow) via automated Cron jobs.",
+      {
+        "summary": "Engineered an enterprise-grade financial platform using NestJS, MySQL (TypeORM), and Docker. Built a resilient dual-sync engine for Xero General Ledger data featuring self-healing OAuth2 authentication, advanced rate limiting with exponential backoff, and real-time reporting (Aged Debtors, Cash Flow) via automated Cron jobs.",
+        "details": {
+          "title": "Enterprise Xero Integration & Financial Analytics",
+          "role": "Backend Architect",
+          "short_description": "Robust NestJS platform for synchronizing and analyzing Xero financial data.",
+          "long_description": "Engineered a robust, enterprise-grade backend system using NestJS to bridge Xero Accounting Software with an internal financial machine. The platform serves as a centralized data aggregator, automating the retrieval, normalization, and analysis of financial data for multiple corporate tenants.\\n\\nKey implementations include a **Dual-Sync Engine** for two-stage data pipelining, **Resilient Xero OAuth2 Management** with self-healing tokens, and an **Advanced Rate Limiting Strategy** to respect strict API limits.",
+          "key_features": [
+            "Dual-Sync Engine (Ingest & Push)",
+            "Self-Healing Xero OAuth2 Management",
+            "Resilient Rate Limiting with Exponential Backoff",
+            "Financial Reporting (Aged Debtors, Cash Flow)",
+            "RBAC with JWT & API Keys",
+            "Automated Nightly Cron Jobs"
+          ],
+          "technologies": [
+            "NestJS",
+            "TypeScript",
+            "MySQL (TypeORM)",
+            "Xero API",
+            "Docker",
+            "Redis",
+            "RxJS"
+          ],
+          "media": []
+        }
+      },
       "Created and deployed automated workflows using n8n and Make.com to scrape, clean, and process web data, leveraging Gemini and OpenAI for data enrichment and automated email processing.",
-      "Designed and published 'ContextCrafter', a CLI tool (NPM) for preparing large codebases for LLM context windows, featuring intelligent aggregation, custom ignore logic (.contextignore), and architectural tree generation.",
-      "Designed and deployed a production-grade AI-to-Human contact center platform using FreeSWITCH, Docker, and React. Implemented real-time SIP/WebRTC call bridging, intelligent agent routing with barge-in capabilities, and a Python (FastAPI/Redis) backend for event-driven call state management."
+      {
+        "summary": "Designed and published 'ContextCrafter', a CLI tool (NPM) for preparing large codebases for LLM context windows, featuring intelligent aggregation, custom ignore logic (.contextignore), and architectural tree generation.",
+        "details": {
+          "title": "ContextCrafter — Universal Code Aggregator",
+          "role": "Open Source Maintainer",
+          "short_description": "CLI tool to aggregate codebases for LLM context windows.",
+          "long_description": "Designed and published a developer productivity tool available as an NPM package (`npm install -g context-crafter`). This CLI utility solves the problem of preparing large, complex codebases for LLM context windows by intelligently aggregating source code into a structured, single-file format.\\n\\nFeatures include **Intelligent Aggregation** (filtering node_modules/git), a **Configuration Engine** for presets, **Custom Ignore Logic** (.contextignore), and **Visual Project Mapping** for architectural context.",
+          "key_features": [
+            "Intelligent Code Aggregation",
+            "Visual Project Tree Generation",
+            "Custom .contextignore Parser",
+            "Configuration Presets (React, Python)",
+            "CLI Argument Parsing"
+          ],
+          "technologies": [
+            "Node.js",
+            "TypeScript",
+            "Commander.js",
+            "NPM"
+          ],
+          "links": [
+            {
+              "type": "NPM Package",
+              "url": "https://www.npmjs.com/package/context-crafter",
+              "icon": "fab fa-npm"
+            }
+          ],
+          "media": []
+        }
+      },
+      {
+        "summary": "Designed and deployed a production-grade AI-to-Human contact center platform using FreeSWITCH, Docker, and React. Implemented real-time SIP/WebRTC call bridging, intelligent agent routing with barge-in capabilities, and a Python (FastAPI/Redis) backend for event-driven call state management.",
+        "details": {
+          "title": "Vapi Transfer — AI Contact Center",
+          "role": "Lead VOIP & Full-Stack Engineer",
+          "short_description": "Real-time AI-to-Human call handoff platform using FreeSWITCH and WebRTC.",
+          "long_description": "Designed, developed, and deployed a production-grade AI-powered contact center platform enabling seamless real-time call transfer between Vapi AI voice assistants and live human agents. The system supports AI-first outbound calling, live agent monitoring, barge-in/takeover capabilities, and intelligent call routing through a WebRTC-based agent dashboard.\\n\\nCore components:\\n1. **FreeSWITCH SIP/WebRTC Platform:** Dockerized cluster handling NAT traversal and RTP.\\n2. **AI-to-Human Handoff:** Custom dialplans for smooth transfer.\\n3. **WebRTC Agent Dashboard:** React-based interface for real-time call controls (Barge-in, Monitor).",
+          "key_features": [
+            "AI-to-Human Call Handoff",
+            "WebRTC Agent Dashboard (React)",
+            "Live Monitoring & Barge-In",
+            "Event-Driven Backend (FastAPI + Redis)",
+            "FreeSWITCH ESL Integration",
+            "Dockerized Infrastructure"
+          ],
+          "technologies": [
+            "Python",
+            "FastAPI",
+            "FreeSWITCH",
+            "React",
+            "WebRTC",
+            "Redis",
+            "Docker",
+            "SIP.js"
+          ],
+          "media": []
+        }
+      }
     ]
   },
   {
