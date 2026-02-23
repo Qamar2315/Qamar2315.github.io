@@ -475,14 +475,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.className = "mb-3 leading-relaxed"; // Added spacing and line-height
 
                     if (typeof item === 'string') {
-                        li.textContent = item;
+                        // Use parseInline to handle markdown without block elements
+                        li.innerHTML = marked.parseInline(item);
                     } else if (typeof item === 'object' && item.summary) {
                         // Detailed Item Container
                         const container = document.createElement('div');
                         container.className = "inline"; 
 
                         const summaryText = document.createElement('span');
-                        summaryText.textContent = item.summary + " ";
+                        // Use parseInline to handle markdown inside the summary
+                        summaryText.innerHTML = marked.parseInline(item.summary) + " ";
                         container.appendChild(summaryText);
 
                         const viewDetailsBtn = document.createElement('button');
@@ -680,9 +682,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (item.problem_statement) {
             descriptionHTML = `
                 <h4 class="font-semibold text-slate-800">The Challenge</h4>
-                <p class="mb-4">${item.problem_statement}</p>
+                <div class="mb-4 prose prose-sm max-w-none text-slate-600">${marked.parse(item.problem_statement)}</div>
                 <h4 class="font-semibold text-slate-800">My Solution</h4>
-                <p>${item.solution_delivered}</p>
+                <div class="prose prose-sm max-w-none text-slate-600">${marked.parse(item.solution_delivered)}</div>
             `;
         }
         modalMainDescription.innerHTML = descriptionHTML;
