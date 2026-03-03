@@ -11,7 +11,7 @@
           "title": "Autonomous Lead Generation AI",
           "role": "Lead Python Automation Engineer",
           "short_description": "A modular AI system for autonomous lead discovery, verification, and CRM injection.",
-          "long_description": "Developed a modular Autonomous Lead Generation AI on a Linux VPS. The system integrates multi-source scraping (Google Maps, Yelp), AI-based verification using GPT-5 Nano (or GPT-4o-mini), and automated enrichment via Apollo.io to push high-quality, verified leads directly into Zoho CRM.\\n\\nKey capabilities include:\\n1. **Multi-Source Scraping:** Aggregates leads from Google Maps and Yelp.\\n2. **AI Verification:** Uses LLMs to verify lead relevance and quality.\\n3. **CRM Integration:** Direct sync to Zoho CRM for sales team action.",
+          "long_description": "Developed a modular Autonomous Lead Generation AI on a Linux VPS. The system integrates multi-source scraping (Google Maps, Yelp), AI-based verification using GPT-5 Nano (or GPT-4o-mini), and automated enrichment via Apollo.io to push high-quality, verified leads directly into Zoho CRM.\\n\\nKey capabilities include:\\n\\n1. **Multi-Source Scraping:** Aggregates leads from Google Maps and Yelp.\\n2. **AI Verification:** Uses LLMs to verify lead relevance and quality.\\n3. **CRM Integration:** Direct sync to Zoho CRM for sales team action.",
           "key_features": [
             "Multi-Source Scraping (Google Maps, Yelp)",
             "AI-Based Lead Verification (GPT-5 Nano)",
@@ -42,7 +42,7 @@
           "title": "Intelligent Invoice Processing Automation",
           "role": "Automation Architect",
           "short_description": "End-to-end invoice automation workflow using n8n and Generative AI.",
-          "long_description": "Architected and deployed an intelligent invoice processing system using n8n and Google Gemini. The solution automates data extraction from unstructured PDF and image invoices received via Gmail, parses them using GenAI, and syncs structured financial records to Airtable for real-time approval workflows.\\n\\nKey capabilities include:\\n1. **AI-Powered Extraction:** Uses Gemini to parse complex invoice layouts.\\n2. **Seamless Integrations:** Connects Gmail, Drive, and Airtable via n8n.\\n3. **Human-in-the-Loop:** Airtable powered approval flows.",
+          "long_description": "Architected and deployed an intelligent invoice processing system using n8n and Google Gemini. The solution automates data extraction from unstructured PDF and image invoices received via Gmail, parses them using GenAI, and syncs structured financial records to Airtable for real-time approval workflows.\\n\\nKey capabilities include:\\n\\n1. **AI-Powered Extraction:** Uses Gemini to parse complex invoice layouts.\\n2. **Seamless Integrations:** Connects Gmail, Drive, and Airtable via n8n.\\n3. **Human-in-the-Loop:** Airtable powered approval flows.",
           "key_features": [
             "AI Data Extraction (Google Gemini)",
             "Automated Workflow Orchestration (n8n)",
@@ -166,7 +166,7 @@
           "title": "Vapi Transfer — AI Contact Center",
           "role": "Lead VOIP & Full-Stack Engineer",
           "short_description": "Real-time AI-to-Human call handoff platform using FreeSWITCH and WebRTC.",
-          "long_description": "Designed, developed, and deployed a production-grade AI-powered contact center platform enabling seamless real-time call transfer between Vapi AI voice assistants and live human agents. The system supports AI-first outbound calling, live agent monitoring, barge-in/takeover capabilities, and intelligent call routing through a WebRTC-based agent dashboard.\\n\\nCore components:\\n1. **FreeSWITCH SIP/WebRTC Platform:** Dockerized cluster handling NAT traversal and RTP.\\n2. **AI-to-Human Handoff:** Custom dialplans for smooth transfer.\\n3. **WebRTC Agent Dashboard:** React-based interface for real-time call controls (Barge-in, Monitor).",
+          "long_description": "Designed, developed, and deployed a production-grade AI-powered contact center platform enabling seamless real-time call transfer between Vapi AI voice assistants and live human agents. The system supports AI-first outbound calling, live agent monitoring, barge-in/takeover capabilities, and intelligent call routing through a WebRTC-based agent dashboard.\\n\\nCore components:\\n\\n1. **FreeSWITCH SIP/WebRTC Platform:** Dockerized cluster handling NAT traversal and RTP.\\n2. **AI-to-Human Handoff:** Custom dialplans for smooth transfer.\\n3. **WebRTC Agent Dashboard:** React-based interface for real-time call controls (Barge-in, Monitor).",
           "key_features": [
             "AI-to-Human Call Handoff",
             "WebRTC Agent Dashboard (React)",
