@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resumeDownload.addEventListener('click', async function(e) {
                 e.preventDefault();
                 try {
-                    const response = await fetch(`/${personalInfo.resume_file}`);
+                    const response = await fetch(personalInfo.resume_file);
                     const blob = await response.blob();
                     const url = window.URL.createObjectURL(blob);
                     const link = document.createElement('a');
@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } catch (error) {
                     console.error('Download failed:', error);
                     // Fallback: open in new tab
-                    window.open(`/${personalInfo.resume_file}`, '_blank');
+                    window.open(personalInfo.resume_file, '_blank');
                 }
             });
         }
@@ -723,9 +723,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 8. Populate Technologies ---
         if (item.technologies && item.technologies.length > 0) {
             modalTechBlock.classList.remove('hidden');
-            const techColor = item.problem_statement ? 'green' : 'blue'; // Green for freelance, blue for personal
+            const isFreelance = item.problem_statement ? true : false;
+            const bgClass = isFreelance ? 'bg-green-100' : 'bg-blue-100';
+            const textClass = isFreelance ? 'text-green-800' : 'text-blue-800';
             modalTechList.innerHTML = item.technologies.map(tech =>
-                `<span class="bg-${techColor}-100 text-${techColor}-800 text-sm font-medium px-2.5 py-1 rounded-full">${tech}</span>`
+                `<span class="${bgClass} ${textClass} text-sm font-medium px-2.5 py-1 rounded-full">${tech}</span>`
             ).join('');
         }
 
