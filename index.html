@@ -32,6 +32,36 @@
             color: var(--dark);
         }
 
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(67, 97, 238, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+            }
+        }
+        .animate-pulse-border {
+            animation: pulse-border 2s infinite;
+        }
+
         .transition-all {
             transition: all 0.3s ease-in-out;
         }
@@ -269,8 +299,15 @@
     <!-- Navigation Bar -->
     <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-end items-center h-18">
-                <div id="nav-desktop" class="hidden md:flex items-center space-x-6">
+            <div class="flex justify-between items-center h-18 py-4 md:py-0">
+                <!-- Brand Logo / Name -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-300">
+                        Q.I.
+                    </a>
+                </div>
+
+                <div id="nav-desktop" class="hidden md:flex items-center space-x-6 h-full py-4">
                     <a href="#introduction"
                         class="text-gray-600 hover:text-blue-500 transition-colors duration-300">Introduction</a>
                     <a href="#skills"
@@ -376,7 +413,7 @@
                         <!-- NEW: Centered CTA block -->
                         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
                             <!-- Primary Button -->
-                            <a id="resume-download" href="#" download class="btn-primary">
+                            <a id="resume-download" href="#" download class="btn-primary animate-pulse-border">
                                 <i class="fas fa-download mr-2"></i>
                                 Download Resume
                             </a>
@@ -395,7 +432,7 @@
                 <div class="md:w-2/5 flex justify-center animate-on-scroll" style="transition-delay: 200ms;">
                     <!-- Skeleton for profile image -->
                     <div id="profile-image-skeleton" class="rounded-full w-60 h-60 bg-slate-200 animate-pulse"></div>
-                    <div class="relative">
+                    <div class="relative animate-float">
                         <div
                             class="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-20 blur">
                         </div>
@@ -712,11 +749,18 @@
 
     <!-- START: AI Chatbot V3 (Final & Corrected) -->
     <!-- Main trigger button at the bottom-center -->
-    <div id="ai-chat-trigger" class="fixed bottom-8 right-8 z-40 cursor-pointer">
-        <div class="flex items-center justify-center px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 pulse-animation">
-            <i class="fas fa-comments text-blue-500 text-xl mr-3"></i>
-            <span class="font-semibold text-slate-700 hidden sm:block">Chat with Me</span>
-            <span class="font-semibold text-slate-700 sm:hidden">Chat</span>
+    <div id="ai-chat-trigger" class="fixed bottom-8 right-8 z-40 cursor-pointer group">
+        <!-- Tooltip -->
+        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none w-max bg-gray-900 text-white text-xs font-semibold rounded py-2 px-3 shadow-lg">
+            Ask my AI!
+            <svg class="absolute text-gray-900 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+        </div>
+        <!-- Pulsing Ring Behind Button -->
+        <div class="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-25"></div>
+        <div class="relative flex items-center justify-center px-6 py-3 bg-white rounded-full shadow-[0_0_20px_rgba(67,97,238,0.3)] hover:shadow-[0_0_30px_rgba(67,97,238,0.5)] transition-all duration-300 transform hover:-translate-y-1 border border-blue-100">
+            <i class="fas fa-robot text-blue-600 text-xl mr-3"></i>
+            <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 hidden sm:block tracking-wide">Ask my AI</span>
+            <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 sm:hidden">AI</span>
         </div>
     </div>
 

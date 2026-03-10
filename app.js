@@ -198,15 +198,25 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'group bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll project-card cursor-pointer relative';
         card.dataset.projectId = project.id || '';
 
+        let techPills = '';
+        if (project.technologies && project.technologies.length > 0) {
+            const topTech = project.technologies.slice(0, 3);
+            techPills = '<div class="flex flex-wrap gap-2 mb-4">' +
+                topTech.map(tech => `<span class="bg-blue-50 text-blue-600 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-100">${tech}</span>`).join('') +
+                (project.technologies.length > 3 ? `<span class="bg-slate-50 text-slate-500 text-xs font-semibold px-2.5 py-1 rounded-full border border-slate-200">+${project.technologies.length - 3}</span>` : '') +
+            '</div>';
+        }
+
         // Add an icon in the corner that appears on hover
         card.innerHTML = `
             <div class="absolute top-4 right-4 text-slate-300 group-hover:text-blue-500 transition-colors">
                 <i class="fas fa-expand-alt"></i>
             </div>
             <h3 class="text-xl font-bold mb-2 text-slate-800">${project.title || 'Untitled Project'}</h3>
+            ${techPills}
             <p class="text-slate-600 mb-4 flex-grow">${project.short_description || ''}</p>
-            <div class="mt-auto">
-                <span class="text-blue-500 font-semibold">View Details <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+            <div class="mt-auto pt-4 border-t border-slate-100">
+                <span class="text-blue-500 font-semibold group-hover:text-blue-600 transition-colors">View Details <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
             </div>
         `;
         return card;
