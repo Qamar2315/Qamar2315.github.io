@@ -1,3 +1,4 @@
 .vscode
 temp.txt
-dep.png
+dep.pngnode_modules/
+node_modules/
