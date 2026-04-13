@@ -64,7 +64,7 @@
   },
   {
     "id": "color-by-numb3r",
-    "title": "Color by Numb3r — Full-Stack E-Commerce & Content Platform",
+    "title": "Color by Numb3r \u2014 Full-Stack E-Commerce & Content Platform",
     "short_description": "Architected and deployed a multi-tenant e-commerce and content platform for a creative business, featuring a custom React CMS, automated product syncing, and a robust FastAPI backend.",
     "problem_statement": "The client required a scalable, production-ready platform to sell custom coloring books and digital content. The existing tools were insufficient for managing a growing catalog of products, serving different user roles (Designers vs Customers), and handling high-volume traffic. They needed a system that could automatically sync product data from external marketplaces like Bol.com and provide a seamless, branded experience for users to create and purchase custom designs.",
     "solution_delivered": "I engineered a complete digital ecosystem hosted on a custom Linux VPS. The backend, built with FastAPI and MongoDB (Beanie), features an automated background sync engine that keeps product inventory and reviews up-to-date with Bol.com. The frontend is a complex React 19 SPA with distinct portals for Customers, Designers, and Admins. I implemented a CI/CD pipeline via GitHub Actions for zero-downtime deployments and optimized performance using Nginx and in-memory caching. The result is a robust, high-performance platform that handles real-time customization and e-commerce transactions.",
