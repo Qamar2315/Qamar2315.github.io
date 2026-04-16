@@ -485,14 +485,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.className = "mb-3 leading-relaxed"; // Added spacing and line-height
 
                     if (typeof item === 'string') {
-                        li.textContent = item;
+                        li.innerHTML = marked.parseInline(item);
                     } else if (typeof item === 'object' && item.summary) {
                         // Detailed Item Container
                         const container = document.createElement('div');
                         container.className = "inline"; 
 
                         const summaryText = document.createElement('span');
-                        summaryText.textContent = item.summary + " ";
+                        summaryText.innerHTML = marked.parseInline(item.summary) + " ";
                         container.appendChild(summaryText);
 
                         const viewDetailsBtn = document.createElement('button');
