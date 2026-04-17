@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <h3 class="text-xl font-bold mb-2 text-slate-800">${project.title || 'Untitled Project'}</h3>
             ${techPills}
-            <p class="text-slate-600 mb-4 flex-grow">${project.short_description || ''}</p>
+            <p class="text-slate-600 mb-4 flex-grow">${marked.parseInline(project.short_description || '')}</p>
             <div class="mt-auto pt-4 border-t border-slate-100">
                 <span class="text-blue-500 font-semibold group-hover:text-blue-600 transition-colors">View Details <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
             </div>
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const desc = document.createElement('p');
         desc.className = 'text-slate-600';
-        desc.textContent = work.short_description || '';
+        desc.innerHTML = marked.parseInline(work.short_description || '');
 
         card.appendChild(title);
         card.appendChild(desc);
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.className = "mb-3 leading-relaxed"; // Added spacing and line-height
 
                     if (typeof item === 'string') {
-                        li.textContent = item;
+                        li.innerHTML = marked.parseInline(item);
                     } else if (typeof item === 'object' && item.summary) {
                         // Detailed Item Container
                         const container = document.createElement('div');
@@ -686,7 +686,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 4. Populate Main Description ---
         let descriptionHTML = '';
         if (item.long_description) {
-            descriptionHTML = marked.parse(item.long_description);
+            let processedDesc = item.long_description.replace(/\\n/g, '\n').replace(/\\\*/g, '*');
+            descriptionHTML = marked.parse(processedDesc);
         } else if (item.problem_statement) {
             descriptionHTML = `
                 <h4 class="font-semibold text-slate-800">The Challenge</h4>
