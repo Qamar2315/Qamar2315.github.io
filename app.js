@@ -686,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 4. Populate Main Description ---
         let descriptionHTML = '';
         if (item.long_description) {
-            descriptionHTML = marked.parse(item.long_description);
+            descriptionHTML = marked.parse(item.long_description.replace(/\\n/g, '\n'));
         } else if (item.problem_statement) {
             descriptionHTML = `
                 <h4 class="font-semibold text-slate-800">The Challenge</h4>
