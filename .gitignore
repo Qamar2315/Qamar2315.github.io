@@ -1,3 +1,5 @@
-.vscode
-temp.txt
-dep.png
+node_modules/
+test_*.js
+*.html
+*.pyc
+__pycache__/
