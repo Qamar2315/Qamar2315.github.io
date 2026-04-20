@@ -208,13 +208,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Add an icon in the corner that appears on hover
+        const shortDescHtml = project.short_description ? marked.parseInline(project.short_description) : '';
         card.innerHTML = `
             <div class="absolute top-4 right-4 text-slate-300 group-hover:text-blue-500 transition-colors">
                 <i class="fas fa-expand-alt"></i>
             </div>
             <h3 class="text-xl font-bold mb-2 text-slate-800">${project.title || 'Untitled Project'}</h3>
             ${techPills}
-            <p class="text-slate-600 mb-4 flex-grow">${project.short_description || ''}</p>
+            <p class="text-slate-600 mb-4 flex-grow">${shortDescHtml}</p>
             <div class="mt-auto pt-4 border-t border-slate-100">
                 <span class="text-blue-500 font-semibold group-hover:text-blue-600 transition-colors">View Details <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
             </div>
@@ -251,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const desc = document.createElement('p');
         desc.className = 'text-slate-600';
-        desc.textContent = work.short_description || '';
+        desc.innerHTML = work.short_description ? marked.parseInline(work.short_description) : '';
 
         card.appendChild(title);
         card.appendChild(desc);
@@ -485,14 +486,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.className = "mb-3 leading-relaxed"; // Added spacing and line-height
 
                     if (typeof item === 'string') {
-                        li.textContent = item;
+                        li.innerHTML = marked.parseInline(item);
                     } else if (typeof item === 'object' && item.summary) {
                         // Detailed Item Container
                         const container = document.createElement('div');
                         container.className = "inline"; 
 
                         const summaryText = document.createElement('span');
-                        summaryText.textContent = item.summary + " ";
+                        summaryText.innerHTML = marked.parseInline(item.summary) + " ";
                         container.appendChild(summaryText);
 
                         const viewDetailsBtn = document.createElement('button');
@@ -686,7 +687,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- 4. Populate Main Description ---
         let descriptionHTML = '';
         if (item.long_description) {
-            descriptionHTML = marked.parse(item.long_description);
+            // Replace literal \n with actual newlines to fix rendering
+            let formattedDesc = item.long_description.replace(/\\n/g, '\n');
+            descriptionHTML = marked.parse(formattedDesc);
         } else if (item.problem_statement) {
             descriptionHTML = `
                 <h4 class="font-semibold text-slate-800">The Challenge</h4>
