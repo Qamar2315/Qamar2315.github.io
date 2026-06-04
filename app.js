@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <h3 class="text-xl font-bold mb-2 text-slate-800">${project.title || 'Untitled Project'}</h3>
             ${techPills}
-            <p class="text-slate-600 mb-4 flex-grow">${project.short_description || ''}</p>
+            <p class="text-slate-600 mb-4 flex-grow">${project.short_description ? marked.parseInline(project.short_description) : ''}</p>
             <div class="mt-auto pt-4 border-t border-slate-100">
                 <span class="text-blue-500 font-semibold group-hover:text-blue-600 transition-colors">View Details <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
             </div>
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const desc = document.createElement('p');
         desc.className = 'text-slate-600';
-        desc.textContent = work.short_description || '';
+        desc.innerHTML = work.short_description ? marked.parseInline(work.short_description) : '';
 
         card.appendChild(title);
         card.appendChild(desc);
@@ -485,14 +485,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     li.className = "mb-3 leading-relaxed"; // Added spacing and line-height
 
                     if (typeof item === 'string') {
-                        li.textContent = item;
+                        li.innerHTML = marked.parseInline(item);
                     } else if (typeof item === 'object' && item.summary) {
                         // Detailed Item Container
                         const container = document.createElement('div');
                         container.className = "inline"; 
 
                         const summaryText = document.createElement('span');
-                        summaryText.textContent = item.summary + " ";
+                        summaryText.innerHTML = marked.parseInline(item.summary) + " ";
                         container.appendChild(summaryText);
 
                         const viewDetailsBtn = document.createElement('button');
@@ -707,7 +707,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalFeaturesList.innerHTML = features.map(feat => `
                 <li class="flex items-start">
                     <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                    <span>${feat}</span>
+                    <span>${marked.parseInline(feat)}</span>
                 </li>
             `).join('');
         }
@@ -724,8 +724,8 @@ document.addEventListener('DOMContentLoaded', () => {
             modalChallengesBlock.classList.remove('hidden');
             modalChallengesList.innerHTML = item.key_challenges.map(c => `
                 <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                    <div class="font-semibold text-slate-700 mb-1">${c.challenge}</div>
-                    <div class="text-slate-600">${c.solution}</div>
+                    <div class="font-semibold text-slate-700 mb-1">${marked.parseInline(c.challenge)}</div>
+                    <div class="text-slate-600">${marked.parseInline(c.solution)}</div>
                 </div>
             `).join('');
         }
