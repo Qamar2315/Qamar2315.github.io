@@ -1,3 +1,6 @@
 .vscode
 temp.txt
 dep.png
+node_modules/
+server.log
+test*.js
