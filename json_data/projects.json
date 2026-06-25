@@ -1,990 +1,990 @@
 [
-  {
-    "id": "clean-md-to-multi-format",
-    "title": "Clean MD to Multi-Format — VS Code Extension",
-    "project_type": "Personal Project",
-    "status": "Live",
-    "role": "Creator & Lead Developer",
-    "date_range": "2024 - Present",
-    "short_description": "Developed and published a feature-rich VS Code Extension that converts Markdown files into professional, publication-ready documents (PDF, HTML, DOCX) with advanced theming.",
-    "long_description": "Developed and published a feature-rich VS Code Extension that converts Markdown files into professional, publication-ready documents. The extension prioritizes clean, watermark-free output and offers advanced theming options for various use cases (Academic, Corporate, Tech).\n\nKey capabilities include:\n1. **Multi-Format Conversion Engine:** Engineered a conversion pipeline using markdown-it and Puppeteer (headless Chrome) for high-fidelity PDF rendering, with adapters for HTML and DOCX export.\n2. **Advanced Theming System:** Created 10 professional CSS-based themes that dynamically inject styling into the rendering pipeline, supporting syntax highlighting and complex layouts.\n3. **VS Code Integration:** Deeply integrated with the VS Code API for command palette commands, context menu actions, and reactive configuration settings.",
-    "key_features": [
-      "Convert Markdown to PDF, HTML, DOCX",
-      "High-fidelity rendering with Puppeteer",
-      "10+ Professional CSS Themes (Academic, GitHub, Dark)",
-      "Batch File Processing from File Explorer",
-      "Syntax Highlighting with highlight.js",
-      "Deep VS Code API Integration (Commands, Settings)",
-      "No Watermarks & Clean Output"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Ensuring High-Fidelity PDF Output",
-        "solution": "Integrated Puppeteer (headless Chrome) into the extension to render the markdown as HTML first, ensuring exact visual fidelity and support for complex CSS layouts before generating the PDF."
-      },
-      {
-        "challenge": "Seamless VS Code Integration",
-        "solution": "Utilized the VS Code API to provide a native experience, registering commands, context menu items, and configuration listeners that react immediately to user changes."
-      }
-    ],
-    "technologies": [
-      "TypeScript",
-      "VS Code API",
-      "Puppeteer",
-      "Markdown-it",
-      "CSS3",
-      "Webpack"
-    ],
-    "links": [
-      {
-        "type": "Release",
-        "url": "https://github.com/Qamar2315/clean-md-pdf/releases",
-        "icon": "fas fa-download"
-      }
-    ],
-    "media": []
-  },
-  {
-    "id": "color-by-numb3r",
-    "title": "Color by Numb3r — Full-Stack E-Commerce & Content Platform",
-    "project_type": "Freelance Project",
-    "status": "Live",
-    "role": "Lead Full-Stack Architect",
-    "date_range": "2024 - Present",
-    "short_description": "Architected and deployed a multi-tenant e-commerce and content platform for a creative business, featuring a custom React CMS, automated product syncing, and a robust FastAPI backend.",
-    "long_description": "Architected and deployed a comprehensive e-commerce and content management platform for a niche creative business. The system features a multi-tenant architecture serving three distinct user groups: Customers (Storefront), Designers (Creative Tools), and Admins (Management).\n\nKey capabilities include:\n1. **High-Performance Infrastructure:** Hosted on a custom Linux VPS with Nginx reverse proxy and fully automated CI/CD via GitHub Actions.\n2. **Advanced Backend Engineering:** Powered by FastAPI and MongoDB (Beanie), featuring an automated background sync engine that aggregates products from external marketplaces (Bol.com) and a ScrapingAnt service to bypass anti-bot protections.\n3. **Modular Frontend:** A complex React 19 SPA with distinct layouts for Public, Admin, and Designer portals, plus a bespoke CMS with rich-text editing and Cloudinary image optimization.",
-    "key_features": [
-      "Multi-Tenant Architecture (Customer, Designer, Admin)",
-      "Automated External Product Sync (Bol.com) with ScrapingAnt",
-      "Asynchronous Job Queue using FastAPI BackgroundTasks",
-      "Custom React CMS with Rich-Text & Cloudinary Integration",
-      "Role-Based Access Control (RBAC) & API Key Management",
-      "Automated CI/CD Pipeline (GitHub Actions -> VPS)",
-      "Performance optimized with Nginx & In-memory Caching"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Synchronizing Data from External Marketplaces",
-        "solution": "Engineered a robust scraping service using ScrapingAnt and an async job queue to reliably fetch and normalize product data and reviews from Bol.com without blocking the main API."
-      },
-      {
-        "challenge": "Managing Complex User Roles and Content",
-        "solution": "Built a modular SPA with React Router v7 to handle distinct layouts for different user roles and developed a bespoke CMS to allow admins to manage blogs and layout content easily."
-      }
-    ],
-    "technologies": [
-      "Python",
-      "FastAPI",
-      "React 19",
-      "MongoDB (Beanie)",
-      "Tailwind CSS v4",
-      "Nginx",
-      "Linux VPS",
-      "GitHub Actions",
-      "ScrapingAnt",
-      "Cloudinary"
-    ],
-    "links": [
-      {
-        "type": "Live Site",
-        "url": "https://colorbynumb3r.com/",
-        "icon": "fas fa-globe"
-      },
-      {
-        "type": "Video Demo",
-        "url": "https://www.loom.com/share/9d3eb9001e744aa097b26f20e631c52b",
-        "icon": "fas fa-video"
-      }
-    ],
-    "media": [
-      {
-        "type": "video",
-        "src": "https://www.loom.com/share/9d3eb9001e744aa097b26f20e631c52b",
-        "caption": "Project Demo Video"
-      }
-    ]
-  },
-  {
-    "id": "autonomous-lead-generation-ai",
-    "title": "Autonomous Lead Generation AI",
-    "project_type": "Professional Project",
-    "status": "Live",
-    "role": "Lead Python Automation Engineer",
-    "date_range": "2024",
-    "short_description": "Developed a proprietary, modular Python application designed to autonomously identify, verify, and qualify real estate leads, fully integrated with the Zoho Ecosystem.",
-    "long_description": "Developed a proprietary, modular Python application designed to autonomously identify, verify, and qualify real estate leads (Residential, Commercial, Hospitality). The system is deployed on a Virtual Private Server (VPS) and runs on a strict weekly schedule to ensure a continuous pipeline of high-quality leads.\n\nKey capabilities include:\n1. **High-Availability Infrastructure:** Hosted on a Linux VPS for performance, executing complex scraping and AI tasks without local resource constraints, with orchestration via Zoho.\n2. **5-Stage Data Pipeline:** Engineered robust scrapers (ALN, Crexi, Yelp, Google Maps) with rotation logic, followed by a normalization engine to unify data structures.\n3. **AI Verification & Enrichment:** Integrated OpenAI (GPT-5 Nano) to verify facility services from property websites and utilized Apollo.io/RocketReach to retrieve and validate decision-maker contact info.\n4. **Scoring & Routing:** Implemented a logic-based scoring engine (0-100) to route high-confidence leads (>75) directly to Zoho CRM via OAuth 2.0.",
-    "key_features": [
-      "Multi-Source Extraction (ALN, Crexi, Yelp, Google Maps)",
-      "AI Service Verification using OpenAI GPT-5 Nano",
-      "Deep Enrichment via Apollo.io & RocketReach",
-      "Logic-based Scoring Engine & Territory Router",
-      "Automated Zoho CRM Injection (OAuth 2.0)",
-      "Modular CLI Interface for granular control",
-      "Deployed on Linux VPS with weekly batch schedules"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Bypassing Sophisticated Bot Detection",
-        "solution": "Implemented undetected_chromedriver with robust rotation logic and proxy management to scrape data from high-security sources like Google Maps and Yelp without interruption."
-      },
-      {
-        "challenge": "Ensuring Data Quality and Relevance",
-        "solution": "Integrated OpenAI's GPT-5 Nano with Pydantic structured outputs to analyze unstructured property descriptions, verifying specific amenities (e.g., Valet Parking) to strictly qualify leads before enrichment."
-      }
-    ],
-    "technologies": [
-      "Python 3.12",
-      "Selenium",
-      "OpenAI API",
-      "Zoho CRM API",
-      "Apollo.io API",
-      "Pandas",
-      "Linux VPS",
-      "Click (CLI)"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://www.loom.com/share/92da611e33ea472fa4cab72dfba451e3",
-        "icon": "fas fa-video"
-      }
-    ],
-    "media": [
-      {
-        "type": "video",
-        "src": "https://www.loom.com/share/92da611e33ea472fa4cab72dfba451e3",
-        "caption": "Project Demo Video"
-      }
-    ]
-  },
-  {
-    "id": "intelligent-invoice-automation",
-    "title": "Intelligent Invoice Processing Automation",
-    "project_type": "Professional Project",
-    "status": "Live",
-    "role": "Automation Architect & Developer",
-    "date_range": "2024",
-    "short_description": "Architected and deployed a sophisticated low-code/code-full workflow using n8n to automate financial operations, bridging Gmail and Airtable with Generative AI for invoice parsing.",
-    "long_description": "Architected and deployed a sophisticated low-code/code-full workflow using n8n to automate financial operations. The system serves as a bridge between communication channels (Gmail) and database systems (Airtable), utilizing Generative AI to parse unstructured invoice data into structured financial records.\n\nKey capabilities include:\n1. **Event-Driven Architecture:** Configured webhooks and triggers within n8n to monitor Gmail in real-time for specific invoice attachments or subject line patterns.\n2. **AI Data Extraction:** Integrated Google’s Gemini LLM via API to act as an intelligent parser. The AI agent analyzes PDF/Image invoices, extracting key fields (Invoice ID, Line Items, Tax, Vendor Details) regardless of the document layout, replacing rigid OCR templates.\n3. **Cloud Sync & Management:** Automated file handling to archive raw documents into structured Google Drive directories and orchestrated record creation in Airtable for finance team approval.",
-    "key_features": [
-      "Event-Driven Architecture with n8n webhooks",
-      "Real-time Gmail monitoring for invoices",
-      "AI Data Extraction using Google Gemini LLM",
-      "Layout-agnostic parsing (PDF/Image)",
-      "Custom JavaScript logic for currency conversion",
-      "Automated Google Drive archiving",
-      "Seamless Airtable integration for approvals"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Handling Unstructured Invoice Data",
-        "solution": "Integrated Google Gemini LLM to analyze PDFs and images, extracting structured data without rigid OCR templates."
-      },
-      {
-        "challenge": "Automating Complex Financial Logic",
-        "solution": "Utilized custom JavaScript nodes in n8n to handle currency conversion, data sanitization, and conditional logic based on totals."
-      }
-    ],
-    "technologies": [
-      "n8n",
-      "Google Gemini API",
-      "JavaScript",
-      "Gmail API",
-      "Google Drive API",
-      "Airtable"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://www.loom.com/share/3a98b36d9a1d40b19e92b97fab7778a1",
-        "icon": "fas fa-video"
-      }
-    ],
-    "media": [
-      {
-        "type": "video",
-        "src": "https://www.loom.com/share/3a98b36d9a1d40b19e92b97fab7778a1",
-        "caption": "Project Demo Video"
-      }
-    ]
-  },
-  {
-    "id": "ask-sunnah-online",
-    "title": "Ask Sunnah - AI Islamic Scholar",
-    "project_type": "Personal Project",
-    "status": "Live",
-    "role": "Lead Full-Stack & AI Architect",
-    "date_range": "May 2024 - Present",
-    "short_description": "A full-stack AI application that provides users with referenced answers to Islamic questions by querying Hadith collections using a custom RAG pipeline.",
-    "long_description": "Ask Sunnah is a complete, real-world application of Retrieval-Augmented Generation (RAG) designed to provide accurate, verifiable answers from Islamic Hadith collections. The project is architected as a robust three-part system:\n\n1.  **Data Pipeline:** A Python-based ETL process extracts Hadith data from a MySQL database, cleans it, generates vector embeddings using the OpenAI API, and indexes them into a Pinecone vector database. This prepares the foundational knowledge base for the AI.\n\n2.  **Backend API:** A secure and scalable backend built with Flask (Python) serves the core AI logic. It features API key authentication, rate limiting, and an admin panel for user management. When a query is received, it retrieves the most relevant Hadith from Pinecone and uses an LLM to generate a coherent answer, complete with source citations.\n\n3.  **Frontend Application:** A modern, responsive user interface built with Next.js and TypeScript provides a seamless conversational experience. Users can select specific Hadith collections to query, and each AI-generated answer is accompanied by the source texts, ensuring transparency and trust.",
-    "key_features": [
-      "AI-powered conversational Q&A",
-      "Retrieval-Augmented Generation (RAG) pipeline for factual answers",
-      "Verifiable sources with links to original Hadith texts",
-      "Secure backend API with key-based authentication and rate limiting",
-      "Comprehensive admin dashboard for user & API key management",
-      "Dynamic multi-collection search (Bukhari, Muslim, etc.)",
-      "Fully responsive and modern user interface"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Ensuring Factual Accuracy and Preventing AI Hallucination",
-        "solution": "Implemented a strict RAG pipeline to ground the LLM's responses in retrieved scriptural texts. Meticulous prompt engineering was used to instruct the model to only use the provided context, minimizing false information and citing sources for every claim."
-      },
-      {
-        "challenge": "Designing a Scalable and Maintainable System Architecture",
-        "solution": "Decoupled the project into three distinct services: a Data Pipeline for ETL, a Backend API for core logic, and a Frontend Application for user interaction. This architecture ensures modularity, allowing for independent development, deployment, and scaling of each component."
-      },
-      {
-        "challenge": "Processing and Indexing a Large Corpus of Hadith Texts",
-        "solution": "Developed an automated data pipeline to extract data from a MySQL database, clean HTML content, generate high-dimensional embeddings, and efficiently index millions of vectors into Pinecone. The pipeline is designed to be runnable for specific collections, making data updates manageable."
-      }
-    ],
-    "technologies": [
-      "Python",
-      "Flask",
-      "Next.js",
-      "TypeScript",
-      "React",
-      "RAG",
-      "OpenAI API",
-      "Pinecone",
-      "SQLite",
-      "MySQL",
-      "Tailwind CSS",
-      "JWT",
-      "Gunicorn",
-      "Vercel",
-      "Git"
-    ],
-    "links": [
-      {
-        "type": "Live Demo",
-        "url": "http://asksunnah.online/",
-        "icon": "fas fa-external-link-alt"
-      },
-      {
-        "type": "Backend GitHub (Private)",
-        "url": "https://github.com/Qamar2315/ask-sunnah-api",
-        "icon": "fab fa-github"
-      },
-      {
-        "type": "Frontend GitHub (Private)",
-        "url": "https://github.com/Qamar2315/ask-sunnah-frontend",
-        "icon": "fab fa-github"
-      },
-      {
-        "type": "Data Pipeline GitHub (Private)",
-        "url": "https://github.com/Qamar2315/ask-sunnah-data-pipeline",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "video",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755446262/Ask%20Sunnah/Vento_-_4_August_2025_vb74kj.mp4",
-        "caption": "Project Demo Video"
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446248/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.44.59_AM_2_pzej6p.jpg",
-        "caption": "User interface showing a query and response"
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446246/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.44.59_AM_1_xmvmqj.jpg",
-        "caption": "Example of AI-generated answer with sources"
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446241/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.45.01_AM_1_gbarev.jpg",
-        "caption": "Selecting specific Hadith collections for search"
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446237/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.44.59_AM_lld1m9.jpg",
-        "caption": "Mobile responsive view of the chat interface"
-      }
-    ]
-  },
-  {
-    "id": "slack-prayer-reminder-bot",
-    "title": "Slack Prayer Reminder Bot",
-    "project_type": "Personal Project",
-    "status": "Completed",
-    "role": "Creator & Lead Developer",
-    "date_range": "July 2024 - August 2024",
-    "short_description": "A production-ready bot that sends beautiful, motivational reminders to Slack channels with Quran verses and AI-generated messages.",
-    "long_description": "This is a robust, automated bot designed to enrich a Slack workspace with timely and inspiring prayer reminders. The application runs on a continuous schedule, performing two key jobs:\n\n1.  **Daily Setup:** Each morning, the bot fetches the day's prayer times from the AlAdhan API for a specific location. It then uses the Google Gemini AI to generate a unique, motivational message for each of the five prayers and stores this data in a local SQLite database.\n\n2.  **Reminder Dispatch:** Every minute, the bot checks the database for upcoming prayers. When a prayer is due (e.g., 10 minutes beforehand), it pairs the AI-generated message with a randomly selected Quran verse (in both Arabic and Urdu) and sends a beautifully formatted, multi-section message to the designated Slack channel. This ensures that reminders are not only punctual but also fresh and engaging every day.",
-    "key_features": [
-      "Automated, scheduled prayer reminders for Slack",
-      "Unique AI-generated motivational messages via Google Gemini",
-      "Integrated Quran verses with Arabic and Urdu text",
-      "Richly formatted, visually appealing Slack messages",
-      "SQLite persistence to prevent duplicate reminders and ensure reliability",
-      "Secure configuration using environment variables for API keys",
-      "Configurable for any location and prayer calculation method"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Ensuring Reliability and Punctuality",
-        "solution": "Architected the bot with a two-part scheduling system. A daily job pre-fetches and stores all necessary data (prayer times, AI messages) in an SQLite database. A separate, frequent job then only checks the local database. This decouples the bot from real-time API dependencies, making it resilient to network failures and ensuring reminders are always sent on time."
-      },
-      {
-        "challenge": "Creating Engaging and Non-Repetitive Content",
-        "solution": "To avoid message fatigue, I integrated Google's Gemini AI to generate a fresh, context-aware motivational message for each prayer, every single day. This was combined with a system that randomly selects from a large corpus of Quran verses, guaranteeing that the content remains inspiring and varied."
-      }
-    ],
-    "technologies": [
-      "Python",
-      "Google Gemini API",
-      "Slack API",
-      "AlAdhan API",
-      "SQLite",
-      "APScheduler",
-      "Requests",
-      "python-dotenv"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755448651/Slack%20Prayer%20Reminder/2_naigex.mp4",
-        "icon": "fas fa-video"
-      },
-      {
-        "type": "GitHub",
-        "url": "https://github.com/Qamar2315/slack-prayer-reminder",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448640/Slack%20Prayer%20Reminder/7.898Z_gzcqbp.png",
-        "caption": "Example Fajr prayer reminder in Slack"
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448641/Slack%20Prayer%20Reminder/9.342Z_ltu6oy.png",
-        "caption": "Isha prayer notification with Quran verse"
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448639/Slack%20Prayer%20Reminder/6.547Z_carm16.png",
-        "caption": "A motivational message for Maghrib prayer"
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448636/Slack%20Prayer%20Reminder/1_nkr1nn.png",
-        "caption": "Overview of the project's file structure"
-      }
-    ]
-  },
-  {
-    "id": "sweettales-chat-pdf-creator",
-    "title": "SweetTales - Chat to PDF Memory Book",
-    "project_type": "Personal Project",
-    "status": "Completed",
-    "role": "Creator & Full-Stack Developer",
-    "date_range": "August 2024",
-    "short_description": "A web application that transforms WhatsApp chat exports into beautifully themed, printable PDF memory books, with optional AI-powered highlights.",
-    "long_description": "SweetTales is a Flask-based web application created to turn digital conversations into tangible keepsakes. The user journey is simple: upload a standard WhatsApp chat export (.txt file), choose from a selection of visual themes, and add a custom title and name. \n\nThe backend then performs a multi-step process: \n1. **Parsing:** It intelligently parses the unstructured text file, identifying senders, timestamps, messages, and filtering out system notifications (e.g., 'user was added'). \n2. **HTML Generation:** The parsed data is dynamically rendered into a styled HTML document using a Jinja2 template corresponding to the user's chosen theme. \n3. **AI Highlights (Optional):** If an API key is provided, the entire chat transcript is sent to the Google Gemini API to generate a summary of key moments, which is added as a special 'Highlights' section in the book. \n4. **PDF Conversion:** The application uses Playwright's headless browser engine to convert the final HTML into a high-fidelity, print-ready PDF, perfectly preserving the theme's styling and layout.",
-    "key_features": [
-      "Parses standard WhatsApp chat export (.txt) files",
-      "Multiple customizable themes for PDF styling",
-      "High-quality, print-ready PDF generation via Playwright",
-      "Optional AI-powered conversation highlights using Google Gemini",
-      "Simple and intuitive web interface for upload and customization",
-      "Asynchronous PDF generation to prevent request timeouts on large chats",
-      "Modular code structure for easy maintenance and theme additions"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Reliably Parsing Unstructured WhatsApp Chat Data",
-        "solution": "Developed a robust chat parser using regular expressions to accurately handle various message formats, including multi-line messages, different timestamp patterns (12h/24h), and special characters. The parser was designed to effectively filter out non-message system entries to create a clean conversation log."
-      },
-      {
-        "challenge": "Generating High-Fidelity PDFs with Complex CSS",
-        "solution": "Standard PDF libraries struggled to render modern CSS themes accurately. I chose to integrate Playwright, a headless browser automation tool, to render the chat into an HTML page first and then 'print' it to PDF. This ensures that any theme, no matter how complex its CSS, is rendered with perfect fidelity, exactly as it would appear in a Chrome browser."
-      }
-    ],
-    "technologies": [
-      "Python",
-      "Flask",
-      "Playwright",
-      "Google Gemini API",
-      "HTML5",
-      "CSS3",
-      "Jinja2",
-      "JavaScript (Async)",
-      "python-dotenv"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755463068/Sweet%20Tales/demo_qhkkq9.mp4",
-        "icon": "fas fa-video"
-      },
-      {
-        "type": "GitHub (Private)",
-        "url": "https://github.com/Qamar2315/SweetTales",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463040/Sweet%20Tales/91_rsnbr5.png",
-        "caption": "The main application UI for file upload and customization."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463039/Sweet%20Tales/1_bvmpqz.png",
-        "caption": "The professional landing page for the SweetTales application."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463036/Sweet%20Tales/2_oo4kvi.png",
-        "caption": "Example of a generated PDF cover page."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463031/Sweet%20Tales/7_luhuyq.png",
-        "caption": "An inside page of the generated PDF showing the chat layout."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463030/Sweet%20Tales/9_xlcfrp.png",
-        "caption": "Another example of the PDF output with a different theme."
-      }
-    ]
-  },
-  {
-    "id": "ask-quran-rag",
-    "title": "AskQuran - AI Quranic Scholar",
-    "project_type": "Personal Project",
-    "status": "Completed",
-    "role": "Lead Full-Stack & AI Architect",
-    "date_range": "August 2024",
-    "short_description": "A beautiful, modern web application for asking questions about the Quran and receiving AI-powered responses with relevant verses using a RAG architecture.",
-    "long_description": "AskQuran is an end-to-end AI application designed to make Quranic knowledge accessible through a natural language interface. The system is built on a decoupled, three-part architecture to ensure scalability and maintainability:\n\n1.  **Data Pipeline:** A Python-based ETL pipeline processes raw Quranic text and its metadata. It uses Google's Gemini models to generate high-quality vector embeddings for each verse and then indexes this data into a Pinecone serverless vector database, creating the core knowledge base.\n\n2.  **Backend API:** A stateless Flask API serves as the brain of the application. It employs a sophisticated RAG workflow: upon receiving a query, it first classifies whether the question is Quran-related or conversational. For Quranic questions, it generates an embedding, retrieves the most relevant verses from Pinecone, and then uses Gemini's powerful generative model to synthesize a final, source-backed answer. \n\n3.  **Frontend Application:** Built with Next.js and TypeScript, the frontend offers a visually stunning and responsive user experience. It features an elegant, Islamic-themed design where users can interact with the AI in real-time. Each generated answer is displayed alongside the retrieved verses, complete with links to Quran.com for verification and further study.",
-    "key_features": [
-      "AI-powered Quranic Q&A with conversational interface",
-      "Retrieval-Augmented Generation (RAG) for factual, source-based answers",
-      "Smart query classification to handle both topical questions and small talk",
-      "Verifiable source verses displayed with each answer, linking to Quran.com",
-      "Elegant, responsive, and mobile-friendly UI with Islamic design elements",
-      "Built on a modern stack including Next.js, Google Gemini, and Pinecone",
-      "Modular three-part architecture (Data Pipeline, API, Frontend)"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Achieving Factual Accuracy and Contextual Relevance",
-        "solution": "The RAG architecture was chosen specifically to mitigate AI hallucinations. By first retrieving relevant Quranic verses from a Pinecone vector database, the generative model is provided with a factual, grounded context. The prompt is engineered to compel the AI to construct its answer solely based on these provided verses, ensuring accuracy."
-      },
-      {
-        "challenge": "Differentiating Between Quranic Questions and Small Talk",
-        "solution": "To create a more natural user experience, I implemented a classification layer in the API. Before performing a vector search, the user's query is first sent to a Gemini model with a prompt that asks it to categorize the input as either 'quran_question' or 'conversational'. This allows the API to provide a direct, friendly response for small talk without unnecessarily querying the database."
-      }
-    ],
-    "technologies": [
-      "Python",
-      "Flask",
-      "Next.js",
-      "TypeScript",
-      "React",
-      "Google Gemini API",
-      "Pinecone",
-      "LangChain",
-      "Tailwind CSS",
-      "Radix UI"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755464910/Ask%20Quran/demo_omv2ll.mp4",
-        "icon": "fas fa-video"
-      },
-      {
-        "type": "Backend GitHub (Private)",
-        "url": "https://github.com/Qamar2315/ask-quran-api",
-        "icon": "fab fa-github"
-      },
-      {
-        "type": "Frontend GitHub (Private)",
-        "url": "https://github.com/Qamar2315/ask-quran-frontend",
-        "icon": "fab fa-github"
-      },
-      {
-        "type": "Data Pipeline GitHub (Private)",
-        "url": "https://github.com/Qamar2315/ask-quran-data-pipeline",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464881/Ask%20Quran/5_diwcbc.png",
-        "caption": "Main user interface showing an AI-generated answer with source verses."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464879/Ask%20Quran/1_fdfp4b.png",
-        "caption": "The clean and inviting chat interface."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464877/Ask%20Quran/2_p8dflt.png",
-        "caption": "Display of retrieved Quranic verses that support the AI's answer."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464875/Ask%20Quran/4_lchzsy.png",
-        "caption": "Responsive design for mobile devices."
-      }
-    ]
-  },
-  {
-    "id": "learnxcellence-lms",
-    "title": "LearnXcellence: AI-Powered E-Learning & Proctoring Platform",
-    "project_type": "Academic Project (Final Year)",
-    "status": "Completed",
-    "role": "Co-creator & Full-Stack/AI Developer",
-    "date_range": "Sep 2023 - May 2024",
-    "short_description": "A full-stack e-learning platform featuring custom-trained AI models for intelligent proctoring, AI-assisted content generation, and biometric identity verification.",
-    "long_description": "LearnXcellence is a sophisticated e-learning platform built from the ground up to address the needs of modern education, with a strong focus on academic integrity. The platform is built on a decoupled, three-tier architecture: a React.js frontend for a dynamic user experience, a Node.js/Express backend for core business logic and API services, and a dedicated Python/Flask microservice for handling all intensive AI/ML operations. \n\nFor instructors, it offers a full suite of course management tools, including AI-powered quiz and project idea generation. The standout feature is the intelligent proctoring system, which analyzes a student's webcam feed in real-time for violations like phone usage, multiple people, and gaze deviation. \n\nFor students, the platform provides a secure and engaging learning environment. A key innovation is the use of a custom-trained AI model for facial liveness detection during registration and quiz initiation, preventing identity spoofing with photos or screens. The system culminates in generating a data-backed 'cheating probability' score, providing instructors with actionable insights and detailed reports.",
-    "key_features": [
-      "Advanced AI Proctoring with custom-trained models (phone, gaze, multi-person detection)",
-      "AI-Based Liveness & Anti-Spoof Detection for secure identity verification",
-      "AI Content Generation for quizzes, project suggestions, and viva questions",
-      "Decoupled Microservice Architecture (React, Node.js, Python/Flask)",
-      "Distinct Role-Based Dashboards for Instructors and Students",
-      "Comprehensive Course & User Management functionalities",
-      "Automated Grading with manual override and detailed PDF reporting",
-      "Secure user authentication with facial biometrics and JWT"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Ensuring Robust Academic Integrity in Online Exams",
-        "solution": "Developed a multi-faceted AI proctoring system. This involved training separate YOLOv8 models for mobile phone and multi-person detection, and integrating MediaPipe for gaze and mouth movement analysis. The data from these analyses was fed into a custom-trained Scikit-learn classifier to generate a nuanced cheating probability score, moving beyond simple rule-based flags."
-      },
-      {
-        "challenge": "Preventing Identity Spoofing during Registration and Exams",
-        "solution": "Instead of relying on basic face recognition, I trained a custom YOLOv8 model specifically for liveness detection. This model was trained on a proprietary dataset of real faces vs. spoofing attempts (e.g., photos on screens, printed images), allowing the system to reliably verify that a real, live person is in front of the camera."
-      },
-      {
-        "challenge": "Architecting a Scalable System for Intensive AI Tasks",
-        "solution": "Designed a microservice architecture to separate the main application logic (Node.js) from the computationally heavy AI processing (Python/Flask). This prevents AI tasks like image analysis from blocking the user interface, ensures independent scalability of the services, and allows for using the best technology for each specific job."
-      }
-    ],
-    "technologies": [
-      "React.js",
-      "Node.js",
-      "Express.js",
-      "Python",
-      "Flask",
-      "MongoDB",
-      "YOLOv8",
-      "MediaPipe",
-      "Scikit-learn",
-      "OpenCV",
-      "face_recognition",
-      "JWT",
-      "Tailwind CSS",
-      "Mongoose",
-      "Axios"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://youtu.be/TXzUpTni7DI?si=NSW2EHPbLJ264JKa",
-        "icon": "fas fa-video"
-      },
-      {
-        "type": "GitHub (Private)",
-        "url": "https://github.com/qamar2315/learnxcellence",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/4_yuy75t.png",
-        "caption": "Instructor's dashboard for managing courses and students."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547802/Learnxcellence/9_wylrao.png",
-        "caption": "Detailed AI Proctoring report with cheating probability and violation evidence."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/6_cegck3.png",
-        "caption": "Student's dashboard showing enrolled courses."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/1_x5dqzt.png",
-        "caption": "The landing page for the LearnXcellence platform."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/8_bdlvds.png",
-        "caption": "The student's view of an ongoing proctored quiz."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547802/Learnxcellence/3_zfdljw.png",
-        "caption": "Secure login page for students and instructors."
-      }
-    ]
-  },
-  {
-    "id": "quotewise-ai-generator",
-    "title": "QuoteWise - AI Quote Generation Platform",
-    "project_type": "Personal Project",
-    "status": "Completed",
-    "role": "Creator & Full-Stack Developer",
-    "date_range": "April 2023 - June 2023",
-    "short_description": "A full-stack social platform built with Angular and Node.js where users can generate unique quotes using the Google Gemini AI, share them, and interact with the community.",
-    "long_description": "QuoteWise is a complete social web application designed for creative expression, built on a modern, end-to-end TypeScript stack. The core of the platform is an AI-powered quote generator that allows authenticated users to provide a prompt and receive a unique, concise quote generated by the Google Gemini API. \n\nThe application is architected with an Angular SSR frontend for enhanced performance and SEO, and a robust Node.js/Express backend. Beyond generation, it's a full-fledged community platform. Users have comprehensive profiles displaying their created quotes, liked posts, and favorited items. A central feed showcases all community quotes, where users can engage by liking, commenting, and saving quotes to their personal collection. Security is handled with JWT-based authentication, ensuring all user-specific routes and actions are protected.",
-    "key_features": [
-      "AI-powered quote generation via Google Gemini API",
-      "End-to-end TypeScript stack (Angular frontend, Node.js backend)",
-      "Server-Side Rendering (Angular SSR) for improved SEO and performance",
-      "Full user authentication with JWT (signup, login, protected routes)",
-      "Interactive social features: Likes, Comments, and Favorites",
-      "Comprehensive user profiles to showcase personal activity",
-      "Community quote feed for discovering new content"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Building a Type-Safe Full-Stack Application",
-        "solution": "Leveraged TypeScript across the entire stack—for the Angular frontend and the Node.js/Express backend. This created an end-to-end type-safe environment, significantly reducing runtime errors, improving developer experience, and making the API contract between the client and server more robust and self-documenting."
-      },
-      {
-        "challenge": "Managing Application State and Reactivity",
-        "solution": "Utilized Angular's built-in services and the RxJS library to manage application state. By using Observables to stream data from the backend to the components, the UI updates reactively and efficiently whenever data changes (e.g., a quote is liked or a new comment is posted), ensuring a smooth and dynamic user experience."
-      }
-    ],
-    "technologies": [
-      "Angular",
-      "TypeScript",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Mongoose",
-      "Google Gemini API",
-      "Angular SSR",
-      "RxJS",
-      "JWT",
-      "Bcrypt.js",
-      "Joi"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755722832/Quotewise/bandicam_2024-05-06_00-25-53-719_xgy6pj.mp4",
-        "icon": "fas fa-video"
-      },
-      {
-        "type": "GitHub",
-        "url": "https://github.com/Qamar2315/QuoteWise",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722528/Quotewise/quote_quiz_2_ssvyjh.jpg",
-        "caption": "The AI quote generation interface where users input a prompt."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722529/Quotewise/quote_quiz_4_cionyj.jpg",
-        "caption": "The main quote feed where users can see community-generated content."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722530/Quotewise/quote_quiz_6_qpzqm1.jpg",
-        "caption": "User profile page displaying created, liked, and favorited quotes."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722529/Quotewise/quote_quiz_5_wygfq9.jpg",
-        "caption": "Viewing a single quote with its comments and interaction options."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722528/Quotewise/quote_quiz_1_kfu1zc.jpg",
-        "caption": "The landing and login page for the application."
-      }
-    ]
-  },
-  {
-    "id": "chefconnect-recipe-platform",
-    "title": "ChefConnect - Recipe Sharing Platform",
-    "project_type": "Personal Project",
-    "status": "Completed",
-    "role": "Creator & Full-Stack Developer",
-    "date_range": "Feb 2023 - April 2023",
-    "short_description": "A full-stack recipe-sharing platform where users can discover, create, and review culinary creations, built with Next.js and NextAuth.js for a modern, secure experience.",
-    "long_description": "ChefConnect is a full-stack web application built using the modern Next.js 13+ App Router, allowing users to create, share, and discover recipes. The platform provides a complete user journey, from registration and login to creating and managing personal content. Authentication is seamlessly handled by NextAuth.js, supporting both traditional email/password credentials and social logins via GitHub.\n\nThe application features a RESTful API built directly within the Next.js framework for all CRUD operations on recipes, users, and reviews. Robust authorization middleware is implemented to ensure that users can only edit or delete their own content. The frontend is fully responsive, styled with Tailwind CSS, and utilizes Formik and Yup for robust, client-side form validation, creating a polished and secure user experience.",
-    "key_features": [
-      "Full Recipe CRUD (Create, Read, Update, Delete)",
-      "Secure user authentication with NextAuth.js (Credentials & GitHub)",
-      "Interactive review and rating system for recipes",
-      "User profiles with personal recipe galleries",
-      "Ownership-based authorization (users can only edit their own content)",
-      "Built with the modern Next.js 13+ App Router",
-      "Fully responsive design styled with Tailwind CSS"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Implementing Secure and Flexible Authentication",
-        "solution": "Integrated NextAuth.js to handle the complexities of authentication. This provided built-in providers for both GitHub (OAuth) and traditional Credentials, simplifying session management, JWT handling, and security. Next.js Middleware was then used to protect both API routes and client-side pages from unauthorized access."
-      },
-      {
-        "challenge": "Creating a Cohesive Full-Stack Experience in a Single Framework",
-        "solution": "Leveraged the Next.js App Router to co-locate API routes, server components, and client components. This allowed for creating a self-contained RESTful API for all CRUD operations (recipes, reviews) directly within the project, simplifying the architecture and streamlining development without needing a separate backend server."
-      }
-    ],
-    "technologies": [
-      "Next.js (App Router)",
-      "React",
-      "Node.js",
-      "MongoDB",
-      "Mongoose",
-      "NextAuth.js",
-      "Tailwind CSS",
-      "Formik",
-      "Yup",
-      "Axios"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755724679/Cheffconnect/bandicam_2024-03-15_01-08-13-484_u5y0mv.mp4",
-        "icon": "fas fa-video"
-      },
-      {
-        "type": "GitHub",
-        "url": "https://github.com/Qamar2315/chefconnect",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755724274/Cheffconnect/1_yilnjh.png",
-        "caption": "The main homepage displaying a gallery of recipes."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755724274/Cheffconnect/2_uctzbz.png",
-        "caption": "Detailed recipe view with ingredients, instructions, and author details."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755724273/Cheffconnect/4_yrmofe.png",
-        "caption": "The form for creating and adding a new recipe."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755724273/Cheffconnect/3_drg0bc.png",
-        "caption": "User profile page showcasing their submitted recipes."
-      }
-    ]
-  },
-  {
-    "id": "waterzilla-delivery-management",
-    "title": "WaterZilla - Water Delivery Management System",
-    "project_type": "Personal Project",
-    "status": "Completed",
-    "role": "Creator & Full-Stack Developer",
-    "date_range": "Jan 2022 - Mar 2023",
-    "short_description": "A full-stack MERN application for managing a water delivery service, featuring a comprehensive admin dashboard and a user-friendly customer portal. Uniquely includes two interchangeable backends (MySQL/Sequelize and MongoDB/Mongoose).",
-    "long_description": "WaterZilla is a complete management system designed to digitize and streamline the operations of a water delivery business. The application is architected with a modern React frontend and offers the flexibility of two complete, interchangeable backend implementations: one with Node.js, MySQL, and Sequelize for a relational approach, and another with Node.js, MongoDB, and Mongoose for a NoSQL approach. \n\nThe platform provides two distinct experiences: \n1. **Customer Portal:** A secure and intuitive interface where customers can register, log in, browse products, place orders, view their order history with real-time status tracking, and leave reviews. \n2. **Admin Dashboard:** A powerful, all-in-one control center for business owners. It includes an analytics dashboard with charts, full CRUD management for orders, customers, products, and partner companies, and a reporting engine that can export sales data to PDF. Product images are handled via Cloudinary integration.",
-    "key_features": [
-      "Dual Backend Implementation (MySQL with Sequelize & MongoDB with Mongoose)",
-      "Comprehensive Admin Dashboard with real-time analytics and charts",
-      "Full CRUD Operations for orders, customers, products, and companies",
-      "Secure user and admin authentication using JWT",
-      "Customer portal with order placement, history, and status tracking",
-      "PDF report generation for sales and order data",
-      "Product image uploads and management via Cloudinary"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Demonstrating Database Versatility and Adaptability",
-        "solution": "Architected and built two complete, independent backend systems. One uses a relational database (MySQL with Sequelize) to enforce strict schema and data integrity, while the other uses a NoSQL database (MongoDB with Mongoose) for flexibility and scalability. This showcases the ability to choose the right database technology based on project requirements."
-      },
-      {
-        "challenge": "Creating a Centralized, Data-Rich Admin Control Panel",
-        "solution": "Developed a feature-complete single-page application dashboard using React. It consolidates all critical business functions into one interface, leveraging the Recharts library to provide clear data visualizations and the jsPDF library to enable one-click PDF report exporting, offering actionable insights for administrators."
-      },
-      {
-        "challenge": "Managing Global Application State on the Frontend",
-        "solution": "Utilized React's Context API to manage global state, such as user authentication status and profile information. This provided a clean and efficient way to share data across various components in both the customer portal and the admin dashboard without relying on more complex state management libraries."
-      }
-    ],
-    "technologies": [
-      "React",
-      "Node.js",
-      "Express.js",
-      "MySQL",
-      "Sequelize",
-      "MongoDB",
-      "Mongoose",
-      "JWT",
-      "Cloudinary",
-      "Tailwind CSS",
-      "DaisyUI",
-      "Formik",
-      "Yup",
-      "Recharts",
-      "jsPDF"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755721467/Waterzilla/lv_0_20230627001710_hb0lbz.mp4",
-        "icon": "fas fa-video"
-      },
-      {
-        "type": "GitHub",
-        "url": "https://github.com/Qamar2315/Waterzilla",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755721151/Waterzilla/Capture_bgnl3v.webp",
-        "caption": "The comprehensive admin dashboard showing analytics and order management."
-      }
-    ]
-  },
-  {
-    "id": "whirley-bird-gesture-game",
-    "title": "Whirley Bird - Gesture-Controlled Pygame",
-    "project_type": "Personal Project",
-    "status": "Completed",
-    "role": "Creator & Python Developer",
-    "date_range": "Jan 2022 - Mar 2022",
-    "short_description": "An interactive arcade game built with Pygame where players control the bird's movement in real-time using hand gestures via their webcam and the MediaPipe framework.",
-    "long_description": "Whirley Bird is a unique take on the classic arcade genre, replacing traditional keyboard or mouse inputs with an intuitive, gesture-based control system. The game uses a computer's webcam to capture the player's hand movements. This video feed is processed in real-time by OpenCV and Google's MediaPipe framework to accurately track the hand's position. This allows players to intuitively steer the bird left and right on screen simply by moving their hand.\n\nThe gameplay is challenging and dynamic: players must dodge falling obstacles while collecting apples to increase their score. The game's speed progressively increases, offering a scalable challenge. To encourage replayability, all high scores are saved locally in an SQLite database, allowing players to compete against their personal best.",
-    "key_features": [
-      "Innovative Gesture-Based Control via webcam",
-      "Real-time Hand Tracking with Google MediaPipe",
-      "Classic arcade gameplay with progressive difficulty",
-      "Persistent High Score tracking using a local SQLite database",
-      "Built with Pygame for the game engine and OpenCV for video processing",
-      "Complete game loop with welcome, pause, and game-over screens"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Integrating Real-Time Computer Vision with a Game Loop",
-        "solution": "The primary challenge was bridging the gap between the OpenCV video feed and the Pygame game window. This was solved by capturing the hand's landmark coordinates from MediaPipe, normalizing them, and then scaling them to map accurately to the bird's permissible horizontal movement within the game's canvas, ensuring responsive and intuitive control."
-      },
-      {
-        "challenge": "Maintaining Performance and a High Frame Rate",
-        "solution": "To ensure a smooth experience, the hand-tracking logic was encapsulated in a separate, efficient module. This module processes the video feed without blocking Pygame's main game loop, allowing both the computer vision analysis and the game rendering to run at a high, stable frame rate."
-      }
-    ],
-    "technologies": [
-      "Python",
-      "Pygame",
-      "OpenCV",
-      "MediaPipe",
-      "SQLite"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755726216/whirley%20bird/46367ac0-5ba0-4ee1-a42b-0b37e69e0032_yvbmyj.webm",
-        "icon": "fas fa-video"
-      },
-      {
-        "type": "GitHub",
-        "url": "https://github.com/Qamar2315/Whirleybird",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755725322/whirley%20bird/PROGRAMMING_Tasks_assignments_and_projects_6_gocarr.png",
-        "caption": "The game in action, showing the bird, obstacles, score, and the OpenCV hand-tracking window."
-      }
-    ]
-  },
-  {
-    "id": "lettergen-ai-cover-letter",
-    "title": "LetterGen - AI Cover Letter & Email Generator",
-    "project_type": "Personal Project",
-    "status": "Completed",
-    "role": "Creator & Full-Stack Developer",
-    "short_description": "A modern web app that uses Google Gemini AI to generate personalized cover letters and emails by parsing a user's PDF resume and a job description.",
-    "long_description": "LetterGen is a productivity tool designed to automate the tedious task of writing unique cover letters. The application allows a user to upload their PDF resume and paste a job description. It then leverages a sophisticated, decoupled three-tier architecture to deliver results. The React frontend sends the data to a Node.js API server, which handles the file upload. The Node server then forwards the request to a dedicated Python/Flask microservice. This AI service parses the text from the PDF using PDFPlumber, combines it with the job description, and uses the Google Gemini API to generate 5 distinct, high-quality variations of a cover letter or application email. For user privacy, uploaded resumes are deleted immediately after processing.",
-    "key_features": [
-      "AI-powered generation of cover letters & emails via Google Gemini",
-      "Automatic text extraction from user-uploaded PDF resumes",
-      "Generates 5 distinct variations for each request",
-      "Decoupled microservice architecture (React, Node.js, Python/Flask)",
-      "Privacy-focused: resumes are deleted from the server after processing",
-      "Clean, responsive, and intuitive user interface with animations"
-    ],
-    "key_challenges": [
-      {
-        "challenge": "Designing a Scalable and Efficient System for AI Tasks",
-        "solution": "Architected a decoupled microservice system to separate concerns. A Node.js server handles lightweight API requests and file management, while a separate Python/Flask service manages the computationally intensive tasks of PDF parsing and communication with the Gemini AI. This prevents the main API from being blocked by long-running AI jobs and allows for using the best language for each task."
-      },
-      {
-        "challenge": "Securely Handling and Processing User-Uploaded Files",
-        "solution": "Implemented a secure workflow for handling sensitive documents. The Node.js server uses Multer for in-memory file handling, forwards the file to the Python service for immediate processing, and is designed to delete the temporary file from the server as soon as the AI generation is complete, ensuring user data is not stored."
-      }
-    ],
-    "technologies": [
-      "React",
-      "Node.js",
-      "Express.js",
-      "Python",
-      "Flask",
-      "Google Gemini API",
-      "PDFPlumber",
-      "Multer",
-      "Axios",
-      "Framer Motion"
-    ],
-    "links": [
-      {
-        "type": "Video Demo",
-        "url": "https://www.youtube.com/watch?v=4OXoCcdx-zQ",
-        "icon": "fas fa-video"
-      },
-      {
-        "type": "GitHub",
-        "url": "https://github.com/Qamar2315/lettergen",
-        "icon": "fab fa-github"
-      }
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755809319/lettergen/Home_zuikky.png",
-        "caption": "The clean and simple landing page of the application."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755809318/lettergen/ResumeUploader_husjpr.png",
-        "caption": "The main interface for uploading a resume and providing a job description."
-      },
-      {
-        "type": "image",
-        "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755809318/lettergen/AboutUs_rndak5.png",
-        "caption": "The 'About Us' page explaining the application's purpose."
-      }
-    ]
-  }
+    {
+        "id": "clean-md-to-multi-format",
+        "title": "Clean MD to Multi-Format \u2014 VS Code Extension",
+        "project_type": "Personal Project",
+        "status": "Live",
+        "role": "Creator & Lead Developer",
+        "date_range": "2024 - Present",
+        "short_description": "Developed and published a feature-rich VS Code Extension that converts Markdown files into professional, publication-ready documents (PDF, HTML, DOCX) with advanced theming.",
+        "long_description": "Developed and published a feature-rich VS Code Extension that converts Markdown files into professional, publication-ready documents. The extension prioritizes clean, watermark-free output and offers advanced theming options for various use cases (Academic, Corporate, Tech).\n\nKey capabilities include:\n1. <strong>Multi-Format Conversion Engine:</strong> Engineered a conversion pipeline using markdown-it and Puppeteer (headless Chrome) for high-fidelity PDF rendering, with adapters for HTML and DOCX export.\n2. <strong>Advanced Theming System:</strong> Created 10 professional CSS-based themes that dynamically inject styling into the rendering pipeline, supporting syntax highlighting and complex layouts.\n3. <strong>VS Code Integration:</strong> Deeply integrated with the VS Code API for command palette commands, context menu actions, and reactive configuration settings.",
+        "key_features": [
+            "Convert Markdown to PDF, HTML, DOCX",
+            "High-fidelity rendering with Puppeteer",
+            "10+ Professional CSS Themes (Academic, GitHub, Dark)",
+            "Batch File Processing from File Explorer",
+            "Syntax Highlighting with highlight.js",
+            "Deep VS Code API Integration (Commands, Settings)",
+            "No Watermarks & Clean Output"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Ensuring High-Fidelity PDF Output",
+                "solution": "Integrated Puppeteer (headless Chrome) into the extension to render the markdown as HTML first, ensuring exact visual fidelity and support for complex CSS layouts before generating the PDF."
+            },
+            {
+                "challenge": "Seamless VS Code Integration",
+                "solution": "Utilized the VS Code API to provide a native experience, registering commands, context menu items, and configuration listeners that react immediately to user changes."
+            }
+        ],
+        "technologies": [
+            "TypeScript",
+            "VS Code API",
+            "Puppeteer",
+            "Markdown-it",
+            "CSS3",
+            "Webpack"
+        ],
+        "links": [
+            {
+                "type": "Release",
+                "url": "https://github.com/Qamar2315/clean-md-pdf/releases",
+                "icon": "fas fa-download"
+            }
+        ],
+        "media": []
+    },
+    {
+        "id": "color-by-numb3r",
+        "title": "Color by Numb3r \u2014 Full-Stack E-Commerce & Content Platform",
+        "project_type": "Freelance Project",
+        "status": "Live",
+        "role": "Lead Full-Stack Architect",
+        "date_range": "2024 - Present",
+        "short_description": "Architected and deployed a multi-tenant e-commerce and content platform for a creative business, featuring a custom React CMS, automated product syncing, and a robust FastAPI backend.",
+        "long_description": "Architected and deployed a comprehensive e-commerce and content management platform for a niche creative business. The system features a multi-tenant architecture serving three distinct user groups: Customers (Storefront), Designers (Creative Tools), and Admins (Management).\n\nKey capabilities include:\n1. <strong>High-Performance Infrastructure:</strong> Hosted on a custom Linux VPS with Nginx reverse proxy and fully automated CI/CD via GitHub Actions.\n2. <strong>Advanced Backend Engineering:</strong> Powered by FastAPI and MongoDB (Beanie), featuring an automated background sync engine that aggregates products from external marketplaces (Bol.com) and a ScrapingAnt service to bypass anti-bot protections.\n3. <strong>Modular Frontend:</strong> A complex React 19 SPA with distinct layouts for Public, Admin, and Designer portals, plus a bespoke CMS with rich-text editing and Cloudinary image optimization.",
+        "key_features": [
+            "Multi-Tenant Architecture (Customer, Designer, Admin)",
+            "Automated External Product Sync (Bol.com) with ScrapingAnt",
+            "Asynchronous Job Queue using FastAPI BackgroundTasks",
+            "Custom React CMS with Rich-Text & Cloudinary Integration",
+            "Role-Based Access Control (RBAC) & API Key Management",
+            "Automated CI/CD Pipeline (GitHub Actions -> VPS)",
+            "Performance optimized with Nginx & In-memory Caching"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Synchronizing Data from External Marketplaces",
+                "solution": "Engineered a robust scraping service using ScrapingAnt and an async job queue to reliably fetch and normalize product data and reviews from Bol.com without blocking the main API."
+            },
+            {
+                "challenge": "Managing Complex User Roles and Content",
+                "solution": "Built a modular SPA with React Router v7 to handle distinct layouts for different user roles and developed a bespoke CMS to allow admins to manage blogs and layout content easily."
+            }
+        ],
+        "technologies": [
+            "Python",
+            "FastAPI",
+            "React 19",
+            "MongoDB (Beanie)",
+            "Tailwind CSS v4",
+            "Nginx",
+            "Linux VPS",
+            "GitHub Actions",
+            "ScrapingAnt",
+            "Cloudinary"
+        ],
+        "links": [
+            {
+                "type": "Live Site",
+                "url": "https://colorbynumb3r.com/",
+                "icon": "fas fa-globe"
+            },
+            {
+                "type": "Video Demo",
+                "url": "https://www.loom.com/share/9d3eb9001e744aa097b26f20e631c52b",
+                "icon": "fas fa-video"
+            }
+        ],
+        "media": [
+            {
+                "type": "video",
+                "src": "https://www.loom.com/share/9d3eb9001e744aa097b26f20e631c52b",
+                "caption": "Project Demo Video"
+            }
+        ]
+    },
+    {
+        "id": "autonomous-lead-generation-ai",
+        "title": "Autonomous Lead Generation AI",
+        "project_type": "Professional Project",
+        "status": "Live",
+        "role": "Lead Python Automation Engineer",
+        "date_range": "2024",
+        "short_description": "Developed a proprietary, modular Python application designed to autonomously identify, verify, and qualify real estate leads, fully integrated with the Zoho Ecosystem.",
+        "long_description": "Developed a proprietary, modular Python application designed to autonomously identify, verify, and qualify real estate leads (Residential, Commercial, Hospitality). The system is deployed on a Virtual Private Server (VPS) and runs on a strict weekly schedule to ensure a continuous pipeline of high-quality leads.\n\nKey capabilities include:\n1. <strong>High-Availability Infrastructure:</strong> Hosted on a Linux VPS for performance, executing complex scraping and AI tasks without local resource constraints, with orchestration via Zoho.\n2. <strong>5-Stage Data Pipeline:</strong> Engineered robust scrapers (ALN, Crexi, Yelp, Google Maps) with rotation logic, followed by a normalization engine to unify data structures.\n3. <strong>AI Verification & Enrichment:</strong> Integrated OpenAI (GPT-5 Nano) to verify facility services from property websites and utilized Apollo.io/RocketReach to retrieve and validate decision-maker contact info.\n4. <strong>Scoring & Routing:</strong> Implemented a logic-based scoring engine (0-100) to route high-confidence leads (>75) directly to Zoho CRM via OAuth 2.0.",
+        "key_features": [
+            "Multi-Source Extraction (ALN, Crexi, Yelp, Google Maps)",
+            "AI Service Verification using OpenAI GPT-5 Nano",
+            "Deep Enrichment via Apollo.io & RocketReach",
+            "Logic-based Scoring Engine & Territory Router",
+            "Automated Zoho CRM Injection (OAuth 2.0)",
+            "Modular CLI Interface for granular control",
+            "Deployed on Linux VPS with weekly batch schedules"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Bypassing Sophisticated Bot Detection",
+                "solution": "Implemented undetected_chromedriver with robust rotation logic and proxy management to scrape data from high-security sources like Google Maps and Yelp without interruption."
+            },
+            {
+                "challenge": "Ensuring Data Quality and Relevance",
+                "solution": "Integrated OpenAI's GPT-5 Nano with Pydantic structured outputs to analyze unstructured property descriptions, verifying specific amenities (e.g., Valet Parking) to strictly qualify leads before enrichment."
+            }
+        ],
+        "technologies": [
+            "Python 3.12",
+            "Selenium",
+            "OpenAI API",
+            "Zoho CRM API",
+            "Apollo.io API",
+            "Pandas",
+            "Linux VPS",
+            "Click (CLI)"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://www.loom.com/share/92da611e33ea472fa4cab72dfba451e3",
+                "icon": "fas fa-video"
+            }
+        ],
+        "media": [
+            {
+                "type": "video",
+                "src": "https://www.loom.com/share/92da611e33ea472fa4cab72dfba451e3",
+                "caption": "Project Demo Video"
+            }
+        ]
+    },
+    {
+        "id": "intelligent-invoice-automation",
+        "title": "Intelligent Invoice Processing Automation",
+        "project_type": "Professional Project",
+        "status": "Live",
+        "role": "Automation Architect & Developer",
+        "date_range": "2024",
+        "short_description": "Architected and deployed a sophisticated low-code/code-full workflow using n8n to automate financial operations, bridging Gmail and Airtable with Generative AI for invoice parsing.",
+        "long_description": "Architected and deployed a sophisticated low-code/code-full workflow using n8n to automate financial operations. The system serves as a bridge between communication channels (Gmail) and database systems (Airtable), utilizing Generative AI to parse unstructured invoice data into structured financial records.\n\nKey capabilities include:\n1. <strong>Event-Driven Architecture:</strong> Configured webhooks and triggers within n8n to monitor Gmail in real-time for specific invoice attachments or subject line patterns.\n2. <strong>AI Data Extraction:</strong> Integrated Google\u2019s Gemini LLM via API to act as an intelligent parser. The AI agent analyzes PDF/Image invoices, extracting key fields (Invoice ID, Line Items, Tax, Vendor Details) regardless of the document layout, replacing rigid OCR templates.\n3. <strong>Cloud Sync & Management:</strong> Automated file handling to archive raw documents into structured Google Drive directories and orchestrated record creation in Airtable for finance team approval.",
+        "key_features": [
+            "Event-Driven Architecture with n8n webhooks",
+            "Real-time Gmail monitoring for invoices",
+            "AI Data Extraction using Google Gemini LLM",
+            "Layout-agnostic parsing (PDF/Image)",
+            "Custom JavaScript logic for currency conversion",
+            "Automated Google Drive archiving",
+            "Seamless Airtable integration for approvals"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Handling Unstructured Invoice Data",
+                "solution": "Integrated Google Gemini LLM to analyze PDFs and images, extracting structured data without rigid OCR templates."
+            },
+            {
+                "challenge": "Automating Complex Financial Logic",
+                "solution": "Utilized custom JavaScript nodes in n8n to handle currency conversion, data sanitization, and conditional logic based on totals."
+            }
+        ],
+        "technologies": [
+            "n8n",
+            "Google Gemini API",
+            "JavaScript",
+            "Gmail API",
+            "Google Drive API",
+            "Airtable"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://www.loom.com/share/3a98b36d9a1d40b19e92b97fab7778a1",
+                "icon": "fas fa-video"
+            }
+        ],
+        "media": [
+            {
+                "type": "video",
+                "src": "https://www.loom.com/share/3a98b36d9a1d40b19e92b97fab7778a1",
+                "caption": "Project Demo Video"
+            }
+        ]
+    },
+    {
+        "id": "ask-sunnah-online",
+        "title": "Ask Sunnah - AI Islamic Scholar",
+        "project_type": "Personal Project",
+        "status": "Live",
+        "role": "Lead Full-Stack & AI Architect",
+        "date_range": "May 2024 - Present",
+        "short_description": "A full-stack AI application that provides users with referenced answers to Islamic questions by querying Hadith collections using a custom RAG pipeline.",
+        "long_description": "Ask Sunnah is a complete, real-world application of Retrieval-Augmented Generation (RAG) designed to provide accurate, verifiable answers from Islamic Hadith collections. The project is architected as a robust three-part system:\n\n1.  <strong>Data Pipeline:</strong> A Python-based ETL process extracts Hadith data from a MySQL database, cleans it, generates vector embeddings using the OpenAI API, and indexes them into a Pinecone vector database. This prepares the foundational knowledge base for the AI.\n\n2.  <strong>Backend API:</strong> A secure and scalable backend built with Flask (Python) serves the core AI logic. It features API key authentication, rate limiting, and an admin panel for user management. When a query is received, it retrieves the most relevant Hadith from Pinecone and uses an LLM to generate a coherent answer, complete with source citations.\n\n3.  <strong>Frontend Application:</strong> A modern, responsive user interface built with Next.js and TypeScript provides a seamless conversational experience. Users can select specific Hadith collections to query, and each AI-generated answer is accompanied by the source texts, ensuring transparency and trust.",
+        "key_features": [
+            "AI-powered conversational Q&A",
+            "Retrieval-Augmented Generation (RAG) pipeline for factual answers",
+            "Verifiable sources with links to original Hadith texts",
+            "Secure backend API with key-based authentication and rate limiting",
+            "Comprehensive admin dashboard for user & API key management",
+            "Dynamic multi-collection search (Bukhari, Muslim, etc.)",
+            "Fully responsive and modern user interface"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Ensuring Factual Accuracy and Preventing AI Hallucination",
+                "solution": "Implemented a strict RAG pipeline to ground the LLM's responses in retrieved scriptural texts. Meticulous prompt engineering was used to instruct the model to only use the provided context, minimizing false information and citing sources for every claim."
+            },
+            {
+                "challenge": "Designing a Scalable and Maintainable System Architecture",
+                "solution": "Decoupled the project into three distinct services: a Data Pipeline for ETL, a Backend API for core logic, and a Frontend Application for user interaction. This architecture ensures modularity, allowing for independent development, deployment, and scaling of each component."
+            },
+            {
+                "challenge": "Processing and Indexing a Large Corpus of Hadith Texts",
+                "solution": "Developed an automated data pipeline to extract data from a MySQL database, clean HTML content, generate high-dimensional embeddings, and efficiently index millions of vectors into Pinecone. The pipeline is designed to be runnable for specific collections, making data updates manageable."
+            }
+        ],
+        "technologies": [
+            "Python",
+            "Flask",
+            "Next.js",
+            "TypeScript",
+            "React",
+            "RAG",
+            "OpenAI API",
+            "Pinecone",
+            "SQLite",
+            "MySQL",
+            "Tailwind CSS",
+            "JWT",
+            "Gunicorn",
+            "Vercel",
+            "Git"
+        ],
+        "links": [
+            {
+                "type": "Live Demo",
+                "url": "http://asksunnah.online/",
+                "icon": "fas fa-external-link-alt"
+            },
+            {
+                "type": "Backend GitHub (Private)",
+                "url": "https://github.com/Qamar2315/ask-sunnah-api",
+                "icon": "fab fa-github"
+            },
+            {
+                "type": "Frontend GitHub (Private)",
+                "url": "https://github.com/Qamar2315/ask-sunnah-frontend",
+                "icon": "fab fa-github"
+            },
+            {
+                "type": "Data Pipeline GitHub (Private)",
+                "url": "https://github.com/Qamar2315/ask-sunnah-data-pipeline",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "video",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755446262/Ask%20Sunnah/Vento_-_4_August_2025_vb74kj.mp4",
+                "caption": "Project Demo Video"
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446248/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.44.59_AM_2_pzej6p.jpg",
+                "caption": "User interface showing a query and response"
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446246/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.44.59_AM_1_xmvmqj.jpg",
+                "caption": "Example of AI-generated answer with sources"
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446241/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.45.01_AM_1_gbarev.jpg",
+                "caption": "Selecting specific Hadith collections for search"
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755446237/Ask%20Sunnah/WhatsApp_Image_2025-08-06_at_1.44.59_AM_lld1m9.jpg",
+                "caption": "Mobile responsive view of the chat interface"
+            }
+        ]
+    },
+    {
+        "id": "slack-prayer-reminder-bot",
+        "title": "Slack Prayer Reminder Bot",
+        "project_type": "Personal Project",
+        "status": "Completed",
+        "role": "Creator & Lead Developer",
+        "date_range": "July 2024 - August 2024",
+        "short_description": "A production-ready bot that sends beautiful, motivational reminders to Slack channels with Quran verses and AI-generated messages.",
+        "long_description": "This is a robust, automated bot designed to enrich a Slack workspace with timely and inspiring prayer reminders. The application runs on a continuous schedule, performing two key jobs:\n\n1.  <strong>Daily Setup:</strong> Each morning, the bot fetches the day's prayer times from the AlAdhan API for a specific location. It then uses the Google Gemini AI to generate a unique, motivational message for each of the five prayers and stores this data in a local SQLite database.\n\n2.  <strong>Reminder Dispatch:</strong> Every minute, the bot checks the database for upcoming prayers. When a prayer is due (e.g., 10 minutes beforehand), it pairs the AI-generated message with a randomly selected Quran verse (in both Arabic and Urdu) and sends a beautifully formatted, multi-section message to the designated Slack channel. This ensures that reminders are not only punctual but also fresh and engaging every day.",
+        "key_features": [
+            "Automated, scheduled prayer reminders for Slack",
+            "Unique AI-generated motivational messages via Google Gemini",
+            "Integrated Quran verses with Arabic and Urdu text",
+            "Richly formatted, visually appealing Slack messages",
+            "SQLite persistence to prevent duplicate reminders and ensure reliability",
+            "Secure configuration using environment variables for API keys",
+            "Configurable for any location and prayer calculation method"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Ensuring Reliability and Punctuality",
+                "solution": "Architected the bot with a two-part scheduling system. A daily job pre-fetches and stores all necessary data (prayer times, AI messages) in an SQLite database. A separate, frequent job then only checks the local database. This decouples the bot from real-time API dependencies, making it resilient to network failures and ensuring reminders are always sent on time."
+            },
+            {
+                "challenge": "Creating Engaging and Non-Repetitive Content",
+                "solution": "To avoid message fatigue, I integrated Google's Gemini AI to generate a fresh, context-aware motivational message for each prayer, every single day. This was combined with a system that randomly selects from a large corpus of Quran verses, guaranteeing that the content remains inspiring and varied."
+            }
+        ],
+        "technologies": [
+            "Python",
+            "Google Gemini API",
+            "Slack API",
+            "AlAdhan API",
+            "SQLite",
+            "APScheduler",
+            "Requests",
+            "python-dotenv"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755448651/Slack%20Prayer%20Reminder/2_naigex.mp4",
+                "icon": "fas fa-video"
+            },
+            {
+                "type": "GitHub",
+                "url": "https://github.com/Qamar2315/slack-prayer-reminder",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448640/Slack%20Prayer%20Reminder/7.898Z_gzcqbp.png",
+                "caption": "Example Fajr prayer reminder in Slack"
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448641/Slack%20Prayer%20Reminder/9.342Z_ltu6oy.png",
+                "caption": "Isha prayer notification with Quran verse"
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448639/Slack%20Prayer%20Reminder/6.547Z_carm16.png",
+                "caption": "A motivational message for Maghrib prayer"
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755448636/Slack%20Prayer%20Reminder/1_nkr1nn.png",
+                "caption": "Overview of the project's file structure"
+            }
+        ]
+    },
+    {
+        "id": "sweettales-chat-pdf-creator",
+        "title": "SweetTales - Chat to PDF Memory Book",
+        "project_type": "Personal Project",
+        "status": "Completed",
+        "role": "Creator & Full-Stack Developer",
+        "date_range": "August 2024",
+        "short_description": "A web application that transforms WhatsApp chat exports into beautifully themed, printable PDF memory books, with optional AI-powered highlights.",
+        "long_description": "SweetTales is a Flask-based web application created to turn digital conversations into tangible keepsakes. The user journey is simple: upload a standard WhatsApp chat export (.txt file), choose from a selection of visual themes, and add a custom title and name. \n\nThe backend then performs a multi-step process: \n1. <strong>Parsing:</strong> It intelligently parses the unstructured text file, identifying senders, timestamps, messages, and filtering out system notifications (e.g., 'user was added'). \n2. <strong>HTML Generation:</strong> The parsed data is dynamically rendered into a styled HTML document using a Jinja2 template corresponding to the user's chosen theme. \n3. <strong>AI Highlights (Optional):</strong> If an API key is provided, the entire chat transcript is sent to the Google Gemini API to generate a summary of key moments, which is added as a special 'Highlights' section in the book. \n4. <strong>PDF Conversion:</strong> The application uses Playwright's headless browser engine to convert the final HTML into a high-fidelity, print-ready PDF, perfectly preserving the theme's styling and layout.",
+        "key_features": [
+            "Parses standard WhatsApp chat export (.txt) files",
+            "Multiple customizable themes for PDF styling",
+            "High-quality, print-ready PDF generation via Playwright",
+            "Optional AI-powered conversation highlights using Google Gemini",
+            "Simple and intuitive web interface for upload and customization",
+            "Asynchronous PDF generation to prevent request timeouts on large chats",
+            "Modular code structure for easy maintenance and theme additions"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Reliably Parsing Unstructured WhatsApp Chat Data",
+                "solution": "Developed a robust chat parser using regular expressions to accurately handle various message formats, including multi-line messages, different timestamp patterns (12h/24h), and special characters. The parser was designed to effectively filter out non-message system entries to create a clean conversation log."
+            },
+            {
+                "challenge": "Generating High-Fidelity PDFs with Complex CSS",
+                "solution": "Standard PDF libraries struggled to render modern CSS themes accurately. I chose to integrate Playwright, a headless browser automation tool, to render the chat into an HTML page first and then 'print' it to PDF. This ensures that any theme, no matter how complex its CSS, is rendered with perfect fidelity, exactly as it would appear in a Chrome browser."
+            }
+        ],
+        "technologies": [
+            "Python",
+            "Flask",
+            "Playwright",
+            "Google Gemini API",
+            "HTML5",
+            "CSS3",
+            "Jinja2",
+            "JavaScript (Async)",
+            "python-dotenv"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755463068/Sweet%20Tales/demo_qhkkq9.mp4",
+                "icon": "fas fa-video"
+            },
+            {
+                "type": "GitHub (Private)",
+                "url": "https://github.com/Qamar2315/SweetTales",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463040/Sweet%20Tales/91_rsnbr5.png",
+                "caption": "The main application UI for file upload and customization."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463039/Sweet%20Tales/1_bvmpqz.png",
+                "caption": "The professional landing page for the SweetTales application."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463036/Sweet%20Tales/2_oo4kvi.png",
+                "caption": "Example of a generated PDF cover page."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463031/Sweet%20Tales/7_luhuyq.png",
+                "caption": "An inside page of the generated PDF showing the chat layout."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755463030/Sweet%20Tales/9_xlcfrp.png",
+                "caption": "Another example of the PDF output with a different theme."
+            }
+        ]
+    },
+    {
+        "id": "ask-quran-rag",
+        "title": "AskQuran - AI Quranic Scholar",
+        "project_type": "Personal Project",
+        "status": "Completed",
+        "role": "Lead Full-Stack & AI Architect",
+        "date_range": "August 2024",
+        "short_description": "A beautiful, modern web application for asking questions about the Quran and receiving AI-powered responses with relevant verses using a RAG architecture.",
+        "long_description": "AskQuran is an end-to-end AI application designed to make Quranic knowledge accessible through a natural language interface. The system is built on a decoupled, three-part architecture to ensure scalability and maintainability:\n\n1.  <strong>Data Pipeline:</strong> A Python-based ETL pipeline processes raw Quranic text and its metadata. It uses Google's Gemini models to generate high-quality vector embeddings for each verse and then indexes this data into a Pinecone serverless vector database, creating the core knowledge base.\n\n2.  <strong>Backend API:</strong> A stateless Flask API serves as the brain of the application. It employs a sophisticated RAG workflow: upon receiving a query, it first classifies whether the question is Quran-related or conversational. For Quranic questions, it generates an embedding, retrieves the most relevant verses from Pinecone, and then uses Gemini's powerful generative model to synthesize a final, source-backed answer. \n\n3.  <strong>Frontend Application:</strong> Built with Next.js and TypeScript, the frontend offers a visually stunning and responsive user experience. It features an elegant, Islamic-themed design where users can interact with the AI in real-time. Each generated answer is displayed alongside the retrieved verses, complete with links to Quran.com for verification and further study.",
+        "key_features": [
+            "AI-powered Quranic Q&A with conversational interface",
+            "Retrieval-Augmented Generation (RAG) for factual, source-based answers",
+            "Smart query classification to handle both topical questions and small talk",
+            "Verifiable source verses displayed with each answer, linking to Quran.com",
+            "Elegant, responsive, and mobile-friendly UI with Islamic design elements",
+            "Built on a modern stack including Next.js, Google Gemini, and Pinecone",
+            "Modular three-part architecture (Data Pipeline, API, Frontend)"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Achieving Factual Accuracy and Contextual Relevance",
+                "solution": "The RAG architecture was chosen specifically to mitigate AI hallucinations. By first retrieving relevant Quranic verses from a Pinecone vector database, the generative model is provided with a factual, grounded context. The prompt is engineered to compel the AI to construct its answer solely based on these provided verses, ensuring accuracy."
+            },
+            {
+                "challenge": "Differentiating Between Quranic Questions and Small Talk",
+                "solution": "To create a more natural user experience, I implemented a classification layer in the API. Before performing a vector search, the user's query is first sent to a Gemini model with a prompt that asks it to categorize the input as either 'quran_question' or 'conversational'. This allows the API to provide a direct, friendly response for small talk without unnecessarily querying the database."
+            }
+        ],
+        "technologies": [
+            "Python",
+            "Flask",
+            "Next.js",
+            "TypeScript",
+            "React",
+            "Google Gemini API",
+            "Pinecone",
+            "LangChain",
+            "Tailwind CSS",
+            "Radix UI"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755464910/Ask%20Quran/demo_omv2ll.mp4",
+                "icon": "fas fa-video"
+            },
+            {
+                "type": "Backend GitHub (Private)",
+                "url": "https://github.com/Qamar2315/ask-quran-api",
+                "icon": "fab fa-github"
+            },
+            {
+                "type": "Frontend GitHub (Private)",
+                "url": "https://github.com/Qamar2315/ask-quran-frontend",
+                "icon": "fab fa-github"
+            },
+            {
+                "type": "Data Pipeline GitHub (Private)",
+                "url": "https://github.com/Qamar2315/ask-quran-data-pipeline",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464881/Ask%20Quran/5_diwcbc.png",
+                "caption": "Main user interface showing an AI-generated answer with source verses."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464879/Ask%20Quran/1_fdfp4b.png",
+                "caption": "The clean and inviting chat interface."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464877/Ask%20Quran/2_p8dflt.png",
+                "caption": "Display of retrieved Quranic verses that support the AI's answer."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755464875/Ask%20Quran/4_lchzsy.png",
+                "caption": "Responsive design for mobile devices."
+            }
+        ]
+    },
+    {
+        "id": "learnxcellence-lms",
+        "title": "LearnXcellence: AI-Powered E-Learning & Proctoring Platform",
+        "project_type": "Academic Project (Final Year)",
+        "status": "Completed",
+        "role": "Co-creator & Full-Stack/AI Developer",
+        "date_range": "Sep 2023 - May 2024",
+        "short_description": "A full-stack e-learning platform featuring custom-trained AI models for intelligent proctoring, AI-assisted content generation, and biometric identity verification.",
+        "long_description": "LearnXcellence is a sophisticated e-learning platform built from the ground up to address the needs of modern education, with a strong focus on academic integrity. The platform is built on a decoupled, three-tier architecture: a React.js frontend for a dynamic user experience, a Node.js/Express backend for core business logic and API services, and a dedicated Python/Flask microservice for handling all intensive AI/ML operations. \n\nFor instructors, it offers a full suite of course management tools, including AI-powered quiz and project idea generation. The standout feature is the intelligent proctoring system, which analyzes a student's webcam feed in real-time for violations like phone usage, multiple people, and gaze deviation. \n\nFor students, the platform provides a secure and engaging learning environment. A key innovation is the use of a custom-trained AI model for facial liveness detection during registration and quiz initiation, preventing identity spoofing with photos or screens. The system culminates in generating a data-backed 'cheating probability' score, providing instructors with actionable insights and detailed reports.",
+        "key_features": [
+            "Advanced AI Proctoring with custom-trained models (phone, gaze, multi-person detection)",
+            "AI-Based Liveness & Anti-Spoof Detection for secure identity verification",
+            "AI Content Generation for quizzes, project suggestions, and viva questions",
+            "Decoupled Microservice Architecture (React, Node.js, Python/Flask)",
+            "Distinct Role-Based Dashboards for Instructors and Students",
+            "Comprehensive Course & User Management functionalities",
+            "Automated Grading with manual override and detailed PDF reporting",
+            "Secure user authentication with facial biometrics and JWT"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Ensuring Robust Academic Integrity in Online Exams",
+                "solution": "Developed a multi-faceted AI proctoring system. This involved training separate YOLOv8 models for mobile phone and multi-person detection, and integrating MediaPipe for gaze and mouth movement analysis. The data from these analyses was fed into a custom-trained Scikit-learn classifier to generate a nuanced cheating probability score, moving beyond simple rule-based flags."
+            },
+            {
+                "challenge": "Preventing Identity Spoofing during Registration and Exams",
+                "solution": "Instead of relying on basic face recognition, I trained a custom YOLOv8 model specifically for liveness detection. This model was trained on a proprietary dataset of real faces vs. spoofing attempts (e.g., photos on screens, printed images), allowing the system to reliably verify that a real, live person is in front of the camera."
+            },
+            {
+                "challenge": "Architecting a Scalable System for Intensive AI Tasks",
+                "solution": "Designed a microservice architecture to separate the main application logic (Node.js) from the computationally heavy AI processing (Python/Flask). This prevents AI tasks like image analysis from blocking the user interface, ensures independent scalability of the services, and allows for using the best technology for each specific job."
+            }
+        ],
+        "technologies": [
+            "React.js",
+            "Node.js",
+            "Express.js",
+            "Python",
+            "Flask",
+            "MongoDB",
+            "YOLOv8",
+            "MediaPipe",
+            "Scikit-learn",
+            "OpenCV",
+            "face_recognition",
+            "JWT",
+            "Tailwind CSS",
+            "Mongoose",
+            "Axios"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://youtu.be/TXzUpTni7DI?si=NSW2EHPbLJ264JKa",
+                "icon": "fas fa-video"
+            },
+            {
+                "type": "GitHub (Private)",
+                "url": "https://github.com/qamar2315/learnxcellence",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/4_yuy75t.png",
+                "caption": "Instructor's dashboard for managing courses and students."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547802/Learnxcellence/9_wylrao.png",
+                "caption": "Detailed AI Proctoring report with cheating probability and violation evidence."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/6_cegck3.png",
+                "caption": "Student's dashboard showing enrolled courses."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/1_x5dqzt.png",
+                "caption": "The landing page for the LearnXcellence platform."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547801/Learnxcellence/8_bdlvds.png",
+                "caption": "The student's view of an ongoing proctored quiz."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755547802/Learnxcellence/3_zfdljw.png",
+                "caption": "Secure login page for students and instructors."
+            }
+        ]
+    },
+    {
+        "id": "quotewise-ai-generator",
+        "title": "QuoteWise - AI Quote Generation Platform",
+        "project_type": "Personal Project",
+        "status": "Completed",
+        "role": "Creator & Full-Stack Developer",
+        "date_range": "April 2023 - June 2023",
+        "short_description": "A full-stack social platform built with Angular and Node.js where users can generate unique quotes using the Google Gemini AI, share them, and interact with the community.",
+        "long_description": "QuoteWise is a complete social web application designed for creative expression, built on a modern, end-to-end TypeScript stack. The core of the platform is an AI-powered quote generator that allows authenticated users to provide a prompt and receive a unique, concise quote generated by the Google Gemini API. \n\nThe application is architected with an Angular SSR frontend for enhanced performance and SEO, and a robust Node.js/Express backend. Beyond generation, it's a full-fledged community platform. Users have comprehensive profiles displaying their created quotes, liked posts, and favorited items. A central feed showcases all community quotes, where users can engage by liking, commenting, and saving quotes to their personal collection. Security is handled with JWT-based authentication, ensuring all user-specific routes and actions are protected.",
+        "key_features": [
+            "AI-powered quote generation via Google Gemini API",
+            "End-to-end TypeScript stack (Angular frontend, Node.js backend)",
+            "Server-Side Rendering (Angular SSR) for improved SEO and performance",
+            "Full user authentication with JWT (signup, login, protected routes)",
+            "Interactive social features: Likes, Comments, and Favorites",
+            "Comprehensive user profiles to showcase personal activity",
+            "Community quote feed for discovering new content"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Building a Type-Safe Full-Stack Application",
+                "solution": "Leveraged TypeScript across the entire stack\u2014for the Angular frontend and the Node.js/Express backend. This created an end-to-end type-safe environment, significantly reducing runtime errors, improving developer experience, and making the API contract between the client and server more robust and self-documenting."
+            },
+            {
+                "challenge": "Managing Application State and Reactivity",
+                "solution": "Utilized Angular's built-in services and the RxJS library to manage application state. By using Observables to stream data from the backend to the components, the UI updates reactively and efficiently whenever data changes (e.g., a quote is liked or a new comment is posted), ensuring a smooth and dynamic user experience."
+            }
+        ],
+        "technologies": [
+            "Angular",
+            "TypeScript",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Mongoose",
+            "Google Gemini API",
+            "Angular SSR",
+            "RxJS",
+            "JWT",
+            "Bcrypt.js",
+            "Joi"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755722832/Quotewise/bandicam_2024-05-06_00-25-53-719_xgy6pj.mp4",
+                "icon": "fas fa-video"
+            },
+            {
+                "type": "GitHub",
+                "url": "https://github.com/Qamar2315/QuoteWise",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722528/Quotewise/quote_quiz_2_ssvyjh.jpg",
+                "caption": "The AI quote generation interface where users input a prompt."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722529/Quotewise/quote_quiz_4_cionyj.jpg",
+                "caption": "The main quote feed where users can see community-generated content."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722530/Quotewise/quote_quiz_6_qpzqm1.jpg",
+                "caption": "User profile page displaying created, liked, and favorited quotes."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722529/Quotewise/quote_quiz_5_wygfq9.jpg",
+                "caption": "Viewing a single quote with its comments and interaction options."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755722528/Quotewise/quote_quiz_1_kfu1zc.jpg",
+                "caption": "The landing and login page for the application."
+            }
+        ]
+    },
+    {
+        "id": "chefconnect-recipe-platform",
+        "title": "ChefConnect - Recipe Sharing Platform",
+        "project_type": "Personal Project",
+        "status": "Completed",
+        "role": "Creator & Full-Stack Developer",
+        "date_range": "Feb 2023 - April 2023",
+        "short_description": "A full-stack recipe-sharing platform where users can discover, create, and review culinary creations, built with Next.js and NextAuth.js for a modern, secure experience.",
+        "long_description": "ChefConnect is a full-stack web application built using the modern Next.js 13+ App Router, allowing users to create, share, and discover recipes. The platform provides a complete user journey, from registration and login to creating and managing personal content. Authentication is seamlessly handled by NextAuth.js, supporting both traditional email/password credentials and social logins via GitHub.\n\nThe application features a RESTful API built directly within the Next.js framework for all CRUD operations on recipes, users, and reviews. Robust authorization middleware is implemented to ensure that users can only edit or delete their own content. The frontend is fully responsive, styled with Tailwind CSS, and utilizes Formik and Yup for robust, client-side form validation, creating a polished and secure user experience.",
+        "key_features": [
+            "Full Recipe CRUD (Create, Read, Update, Delete)",
+            "Secure user authentication with NextAuth.js (Credentials & GitHub)",
+            "Interactive review and rating system for recipes",
+            "User profiles with personal recipe galleries",
+            "Ownership-based authorization (users can only edit their own content)",
+            "Built with the modern Next.js 13+ App Router",
+            "Fully responsive design styled with Tailwind CSS"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Implementing Secure and Flexible Authentication",
+                "solution": "Integrated NextAuth.js to handle the complexities of authentication. This provided built-in providers for both GitHub (OAuth) and traditional Credentials, simplifying session management, JWT handling, and security. Next.js Middleware was then used to protect both API routes and client-side pages from unauthorized access."
+            },
+            {
+                "challenge": "Creating a Cohesive Full-Stack Experience in a Single Framework",
+                "solution": "Leveraged the Next.js App Router to co-locate API routes, server components, and client components. This allowed for creating a self-contained RESTful API for all CRUD operations (recipes, reviews) directly within the project, simplifying the architecture and streamlining development without needing a separate backend server."
+            }
+        ],
+        "technologies": [
+            "Next.js (App Router)",
+            "React",
+            "Node.js",
+            "MongoDB",
+            "Mongoose",
+            "NextAuth.js",
+            "Tailwind CSS",
+            "Formik",
+            "Yup",
+            "Axios"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755724679/Cheffconnect/bandicam_2024-03-15_01-08-13-484_u5y0mv.mp4",
+                "icon": "fas fa-video"
+            },
+            {
+                "type": "GitHub",
+                "url": "https://github.com/Qamar2315/chefconnect",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755724274/Cheffconnect/1_yilnjh.png",
+                "caption": "The main homepage displaying a gallery of recipes."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755724274/Cheffconnect/2_uctzbz.png",
+                "caption": "Detailed recipe view with ingredients, instructions, and author details."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755724273/Cheffconnect/4_yrmofe.png",
+                "caption": "The form for creating and adding a new recipe."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755724273/Cheffconnect/3_drg0bc.png",
+                "caption": "User profile page showcasing their submitted recipes."
+            }
+        ]
+    },
+    {
+        "id": "waterzilla-delivery-management",
+        "title": "WaterZilla - Water Delivery Management System",
+        "project_type": "Personal Project",
+        "status": "Completed",
+        "role": "Creator & Full-Stack Developer",
+        "date_range": "Jan 2022 - Mar 2023",
+        "short_description": "A full-stack MERN application for managing a water delivery service, featuring a comprehensive admin dashboard and a user-friendly customer portal. Uniquely includes two interchangeable backends (MySQL/Sequelize and MongoDB/Mongoose).",
+        "long_description": "WaterZilla is a complete management system designed to digitize and streamline the operations of a water delivery business. The application is architected with a modern React frontend and offers the flexibility of two complete, interchangeable backend implementations: one with Node.js, MySQL, and Sequelize for a relational approach, and another with Node.js, MongoDB, and Mongoose for a NoSQL approach. \n\nThe platform provides two distinct experiences: \n1. <strong>Customer Portal:</strong> A secure and intuitive interface where customers can register, log in, browse products, place orders, view their order history with real-time status tracking, and leave reviews. \n2. <strong>Admin Dashboard:</strong> A powerful, all-in-one control center for business owners. It includes an analytics dashboard with charts, full CRUD management for orders, customers, products, and partner companies, and a reporting engine that can export sales data to PDF. Product images are handled via Cloudinary integration.",
+        "key_features": [
+            "Dual Backend Implementation (MySQL with Sequelize & MongoDB with Mongoose)",
+            "Comprehensive Admin Dashboard with real-time analytics and charts",
+            "Full CRUD Operations for orders, customers, products, and companies",
+            "Secure user and admin authentication using JWT",
+            "Customer portal with order placement, history, and status tracking",
+            "PDF report generation for sales and order data",
+            "Product image uploads and management via Cloudinary"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Demonstrating Database Versatility and Adaptability",
+                "solution": "Architected and built two complete, independent backend systems. One uses a relational database (MySQL with Sequelize) to enforce strict schema and data integrity, while the other uses a NoSQL database (MongoDB with Mongoose) for flexibility and scalability. This showcases the ability to choose the right database technology based on project requirements."
+            },
+            {
+                "challenge": "Creating a Centralized, Data-Rich Admin Control Panel",
+                "solution": "Developed a feature-complete single-page application dashboard using React. It consolidates all critical business functions into one interface, leveraging the Recharts library to provide clear data visualizations and the jsPDF library to enable one-click PDF report exporting, offering actionable insights for administrators."
+            },
+            {
+                "challenge": "Managing Global Application State on the Frontend",
+                "solution": "Utilized React's Context API to manage global state, such as user authentication status and profile information. This provided a clean and efficient way to share data across various components in both the customer portal and the admin dashboard without relying on more complex state management libraries."
+            }
+        ],
+        "technologies": [
+            "React",
+            "Node.js",
+            "Express.js",
+            "MySQL",
+            "Sequelize",
+            "MongoDB",
+            "Mongoose",
+            "JWT",
+            "Cloudinary",
+            "Tailwind CSS",
+            "DaisyUI",
+            "Formik",
+            "Yup",
+            "Recharts",
+            "jsPDF"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755721467/Waterzilla/lv_0_20230627001710_hb0lbz.mp4",
+                "icon": "fas fa-video"
+            },
+            {
+                "type": "GitHub",
+                "url": "https://github.com/Qamar2315/Waterzilla",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755721151/Waterzilla/Capture_bgnl3v.webp",
+                "caption": "The comprehensive admin dashboard showing analytics and order management."
+            }
+        ]
+    },
+    {
+        "id": "whirley-bird-gesture-game",
+        "title": "Whirley Bird - Gesture-Controlled Pygame",
+        "project_type": "Personal Project",
+        "status": "Completed",
+        "role": "Creator & Python Developer",
+        "date_range": "Jan 2022 - Mar 2022",
+        "short_description": "An interactive arcade game built with Pygame where players control the bird's movement in real-time using hand gestures via their webcam and the MediaPipe framework.",
+        "long_description": "Whirley Bird is a unique take on the classic arcade genre, replacing traditional keyboard or mouse inputs with an intuitive, gesture-based control system. The game uses a computer's webcam to capture the player's hand movements. This video feed is processed in real-time by OpenCV and Google's MediaPipe framework to accurately track the hand's position. This allows players to intuitively steer the bird left and right on screen simply by moving their hand.\n\nThe gameplay is challenging and dynamic: players must dodge falling obstacles while collecting apples to increase their score. The game's speed progressively increases, offering a scalable challenge. To encourage replayability, all high scores are saved locally in an SQLite database, allowing players to compete against their personal best.",
+        "key_features": [
+            "Innovative Gesture-Based Control via webcam",
+            "Real-time Hand Tracking with Google MediaPipe",
+            "Classic arcade gameplay with progressive difficulty",
+            "Persistent High Score tracking using a local SQLite database",
+            "Built with Pygame for the game engine and OpenCV for video processing",
+            "Complete game loop with welcome, pause, and game-over screens"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Integrating Real-Time Computer Vision with a Game Loop",
+                "solution": "The primary challenge was bridging the gap between the OpenCV video feed and the Pygame game window. This was solved by capturing the hand's landmark coordinates from MediaPipe, normalizing them, and then scaling them to map accurately to the bird's permissible horizontal movement within the game's canvas, ensuring responsive and intuitive control."
+            },
+            {
+                "challenge": "Maintaining Performance and a High Frame Rate",
+                "solution": "To ensure a smooth experience, the hand-tracking logic was encapsulated in a separate, efficient module. This module processes the video feed without blocking Pygame's main game loop, allowing both the computer vision analysis and the game rendering to run at a high, stable frame rate."
+            }
+        ],
+        "technologies": [
+            "Python",
+            "Pygame",
+            "OpenCV",
+            "MediaPipe",
+            "SQLite"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://res.cloudinary.com/dmiqkr7ja/video/upload/v1755726216/whirley%20bird/46367ac0-5ba0-4ee1-a42b-0b37e69e0032_yvbmyj.webm",
+                "icon": "fas fa-video"
+            },
+            {
+                "type": "GitHub",
+                "url": "https://github.com/Qamar2315/Whirleybird",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755725322/whirley%20bird/PROGRAMMING_Tasks_assignments_and_projects_6_gocarr.png",
+                "caption": "The game in action, showing the bird, obstacles, score, and the OpenCV hand-tracking window."
+            }
+        ]
+    },
+    {
+        "id": "lettergen-ai-cover-letter",
+        "title": "LetterGen - AI Cover Letter & Email Generator",
+        "project_type": "Personal Project",
+        "status": "Completed",
+        "role": "Creator & Full-Stack Developer",
+        "short_description": "A modern web app that uses Google Gemini AI to generate personalized cover letters and emails by parsing a user's PDF resume and a job description.",
+        "long_description": "LetterGen is a productivity tool designed to automate the tedious task of writing unique cover letters. The application allows a user to upload their PDF resume and paste a job description. It then leverages a sophisticated, decoupled three-tier architecture to deliver results. The React frontend sends the data to a Node.js API server, which handles the file upload. The Node server then forwards the request to a dedicated Python/Flask microservice. This AI service parses the text from the PDF using PDFPlumber, combines it with the job description, and uses the Google Gemini API to generate 5 distinct, high-quality variations of a cover letter or application email. For user privacy, uploaded resumes are deleted immediately after processing.",
+        "key_features": [
+            "AI-powered generation of cover letters & emails via Google Gemini",
+            "Automatic text extraction from user-uploaded PDF resumes",
+            "Generates 5 distinct variations for each request",
+            "Decoupled microservice architecture (React, Node.js, Python/Flask)",
+            "Privacy-focused: resumes are deleted from the server after processing",
+            "Clean, responsive, and intuitive user interface with animations"
+        ],
+        "key_challenges": [
+            {
+                "challenge": "Designing a Scalable and Efficient System for AI Tasks",
+                "solution": "Architected a decoupled microservice system to separate concerns. A Node.js server handles lightweight API requests and file management, while a separate Python/Flask service manages the computationally intensive tasks of PDF parsing and communication with the Gemini AI. This prevents the main API from being blocked by long-running AI jobs and allows for using the best language for each task."
+            },
+            {
+                "challenge": "Securely Handling and Processing User-Uploaded Files",
+                "solution": "Implemented a secure workflow for handling sensitive documents. The Node.js server uses Multer for in-memory file handling, forwards the file to the Python service for immediate processing, and is designed to delete the temporary file from the server as soon as the AI generation is complete, ensuring user data is not stored."
+            }
+        ],
+        "technologies": [
+            "React",
+            "Node.js",
+            "Express.js",
+            "Python",
+            "Flask",
+            "Google Gemini API",
+            "PDFPlumber",
+            "Multer",
+            "Axios",
+            "Framer Motion"
+        ],
+        "links": [
+            {
+                "type": "Video Demo",
+                "url": "https://www.youtube.com/watch?v=4OXoCcdx-zQ",
+                "icon": "fas fa-video"
+            },
+            {
+                "type": "GitHub",
+                "url": "https://github.com/Qamar2315/lettergen",
+                "icon": "fab fa-github"
+            }
+        ],
+        "media": [
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755809319/lettergen/Home_zuikky.png",
+                "caption": "The clean and simple landing page of the application."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755809318/lettergen/ResumeUploader_husjpr.png",
+                "caption": "The main interface for uploading a resume and providing a job description."
+            },
+            {
+                "type": "image",
+                "src": "https://res.cloudinary.com/dmiqkr7ja/image/upload/v1755809318/lettergen/AboutUs_rndak5.png",
+                "caption": "The 'About Us' page explaining the application's purpose."
+            }
+        ]
+    }
 ]
