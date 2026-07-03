@@ -707,7 +707,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalFeaturesList.innerHTML = features.map(feat => `
                 <li class="flex items-start">
                     <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                    <span>${feat}</span>
+                    <span>${marked.parseInline(feat)}</span>
                 </li>
             `).join('');
         }
@@ -724,8 +724,8 @@ document.addEventListener('DOMContentLoaded', () => {
             modalChallengesBlock.classList.remove('hidden');
             modalChallengesList.innerHTML = item.key_challenges.map(c => `
                 <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                    <div class="font-semibold text-slate-700 mb-1">${c.challenge}</div>
-                    <div class="text-slate-600">${c.solution}</div>
+                    <div class="font-semibold text-slate-700 mb-1">${marked.parseInline(c.challenge)}</div>
+                    <div class="text-slate-600">${marked.parseInline(c.solution)}</div>
                 </div>
             `).join('');
         }
