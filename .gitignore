@@ -1,3 +1,10 @@
 .vscode
 temp.txt
-dep.png
+dep.pngnode_modules/
+package-lock.json
+package.json
+modal.png
+test.js
+test2.js
+fix_newlines.py
+playwright_test.js
