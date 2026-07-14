@@ -1,5 +1,45 @@
 [
   {
+    "id": "als-school-system",
+    "title": "Advance Learning School (ALS) - Complete Digital Ecosystem",
+    "short_description": "A three-repository school platform for a multi-branch school: a FastAPI backend (LMS + student information system + finance) driving two Next.js 16 frontends - an 8-role authenticated staff/student portal and a CMS-driven public marketing website.",
+    "problem_statement": "The school needed a complete digital transformation: a public-facing, SEO-optimized website, a secure portal for administrators, teachers, students, and guardians to manage academic and financial records, and a unified backend to power both systems while keeping each branch's data strictly isolated.",
+    "solution_delivered": "Developed a decoupled three-part architecture: a FastAPI backend (Python 3.12, SQLAlchemy 2.0 async, PostgreSQL 16, Alembic, Redis, and an Arq worker) organized into eleven bounded contexts (identity, academics, students, enrollment, attendance, finance, assessment, LMS, communication, reporting, CMS); an 8-role authenticated portal (als-portal, Next.js 16 App Router, React 19, shadcn/ui); and a CMS-driven public website (als-website, Next.js 16). Both frontends consume the backend through a single committed OpenAPI contract with generated typed clients. Implemented a full finance suite (fee structures, bulk challan generation, payments, payroll, ledger), a gradebook/assessment module, default-deny RBAC, and defense-in-depth multi-tenancy.",
+    "key_achievements": [
+      "Built a FastAPI modular-monolith backend across eleven bounded contexts with a layered router -> service -> repository design and Alembic migrations for every module.",
+      "Enforced defense-in-depth multi-tenancy: an app-layer branch_id auto-filter backed by PostgreSQL Row-Level Security applied per-transaction, chosen to remain correct under PgBouncer transaction pooling.",
+      "Implemented a real finance suite: fee structures, bulk challan generation across a section roster, payment recording with status transitions, payroll with a no-double-pay guard, and a running-balance ledger.",
+      "Delivered contract-first integration - a single committed OpenAPI schema generates typed clients for both frontends via openapi-typescript, gated by a CI drift check.",
+      "Built a BFF security boundary in the portal so the JWT lives only in an httpOnly cookie, with a proxy that injects the Bearer server-side and transparently refreshes on a 401.",
+      "Hardened auth and PII: Argon2id password hashing, rotating refresh tokens with reuse detection, application-level column encryption with an HMAC blind index, and a transactional outbox relayed to Redis Streams by a background worker."
+    ],
+    "technologies": [
+      "Python 3.12",
+      "FastAPI",
+      "SQLAlchemy 2.0 async",
+      "PostgreSQL 16",
+      "Redis",
+      "Arq",
+      "Alembic",
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "shadcn/ui",
+      "TanStack Query",
+      "Zustand",
+      "Zod",
+      "openapi-typescript",
+      "Playwright",
+      "Docker"
+    ],
+    "client_feedback": {
+      "quote": "The entire system looks amazing and works flawlessly. It has completely transformed how we manage the school.",
+      "client_name": "Advance Learning School Administration"
+    },
+    "media": []
+  },
+  {
     "id": "voucher-management-system",
     "title": "Full-Stack Voucher Management System with Stripe Integration",
     "short_description": "Developed a comprehensive voucher management platform with a React admin dashboard, Node.js backend, and integrated Stripe payments to automate sales and distribution.",
@@ -64,7 +104,7 @@
   },
   {
     "id": "color-by-numb3r",
-    "title": "Color by Numb3r — Full-Stack E-Commerce & Content Platform",
+    "title": "Color by Numb3r \u2014 Full-Stack E-Commerce & Content Platform",
     "short_description": "Architected and deployed a multi-tenant e-commerce and content platform for a creative business, featuring a custom React CMS, automated product syncing, and a robust FastAPI backend.",
     "problem_statement": "The client required a scalable, production-ready platform to sell custom coloring books and digital content. The existing tools were insufficient for managing a growing catalog of products, serving different user roles (Designers vs Customers), and handling high-volume traffic. They needed a system that could automatically sync product data from external marketplaces like Bol.com and provide a seamless, branded experience for users to create and purchase custom designs.",
     "solution_delivered": "I engineered a complete digital ecosystem hosted on a custom Linux VPS. The backend, built with FastAPI and MongoDB (Beanie), features an automated background sync engine that keeps product inventory and reviews up-to-date with Bol.com. The frontend is a complex React 19 SPA with distinct portals for Customers, Designers, and Admins. I implemented a CI/CD pipeline via GitHub Actions for zero-downtime deployments and optimized performance using Nginx and in-memory caching. The result is a robust, high-performance platform that handles real-time customization and e-commerce transactions.",

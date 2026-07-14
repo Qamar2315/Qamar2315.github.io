@@ -1,39 +1,89 @@
 [
   {
+    "id": "silocut-nle",
+    "title": "SiloCut - Zero-Dependency NLE & Screen Recorder",
+    "project_type": "Personal Project",
+    "status": "Live",
+    "role": "Creator & Director",
+    "date_range": "2024",
+    "short_description": "A standalone Windows non-linear video editor (NLE) and GDI screen recorder written in Rust, packing a timeline editor, multi-track audio mixing, and H.264 MP4 export into a single ~11MB executable with no external runtime dependencies (no FFmpeg, no DLLs).",
+    "long_description": "SiloCut is a standalone Windows non-linear video editor (NLE) plus screen recorder built as a single self-contained Rust binary (~11MB) with no external runtime dependencies - no FFmpeg, no bundled DLLs. The GUI is an egui/eframe immediate-mode application with a media bin, preview viewport, and a custom-drawn timeline canvas supporting clip dragging, edge-trimming, playhead scrubbing, snapping, per-track mute/solo/volume, waveforms, and thumbnails. The genuinely non-trivial engineering sits in the media plumbing: a shared codec module configures the OpenH264 encoder with a resolution-scaled bitrate and periodic keyframes, parses the MP4 avcC record into Annex-B SPS/PPS to prime the decoder, and converts length-prefixed NAL units to Annex-B; separate preview, export, and thumbnail subsystems reuse it to demux with symphonia and decode with OpenH264.\n\nThe screen recorder runs on its own thread and calls raw Win32 GDI APIs (BitBlt/GetDIBits) to capture the desktop, composites the cursor, converts BGRA to RGB in parallel with rayon, and encodes to H.264/MP4 on the fly with the pure-Rust mp4e muxer - timestamping each frame with real elapsed time so playback speed stays correct even when capture can't sustain the target FPS. A rodio-based real-time mixer queries the timeline every ~100ms and mixes overlapping clips with per-clip fades and per-track volume/solo, and the editor supports razor split, ripple delete, drag-coalescing undo/redo, and .silocut JSON project persistence. Tests cover the codec roundtrip, the parsers (fuzz-tested), and the editing operations, run in Windows CI.",
+    "key_features": [
+      "Single ~11MB standalone Windows binary with zero external runtime dependencies (no FFmpeg/DLLs)",
+      "GDI screen recorder with cursor compositing, multi-monitor selection, 30/60 FPS, and pause/resume, encoding to H.264/MP4 on the fly",
+      "Wall-clock-accurate recording: frames timestamped with real elapsed time to keep playback speed correct",
+      "Custom H.264 plumbing: avcC-to-Annex-B SPS/PPS parsing, decoder re-priming across seeks, and NAL format conversion",
+      "Custom-drawn timeline with clip move/trim, snapping, scrubbing, waveforms, and thumbnails",
+      "Real-time multi-track audio mixer (rodio) with per-clip fades and per-track volume/solo/mute",
+      "Non-destructive edits (razor split, ripple delete) and drag-coalescing undo/redo",
+      "Project save/load to a .silocut JSON file and H.264 MP4 export with bitrate scaling"
+    ],
+    "key_challenges": [
+      {
+        "challenge": "OpenH264's default encoder settings (low bitrate, frame-skipping, no periodic keyframes) produced an unwatchable, unseekable stream for full-screen capture and export.",
+        "solution": "A shared encoder builder computes a resolution-and-framerate-scaled bitrate, disables frame-skipping, selects the screen-content usage profile, and forces a keyframe roughly once per second."
+      },
+      {
+        "challenge": "MP4 stores H.264 SPS/PPS parameter sets in the avcC box rather than inline, so the decoder was never given them and produced no frames.",
+        "solution": "Parsed the avcC box into an Annex-B header used to prime the decoder on open and re-prime it after every seek, and converted samples from length-prefixed to Annex-B format."
+      }
+    ],
+    "technologies": [
+      "Rust",
+      "egui / eframe",
+      "OpenH264",
+      "symphonia",
+      "rodio",
+      "mp4e",
+      "rayon",
+      "Windows GDI (windows-sys)",
+      "serde"
+    ],
+    "links": [
+      {
+        "type": "GitHub",
+        "url": "https://github.com/Qamar2315/SiloCut",
+        "icon": "fab fa-github"
+      }
+    ],
+    "media": []
+  },
+  {
     "id": "clean-md-to-multi-format",
-    "title": "Clean MD to Multi-Format — VS Code Extension",
+    "title": "Clean MD to Multi-Format \u2014 VS Code Extension",
     "project_type": "Personal Project",
     "status": "Live",
     "role": "Creator & Lead Developer",
     "date_range": "2024 - Present",
-    "short_description": "Developed and published a feature-rich VS Code Extension that converts Markdown files into professional, publication-ready documents (PDF, HTML, DOCX) with advanced theming.",
-    "long_description": "Developed and published a feature-rich VS Code Extension that converts Markdown files into professional, publication-ready documents. The extension prioritizes clean, watermark-free output and offers advanced theming options for various use cases (Academic, Corporate, Tech).\n\nKey capabilities include:\n1. **Multi-Format Conversion Engine:** Engineered a conversion pipeline using markdown-it and Puppeteer (headless Chrome) for high-fidelity PDF rendering, with adapters for HTML and DOCX export.\n2. **Advanced Theming System:** Created 10 professional CSS-based themes that dynamically inject styling into the rendering pipeline, supporting syntax highlighting and complex layouts.\n3. **VS Code Integration:** Deeply integrated with the VS Code API for command palette commands, context menu actions, and reactive configuration settings.",
+    "short_description": "A published VS Code extension that converts Markdown to watermark-free PDF, HTML, and Word/DOCX via a markdown-it -> Puppeteer pipeline, with CSS themes, batch conversion, and full editor/Explorer integration.",
+    "long_description": "A marketplace-published VS Code extension (TypeScript) that wires the editor's command surface to a three-target document-conversion pipeline. The core PDF path parses Markdown with markdown-it (html/linkify/typographer enabled), injects heading IDs and an optional table of contents, wraps the result in a themed HTML document, and drives a headless Chromium through Puppeteer (page.pdf with configurable A4/Letter/Legal size and margins) to produce clean, watermark-free PDFs. HTML export reuses the same parse/theme step, and DOCX export hand-walks the markdown-it token stream, mapping heading/paragraph/list/fence tokens onto the docx library's document model.\n\nThe extension surface is genuinely complete: five registered commands, an Explorer right-click entry scoped to .md files, a language-gated keybinding, a QuickPick format picker, a contributed configuration schema (output folder, page size, TOC toggle, theme), progress notifications, and multi-select batch conversion. Syntax highlighting is provided via highlight.js and several CSS themes are bundled. It is a functional, shipped tool demonstrating solid fluency with the VS Code API and a working multi-format rendering pipeline.",
     "key_features": [
-      "Convert Markdown to PDF, HTML, DOCX",
-      "High-fidelity rendering with Puppeteer",
-      "10+ Professional CSS Themes (Academic, GitHub, Dark)",
-      "Batch File Processing from File Explorer",
-      "Syntax Highlighting with highlight.js",
-      "Deep VS Code API Integration (Commands, Settings)",
-      "No Watermarks & Clean Output"
+      "Markdown-to-PDF via markdown-it rendered through headless Chromium/Puppeteer with configurable page size and margins",
+      "Multi-format export - PDF, standalone or linked-CSS HTML, and Word/DOCX - from the same parsed source",
+      "DOCX generation by hand-walking markdown-it tokens into the docx library's document model",
+      "Five VS Code commands plus an Explorer .md context-menu entry and a language-gated keybinding",
+      "QuickPick format picker and multi-select batch conversion with per-file progress notifications",
+      "Contributed configuration schema (output folder, page size, TOC toggle, theme) read at runtime",
+      "Auto-generated table of contents, heading anchors, and CSS themes with highlight.js syntax highlighting"
     ],
     "key_challenges": [
       {
-        "challenge": "Ensuring High-Fidelity PDF Output",
-        "solution": "Integrated Puppeteer (headless Chrome) into the extension to render the markdown as HTML first, ensuring exact visual fidelity and support for complex CSS layouts before generating the PDF."
+        "challenge": "Producing watermark-free, print-quality PDFs from Markdown without a paid conversion service.",
+        "solution": "Rendered themed HTML through headless Chromium via Puppeteer's page.pdf with printBackground, explicit margins, and page-size mapping, waiting for network idle so assets settle before capture."
       },
       {
-        "challenge": "Seamless VS Code Integration",
-        "solution": "Utilized the VS Code API to provide a native experience, registering commands, context menu items, and configuration listeners that react immediately to user changes."
+        "challenge": "Supporting three output formats (PDF, HTML, DOCX) without duplicating the Markdown parsing logic.",
+        "solution": "Centralized markdown-it parsing, TOC generation, and theme CSS in shared modules reused by the PDF and HTML converters, with a separate token-walking path for DOCX."
       }
     ],
     "technologies": [
       "TypeScript",
-      "VS Code API",
+      "VS Code Extension API",
+      "markdown-it",
       "Puppeteer",
-      "Markdown-it",
-      "CSS3",
-      "Webpack"
+      "docx",
+      "highlight.js",
+      "Node.js"
     ],
     "links": [
       {
@@ -46,7 +96,7 @@
   },
   {
     "id": "color-by-numb3r",
-    "title": "Color by Numb3r — Full-Stack E-Commerce & Content Platform",
+    "title": "Color by Numb3r \u2014 Full-Stack E-Commerce & Content Platform",
     "project_type": "Freelance Project",
     "status": "Live",
     "role": "Lead Full-Stack Architect",
@@ -165,7 +215,7 @@
     "role": "Automation Architect & Developer",
     "date_range": "2024",
     "short_description": "Architected and deployed a sophisticated low-code/code-full workflow using n8n to automate financial operations, bridging Gmail and Airtable with Generative AI for invoice parsing.",
-    "long_description": "Architected and deployed a sophisticated low-code/code-full workflow using n8n to automate financial operations. The system serves as a bridge between communication channels (Gmail) and database systems (Airtable), utilizing Generative AI to parse unstructured invoice data into structured financial records.\n\nKey capabilities include:\n1. **Event-Driven Architecture:** Configured webhooks and triggers within n8n to monitor Gmail in real-time for specific invoice attachments or subject line patterns.\n2. **AI Data Extraction:** Integrated Google’s Gemini LLM via API to act as an intelligent parser. The AI agent analyzes PDF/Image invoices, extracting key fields (Invoice ID, Line Items, Tax, Vendor Details) regardless of the document layout, replacing rigid OCR templates.\n3. **Cloud Sync & Management:** Automated file handling to archive raw documents into structured Google Drive directories and orchestrated record creation in Airtable for finance team approval.",
+    "long_description": "Architected and deployed a sophisticated low-code/code-full workflow using n8n to automate financial operations. The system serves as a bridge between communication channels (Gmail) and database systems (Airtable), utilizing Generative AI to parse unstructured invoice data into structured financial records.\n\nKey capabilities include:\n1. **Event-Driven Architecture:** Configured webhooks and triggers within n8n to monitor Gmail in real-time for specific invoice attachments or subject line patterns.\n2. **AI Data Extraction:** Integrated Google\u2019s Gemini LLM via API to act as an intelligent parser. The AI agent analyzes PDF/Image invoices, extracting key fields (Invoice ID, Line Items, Tax, Vendor Details) regardless of the document layout, replacing rigid OCR templates.\n3. **Cloud Sync & Management:** Automated file handling to archive raw documents into structured Google Drive directories and orchestrated record creation in Airtable for finance team approval.",
     "key_features": [
       "Event-Driven Architecture with n8n webhooks",
       "Real-time Gmail monitoring for invoices",
@@ -213,49 +263,49 @@
     "title": "Ask Sunnah - AI Islamic Scholar",
     "project_type": "Personal Project",
     "status": "Live",
-    "role": "Lead Full-Stack & AI Architect",
+    "role": "Creator - Full-Stack & AI Architect",
     "date_range": "May 2024 - Present",
-    "short_description": "A full-stack AI application that provides users with referenced answers to Islamic questions by querying Hadith collections using a custom RAG pipeline.",
-    "long_description": "Ask Sunnah is a complete, real-world application of Retrieval-Augmented Generation (RAG) designed to provide accurate, verifiable answers from Islamic Hadith collections. The project is architected as a robust three-part system:\n\n1.  **Data Pipeline:** A Python-based ETL process extracts Hadith data from a MySQL database, cleans it, generates vector embeddings using the OpenAI API, and indexes them into a Pinecone vector database. This prepares the foundational knowledge base for the AI.\n\n2.  **Backend API:** A secure and scalable backend built with Flask (Python) serves the core AI logic. It features API key authentication, rate limiting, and an admin panel for user management. When a query is received, it retrieves the most relevant Hadith from Pinecone and uses an LLM to generate a coherent answer, complete with source citations.\n\n3.  **Frontend Application:** A modern, responsive user interface built with Next.js and TypeScript provides a seamless conversational experience. Users can select specific Hadith collections to query, and each AI-generated answer is accompanied by the source texts, ensuring transparency and trust.",
+    "short_description": "A production-deployed RAG platform (asksunnah.online) that answers Hadith questions in any language from seven authentic collections with cited sources, plus an image/OCR Hadith authenticity verifier - built end-to-end across an async FastAPI backend, a MySQL->OpenAI->Pinecone ingestion pipeline, and a Next.js 16 frontend.",
+    "long_description": "Ask Sunnah is a solo-built, three-repository RAG system that answers Hadith questions in natural language, grounded in retrieved excerpts from seven collections (Bukhari, Muslim, Mishkat, Nasa'i, Abu Dawood, Tirmidhi, Ibn Majah), each traceable to a sunnah.com reference. An offline Python pipeline extracts Hadith from a MySQL database, strips HTML, counts tokens with tiktoken, generates 3072-dimension embeddings with OpenAI's text-embedding-3-large, and upserts them into per-collection namespaces of a serverless Pinecone index.\n\nThe async FastAPI backend serves a multi-gate RAG pipeline: for non-English queries a single combined LLM call detects the language, translates to English, and classifies the query; the English query is embedded (Redis-cached) and all selected Pinecone namespaces are queried concurrently via asyncio.gather over a thread pool (wrapping Pinecone's synchronous client) so N collection lookups overlap instead of running serially; an answer is generated with gpt-5-nano and translated back into the user's original language and script. Beyond retrieval it is a fairly complete SaaS - email/OTP signup with bcrypt hashing and opaque session tokens, free/basic/pro plus anonymous tiers with Redis-cached per-day/per-month quotas, and IP-keyed rate limiting - plus a second pipeline that verifies the authenticity of an uploaded Hadith image via gpt-5-nano vision with OpenAI structured outputs. The Next.js 16 / React 19 frontend delivers the chat UI, verifier, account flows, an isolated admin dashboard, and production SEO/PWA.",
     "key_features": [
-      "AI-powered conversational Q&A",
-      "Retrieval-Augmented Generation (RAG) pipeline for factual answers",
-      "Verifiable sources with links to original Hadith texts",
-      "Secure backend API with key-based authentication and rate limiting",
-      "Comprehensive admin dashboard for user & API key management",
-      "Dynamic multi-collection search (Bukhari, Muslim, etc.)",
-      "Fully responsive and modern user interface"
+      "Multi-gate RAG pipeline: combined language-detect + translate + classify, embedding, concurrent multi-namespace retrieval, generation, and translate-back",
+      "Concurrent vector retrieval across Pinecone namespaces (asyncio.gather + to_thread), cutting an N-collection query toward single-query latency",
+      "Multilingual: any-language input is answered in the user's own language and script, with citations to sunnah.com",
+      "Hadith authenticity verifier: OCR of uploaded images via gpt-5-nano vision + OpenAI structured outputs, then retrieval and a typed verdict with confidence",
+      "Subscription tiers and quotas (free/basic/pro + anonymous) enforced with Redis read-through cached counts",
+      "Full auth: email/OTP signup (SHA-256-hashed OTPs), bcrypt passwords, opaque session tokens, and an admin panel API",
+      "Offline ETL pipeline (MySQL -> tiktoken -> OpenAI embeddings -> Pinecone) with a staged CLI and checkpoints",
+      "Next.js 16 frontend with chat, verifier, and dual user/admin auth; Dockerized with GitHub Actions + systemd deploy"
     ],
     "key_challenges": [
       {
-        "challenge": "Ensuring Factual Accuracy and Preventing AI Hallucination",
-        "solution": "Implemented a strict RAG pipeline to ground the LLM's responses in retrieved scriptural texts. Meticulous prompt engineering was used to instruct the model to only use the provided context, minimizing false information and citing sources for every claim."
+        "challenge": "Pinecone's Python client is synchronous, so querying multiple collection namespaces would block the event loop and run serially inside an async FastAPI app.",
+        "solution": "Wrapped each namespace query in asyncio.to_thread and fanned them out with asyncio.gather, overlapping network round-trips so total latency approaches a single query while preserving per-namespace result ordering."
       },
       {
-        "challenge": "Designing a Scalable and Maintainable System Architecture",
-        "solution": "Decoupled the project into three distinct services: a Data Pipeline for ETL, a Backend API for core logic, and a Frontend Application for user interaction. This architecture ensures modularity, allowing for independent development, deployment, and scaling of each component."
+        "challenge": "Supporting questions in any language while keeping retrieval quality (embeddings are English-indexed) and returning fluent answers in the user's own script.",
+        "solution": "A combined single-call detect+translate+classify step (with an English fast-path and a two-call fallback on failure), followed by a translate-back stage that preserves the user's writing style, so failures degrade to English rather than erroring."
       },
       {
-        "challenge": "Processing and Indexing a Large Corpus of Hadith Texts",
-        "solution": "Developed an automated data pipeline to extract data from a MySQL database, clean HTML content, generate high-dimensional embeddings, and efficiently index millions of vectors into Pinecone. The pipeline is designed to be runnable for specific collections, making data updates manageable."
+        "challenge": "Enforcing per-user daily/monthly quotas without hammering the database on every request, and stopping anonymous users from resetting limits by rotating headers.",
+        "solution": "Redis read-through cached counts with dated quota keys, plus anonymous caps that match on both session id and server-derived client IP so omitting or rotating the session header cannot bypass the limit."
       }
     ],
     "technologies": [
       "Python",
-      "Flask",
-      "Next.js",
-      "TypeScript",
-      "React",
-      "RAG",
-      "OpenAI API",
-      "Pinecone",
-      "SQLite",
+      "FastAPI (async)",
+      "MongoDB (Motor)",
+      "Redis",
+      "Pinecone (serverless)",
+      "OpenAI (gpt-5-nano, text-embedding-3-large)",
+      "Pydantic",
       "MySQL",
-      "Tailwind CSS",
-      "JWT",
-      "Gunicorn",
-      "Vercel",
-      "Git"
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Docker",
+      "GitHub Actions"
     ],
     "links": [
       {
@@ -464,38 +514,46 @@
     "title": "AskQuran - AI Quranic Scholar",
     "project_type": "Personal Project",
     "status": "Completed",
-    "role": "Lead Full-Stack & AI Architect",
+    "role": "Creator - Full-Stack & AI Architect",
     "date_range": "August 2024",
-    "short_description": "A beautiful, modern web application for asking questions about the Quran and receiving AI-powered responses with relevant verses using a RAG architecture.",
-    "long_description": "AskQuran is an end-to-end AI application designed to make Quranic knowledge accessible through a natural language interface. The system is built on a decoupled, three-part architecture to ensure scalability and maintainability:\n\n1.  **Data Pipeline:** A Python-based ETL pipeline processes raw Quranic text and its metadata. It uses Google's Gemini models to generate high-quality vector embeddings for each verse and then indexes this data into a Pinecone serverless vector database, creating the core knowledge base.\n\n2.  **Backend API:** A stateless Flask API serves as the brain of the application. It employs a sophisticated RAG workflow: upon receiving a query, it first classifies whether the question is Quran-related or conversational. For Quranic questions, it generates an embedding, retrieves the most relevant verses from Pinecone, and then uses Gemini's powerful generative model to synthesize a final, source-backed answer. \n\n3.  **Frontend Application:** Built with Next.js and TypeScript, the frontend offers a visually stunning and responsive user experience. It features an elegant, Islamic-themed design where users can interact with the AI in real-time. Each generated answer is displayed alongside the retrieved verses, complete with links to Quran.com for verification and further study.",
+    "short_description": "A three-tier RAG system that answers questions about the Holy Quran with source-cited verses, pairing a Python ETL pipeline and a stateless Flask API with a Next.js chat UI, powered by Google Gemini and a Pinecone vector database.",
+    "long_description": "Ask Quran is a personal, end-to-end RAG application across three repositories implementing the full lifecycle of a semantic-search-plus-generation system. A modular Python ETL pipeline runs through an argparse CLI in three independently-invocable stages (extract, embed, index): it merges per-Surah metadata with verse translations into structured records, generates embeddings with Google's gemini-embedding-001 (batched), and upserts them into a Pinecone 'quran' namespace. Two details stand out - after embedding it truncates each vector to the configured dimension and re-normalizes it to unit L2 length so cosine similarity stays valid, and it uses distinct task types (RETRIEVAL_DOCUMENT at index time vs RETRIEVAL_QUERY at query time). The pipeline is idempotent and resumable, skipping completed stages and populated namespaces unless --force flags are passed.\n\nThe API is a cleanly structured, stateless Flask service (application-factory pattern, blueprints, services layer, prompt manager, request validator). Its notable design choice is a two-path flow: an LLM classification layer first uses a few-shot Gemini prompt to decide whether a query is conversational or a genuine Quran question, then routes accordingly. Quran queries proceed through the RAG pipeline - embed the query, retrieve top-k verses from Pinecone, format them with references and quran.com links, and feed them into a citation-enforcing system prompt that instructs Gemini (temperature 0.2) to answer strictly from the supplied verses. The Next.js 15 / React 19 frontend renders the answer alongside an accordion of retrieved source verses linking out to Quran.com.",
     "key_features": [
-      "AI-powered Quranic Q&A with conversational interface",
-      "Retrieval-Augmented Generation (RAG) for factual, source-based answers",
-      "Smart query classification to handle both topical questions and small talk",
-      "Verifiable source verses displayed with each answer, linking to Quran.com",
-      "Elegant, responsive, and mobile-friendly UI with Islamic design elements",
-      "Built on a modern stack including Next.js, Google Gemini, and Pinecone",
-      "Modular three-part architecture (Data Pipeline, API, Frontend)"
+      "Query classification layer routing conversational vs. Quran questions via a few-shot Gemini prompt",
+      "RAG generation grounded in retrieved verses with a system prompt that forbids outside information and enforces inline citations",
+      "Semantic retrieval from Pinecone using Gemini query embeddings, returning verses with references and quran.com deep links",
+      "Embedding correctness: vector truncation followed by L2 unit-normalization, with separate index-time vs query-time task types",
+      "Modular three-stage ETL pipeline (extract / embed / index) runnable end-to-end or per-stage via a CLI",
+      "Idempotent, resumable pipeline that skips completed work unless --force flags are supplied",
+      "Stateless Flask API (app factory, blueprints, services layer, validation, /health) deployed with gunicorn",
+      "Next.js chat UI with a typed API client and a retrieved-verses accordion"
     ],
     "key_challenges": [
       {
-        "challenge": "Achieving Factual Accuracy and Contextual Relevance",
-        "solution": "The RAG architecture was chosen specifically to mitigate AI hallucinations. By first retrieving relevant Quranic verses from a Pinecone vector database, the generative model is provided with a factual, grounded context. The prompt is engineered to compel the AI to construct its answer solely based on these provided verses, ensuring accuracy."
+        "challenge": "Distinguishing casual or meta messages (greetings, 'who are you?') from real Quran questions so retrieval and generation aren't wasted on non-substantive input.",
+        "solution": "Added an LLM classification step with a strict few-shot prompt that returns a JSON object for Quran queries and plain prose for conversational ones, with a JSON-parse failure treated as the conversational branch."
       },
       {
-        "challenge": "Differentiating Between Quranic Questions and Small Talk",
-        "solution": "To create a more natural user experience, I implemented a classification layer in the API. Before performing a vector search, the user's query is first sent to a Gemini model with a prompt that asks it to categorize the input as either 'quran_question' or 'conversational'. This allows the API to provide a direct, friendly response for small talk without unnecessarily querying the database."
+        "challenge": "Keeping cosine similarity meaningful when using truncated Gemini embedding dimensions across both indexing and querying.",
+        "solution": "Implemented explicit L2 unit-normalization after truncating vectors to the configured dimension on both sides, and used matching RETRIEVAL_DOCUMENT vs RETRIEVAL_QUERY task types for indexing and querying."
+      },
+      {
+        "challenge": "Preventing the LLM from hallucinating religious content or citing verses it wasn't given.",
+        "solution": "Authored a constrained system prompt requiring answers derived exclusively from the retrieved verses, mandating inline citations, and specifying an explicit 'cannot form a complete answer' response when context is insufficient, run at low temperature."
       }
     ],
     "technologies": [
       "Python",
       "Flask",
-      "Next.js",
-      "TypeScript",
-      "React",
-      "Google Gemini API",
-      "Pinecone",
       "LangChain",
+      "Google Gemini (gemini-2.0-flash-lite)",
+      "Gemini Embeddings",
+      "Pinecone",
+      "NumPy",
+      "gunicorn",
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
       "Tailwind CSS",
       "Radix UI"
     ],
@@ -660,7 +718,7 @@
     "key_challenges": [
       {
         "challenge": "Building a Type-Safe Full-Stack Application",
-        "solution": "Leveraged TypeScript across the entire stack—for the Angular frontend and the Node.js/Express backend. This created an end-to-end type-safe environment, significantly reducing runtime errors, improving developer experience, and making the API contract between the client and server more robust and self-documenting."
+        "solution": "Leveraged TypeScript across the entire stack\u2014for the Angular frontend and the Node.js/Express backend. This created an end-to-end type-safe environment, significantly reducing runtime errors, improving developer experience, and making the API contract between the client and server more robust and self-documenting."
       },
       {
         "challenge": "Managing Application State and Reactivity",

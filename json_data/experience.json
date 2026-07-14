@@ -2,188 +2,256 @@
   {
     "id": "devaxl-swe",
     "date_range": "Feb 2024 - Present",
-    "title": "Software Engineer",
+    "title": "Backend & AI Engineer",
     "company": "DevAxl",
     "responsibilities": [
       {
-        "summary": "Developed a modular Autonomous Lead Generation AI on a Linux VPS, integrating multi-source scraping (Google Maps, Yelp), AI-based verification (GPT-5 Nano), and automated enrichment (Apollo.io) to push high-quality leads directly into Zoho CRM.",
+        "summary": "Sole author of the Go backend for Nrtur, DevAxl's flagship multi-tenant SaaS CRM (~73k LOC) - a chi HTTP API plus an Asynq background worker, with tenant isolation enforced at the database layer, a provider-synced email inbox, Stripe billing, and a rule-based lead-scoring engine.",
         "details": {
-          "title": "Autonomous Lead Generation AI",
-          "role": "Lead Python Automation Engineer",
-          "short_description": "A modular AI system for autonomous lead discovery, verification, and CRM injection.",
-          "long_description": "Developed a modular Autonomous Lead Generation AI on a Linux VPS. The system integrates multi-source scraping (Google Maps, Yelp), AI-based verification using GPT-5 Nano (or GPT-4o-mini), and automated enrichment via Apollo.io to push high-quality, verified leads directly into Zoho CRM.\\n\\nKey capabilities include:\\n1. **Multi-Source Scraping:** Aggregates leads from Google Maps and Yelp.\\n2. **AI Verification:** Uses LLMs to verify lead relevance and quality.\\n3. **CRM Integration:** Direct sync to Zoho CRM for sales team action.",
+          "title": "Nrtur - Multi-Tenant SaaS CRM Backend (Go)",
+          "role": "Senior Backend Engineer (sole backend author)",
+          "short_description": "A Go modular-monolith backend (HTTP API + background worker) for a multi-tenant CRM, isolated per workspace at the database layer.",
+          "long_description": "Architected and built, as sole engineer, the entire Go backend for Nrtur - a multi-tenant SaaS CRM. It is a modular monolith split into two binaries: a chi-router HTTP API (~136 routes) and an Asynq/Redis background worker, over isolated business modules (contacts, companies, leads, deal pipelines, tasks, inbox, imports, billing, workspaces) whose boundaries are enforced by depguard. Multi-tenancy is guaranteed at the database layer: every workspace-scoped table uses a UNIQUE (workspace_id, id) and composite foreign keys of the form (workspace_id, fk) -> parent(workspace_id, id), making cross-tenant references structurally impossible, backed by an application-level tenant guard derived from the JWT. Authentication is a hand-rolled HMAC-SHA256 JWT scheme with email-OTP registration, Google OIDC, and Redis rate limiting, and authorization runs off a single-source-of-truth RBAC capability matrix shared by the API and the frontend.\n\nThe most substantial subsystem is a provider-synced email inbox (via Aurinko): an OAuth connect handshake, a 30-day backfill plus resumable incremental delta sync, webhook subscriptions with constant-time HMAC signature verification, and a shared retry engine with exponential backoff that deliberately distinguishes idempotent calls from non-idempotent sends so a delivered email is never duplicated. Mailbox tokens are sealed at rest with AES-256-GCM and inbound HTML is sanitized with bluemonday. Secondary systems cover Stripe billing (checkout, portal, webhooks), CSV imports run through the worker with S3-backed file download, and a deterministic, workspace-tunable lead-scoring engine mapping profile-fit, engagement, and behavior signals to a 0-100 score. The codebase is production-oriented: integration and tenant-isolation test suites spin up throwaway Postgres via testcontainers, gated by golangci-lint/Lefthook, with a Loki/Grafana/Promtail telemetry stack.",
           "key_features": [
-            "Multi-Source Scraping (Google Maps, Yelp)",
-            "AI-Based Lead Verification (GPT-5 Nano)",
-            "Automated Enrichment (Apollo.io, RocketReach)",
-            "Direct Integration with Zoho CRM",
-            "Deployed on Linux VPS for 24/7 Operation"
+            "Database-enforced multi-tenant isolation via composite foreign keys, making cross-workspace references structurally impossible",
+            "Provider-synced email inbox (Aurinko): OAuth connect, 30-day backfill, resumable incremental delta sync, and live webhooks",
+            "Idempotency-aware HTTP retry engine that prevents duplicate email delivery on ambiguous send failures",
+            "Hand-rolled HMAC-SHA256 JWT auth with email-OTP, Google OIDC, and a single-source-of-truth RBAC capability matrix",
+            "AES-256-GCM encryption of mailbox tokens at rest and constant-time HMAC verification of inbound webhooks",
+            "Asynq/Redis background worker for OTP email, CSV imports (S3-backed), lead rescoring, and inbox sync",
+            "Deterministic, workspace-tunable lead-scoring engine (0-100 score, cold/warm/hot bands)",
+            "Stripe billing (checkout, customer portal, webhook-driven subscription state)"
+          ],
+          "technologies": [
+            "Go 1.26",
+            "chi/v5",
+            "PostgreSQL (pgx)",
+            "sqlc",
+            "goose",
+            "Asynq (Redis)",
+            "Stripe",
+            "Aurinko API",
+            "AWS S3",
+            "Google OIDC",
+            "AES-256-GCM / HMAC",
+            "OpenTelemetry",
+            "testcontainers",
+            "Docker Compose"
+          ],
+          "media": []
+        }
+      },
+      {
+        "summary": "Built end-to-end, as lead AI backend engineer, PMM-GPT: a multi-community serverless RAG knowledge engine for Product Marketing Alliance - a Python ETL pipeline that ingests and hybrid-vectorizes content from Wistia, YouTube, Ghost, and PDFs into Pinecone, plus a Firebase Functions backend serving multi-stage RAG chat with event-driven live ingestion.",
+        "details": {
+          "title": "PMM-GPT - Multi-Community Serverless RAG Knowledge Engine",
+          "role": "Lead AI Backend Engineer (client contract)",
+          "short_description": "A two-repo serverless RAG system: a hybrid-vector ingestion pipeline and a Firebase Functions retrieval/generation backend, isolated per community.",
+          "long_description": "Delivered end-to-end the AI backend for PMM-GPT, a multi-community knowledge assistant. A Python ETL pipeline ingests four heterogeneous sources - Wistia video, YouTube transcripts, Ghost CMS, and PDFs - running fetch/clean/enrich/load stages: parallel API fetching, OpenAI structured-output enrichment (Pydantic-validated tags and descriptions with cache-first Firestore lookups), RecursiveCharacterTextSplitter chunking with tiktoken, dense embeddings (text-embedding-3-large, 3072-dim) fused with BM25 sparse vectors, and batched upserts into per-community, per-source Pinecone namespaces. Loads are resumable via per-community JSON checkpoints, with a --dev mode targeting a separate index for safe iteration.\n\nThe serverless backend is built on Firebase Cloud Functions (Python), organized domain-first with heavy ML dependencies lazy-loaded to cut cold-start cost. Its retrieval pipeline is a genuine multi-stage RAG: a lightweight 'Prep AI' pass rewrites the query and compresses chat history, a hybrid dense+sparse Pinecone search fans out across a community's namespaces to collect ~50 candidates, an LLM reranker selects the most relevant chunks, and a token-budgeted context is answered by the primary model. Chat is stateful in Firestore with ownership-checked CRUD and transactional feedback counters, and Firestore on_document_written triggers plus a Ghost webhook drive event-driven live ingestion that keeps the vector store continuously in sync as content is published, edited, or deleted.",
+          "key_features": [
+            "Hybrid retrieval: dense embeddings (text-embedding-3-large) fused with BM25 sparse vectors in Pinecone serverless",
+            "Multi-stage RAG: query rewriting + history compression, broad hybrid fan-out (~50 candidates), LLM reranking, token-budgeted context assembly",
+            "Multi-community (multi-tenant) isolation via per-community/per-source Pinecone namespaces and Firestore collections",
+            "Event-driven live ingestion via Firestore triggers and a Ghost CMS webhook that upsert or namespace-delete vectors automatically",
+            "Four-source ingestion pipeline (Wistia, YouTube, Ghost, PDF) with fetch/clean/enrich/load stages",
+            "AI content enrichment using OpenAI structured outputs (Pydantic) with cache-first Firestore lookups",
+            "Resumable batch loads with per-community checkpoints and a cost-safe --dev mode",
+            "Cold-start optimization via lazy-loaded singletons for Pinecone, BM25/NLTK, and tiktoken"
           ],
           "technologies": [
             "Python",
-            "Selenium",
+            "Firebase Cloud Functions",
+            "Google Firestore",
+            "Pinecone (hybrid dense+BM25)",
             "OpenAI API",
-            "Zoho CRM API",
-            "Pandas",
-            "Linux VPS"
-          ],
-          "media": [
-            {
-              "type": "video",
-              "src": "https://www.loom.com/share/92da611e33ea472fa4cab72dfba451e3",
-              "caption": "Project Demo Video"
-            }
-          ]
-        }
-      },
-      {
-        "summary": "Architected and deployed an intelligent invoice processing system using n8n and Google Gemini, automating data extraction from unstructured PDF/image invoices and syncing structured financial records to Airtable for real-time approval workflows.",
-        "details": {
-          "title": "Intelligent Invoice Processing Automation",
-          "role": "Automation Architect",
-          "short_description": "End-to-end invoice automation workflow using n8n and Generative AI.",
-          "long_description": "Architected and deployed an intelligent invoice processing system using n8n and Google Gemini. The solution automates data extraction from unstructured PDF and image invoices received via Gmail, parses them using GenAI, and syncs structured financial records to Airtable for real-time approval workflows.\\n\\nKey capabilities include:\\n1. **AI-Powered Extraction:** Uses Gemini to parse complex invoice layouts.\\n2. **Seamless Integrations:** Connects Gmail, Drive, and Airtable via n8n.\\n3. **Human-in-the-Loop:** Airtable powered approval flows.",
-          "key_features": [
-            "AI Data Extraction (Google Gemini)",
-            "Automated Workflow Orchestration (n8n)",
-            "Gmail & Google Drive Integration",
-            "Structured Sync to Airtable",
-            "Real-time Approval Workflows"
-          ],
-          "technologies": [
-            "n8n",
-            "Google Gemini API",
-            "JavaScript",
-            "Gmail API",
-            "Airtable",
-            "Google Drive API"
-          ],
-          "media": [
-            {
-              "type": "video",
-              "src": "https://www.loom.com/share/3a98b36d9a1d40b19e92b97fab7778a1",
-              "caption": "Workflow Demo"
-            }
-          ]
-        }
-      },
-      "Engineered a scalable backend microservice in Go (Gin) for a TikTok-like influencer application, implementing modules for JWT authentication, S3 storage, and user engagement using a PostgreSQL database.",
-      {
-        "summary": "Architected a full-stack AI ecosystem on Google Cloud (Firebase Gen 2, Firestore), featuring a modular Python ETL pipeline to ingest and vectorize content (YouTube, Wistia, Ghost) into Pinecone, and a Serverless RAG Backend utilizing GPT-4.1 for intelligent chat, JIT video analysis, and real-time PDF intelligence.",
-        "details": {
-          "title": "Serverless RAG Knowledge Engine",
-          "role": "Lead Full-Stack AI Engineer",
-          "short_description": "A serverless RAG platform with multi-source ingestion and just-in-time video analysis.",
-          "long_description": "Architected and developed a full-stack AI ecosystem for Product Marketing Alliance (PMA). The system consists of two core components: a robust Data Pipeline that ingests and vectorizes content from multiple platforms (YouTube, Wistia, Ghost CMS), and a Serverless Backend that powers a user-facing AI dashboard for chat, video analysis, and document querying.\\n\\n**Component 1: Unified Data Pipeline**\\nModular Python pipeline for multi-source ingestion, AI enrichment with Instructor, and smart chunking.\\n\\n**Component 2: Intelligent Backend API**\\nFirebase Cloud Functions powering advanced RAG, Just-In-Time video analysis, and on-the-fly PDF intelligence.",
-          "key_features": [
-            "Serverless Architecture (Firebase Gen 2)",
-            "Multi-Source Ingestion (YouTube, Wistia, Ghost)",
-            "Vector Search with Pinecone",
-            "Just-In-Time Video Analysis",
-            "Real-time PDF Parsing & Summarization"
-          ],
-          "key_challenges": [
-            {
-              "challenge": "JIT Video Analysis",
-              "solution": "Engineered an on-demand flow to fetch raw transcripts, generate summaries via GPT-4 realtime, and cache results in Firestore."
-            }
-          ],
-          "technologies": [
-            "Python",
-            "Firebase Functions",
-            "Firestore",
-            "Pinecone",
-            "OpenAI GPT-4.1",
-            "Instructor",
-            "YouTube Data API"
+            "LangChain text-splitters",
+            "tiktoken",
+            "Pydantic",
+            "PyMuPDF",
+            "Wistia / YouTube / Ghost APIs",
+            "Google OAuth 2.0"
           ],
           "media": []
         }
       },
-      "Developed the backend MVP for an AI-powered supplier quote system using NestJS, MongoDB, and OpenAI, integrating the Gmail API (OAuth) for sending customized, templated emails.",
-      "Architected a solution to integrate a Next.js and GraphQL-based AI web app (Vetsie AI) with a WordPress membership system, restricting application access exclusively to paying subscribers.",
       {
-        "summary": "Engineered an enterprise-grade financial platform using NestJS, MySQL (TypeORM), and Docker. Built a resilient dual-sync engine for Xero General Ledger data featuring self-healing OAuth2 authentication, advanced rate limiting with exponential backoff, and real-time reporting (Aged Debtors, Cash Flow) via automated Cron jobs.",
+        "summary": "Engineered the NestJS backend for a Xero accounting integration platform: a hand-rolled Xero OAuth 2.0 flow with automatic token refresh, sync of invoices and bank transactions into MySQL, and an admin-authenticated reporting API (aged receivables/payables, cash-flow projection, balance sheet, P&L).",
         "details": {
-          "title": "Enterprise Xero Integration & Financial Analytics",
-          "role": "Backend Architect",
-          "short_description": "Robust NestJS platform for synchronizing and analyzing Xero financial data.",
-          "long_description": "Engineered a robust, enterprise-grade backend system using NestJS to bridge Xero Accounting Software with an internal financial machine. The platform serves as a centralized data aggregator, automating the retrieval, normalization, and analysis of financial data for multiple corporate tenants.\\n\\nKey implementations include a **Dual-Sync Engine** for two-stage data pipelining, **Resilient Xero OAuth2 Management** with self-healing tokens, and an **Advanced Rate Limiting Strategy** to respect strict API limits.",
+          "title": "Xero Financial Integration & Reporting Platform",
+          "role": "Backend Engineer (client project)",
+          "short_description": "A NestJS + MySQL backend that connects clients' Xero accounts, syncs financial data, and serves aged-receivables/payables and cash-flow reports.",
+          "long_description": "Built the NestJS 11 (TypeScript) backend for a platform that bridges clients' Xero accounting accounts with an internal financial dashboard, backed by MySQL via TypeORM and containerized with Docker Compose (paired with an Angular 20 frontend). Rather than relying on Xero's SDK, the backend implements the full OAuth 2.0 authorization-code flow by hand against Xero's identity endpoints: it builds the consent URL with accounting scopes, exchanges the code for tokens via HTTP Basic client auth, resolves the tenant and user from the /connections and OIDC /userinfo endpoints, and persists the tokens. A getValidAccessToken helper transparently refreshes expired tokens before any downstream call, so sync and report paths never hit a stale token.\n\nThe reporting layer mixes live proxying (balance sheet and P&L pulled straight from Xero's Reports endpoints) with locally computed analytics. The most substantial original logic is the aged receivables/payables report: it filters open authorised invoices, buckets each by days-overdue (current / 1-30 / 31-60 / 61-90 / 90+) using date math, aggregates per contact, applies optional column filters, and paginates the result. Access is governed by a two-tier model - end users authenticate via the Xero OAuth callback and receive a JWT session cookie, while administrators exchange a bcrypt-hashed API key for a short-lived JWT and can act on any user's data - enforced with a Passport JWT strategy, a role-based guard, and class-validator DTOs.",
           "key_features": [
-            "Dual-Sync Engine (Ingest & Push)",
-            "Self-Healing Xero OAuth2 Management",
-            "Resilient Rate Limiting with Exponential Backoff",
-            "Financial Reporting (Aged Debtors, Cash Flow)",
-            "RBAC with JWT & API Keys",
-            "Automated Nightly Cron Jobs"
+            "Hand-rolled Xero OAuth 2.0 authorization-code flow (consent URL, code-for-token exchange, tenant/user provisioning) without the vendor SDK",
+            "Automatic access-token refresh with expiry checks before every Xero API call",
+            "Sync of invoices (receivables + payables) and bank transactions into normalized MySQL tables keyed by Xero UUIDs",
+            "Aged receivables/payables report with days-overdue bucketing, per-contact aggregation, and pagination",
+            "Short-term cash-flow projection combining live Xero balances with DB-derived receivables/payables",
+            "Live proxying of Xero Balance Sheet and Profit & Loss reports",
+            "Two-tier auth: JWT session cookies for OAuth users, bcrypt-hashed admin API keys exchanged for JWTs",
+            "Role-based access control (RolesGuard + Passport JWT) with class-validator DTOs and SQL migrations"
           ],
           "technologies": [
-            "NestJS",
+            "NestJS 11",
             "TypeScript",
-            "MySQL (TypeORM)",
-            "Xero API",
-            "Docker",
-            "Redis",
-            "RxJS"
+            "TypeORM",
+            "MySQL",
+            "Passport / JWT",
+            "bcrypt",
+            "Xero Accounting API",
+            "OAuth 2.0",
+            "Angular 20",
+            "Docker Compose"
           ],
           "media": []
         }
       },
-      "Created and deployed automated workflows using n8n and Make.com to scrape, clean, and process web data, leveraging Gemini and OpenAI for data enrichment and automated email processing.",
       {
-        "summary": "Designed and published 'ContextCrafter', a CLI tool (NPM) for preparing large codebases for LLM context windows, featuring intelligent aggregation, custom ignore logic (.contextignore), and architectural tree generation.",
+        "summary": "Built Prompt Refiner Pro, an internal Manifest V3 Chrome extension that injects a 'Refine' button into ChatGPT, Gemini, and DeepSeek and rewrites the user's prompt in place via the Gemini API with JSON-schema-constrained structured output.",
         "details": {
-          "title": "ContextCrafter — Universal Code Aggregator",
-          "role": "Open Source Maintainer",
-          "short_description": "CLI tool to aggregate codebases for LLM context windows.",
-          "long_description": "Designed and published a developer productivity tool available as an NPM package (`npm install -g context-crafter`). This CLI utility solves the problem of preparing large, complex codebases for LLM context windows by intelligently aggregating source code into a structured, single-file format.\\n\\nFeatures include **Intelligent Aggregation** (filtering node_modules/git), a **Configuration Engine** for presets, **Custom Ignore Logic** (.contextignore), and **Visual Project Mapping** for architectural context.",
+          "title": "Prompt Refiner Pro - In-Page LLM Prompt Refinement (Chrome Extension)",
+          "role": "Software Engineer (internal tool)",
+          "short_description": "A vanilla-JS Chrome extension (Manifest V3) that refines prompts in place inside popular LLM chat sites using the Gemini API.",
+          "long_description": "A focused internal Chrome extension (Manifest V3, vanilla JavaScript, no build tooling) that embeds a prompt-engineering assistant directly into ChatGPT, Google Gemini, and DeepSeek. A content script uses a prioritized selector list to locate each site's prompt input - handling both textarea and contenteditable editors - and a MutationObserver re-injects a floating 'Refine' button whenever the single-page app re-renders and removes it. Clicking it concatenates the current draft with a user-defined master prompt and calls the Gemini generateContent endpoint.\n\nThe key engineering detail is that the request pins response_mime_type application/json plus an explicit response_schema, forcing the model to return a structured { refined_prompt } object rather than answering the prompt; the parsed result is written back into the host editor with the correct input events dispatched and selection restored, so the site registers the programmatic change. A settings page persists the API key, master-prompt template, temperature, and token limits to chrome.storage.local, with robust handling of empty prompts, missing keys, API errors, and malformed JSON. It is a small (~500 LOC), single-purpose but cleanly executed client-side utility.",
           "key_features": [
-            "Intelligent Code Aggregation",
-            "Visual Project Tree Generation",
-            "Custom .contextignore Parser",
-            "Configuration Presets (React, Python)",
-            "CLI Argument Parsing"
+            "One-click in-page prompt refinement via a button injected into ChatGPT, Gemini, and DeepSeek inputs",
+            "MutationObserver-based re-injection that survives SPA re-renders",
+            "Multi-selector input detection handling both textarea and contenteditable editors",
+            "JSON-schema-constrained Gemini calls (response_schema) forcing structured refined-prompt output",
+            "Programmatic write-back with dispatched input events and selection restoration",
+            "User-configurable master prompt, temperature, and token limits persisted to chrome.storage.local",
+            "Defensive error handling for empty prompts, missing keys, API failures, and malformed JSON"
+          ],
+          "technologies": [
+            "JavaScript (ES6+)",
+            "Chrome Extension Manifest V3",
+            "chrome.storage",
+            "MutationObserver",
+            "Google Gemini API",
+            "Structured output (JSON schema)",
+            "Fetch API"
+          ],
+          "media": []
+        }
+      },
+      {
+        "summary": "Built the customer-facing ferry ticket booking web app for Meander Travel: a multi-step vanilla-JS booking funnel (search -> results -> passenger/payment -> confirmation) wired to a third-party ferry reservation REST API and a QNB 3D-Secure payment gateway.",
+        "details": {
+          "title": "Meander Travel - Ferry Ticket Booking & Payment Web App",
+          "role": "Frontend Engineer (client project)",
+          "short_description": "A multi-step vanilla-JavaScript ferry-booking funnel integrated with a reservation REST API and a 3D-Secure card payment gateway.",
+          "long_description": "Built the customer-facing booking funnel for a ferry operator as a set of static pages driven by hand-written vanilla JavaScript (Bootstrap 5, no framework). The flow spans four stages - route search, results/journey selection, passenger details and payment, and confirmation - carrying state across pages via URL query parameters and sessionStorage. Each page talks to the client's reservation REST API through a shared header-authenticated fetch wrapper, calling endpoints for town/travel-type/country/currency lookups, ferry search, price calculation, and reservation creation.\n\nThe real substance is the stateful funnel and integration logic: dependent dropdowns where the departure port drives available arrival ports, trip-type-aware date constraints, a custom passenger stepper with dynamically generated per-passenger forms, and a two-phase pricing model that recalculates an accurate fare once all birthdates are known before creating the reservation. Checkout creates the reservation, then hands off to payment by base64-encoding order parameters and redirecting to a QNB 3D-Secure gateway; on return, the confirmation page reads the gateway status, shows the PNR, downloads the ticket voucher as a PDF blob, and triggers a confirmation email via a hosted microservice.",
+          "key_features": [
+            "Four-step booking funnel (search -> results -> passenger/payment -> confirmation) sharing state via URL params and sessionStorage",
+            "Dependent route selection: departure port drives an API call for valid arrival ports",
+            "Trip-type-aware date logic (one-way / round-trip / daily-return) with coupled min/max constraints",
+            "Custom passenger stepper with dynamically generated per-passenger detail forms",
+            "Two-phase pricing that recalculates an accurate fare once all birthdates are entered",
+            "Reservation creation followed by a redirect-based QNB 3D-Secure payment handoff",
+            "Confirmation flow: PNR display, PDF voucher download, and automated confirmation email",
+            "Resilient fetch wrapper that normalizes an inconsistent, envelope-wrapped third-party API"
+          ],
+          "technologies": [
+            "JavaScript (ES6+)",
+            "HTML5 / CSS3",
+            "Bootstrap 5",
+            "Flatpickr",
+            "Fetch API",
+            "sessionStorage",
+            "Ferry reservation REST API",
+            "QNB 3D-Secure gateway"
+          ],
+          "media": []
+        }
+      },
+      {
+        "summary": "Designed and built ContextCrafter, an internal TypeScript CLI that recursively walks a project, filters files by language presets and gitignore-style rules, and concatenates them into a single structured file (text / Markdown / JSON) for use as LLM context.",
+        "details": {
+          "title": "ContextCrafter - Codebase-to-Single-File CLI for LLM Context",
+          "role": "Software Engineer (internal tool)",
+          "short_description": "A strict-TypeScript CLI (Commander) that aggregates a codebase into one structured file for pasting into an LLM's context window.",
+          "long_description": "ContextCrafter is a Node.js CLI (strict TypeScript, ~640 LOC) that bundles a codebase into a single artifact you can feed to an LLM. It is cleanly modular: a collector recursively walks directories and filters by an allowed-extension set; a config loader resolves a four-tier precedence chain (--custom-preset > local .contextcrafterrc.json > named --preset > auto-detection); a detector runs a priority-ordered rules engine over marker files (nest-cli.json, go.mod) and package.json dependencies to guess the project type; a structurer renders an ASCII project tree; and a formatter emits text, Markdown, or JSON. Ignore rules are layered from the chosen preset, an optional .contextignore, and the project's own .gitignore via the npm 'ignore' package.\n\nIt ships 12 language/framework presets (React, Python, Go, NestJS, Angular, Vue, Node, Java, C#, PHP, Ruby, Rust), a progress bar, a leveled logger, and end-of-run stats. The design shows real thought - the detector's priority-rules pattern cleanly resolves ambiguous stacks (a Next.js repo also has React), and the collector shares its ignore instance with the structurer so filtering never diverges - while remaining an honest, competent developer utility at MVP maturity rather than a large system.",
+          "key_features": [
+            "Four-tier configuration precedence (custom preset path, local rc file, named preset, auto-detection)",
+            "Priority-ordered project-type auto-detection over marker files and package.json dependencies",
+            "Recursive directory walk with allowed-extension filtering",
+            "Layered ignore rules combining preset config, .contextignore, and the project's .gitignore",
+            "Three output formats: plain text, Markdown with fenced code blocks, and structured JSON",
+            "Optional ASCII project-structure tree that reuses the same ignore rules",
+            "12 bundled language/framework presets",
+            "Leveled logging, progress bar, and end-of-run stats (files, lines, output size)"
+          ],
+          "technologies": [
+            "TypeScript (strict)",
+            "Node.js",
+            "Commander",
+            "ignore (gitignore matching)",
+            "cli-progress",
+            "Jest / ts-jest",
+            "JSON preset configs"
+          ],
+          "media": []
+        }
+      },
+      {
+        "summary": "Sole author of VoiceType AI, an internal cross-platform (Windows & macOS) voice-to-text desktop app: a Tauri v2 + Rust core and a React/TypeScript settings UI that wires global-hotkey dictation to cloud speech-to-text and configurable LLM refinement, injecting the result into the focused field.",
+        "details": {
+          "title": "VoiceType AI - Voice-to-Text Desktop App (Tauri v2 + Rust)",
+          "role": "Desktop Application Developer (internal tool)",
+          "short_description": "A hotkey-driven dictation app built with a Tauri v2 + Rust backend and React UI, chaining cloud STT to LLM refinement with clipboard-safe text injection.",
+          "long_description": "Built, as sole author, VoiceType AI - a bring-your-own-key desktop dictation tool on Tauri v2 with a Rust backend (~1,600 LOC across 18 modules) and a React 18 + TypeScript settings window. The core is a hotkey-driven state machine: pressing the global shortcut starts in-memory audio capture via cpal on a dedicated thread (the non-Send stream is isolated behind channels), the samples are downmixed to mono and resampled to 16 kHz, encoded to WAV with hound, uploaded to a cloud transcription API, and the transcript is refined by a second LLM call before injection. The two stages are independently configurable - speech-to-text on OpenAI or Groq, refinement on OpenAI, Groq, or Anthropic (the Anthropic Messages API is handled on a separate code path). API keys live in the OS keychain via the keyring crate, never on disk.\n\nThe most interesting engineering is the injection and safety layer: text is inserted by snapshotting the clipboard, synthesizing a paste chord via enigo, then restoring the original clipboard through an RAII guard that runs even on panic. A monotonic generation counter implements cancel-prior so re-triggering discards an in-flight transcription; a Win32 secure-field guard detects password fields and types character-by-character to keep secrets off the clipboard; a focus-verify guard falls back to the clipboard when focus moves; and a hallucination filter drops phantom phrases on near-silent audio. HTTP calls share a timeout-bounded client with exponential-backoff retries, and macOS specifics (AVFoundation mic permission, menu-bar-only activation, a click-through HUD) are handled via objc2. CI compile-checks Windows and macOS, and a release workflow builds installers for both.",
+          "key_features": [
+            "Global-hotkey tap-to-toggle dictation with a background tray/menu-bar mode",
+            "Two-stage AI pipeline: cloud speech-to-text (OpenAI/Groq) then configurable LLM refinement (OpenAI/Groq/Anthropic)",
+            "Clipboard-preserving auto-paste injection with an RAII guard that restores the clipboard even on panic",
+            "Cancel-prior concurrency via an atomic generation counter, discarding stale in-flight transcriptions",
+            "Win32 secure-field guard that types directly into password fields to keep secrets off the clipboard",
+            "API keys stored per-provider in the OS keychain, never written to disk",
+            "In-memory audio processing (mono downmix, 16 kHz resample, WAV encode, hallucination filtering)",
+            "Timeout-bounded HTTP client with exponential-backoff retries and native Win32/macOS FFI"
+          ],
+          "technologies": [
+            "Rust",
+            "Tauri v2",
+            "React",
+            "TypeScript",
+            "cpal (audio)",
+            "hound",
+            "enigo",
+            "keyring (OS keychain)",
+            "reqwest",
+            "OpenAI / Groq / Anthropic APIs",
+            "objc2 (macOS FFI)",
+            "windows-sys"
+          ],
+          "media": []
+        }
+      },
+      {
+        "summary": "Maintenance and DevOps on Inking, an existing MERN appointment-scheduling SaaS: migrated the app from Node 14 to Node 22, modernized backend and frontend dependencies to current majors (Express 5, Mongoose 8, React 18), fixed the resulting breakages, and stood up an SSH + PM2 production deploy pipeline via GitHub Actions.",
+        "details": {
+          "title": "Inking - MERN Scheduling SaaS: Node Migration & Deployment",
+          "role": "Maintenance & DevOps Engineer",
+          "short_description": "Node.js migration, dependency modernization, bug fixes, and a GitHub Actions + PM2 deployment pipeline for an inherited MERN SaaS.",
+          "long_description": "Took on maintenance and DevOps for Inking, an existing multi-tenant MERN appointment-scheduling platform (company-scoped users, studios, clients, events, available-slot computation, and Stripe subscriptions) originally authored by another team. This was an inherited-codebase engagement rather than feature authorship, and the contribution centers on keeping it modern and shippable.\n\nThe concrete work: a Node runtime migration from v14.16 to v22 (including the OpenSSL-3 legacy-provider workaround needed to keep the older webpack/react-scripts build running), a dependency-modernization pass to current majors (Express 5, Mongoose 8, Stripe 18, AWS SDK v3, React 18, Ant Design 5) that would not run on the original baseline, and the code fixes those upgrades forced - notably rewriting the Express-5 SPA fallback route as a negative-lookahead regex. On the operations side, a repeatable pipeline was built with GitHub Actions (appleboy/ssh-action) that SSHes into the server, pulls, installs, builds the client, and performs a zero-downtime PM2 reload with process persistence, alongside a Docker Compose stack and an email-provider swap to Resend.",
+          "key_features": [
+            "Node.js runtime migration from v14.16 to v22, including the OpenSSL-3 legacy-provider workaround",
+            "Dependency modernization to current majors (Express 5, Mongoose 8, Stripe 18, React 18, Ant Design 5, AWS SDK v3)",
+            "Express 5 compatibility fix: SPA fallback rewritten as a negative-lookahead regex route",
+            "GitHub Actions CI/CD that SSHes to the server and performs a zero-downtime PM2 reload",
+            "Multi-target deployment artifacts (Docker Compose, PM2 scripts, AWS ECS task definition)",
+            "Email delivery swapped to the Resend SDK; bug fixes on the event scheduling flow"
           ],
           "technologies": [
             "Node.js",
-            "TypeScript",
-            "Commander.js",
-            "NPM"
-          ],
-          "links": [
-            {
-              "type": "NPM Package",
-              "url": "https://www.npmjs.com/package/context-crafter",
-              "icon": "fab fa-npm"
-            }
-          ],
-          "media": []
-        }
-      },
-      {
-        "summary": "Designed and deployed a production-grade AI-to-Human contact center platform using FreeSWITCH, Docker, and React. Implemented real-time SIP/WebRTC call bridging, intelligent agent routing with barge-in capabilities, and a Python (FastAPI/Redis) backend for event-driven call state management.",
-        "details": {
-          "title": "Vapi Transfer — AI Contact Center",
-          "role": "Lead VOIP & Full-Stack Engineer",
-          "short_description": "Real-time AI-to-Human call handoff platform using FreeSWITCH and WebRTC.",
-          "long_description": "Designed, developed, and deployed a production-grade AI-powered contact center platform enabling seamless real-time call transfer between Vapi AI voice assistants and live human agents. The system supports AI-first outbound calling, live agent monitoring, barge-in/takeover capabilities, and intelligent call routing through a WebRTC-based agent dashboard.\\n\\nCore components:\\n1. **FreeSWITCH SIP/WebRTC Platform:** Dockerized cluster handling NAT traversal and RTP.\\n2. **AI-to-Human Handoff:** Custom dialplans for smooth transfer.\\n3. **WebRTC Agent Dashboard:** React-based interface for real-time call controls (Barge-in, Monitor).",
-          "key_features": [
-            "AI-to-Human Call Handoff",
-            "WebRTC Agent Dashboard (React)",
-            "Live Monitoring & Barge-In",
-            "Event-Driven Backend (FastAPI + Redis)",
-            "FreeSWITCH ESL Integration",
-            "Dockerized Infrastructure"
-          ],
-          "technologies": [
-            "Python",
-            "FastAPI",
-            "FreeSWITCH",
-            "React",
-            "WebRTC",
-            "Redis",
+            "Express 5",
+            "MongoDB / Mongoose 8",
+            "React 18",
+            "Stripe",
+            "PM2",
             "Docker",
-            "SIP.js"
+            "GitHub Actions",
+            "AWS (ECS/EC2, S3)"
           ],
           "media": []
         }

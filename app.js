@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const NAVBAR_HEIGHT = 72; // Height of the fixed navigation bar in pixels
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // --- 1. Mobile Menu Functionality ---
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -7,9 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
 
     const toggleMenu = () => {
+        const isOpening = mobileMenu.classList.contains('translate-x-full');
         mobileMenu.classList.toggle('translate-x-full');
         mobileMenuOverlay.classList.toggle('hidden');
         document.body.classList.toggle('overflow-hidden'); // Prevent scrolling when menu is open
+        if (mobileMenuButton) {
+            mobileMenuButton.setAttribute('aria-expanded', String(isOpening));
+        }
+        if (mobileMenu) {
+            mobileMenu.setAttribute('aria-hidden', String(!isOpening));
+        }
     };
 
     if (mobileMenuButton && mobileMenu && mobileMenuOverlay) {
@@ -30,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetElement) {
                 window.scrollTo({
                     top: targetElement.offsetTop - NAVBAR_HEIGHT,
-                    behavior: 'smooth'
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
                 });
             }
         });
@@ -51,19 +59,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. Animate Sections on Scroll using IntersectionObserver ---
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                // Optional: stop observing once it's visible to save resources
-                // observer.unobserve(entry.target);
+    let observer = null;
+    if (!prefersReducedMotion) {
+        observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1 // Trigger when 10% of the element is visible
+        });
+
+        animatedElements.forEach(el => observer.observe(el));
+    } else {
+        animatedElements.forEach(el => el.classList.add('is-visible'));
+    }
+
+    // Observe dynamically-rendered elements for scroll-in animation,
+    // or reveal them immediately when the visitor prefers reduced motion
+    // (in which case `observer` is null and .observe() would throw).
+    function activateAnimated(elements) {
+        elements.forEach(el => {
+            if (observer) {
+                observer.observe(el);
+            } else {
+                el.classList.add('is-visible');
             }
         });
-    }, {
-        threshold: 0.1 // Trigger when 10% of the element is visible
-    });
-
-    animatedElements.forEach(el => observer.observe(el));
+    }
 
 
     // --- 5. Active Navigation Link Highlighting on Scroll ---
@@ -233,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Re-observe newly created elements for scroll animations
         const newAnimated = grid.querySelectorAll('.animate-on-scroll');
-        newAnimated.forEach(el => observer.observe(el));
+        activateAnimated(newAnimated);
 
         // Set up modal listener after data is loaded
         setupModalOpenListener(projectsSection, projectsData, 'data-project-id');
@@ -269,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Re-observe newly created elements for scroll animations
         const newAnimated = grid.querySelectorAll('.animate-on-scroll');
-        newAnimated.forEach(el => observer.observe(el));
+        activateAnimated(newAnimated);
 
         // Set up modal listener after data is loaded
         setupModalOpenListener(freelanceSection, freelanceData, 'data-freelance-id');
@@ -359,6 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
                 a.title = link.name;
+                a.setAttribute('aria-label', link.name);
                 a.className = 'text-slate-500 hover:text-blue-600 transition-all duration-300 transform hover:-translate-y-1';
                 a.innerHTML = `<i class="${link.icon} text-4xl"></i>`; // Updated size
                 socialLinksContainer.appendChild(a);
@@ -428,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Re-observe newly created elements
         const newAnimated = container.querySelectorAll('.animate-on-scroll');
-        newAnimated.forEach(el => observer.observe(el));
+        activateAnimated(newAnimated);
     }
 
     // --- New: Render Experience Timeline ---
@@ -515,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Re-observe newly created elements for scroll animations
         const newAnimated = timelineContainer.querySelectorAll('.animate-on-scroll');
-        newAnimated.forEach(el => observer.observe(el));
+        activateAnimated(newAnimated);
     }
 
     // --- New: Render Education ---
@@ -551,7 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Re-observe newly created elements for scroll animations
         const newAnimated = listEl.querySelectorAll('.animate-on-scroll');
-        newAnimated.forEach(el => observer.observe(el));
+        activateAnimated(newAnimated);
     }
 
     // --- New: Render Sections Data ---
@@ -593,12 +618,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Fetch data when the page loads
-    fetchProjects();
-    fetchFreelanceWork();
-    fetchProfileData();
-    fetchExperience();
-    fetchEducation();
-    fetchSections();
+    Promise.allSettled([
+        fetchProjects(),
+        fetchFreelanceWork(),
+        fetchProfileData(),
+        fetchExperience(),
+        fetchEducation(),
+        fetchSections()
+    ]);
 
     // --- 8. UNIFIED PROJECT MODAL LOGIC ---
 
@@ -672,6 +699,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const thumb = document.createElement('img');
                 thumb.src = thumbSrc;
                 thumb.alt = mediaItem.caption || '';
+                thumb.loading = 'lazy';
+                thumb.decoding = 'async';
                 thumb.className = `w-16 h-16 object-cover rounded-md cursor-pointer border-2 hover:border-blue-500 ${index === 0 ? 'border-blue-500' : 'border-transparent'}`;
                 thumb.onclick = (e) => {
                     displayMedia(mediaItem);
