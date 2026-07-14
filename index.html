@@ -4,23 +4,46 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self' https:; connect-src 'self' https://qamarcodes.online; frame-src https://www.loom.com https://www.youtube.com; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <title>Qamar Ul Islam - Software Engineer</title>
     <meta name="description" content="Portfolio of Qamar Ul Islam, a software engineer building web apps, AI solutions, and client-focused products." />
     <meta name="theme-color" content="#4361ee" />
+    <link rel="canonical" href="https://qamar2315.github.io/" />
     <meta property="og:title" content="Qamar Ul Islam - Software Engineer" />
     <meta property="og:description" content="Explore Qamar Ul Islam's portfolio, projects, experience, and freelance work." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="portfolio.png" />
+    <meta property="og:url" content="https://qamar2315.github.io/" />
+    <meta property="og:image" content="https://qamar2315.github.io/portfolio.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Qamar Ul Islam - Software Engineer" />
     <meta name="twitter:description" content="Explore projects, experience, and freelance work from Qamar Ul Islam." />
-    <meta name="twitter:image" content="portfolio.png" />
+    <meta name="twitter:image" content="https://qamar2315.github.io/portfolio.png" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Qamar Ul Islam",
+      "jobTitle": "Software Engineer | Backend & AI/ML Specialist",
+      "url": "https://qamar2315.github.io/",
+      "image": "https://qamar2315.github.io/portfolio.png",
+      "sameAs": [
+        "https://github.com/Qamar2315",
+        "https://www.linkedin.com/in/qamar-ul-islam-193378202/"
+      ]
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"
+        integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi"
+        crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"
+        integrity="sha384-+VfUPEb0PdtChMwmBcBmykRMDd+v6D/oFmB3rZM/puCMDYcIvF968OimRh4KQY9a"
+        crossorigin="anonymous" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -276,6 +299,11 @@
             padding-bottom: 5rem;
         }
 
+        /* Keep anchored sections clear of the fixed navbar on direct/hash navigation */
+        section[id] {
+            scroll-margin-top: 4.5rem;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
@@ -332,10 +360,15 @@
 
 <body class="bg-slate-50 antialiased">
 
+    <!-- Skip to main content (keyboard/screen-reader bypass block) -->
+    <a href="#main-content"
+        class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-md focus:shadow-lg">Skip
+        to main content</a>
+
     <!-- Navigation Bar -->
     <nav class="bg-white shadow-sm fixed w-full top-0 z-50">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-18 py-4 md:py-0">
+            <div class="flex justify-between items-center h-16">
                 <!-- Brand Logo / Name -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="#" class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 transition-all duration-300">
@@ -365,7 +398,7 @@
                     <button id="mobile-menu-button" class="text-slate-600 hover:text-blue-500 focus:outline-none p-2"
                         type="button" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
@@ -377,7 +410,7 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
-    <div id="mobile-menu" aria-hidden="true"
+    <div id="mobile-menu" aria-hidden="true" inert
         class="fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
         <div class="p-5 flex flex-col space-y-4">
             <a href="#introduction" class="block text-gray-600 hover:text-blue-500 py-2">Introduction</a>
@@ -390,12 +423,12 @@
         </div>
     </div>
 
-    <main class="pt-18">
-        <!-- Back to Top Button -->
+    <main id="main-content" tabindex="-1" class="pt-20 focus:outline-none">
+        <!-- Back to Top Button (sits above the AI-chat pill so the two fixed controls don't overlap) -->
         <a href="#introduction" id="back-to-top" title="Back to Top" aria-label="Back to top"
-            class="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-all duration-300 opacity-0 pointer-events-none hover:scale-110">
+            class="fixed bottom-28 right-8 z-40 p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-all duration-300 opacity-0 pointer-events-none hover:scale-110">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
             </svg>
         </a>
@@ -403,7 +436,7 @@
         <!-- Introduction Section -->
         <section id="introduction" class="relative py-24 bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
             <!-- Background pattern -->
-            <div class="absolute inset-0 z-0 opacity-10">
+            <div class="absolute inset-0 z-0 opacity-10" aria-hidden="true">
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <pattern id="circuit-board" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"
@@ -417,7 +450,7 @@
             </div>
 
             <!-- Shape divider -->
-            <div class="custom-shape-divider-bottom-1693085394">
+            <div class="custom-shape-divider-bottom-1693085394" aria-hidden="true">
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
                     preserveAspectRatio="none">
                     <path
@@ -444,14 +477,17 @@
                     </div>
                     <!-- Real content (initially hidden) -->
                     <div id="introduction-content" class="hidden">
-                        <h1 id="profile-name" class="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-4"></h1>
-                        <p id="profile-title" class="text-xl lg:text-2xl gradient-text font-semibold mb-6"></p>
-                        <p id="profile-description" class="text-slate-600 leading-loose text-lg"></p>
+                        <h1 id="profile-name" class="text-4xl lg:text-5xl font-extrabold text-slate-800 mb-4">Qamar Ul
+                            Islam</h1>
+                        <p id="profile-title" class="text-xl lg:text-2xl gradient-text font-semibold mb-6">Software
+                            Engineer | Backend &amp; AI/ML Specialist</p>
+                        <p id="profile-description" class="text-slate-600 leading-loose text-lg">I build scalable backend
+                            systems and intelligent AI/ML solutions with Python, Go, and Node.js.</p>
                         <!-- NEW: Centered CTA block -->
                         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
                             <!-- Primary Button -->
                             <a id="resume-download" href="#" download class="btn-primary animate-pulse-border">
-                                <i class="fas fa-download mr-2"></i>
+                                <i class="fas fa-download mr-2" aria-hidden="true"></i>
                                 Download Resume
                             </a>
                             <!-- Secondary Button -->
@@ -558,7 +594,7 @@
         <section id="projects" class="py-20 bg-slate-50">
             <div class="container mx-auto px-4">
                 <div class="animate-on-scroll text-center mb-16">
-                    <h2 id="projects-title" class="text-3xl font-bold mb-4 text-center text-slate-800">Personal Projects
+                    <h2 id="projects-title" class="text-3xl font-bold mb-4 text-center text-slate-800">Featured Projects
                     </h2>
                     <p id="projects-subtitle" class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">A selection of
                         projects that demonstrate my passion for building software and solving problems.</p>
@@ -665,11 +701,11 @@
                     just want to connect? I'd love to hear from you.</p>
                 <div class="space-y-4 text-white">
                     <a id="contact-email" href="#" class="block text-white hover:text-blue-200 transition-colors">
-                        <i class="fas fa-envelope mr-2"></i><span
+                        <i class="fas fa-envelope mr-2" aria-hidden="true"></i><span
                             id="contact-email-text">qamarislam1232@gmail.com</span>
                     </a>
-                    <p><i class="fas fa-phone mr-2"></i><span id="contact-phone">+923148412001</span></p>
-                    <p><i class="fas fa-map-marker-alt mr-2"></i><span id="contact-location">Islamabad, Pakistan</span>
+                    <p><i class="fas fa-phone mr-2" aria-hidden="true"></i><span id="contact-phone">+923148412001</span></p>
+                    <p><i class="fas fa-map-marker-alt mr-2" aria-hidden="true"></i><span id="contact-location">Islamabad, Pakistan</span>
                     </p>
                 </div>
                 <div class="mt-8">
@@ -681,7 +717,7 @@
             </div>
         </section>
         <!-- START: New Project Modal -->
-        <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+        <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" inert
             class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
             <!-- Modal Content -->
             <div id="modal-content"
@@ -697,7 +733,7 @@
                         </div>
                     </div>
                     <button id="modal-close-button" type="button" aria-label="Close project details"
-                        class="text-gray-400 hover:text-red-500 text-3xl font-light leading-none">&times;</button>
+                        class="text-gray-400 hover:text-red-500 text-3xl font-light leading-none flex items-center justify-center w-11 h-11 -mr-2 rounded-full hover:bg-slate-100 transition-colors">&times;</button>
                 </div>
 
                 <!-- Modal Body -->
@@ -721,7 +757,7 @@
                             <!-- Main Description Block -->
                             <div id="modal-description-block">
                                 <h3 class="text-lg font-semibold text-slate-700 mb-2 flex items-center"><i
-                                        class="fas fa-info-circle mr-2 text-blue-500"></i>About this Project</h3>
+                                        class="fas fa-info-circle mr-2 text-blue-500" aria-hidden="true"></i>About this Project</h3>
                                 <div id="modal-main-description"
                                     class="prose prose-sm max-w-none text-slate-600 leading-relaxed">
                                     <!-- Long description or problem/solution will go here -->
@@ -740,7 +776,7 @@
                             <!-- Client Feedback Block -->
                             <div id="modal-feedback-block" class="hidden">
                                 <h3 class="text-lg font-semibold text-slate-700 mb-2 flex items-center"><i
-                                        class="fas fa-comment-dots mr-2 text-blue-500"></i>Client Feedback</h3>
+                                        class="fas fa-comment-dots mr-2 text-blue-500" aria-hidden="true"></i>Client Feedback</h3>
                                 <div class="p-4 bg-slate-50 border-l-4 border-blue-500 rounded-r-lg">
                                     <p id="modal-feedback-quote" class="italic text-slate-600"></p>
                                     <p id="modal-feedback-client" class="text-right font-semibold text-slate-700 mt-2">
@@ -751,7 +787,7 @@
                             <!-- Key Challenges Block -->
                             <div id="modal-challenges-block" class="hidden">
                                 <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i
-                                        class="fas fa-puzzle-piece mr-2 text-blue-500"></i>Key Challenges & Solutions
+                                        class="fas fa-puzzle-piece mr-2 text-blue-500" aria-hidden="true"></i>Key Challenges & Solutions
                                 </h3>
                                 <div id="modal-challenges-list" class="space-y-3">
                                     <!-- Challenge/Solution pairs will be injected here -->
@@ -761,7 +797,7 @@
                             <!-- Technologies Block -->
                             <div id="modal-tech-block" class="hidden">
                                 <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i
-                                        class="fas fa-cogs mr-2 text-blue-500"></i>Technologies Used</h3>
+                                        class="fas fa-cogs mr-2 text-blue-500" aria-hidden="true"></i>Technologies Used</h3>
                                 <div id="modal-tech-list" class="flex flex-wrap gap-2">
                                     <!-- Tech tags will be inserted here -->
                                 </div>
@@ -770,7 +806,7 @@
                             <!-- Links Block -->
                             <div id="modal-links-block" class="hidden">
                                 <h3 class="text-lg font-semibold text-slate-700 mb-3 flex items-center"><i
-                                        class="fas fa-link mr-2 text-blue-500"></i>Project Links</h3>
+                                        class="fas fa-link mr-2 text-blue-500" aria-hidden="true"></i>Project Links</h3>
                                 <div id="modal-links-list" class="flex flex-wrap gap-4">
                                     <!-- Links will be inserted here -->
                                 </div>
@@ -791,12 +827,12 @@
         <!-- Tooltip -->
         <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none w-max bg-gray-900 text-white text-xs font-semibold rounded py-2 px-3 shadow-lg">
             Ask my AI!
-            <svg class="absolute text-gray-900 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+            <svg class="absolute text-gray-900 h-2 w-full left-0 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve" aria-hidden="true" focusable="false"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
         </div>
         <!-- Pulsing Ring Behind Button -->
-        <div class="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-25"></div>
+        <div class="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-25" aria-hidden="true"></div>
         <div class="relative flex items-center justify-center px-6 py-3 bg-white rounded-full shadow-[0_0_20px_rgba(67,97,238,0.3)] hover:shadow-[0_0_30px_rgba(67,97,238,0.5)] transition-all duration-300 transform hover:-translate-y-1 border border-blue-100">
-            <i class="fas fa-robot text-blue-600 text-xl mr-3"></i>
+            <i class="fas fa-robot text-blue-600 text-xl mr-3" aria-hidden="true"></i>
             <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 hidden sm:block tracking-wide">Ask my AI</span>
             <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 sm:hidden">AI</span>
         </div>
@@ -813,16 +849,16 @@
                     <h3 id="chat-title" class="font-bold text-lg">Qamar's Assistant</h3>
                     <p class="text-xs text-blue-200">I can answer questions about Qamar's portfolio.</p>
                 </div>
-                <button id="chat-close-button" type="button" aria-label="Close AI assistant" class="text-blue-200 hover:text-white text-3xl leading-none">&times;</button>
+                <button id="chat-close-button" type="button" aria-label="Close AI assistant" class="text-blue-200 hover:text-white text-3xl leading-none flex items-center justify-center w-11 h-11 -mr-2 rounded-full hover:bg-white/10 transition-colors">&times;</button>
             </div>
-            
+
             <!-- Messages -->
-            <div id="chat-messages" class="flex-1 p-6 space-y-4 overflow-y-auto">
+            <div id="chat-messages" role="log" aria-live="polite" aria-atomic="false" class="flex-1 p-6 space-y-4 overflow-y-auto">
                 <!-- Messages will be dynamically inserted here -->
             </div>
-            
+
             <!-- Typing Indicator -->
-            <div id="typing-indicator" class="hidden px-6 pb-2">
+            <div id="typing-indicator" role="status" aria-live="polite" class="hidden px-6 pb-2">
                 <div class="flex items-center space-x-1">
                     <span class="text-sm text-slate-500">Assistant is typing</span>
                     <div class="typing-dot"></div>
@@ -843,7 +879,7 @@
                     <input type="text" id="chat-input" aria-label="Ask the AI assistant"
                         placeholder="e.g., Tell me about your AI projects..." class="flex-1 bg-transparent px-5 py-3 border-none focus:outline-none focus:ring-0 text-slate-800 placeholder-slate-400">
                     <button id="chat-send" type="submit" aria-label="Send message" class="p-2 text-white bg-blue-500 hover:bg-blue-600 rounded-full m-1.5 transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                     </button>
                 </form>
             </div>
@@ -857,7 +893,7 @@
     <!-- Footer -->
     <footer class="py-6 pb-24 bg-slate-800 text-center text-slate-400">
         <div class="container mx-auto px-4">
-            <p>© <span id="current-year">2025</span> <span id="footer-name">Qamar Ul Islam</span>. <span
+            <p>© <span id="current-year">2026</span> <span id="footer-name">Qamar Ul Islam</span>. <span
                     id="footer-copyright">All rights reserved</span>.</p>
         </div>
     </footer>

@@ -1,6 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const NAVBAR_HEIGHT = 72; // Height of the fixed navigation bar in pixels
+    const NAVBAR_HEIGHT = 64; // Height of the fixed navigation bar in pixels (matches nav h-16)
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Escape data before it is interpolated into innerHTML template strings, so any
+    // stray HTML in the JSON content cannot break layout or inject markup.
+    const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[ch]));
+
+    // Parse markdown safely: returns sanitized HTML, or the escaped raw text if the
+    // marked/DOMPurify CDN scripts failed to load (so a modal never throws).
+    const renderMarkdown = (text) => {
+        const raw = String(text ?? '');
+        if (typeof marked === 'undefined') return escapeHtml(raw);
+        const html = marked.parse(raw);
+        return (typeof DOMPurify !== 'undefined') ? DOMPurify.sanitize(html) : escapeHtml(raw);
+    };
 
     // --- 1. Mobile Menu Functionality ---
     const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -17,6 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (mobileMenu) {
             mobileMenu.setAttribute('aria-hidden', String(!isOpening));
+            // Keep the drawer's links out of the tab order / a11y tree while it is closed.
+            mobileMenu.inert = !isOpening;
+        }
+        // Move focus into the drawer on open, and back to the trigger on close.
+        if (isOpening) {
+            const firstLink = mobileMenu.querySelector('a');
+            if (firstLink) firstLink.focus();
+        } else if (mobileMenuButton) {
+            mobileMenuButton.focus();
         }
     };
 
@@ -24,6 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuButton.addEventListener('click', toggleMenu);
         mobileMenuOverlay.addEventListener('click', toggleMenu);
         mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleMenu));
+        // Close the drawer with the Escape key.
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !mobileMenu.classList.contains('translate-x-full')) {
+                toggleMenu();
+            }
+        });
     }
 
     // --- 2. Smooth Scrolling for All Anchor Links ---
@@ -33,6 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
+            // A bare "#" (e.g. the brand logo) is not a valid selector and would throw
+            // in querySelector — treat it as "scroll to top" instead.
+            if (!targetId || targetId === '#') {
+                window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+                return;
+            }
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
@@ -95,26 +131,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinksDesktop = document.querySelectorAll('#nav-desktop a');
     const navLinksMobile = document.querySelectorAll('#mobile-menu a');
 
+    const setActiveNav = (id) => {
+        const updateLinks = (links) => {
+            links.forEach(link => {
+                const isActive = link.getAttribute('href') === `#${id}`;
+                // Colour + gradient-underline signal the active section; no weight change,
+                // which previously reflowed the nav on every scroll.
+                link.classList.toggle('text-blue-500', isActive);
+                link.classList.toggle('text-gray-600', !isActive);
+                link.classList.toggle('active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'location');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        };
+        updateLinks(navLinksDesktop);
+        updateLinks(navLinksMobile);
+    };
+
+    // Highlight the section crossing a thin activation band just below the navbar.
+    // A ratio-based approach is unreliable for sections taller than the viewport
+    // (their intersectionRatio may never reach a threshold), so use a fixed band.
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                const updateLinks = (links) => {
-                    links.forEach(link => {
-                        const isActive = link.getAttribute('href') === `#${id}`;
-                        link.classList.toggle('text-blue-500', isActive);
-                        link.classList.toggle('font-bold', isActive);
-                        link.classList.toggle('text-gray-600', !isActive);
-                        link.classList.toggle('font-normal', !isActive);
-                    });
-                };
-                updateLinks(navLinksDesktop);
-                updateLinks(navLinksMobile);
+                setActiveNav(entry.target.id);
             }
         });
     }, {
-        rootMargin: `-${NAVBAR_HEIGHT}px 0px 0px 0px`, // Offset for the fixed navbar
-        threshold: 0.2 // A smaller threshold to trigger when section starts entering
+        rootMargin: `-${NAVBAR_HEIGHT}px 0px -80% 0px`,
+        threshold: 0
     });
 
     sections.forEach(section => sectionObserver.observe(section));
@@ -135,6 +183,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let educationData = {};
     let sectionsData = {};
 
+    // On a fetch failure, replace a section's skeleton loaders with a small inline
+    // notice so the visitor never stares at placeholders that never resolve.
+    function showLoadError(container, message) {
+        if (!container) return;
+        container.innerHTML = `<p class="col-span-full text-center text-slate-500 py-8">${message}</p>`;
+    }
+
     // B. Fetch Project Data on Load
     async function fetchProjects() {
         try {
@@ -146,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderProjectsGrid(projectsData);
         } catch (error) {
             console.error('Could not fetch projects data:', error);
+            showLoadError(document.getElementById('projects-grid'), 'Projects could not be loaded. Please refresh the page.');
         }
     }
 
@@ -159,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderFreelanceGrid(freelanceData);
         } catch (error) {
             console.error('Could not fetch freelance data:', error);
+            showLoadError(document.querySelector('#freelance .grid'), 'Freelance work could not be loaded. Please refresh the page.');
         }
     }
 
@@ -173,6 +230,14 @@ document.addEventListener('DOMContentLoaded', () => {
             renderSkillsGrid(profileData.skills);
         } catch (error) {
             console.error('Could not fetch profile data:', error);
+            // Reveal the static fallback hero text rather than leaving the skeleton pulsing.
+            const skeleton = document.getElementById('introduction-skeleton');
+            const content = document.getElementById('introduction-content');
+            const imageSkeleton = document.getElementById('profile-image-skeleton');
+            if (skeleton) skeleton.classList.add('hidden');
+            if (content) content.classList.remove('hidden');
+            if (imageSkeleton) imageSkeleton.classList.add('hidden');
+            showLoadError(document.getElementById('skills-grid'), 'Skills could not be loaded. Please refresh the page.');
         }
     }
 
@@ -186,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderExperienceTimeline(experienceData);
         } catch (error) {
             console.error('Could not fetch experience data:', error);
+            showLoadError(document.getElementById('experience-timeline'), 'Experience details could not be loaded. Please refresh the page.');
         }
     }
 
@@ -199,6 +265,9 @@ document.addEventListener('DOMContentLoaded', () => {
             renderEducation(educationData);
         } catch (error) {
             console.error('Could not fetch education data:', error);
+            const skeleton = document.getElementById('education-skeleton');
+            if (skeleton) skeleton.classList.add('hidden');
+            showLoadError(document.getElementById('education-list'), 'Education details could not be loaded. Please refresh the page.');
         }
     }
 
@@ -221,12 +290,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'group bg-white rounded-xl shadow-md hover-card transition-all p-6 flex flex-col animate-on-scroll project-card cursor-pointer relative';
         card.dataset.projectId = project.id || '';
+        // Make the card operable by keyboard (activation handled in setupModalOpenListener).
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `View details for ${project.title || 'project'}`);
 
         let techPills = '';
         if (project.technologies && project.technologies.length > 0) {
             const topTech = project.technologies.slice(0, 3);
             techPills = '<div class="flex flex-wrap gap-2 mb-4">' +
-                topTech.map(tech => `<span class="bg-blue-50 text-blue-600 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-100">${tech}</span>`).join('') +
+                topTech.map(tech => `<span class="bg-blue-50 text-blue-600 text-xs font-semibold px-2.5 py-1 rounded-full border border-blue-100">${escapeHtml(tech)}</span>`).join('') +
                 (project.technologies.length > 3 ? `<span class="bg-slate-50 text-slate-500 text-xs font-semibold px-2.5 py-1 rounded-full border border-slate-200">+${project.technologies.length - 3}</span>` : '') +
             '</div>';
         }
@@ -234,13 +307,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add an icon in the corner that appears on hover
         card.innerHTML = `
             <div class="absolute top-4 right-4 text-slate-300 group-hover:text-blue-500 transition-colors">
-                <i class="fas fa-expand-alt"></i>
+                <i class="fas fa-expand-alt" aria-hidden="true"></i>
             </div>
-            <h3 class="text-xl font-bold mb-2 text-slate-800">${project.title || 'Untitled Project'}</h3>
+            <h3 class="text-xl font-bold mb-2 text-slate-800">${escapeHtml(project.title || 'Untitled Project')}</h3>
             ${techPills}
-            <p class="text-slate-600 mb-4 flex-grow">${project.short_description || ''}</p>
+            <p class="text-slate-600 mb-4 flex-grow">${escapeHtml(project.short_description || '')}</p>
             <div class="mt-auto pt-4 border-t border-slate-100">
-                <span class="text-blue-500 font-semibold group-hover:text-blue-600 transition-colors">View Details <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                <span class="text-blue-500 font-semibold group-hover:text-blue-600 transition-colors">View Details <i class="fas fa-arrow-right ml-1 transform group-hover:translate-x-1 transition-transform" aria-hidden="true"></i></span>
             </div>
         `;
         return card;
@@ -268,6 +341,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'bg-slate-50 rounded-xl shadow-md hover-card transition-all p-6 animate-on-scroll freelance-card cursor-pointer';
         card.dataset.freelanceId = work.id || '';
+        // Make the card operable by keyboard (activation handled in setupModalOpenListener).
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `View details for ${work.title || 'project'}`);
 
         const title = document.createElement('h3');
         title.className = 'text-xl font-bold mb-2 text-slate-800';
@@ -309,11 +386,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const imageSkeleton = document.getElementById('profile-image-skeleton');
         const profileImage = document.getElementById('profile-image');
         
-        // Update profile information (select elements within the content container)
-        const profileName = content.querySelector('#profile-name');
-        const profileTitle = content.querySelector('#profile-title');
-        const profileDescription = content.querySelector('#profile-description');
-        const resumeDownload = content.querySelector('#resume-download');
+        // Update profile information (select by id so a missing wrapper can't throw)
+        const profileName = document.getElementById('profile-name');
+        const profileTitle = document.getElementById('profile-title');
+        const profileDescription = document.getElementById('profile-description');
+        const resumeDownload = document.getElementById('resume-download');
         
         if (profileName) profileName.textContent = personalInfo.name;
         if (profileTitle) profileTitle.textContent = personalInfo.title;
@@ -323,15 +400,25 @@ document.addEventListener('DOMContentLoaded', () => {
             profileImage.alt = personalInfo.name;
         }
         if (resumeDownload) {
-            // Remove the default href and download attributes
+            // We handle the download in JS, so drop the default href/download; keep the
+            // element keyboard-operable now that it is no longer a plain link.
             resumeDownload.removeAttribute('href');
             resumeDownload.removeAttribute('download');
-            
-            // Add click handler to force download
-            resumeDownload.addEventListener('click', async function(e) {
-                e.preventDefault();
+            resumeDownload.setAttribute('role', 'button');
+            resumeDownload.setAttribute('tabindex', '0');
+
+            let isDownloading = false;
+            const originalLabel = resumeDownload.innerHTML;
+
+            const triggerDownload = async () => {
+                if (isDownloading) return; // guard concurrent clicks (an <a> can't be truly disabled)
+                isDownloading = true;
+                resumeDownload.classList.add('pointer-events-none', 'opacity-70');
+                resumeDownload.setAttribute('aria-busy', 'true');
+                resumeDownload.innerHTML = '<i class="fas fa-spinner fa-spin mr-2" aria-hidden="true"></i>Preparing…';
                 try {
                     const response = await fetch(personalInfo.resume_file);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
                     const blob = await response.blob();
                     const url = window.URL.createObjectURL(blob);
                     const link = document.createElement('a');
@@ -343,9 +430,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.URL.revokeObjectURL(url);
                 } catch (error) {
                     console.error('Download failed:', error);
-                    // Fallback: open in new tab
-                    window.open(personalInfo.resume_file, '_blank');
+                    // Fallback: open in a new tab (noopener avoids reverse tabnabbing)
+                    window.open(personalInfo.resume_file, '_blank', 'noopener,noreferrer');
+                } finally {
+                    isDownloading = false;
+                    resumeDownload.classList.remove('pointer-events-none', 'opacity-70');
+                    resumeDownload.removeAttribute('aria-busy');
+                    resumeDownload.innerHTML = originalLabel;
                 }
+            };
+
+            resumeDownload.addEventListener('click', (e) => { e.preventDefault(); triggerDownload(); });
+            resumeDownload.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); triggerDownload(); }
             });
         }
         
@@ -385,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 a.title = link.name;
                 a.setAttribute('aria-label', link.name);
                 a.className = 'text-slate-500 hover:text-blue-600 transition-all duration-300 transform hover:-translate-y-1';
-                a.innerHTML = `<i class="${link.icon} text-4xl"></i>`; // Updated size
+                a.innerHTML = `<i class="${escapeHtml(link.icon)} text-4xl" aria-hidden="true"></i>`; // Updated size
                 socialLinksContainer.appendChild(a);
             });
         }
@@ -440,8 +537,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 skillElement.style.transitionDelay = `${(index + 1) * 50}ms`;
                 
                 skillElement.innerHTML = `
-                    <i class="${skill.icon} text-5xl text-gray-400 mb-2 transition-all"></i>
-                    <span class="text-center">${skill.name}</span>
+                    <i class="${escapeHtml(skill.icon)} text-5xl text-gray-400 mb-2 transition-all" aria-hidden="true"></i>
+                    <span class="text-center">${escapeHtml(skill.name)}</span>
                 `;
                 skillsContainer.appendChild(skillElement);
             });
@@ -467,43 +564,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const timelineItem = document.createElement('div');
             timelineItem.className = 'timeline-item relative pl-8 pb-8 animate-on-scroll';
 
-            // Create the list of responsibilities
-            const responsibilitiesHTML = (job.responsibilities || []).map((item, index) => {
-                if (typeof item === 'string') {
-                    return `<li class="mb-2">${item}</li>`;
-                } else if (typeof item === 'object' && item.summary) {
-                    // It's a detailed object
-                    // We'll add a data attribute to the button to identify which item it is
-                    // But since 'job' is the parent, we need a way to pass the 'details' to the modal.
-                    // A simple way is to attach the details object to the button element directly after render,
-                    // or store it in a temporary lookup.
-                    // BETTER APPROACH: Assign a unique ID to the button and store data in a global map or 
-                    // attach the click listener immediately after creating the element if we were building via DOM nodes.
-                    // Since we are using template strings, let's use a class to identify these triggers and 
-                    // attach listeners after innerHTML is set? 
-                    // NO, that's messy. Let's build the list items as DOM nodes instead of a string.
-                    return ''; // We will handle this in the loop below
-                }
-                return '';
-            }).join('');
-
             timelineItem.innerHTML = `
                 <div class="timeline-dot w-4 h-4 border-2 border-blue-500">
                     <div class="timeline-dot-inner w-2 h-2 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
                 </div>
                 <div class="bg-slate-100/70 p-6 rounded-lg shadow-sm">
-                    <p class="text-sm font-semibold text-blue-600">${job.date_range}</p>
-                    <h3 class="text-lg font-bold text-slate-800 mt-1">${job.title}, ${job.company}</h3>
-                    <ul class="list-disc list-inside text-slate-600 space-y-1 mt-3" id="resp-list-${job.id}">
-                        <!-- String items will be injected here first, then we append objects -->
+                    <p class="text-sm font-semibold text-blue-600">${escapeHtml(job.date_range)}</p>
+                    <h3 class="text-lg font-bold text-slate-800 mt-1">${escapeHtml(job.title)}, ${escapeHtml(job.company)}</h3>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1 mt-3">
+                        <!-- Responsibility items are appended below as DOM nodes -->
                     </ul>
                 </div>
             `;
-            
+
             timelineContainer.appendChild(timelineItem);
 
-            // Now, let's populate the list properly including the interactive items
-            const listContainer = timelineItem.querySelector(`#resp-list-${job.id}`);
+            // Populate the list as DOM nodes (handles plain strings and interactive detail items).
+            const listContainer = timelineItem.querySelector('ul');
             if (listContainer) {
                 (job.responsibilities || []).forEach(item => {
                     const li = document.createElement('li');
@@ -522,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         const viewDetailsBtn = document.createElement('button');
                         viewDetailsBtn.className = "inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors cursor-pointer focus:outline-none ml-1";
-                        viewDetailsBtn.innerHTML = `<i class="fas fa-external-link-alt text-xs mr-1"></i>View Details`;
+                        viewDetailsBtn.innerHTML = `<i class="fas fa-external-link-alt text-xs mr-1" aria-hidden="true"></i>View Details`;
                         
                         viewDetailsBtn.addEventListener('click', (e) => {
                             e.stopPropagation();
@@ -567,9 +644,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'bg-white p-8 rounded-xl shadow-md text-center animate-on-scroll';
             card.innerHTML = `
-                <h3 class="text-2xl font-semibold text-blue-900">${item.degree}</h3>
-                <p class="text-lg text-gray-600 mt-2">${item.institution}</p>
-                <p class="text-md text-gray-500 mt-1">${item.date_range}</p>
+                <h3 class="text-2xl font-semibold text-blue-900">${escapeHtml(item.degree)}</h3>
+                <p class="text-lg text-gray-600 mt-2">${escapeHtml(item.institution)}</p>
+                <p class="text-sm text-gray-500 mt-1">${escapeHtml(item.date_range)}</p>
             `;
             listEl.appendChild(card);
         });
@@ -655,13 +732,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalLinksBlock = document.getElementById('modal-links-block');
     const modalLinksList = document.getElementById('modal-links-list');
 
+    // Turn a Loom/YouTube share URL into its embeddable form, or return null for a direct file.
+    function getVideoEmbedUrl(src) {
+        const loom = /loom\.com\/share\/([\w-]+)/.exec(src);
+        if (loom) return `https://www.loom.com/embed/${loom[1]}`;
+        const yt = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/.exec(src);
+        if (yt) return `https://www.youtube.com/embed/${yt[1]}`;
+        return null;
+    }
+
     // B. Helper function to display media
     function displayMedia(mediaItem) {
         if (!modalMediaDisplay) return;
+        const src = mediaItem.src || '';
         if (mediaItem.type === 'video') {
-            modalMediaDisplay.innerHTML = `<video controls autoplay muted loop class="w-full h-full object-contain"><source src="${mediaItem.src}" type="video/mp4">Your browser does not support the video tag.</video>`;
+            const embedUrl = getVideoEmbedUrl(src);
+            if (embedUrl) {
+                // Hosted video (Loom/YouTube): a <video> tag can't decode a share page, so embed it.
+                modalMediaDisplay.innerHTML = `<iframe src="${escapeHtml(embedUrl)}" title="${escapeHtml(mediaItem.caption || 'Project demo video')}" frameborder="0" allow="fullscreen; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>`;
+            } else {
+                // Direct video file (e.g. Cloudinary .mp4/.webm): infer MIME type from the extension.
+                const type = /\.webm(\?|$)/i.test(src) ? 'video/webm' : 'video/mp4';
+                modalMediaDisplay.innerHTML = `<video controls autoplay muted loop class="w-full h-full object-contain"><source src="${escapeHtml(src)}" type="${type}">Your browser does not support the video tag.</video>`;
+            }
         } else {
-            modalMediaDisplay.innerHTML = `<img src="${mediaItem.src}" alt="${mediaItem.caption || ''}" class="w-full h-full object-contain">`;
+            modalMediaDisplay.innerHTML = `<img src="${escapeHtml(src)}" alt="${escapeHtml(mediaItem.caption || '')}" class="w-full h-full object-contain">`;
         }
     }
 
@@ -683,45 +778,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- 2. Populate Header & Meta Tags ---
         const metaItems = [];
-        if (item.role) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">${item.role}</span>`);
-        if (item.project_type) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">${item.project_type}</span>`);
-        if (item.status) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">${item.status}</span>`);
-        if (item.date_range) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">${item.date_range}</span>`);
+        if (item.role) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">${escapeHtml(item.role)}</span>`);
+        if (item.project_type) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">${escapeHtml(item.project_type)}</span>`);
+        if (item.status) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">${escapeHtml(item.status)}</span>`);
+        if (item.date_range) metaItems.push(`<span class="px-2.5 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">${escapeHtml(item.date_range)}</span>`);
         modalMetaTags.innerHTML = metaItems.join('');
 
 
         // --- 3. Populate Media Gallery ---
-        modalMediaDisplay.innerHTML = '<div class="p-4 h-full flex items-center justify-center bg-slate-100 rounded-lg"><i class="fas fa-image text-4xl text-slate-400"></i></div>'; // Default
+        modalMediaDisplay.innerHTML = '<div class="p-4 h-full flex items-center justify-center bg-slate-100 rounded-lg"><i class="fas fa-image text-4xl text-slate-400" aria-hidden="true"></i></div>'; // Default
         if (item.media && item.media.length > 0) {
             displayMedia(item.media[0]); // Display first item
-            item.media.forEach((mediaItem, index) => {
-                const thumbSrc = mediaItem.type === 'video' ? 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Video' : mediaItem.src;
-                const thumb = document.createElement('img');
-                thumb.src = thumbSrc;
-                thumb.alt = mediaItem.caption || '';
-                thumb.loading = 'lazy';
-                thumb.decoding = 'async';
-                thumb.className = `w-16 h-16 object-cover rounded-md cursor-pointer border-2 hover:border-blue-500 ${index === 0 ? 'border-blue-500' : 'border-transparent'}`;
-                thumb.onclick = (e) => {
-                    displayMedia(mediaItem);
-                    // Update active thumbnail border
-                    modalMediaThumbnails.querySelectorAll('img').forEach(img => img.classList.remove('border-blue-500'));
-                    e.target.classList.add('border-blue-500');
-                };
-                modalMediaThumbnails.appendChild(thumb);
-            });
+            // Only render a thumbnail strip when there is more than one media item.
+            if (item.media.length > 1) {
+                item.media.forEach((mediaItem, index) => {
+                    let thumb;
+                    if (mediaItem.type === 'video') {
+                        // Videos have no reliable poster image, so use a self-contained play tile
+                        // (no external placeholder service, which no longer exists).
+                        thumb = document.createElement('div');
+                        thumb.className = `thumb w-16 h-16 flex items-center justify-center bg-slate-800 text-white rounded-md cursor-pointer border-2 hover:border-blue-500 ${index === 0 ? 'border-blue-500' : 'border-transparent'}`;
+                        thumb.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i>';
+                    } else {
+                        thumb = document.createElement('img');
+                        thumb.src = mediaItem.src;
+                        thumb.alt = mediaItem.caption || '';
+                        thumb.loading = 'lazy';
+                        thumb.decoding = 'async';
+                        thumb.className = `thumb w-16 h-16 object-cover rounded-md cursor-pointer border-2 hover:border-blue-500 ${index === 0 ? 'border-blue-500' : 'border-transparent'}`;
+                    }
+                    thumb.setAttribute('role', 'button');
+                    thumb.setAttribute('tabindex', '0');
+                    thumb.setAttribute('aria-label', mediaItem.caption || `View media ${index + 1}`);
+                    const activate = () => {
+                        displayMedia(mediaItem);
+                        // Reset the active border across ALL thumbnails (img and div tiles).
+                        modalMediaThumbnails.querySelectorAll('.thumb').forEach(t => t.classList.remove('border-blue-500'));
+                        thumb.classList.add('border-blue-500');
+                    };
+                    thumb.addEventListener('click', activate);
+                    thumb.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+                    });
+                    modalMediaThumbnails.appendChild(thumb);
+                });
+            }
         }
 
         // --- 4. Populate Main Description ---
         let descriptionHTML = '';
         if (item.long_description) {
-            descriptionHTML = marked.parse(item.long_description);
+            descriptionHTML = renderMarkdown(item.long_description);
         } else if (item.problem_statement) {
             descriptionHTML = `
                 <h4 class="font-semibold text-slate-800">The Challenge</h4>
-                <p class="mb-4">${item.problem_statement}</p>
+                <p class="mb-4">${escapeHtml(item.problem_statement)}</p>
                 <h4 class="font-semibold text-slate-800">My Solution</h4>
-                <p>${item.solution_delivered}</p>
+                <p>${escapeHtml(item.solution_delivered)}</p>
             `;
         }
         modalMainDescription.innerHTML = descriptionHTML;
@@ -732,11 +845,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (features && features.length > 0) {
             modalFeaturesBlock.classList.remove('hidden');
             const isAchievement = !!item.key_achievements;
-            modalFeaturesTitle.innerHTML = `<i class="fas ${isAchievement ? 'fa-trophy text-yellow-500' : 'fa-star text-blue-500'} mr-2"></i>Key ${isAchievement ? 'Achievements' : 'Features'}`;
+            modalFeaturesTitle.innerHTML = `<i class="fas ${isAchievement ? 'fa-trophy text-yellow-500' : 'fa-star text-blue-500'} mr-2" aria-hidden="true"></i>Key ${isAchievement ? 'Achievements' : 'Features'}`;
             modalFeaturesList.innerHTML = features.map(feat => `
                 <li class="flex items-start">
-                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                    <span>${feat}</span>
+                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3" aria-hidden="true"></i>
+                    <span>${escapeHtml(feat)}</span>
                 </li>
             `).join('');
         }
@@ -753,8 +866,8 @@ document.addEventListener('DOMContentLoaded', () => {
             modalChallengesBlock.classList.remove('hidden');
             modalChallengesList.innerHTML = item.key_challenges.map(c => `
                 <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                    <div class="font-semibold text-slate-700 mb-1">${c.challenge}</div>
-                    <div class="text-slate-600">${c.solution}</div>
+                    <div class="font-semibold text-slate-700 mb-1">${escapeHtml(c.challenge)}</div>
+                    <div class="text-slate-600">${escapeHtml(c.solution)}</div>
                 </div>
             `).join('');
         }
@@ -766,7 +879,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const bgClass = isFreelance ? 'bg-green-100' : 'bg-blue-100';
             const textClass = isFreelance ? 'text-green-800' : 'text-blue-800';
             modalTechList.innerHTML = item.technologies.map(tech =>
-                `<span class="${bgClass} ${textClass} text-sm font-medium px-2.5 py-1 rounded-full">${tech}</span>`
+                `<span class="${bgClass} ${textClass} text-sm font-medium px-2.5 py-1 rounded-full">${escapeHtml(tech)}</span>`
             ).join('');
         }
 
@@ -774,54 +887,82 @@ document.addEventListener('DOMContentLoaded', () => {
         if (item.links && item.links.length > 0) {
             modalLinksBlock.classList.remove('hidden');
             modalLinksList.innerHTML = item.links.map(link =>
-                `<a href="${link.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 font-medium hover:underline hover:text-blue-800 transition-colors">
-                    <i class="${link.icon || 'fas fa-external-link-alt'} mr-2"></i>
-                    <span>${link.type}</span>
+                `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 font-medium hover:underline hover:text-blue-800 transition-colors">
+                    <i class="${escapeHtml(link.icon || 'fas fa-external-link-alt')} mr-2" aria-hidden="true"></i>
+                    <span>${escapeHtml(link.type)}</span>
                 </a>`
             ).join('');
         }
     }
 
     // D. Modal Control Functions
+    let lastFocusedBeforeModal = null;
+
+    // Collect the currently-focusable elements inside a container (for the focus trap).
+    const getFocusable = (container) => Array.from(
+        container.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea, select, iframe, video[controls], [tabindex]:not([tabindex="-1"])')
+    ).filter(el => el.offsetParent !== null);
+
     const openModal = () => {
         if (!modal || !modalContent) return;
+        lastFocusedBeforeModal = document.activeElement;
+        modal.removeAttribute('aria-hidden');
+        modal.removeAttribute('inert');
         modal.classList.remove('opacity-0', 'pointer-events-none');
         modalContent.classList.remove('scale-95');
         document.body.classList.add('overflow-hidden');
+        if (closeModalButton) closeModalButton.focus();
     };
 
     const closeModal = () => {
         if (!modal || !modalContent) return;
         modal.classList.add('opacity-0', 'pointer-events-none');
         modalContent.classList.add('scale-95');
+        modal.setAttribute('aria-hidden', 'true');
+        modal.setAttribute('inert', '');
         document.body.classList.remove('overflow-hidden');
-        // Stop any video that might be playing
+        // Stop any playing video and fully unload it (removing the <source> avoids a
+        // spurious request for the page URL that `video.src = ''` would trigger).
         const video = modal.querySelector('video');
         if (video) {
             video.pause();
-            video.src = '';
+            video.querySelectorAll('source').forEach(s => s.remove());
+            video.removeAttribute('src');
+            video.load();
+        }
+        // Return focus to whatever opened the modal.
+        if (lastFocusedBeforeModal && typeof lastFocusedBeforeModal.focus === 'function') {
+            lastFocusedBeforeModal.focus();
         }
     };
 
     // E. NEW Event Listeners
     function setupModalOpenListener(section, data, idAttribute) {
-        if (section) {
-            section.addEventListener('click', (e) => {
-                const card = e.target.closest(`[${idAttribute}]`);
-                if (!card) return;
-
-                // Allow normal navigation if a link inside the card was clicked
-                if (e.target.closest('a') && e.target.closest('a').getAttribute('target') === '_blank') return;
-
-                e.preventDefault();
-                const itemId = card.getAttribute(idAttribute);
-                const item = data.find((p) => p.id === itemId);
-                if (item) {
-                    populateModal(item);
-                    openModal();
-                }
-            });
-        }
+        if (!section) return;
+        const openFromCard = (card) => {
+            const itemId = card.getAttribute(idAttribute);
+            const item = data.find((p) => p.id === itemId);
+            if (item) {
+                populateModal(item);
+                openModal();
+            }
+        };
+        section.addEventListener('click', (e) => {
+            const card = e.target.closest(`[${idAttribute}]`);
+            if (!card) return;
+            // Allow normal navigation if a link inside the card was clicked
+            if (e.target.closest('a') && e.target.closest('a').getAttribute('target') === '_blank') return;
+            e.preventDefault();
+            openFromCard(card);
+        });
+        // Keyboard activation: Enter/Space on a focused card opens its modal.
+        section.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+            const card = e.target.closest(`[${idAttribute}]`);
+            if (!card || e.target !== card) return;
+            e.preventDefault(); // stop Space from scrolling the page
+            openFromCard(card);
+        });
     }
 
     // Set up listeners for both sections (will be called after data loads)
@@ -845,6 +986,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Trap Tab focus inside the modal while it is open.
+    if (modal && modalContent) {
+        modal.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab' || modal.classList.contains('pointer-events-none')) return;
+            const focusables = getFocusable(modalContent);
+            if (focusables.length === 0) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        });
+    }
+
     // --- 9. AI CHATBOT IMPLEMENTATION V3 (Final) ---
     // A. DOM Element Selection
     const chatTrigger = document.getElementById('ai-chat-trigger');
@@ -859,9 +1018,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const suggestedPromptsContainer = document.getElementById('suggested-prompts');
     const API_URL = 'https://qamarcodes.online/api/v1/chat';
     let conversationHistory = [];
+    let lastFocusedBeforeChat = null;
 
     // B. Core Functions
     const openChat = () => {
+        lastFocusedBeforeChat = document.activeElement;
         chatOverlay.classList.remove('hidden');
         document.body.style.overflow = 'hidden'; // Prevent background scroll
 
@@ -885,6 +1046,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             chatOverlay.classList.add('hidden');
         }, 300); // Match transition duration
+
+        // Return focus to the trigger that opened the chat.
+        if (lastFocusedBeforeChat && typeof lastFocusedBeforeChat.focus === 'function') {
+            lastFocusedBeforeChat.focus();
+        } else if (chatTrigger) {
+            chatTrigger.focus();
+        }
     };
 
     const addMessageToUI = (sender, message) => {
@@ -900,10 +1068,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // User messages are plain text
             messageContent.textContent = message;
         } else {
-            // AI messages are parsed as Markdown
+            // AI messages are parsed as Markdown and sanitized (the reply comes from an
+            // external API, so it is treated as untrusted before hitting innerHTML).
             // The 'prose' class from Tailwind helps style the HTML nicely
-            messageContent.className += ' prose prose-sm max-w-none'; 
-            messageContent.innerHTML = marked.parse(message);
+            messageContent.className += ' prose prose-sm max-w-none';
+            messageContent.innerHTML = renderMarkdown(message);
         }
         
         // Add base classes
@@ -965,9 +1134,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(errorData.message || 'API request failed');
             }
             const data = await response.json();
-            
-            // --- NEW: Pre-process the response to clean up links ---
-            let formattedAnswer = data.answer.replace(/\[(https?:\/\/[^\s\]]+)\]/g, (match, url) => {
+
+            // Guard against a 200 response that lacks the expected answer field.
+            const answer = (data && typeof data.answer === 'string') ? data.answer : '';
+            if (!answer) {
+                throw new Error('Malformed response: missing answer');
+            }
+
+            // --- Pre-process the response to clean up links ---
+            let formattedAnswer = answer.replace(/\[(https?:\/\/[^\s\]]+)\]/g, (match, url) => {
                 let linkText = "Link";
                 if (url.includes('youtu.be') || url.includes('cloudinary.com/dmiqkr7ja/video')) linkText = "Video Demo";
                 else if (url.includes('github.com')) linkText = "GitHub Repo";
@@ -976,7 +1151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             addMessageToUI('assistant', formattedAnswer);
-            conversationHistory.push({ role: 'assistant', content: data.answer }); // Still save original answer
+            conversationHistory.push({ role: 'assistant', content: answer }); // Still save original answer
             
             // RENDER NEW PROMPTS (this assumes your API can return them)
             const prompts = data.suggested_prompts || ["Tell me more about Ask Sunnah", "What are your top skills?", "Show me your AI projects", "Tell me about your backend experience"];
@@ -1018,6 +1193,22 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !chatOverlay.classList.contains('hidden')) {
                 closeChat();
+            }
+        });
+
+        // Trap Tab focus within the chat window while it is open.
+        chatWindow.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab' || chatOverlay.classList.contains('hidden')) return;
+            const focusables = getFocusable(chatWindow);
+            if (focusables.length === 0) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
             }
         });
     }
