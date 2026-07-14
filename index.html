@@ -5,6 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qamar Ul Islam - Software Engineer</title>
+    <meta name="description" content="Portfolio of Qamar Ul Islam, a software engineer building web apps, AI solutions, and client-focused products." />
+    <meta name="theme-color" content="#4361ee" />
+    <meta property="og:title" content="Qamar Ul Islam - Software Engineer" />
+    <meta property="og:description" content="Explore Qamar Ul Islam's portfolio, projects, experience, and freelance work." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="portfolio.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Qamar Ul Islam - Software Engineer" />
+    <meta name="twitter:description" content="Explore projects, experience, and freelance work from Qamar Ul Islam." />
+    <meta name="twitter:image" content="portfolio.png" />
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -30,6 +40,13 @@
         body {
             font-family: 'Inter', sans-serif;
             color: var(--dark);
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible {
+            outline: 3px solid rgba(67, 97, 238, 0.35);
+            outline-offset: 3px;
         }
 
         @keyframes float {
@@ -259,6 +276,25 @@
             padding-bottom: 5rem;
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .animate-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
         /* Enhanced button styles */
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -326,7 +362,8 @@
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-slate-600 hover:text-blue-500 focus:outline-none p-2">
+                    <button id="mobile-menu-button" class="text-slate-600 hover:text-blue-500 focus:outline-none p-2"
+                        type="button" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -340,7 +377,7 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
-    <div id="mobile-menu"
+    <div id="mobile-menu" aria-hidden="true"
         class="fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
         <div class="p-5 flex flex-col space-y-4">
             <a href="#introduction" class="block text-gray-600 hover:text-blue-500 py-2">Introduction</a>
@@ -355,7 +392,7 @@
 
     <main class="pt-18">
         <!-- Back to Top Button -->
-        <a href="#introduction" id="back-to-top" title="Back to Top"
+        <a href="#introduction" id="back-to-top" title="Back to Top" aria-label="Back to top"
             class="fixed bottom-8 right-8 z-40 p-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg transition-all duration-300 opacity-0 pointer-events-none hover:scale-110">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
@@ -436,7 +473,7 @@
                         <div
                             class="absolute -inset-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-20 blur">
                         </div>
-                        <img id="profile-image" src="dev.png" alt="Loading..."
+                        <img id="profile-image" src="dev.png" alt="Loading..." loading="eager" decoding="async"
                             class="relative rounded-full w-60 h-60 object-cover shadow-2xl border-4 border-white z-10 hidden" />
                     </div>
                 </div>
@@ -644,7 +681,7 @@
             </div>
         </section>
         <!-- START: New Project Modal -->
-        <div id="project-modal"
+        <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"
             class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
             <!-- Modal Content -->
             <div id="modal-content"
@@ -659,7 +696,7 @@
                             <!-- Meta tags like Role, Status, Date will be injected here -->
                         </div>
                     </div>
-                    <button id="modal-close-button"
+                    <button id="modal-close-button" type="button" aria-label="Close project details"
                         class="text-gray-400 hover:text-red-500 text-3xl font-light leading-none">&times;</button>
                 </div>
 
@@ -749,7 +786,8 @@
 
     <!-- START: AI Chatbot V3 (Final & Corrected) -->
     <!-- Main trigger button at the bottom-center -->
-    <div id="ai-chat-trigger" class="fixed bottom-8 right-8 z-40 cursor-pointer group">
+    <button id="ai-chat-trigger" type="button" aria-label="Open AI assistant"
+        class="fixed bottom-8 right-8 z-40 cursor-pointer group text-left">
         <!-- Tooltip -->
         <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none w-max bg-gray-900 text-white text-xs font-semibold rounded py-2 px-3 shadow-lg">
             Ask my AI!
@@ -762,19 +800,20 @@
             <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 hidden sm:block tracking-wide">Ask my AI</span>
             <span class="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 sm:hidden">AI</span>
         </div>
-    </div>
+    </button>
 
     <!-- Chat Modal Overlay -->
     <div id="chat-overlay" class="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
         <!-- The Chat Window (Large and Centered) -->
-        <div id="chat-window" class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl flex flex-col transform scale-95 transition-all duration-300" style="max-height: 85vh;">
+        <div id="chat-window" role="dialog" aria-modal="true" aria-labelledby="chat-title"
+            class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl flex flex-col transform scale-95 transition-all duration-300" style="max-height: 85vh;">
             <!-- Header -->
             <div class="gradient-bg p-4 rounded-t-2xl text-white flex justify-between items-center">
                 <div>
-                    <h3 class="font-bold text-lg">Qamar's Assistant</h3>
+                    <h3 id="chat-title" class="font-bold text-lg">Qamar's Assistant</h3>
                     <p class="text-xs text-blue-200">I can answer questions about Qamar's portfolio.</p>
                 </div>
-                <button id="chat-close-button" class="text-blue-200 hover:text-white text-3xl leading-none">&times;</button>
+                <button id="chat-close-button" type="button" aria-label="Close AI assistant" class="text-blue-200 hover:text-white text-3xl leading-none">&times;</button>
             </div>
             
             <!-- Messages -->
@@ -801,8 +840,9 @@
             <div class="p-4 border-t border-slate-200 bg-slate-50 rounded-b-2xl">
                 <form id="chat-form" class="flex items-center bg-white border border-slate-300 rounded-full focus-within:ring-2 focus-within:ring-blue-500">
                     <!-- *** THE FIX IS HERE: flex-1 instead of w-full *** -->
-                    <input type="text" id="chat-input" placeholder="e.g., Tell me about your AI projects..." class="flex-1 bg-transparent px-5 py-3 border-none focus:outline-none focus:ring-0 text-slate-800 placeholder-slate-400">
-                    <button id="chat-send" type="submit" class="p-2 text-white bg-blue-500 hover:bg-blue-600 rounded-full m-1.5 transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed">
+                    <input type="text" id="chat-input" aria-label="Ask the AI assistant"
+                        placeholder="e.g., Tell me about your AI projects..." class="flex-1 bg-transparent px-5 py-3 border-none focus:outline-none focus:ring-0 text-slate-800 placeholder-slate-400">
+                    <button id="chat-send" type="submit" aria-label="Send message" class="p-2 text-white bg-blue-500 hover:bg-blue-600 rounded-full m-1.5 transition-colors disabled:bg-slate-300 disabled:cursor-not-allowed">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                     </button>
                 </form>
