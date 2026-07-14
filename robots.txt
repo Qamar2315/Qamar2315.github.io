@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qamar2315.github.io/sitemap.xml
