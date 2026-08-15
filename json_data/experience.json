@@ -11,18 +11,17 @@
           "title": "Nrtur - Multi-Tenant SaaS CRM Backend (Go)",
           "role": "Lead Backend Engineer & Core Architect",
           "short_description": "A Go modular-monolith backend (HTTP API + background worker) for a multi-tenant CRM, isolated per workspace at the database layer with integrated Twilio VoIP and real-time event streams.",
-          "long_description": "Architected and led the development of the Go backend for Nrtur - a multi-tenant SaaS CRM. It is a modular monolith split into two binaries: a chi-router HTTP API (~136 routes) and an Asynq/Redis background worker, over 11 isolated business modules (billing, companies, contacts, files, imports, inbox, leads, pipelines, tasks, users, workspaces) whose boundaries are enforced by depguard. Multi-tenancy is guaranteed at the database layer: every workspace-scoped table uses a UNIQUE (workspace_id, id) and composite foreign keys of the form (workspace_id, fk) -> parent(workspace_id, id), making cross-tenant references structurally impossible, backed by an application-level tenant guard derived from the JWT.\n\nKey subsystems include an integrated Twilio VoIP Softphone & Dialer with TwiML call bridging (answerOnBridge), real-time call phase state machines (connecting -> ringing -> connected -> ended), and recording webhooks; a Server-Sent Events (SSE) realtime notifications engine; a provider-synced email inbox (via Aurinko) with OAuth connect, 30-day backfill, resumable incremental delta sync, and constant-time HMAC webhook verification; AES-256-GCM token encryption at rest; Stripe billing; CSV worker imports; and a deterministic, workspace-tunable lead-scoring engine. The codebase is production-oriented: integration and tenant-isolation test suites spin up throwaway Postgres via testcontainers, gated by golangci-lint/Lefthook, with a Loki/Grafana/Promtail telemetry stack.",
+          "long_description": "Architected and led the development of the Go backend for Nrtur - an enterprise multi-tenant SaaS CRM. It is designed as a modular monolith split into a high-performance HTTP API and an asynchronous background worker across 11 isolated business domains (billing, companies, contacts, files, imports, inbox, leads, pipelines, tasks, users, workspaces). Multi-tenancy is enforced directly at the database layer with strict composite foreign keys, guaranteeing complete data isolation per workspace.\n\nKey subsystems include an integrated VoIP softphone dialer with real-time call phase tracking (connecting, ringing, connected, ended) and recording webhooks; a Server-Sent Events (SSE) realtime notifications engine; a provider-synced email inbox with incremental delta synchronization and secure token management; Stripe subscription billing; asynchronous queue processing for batch imports and lead scoring; and integration test suites backed by Docker and testcontainers.",
           "key_features": [
-            "Database-enforced multi-tenant isolation via composite foreign keys, making cross-workspace references structurally impossible",
-            "Integrated Twilio VoIP softphone & dialer with TwiML call bridging, accurate ringing vs connected phase tracking, and call recording webhooks",
+            "Database-enforced multi-tenant isolation ensuring complete data privacy across workspaces",
+            "Integrated VoIP softphone dialer with real-time call state tracking and recording webhooks",
             "Real-time event broadcasting and in-app notifications stream powered by Server-Sent Events (SSE)",
-            "Provider-synced email inbox (Aurinko): OAuth connect, 30-day backfill, resumable incremental delta sync, and live webhooks",
-            "Idempotency-aware HTTP retry engine that prevents duplicate email delivery on ambiguous send failures",
-            "Hand-rolled HMAC-SHA256 JWT auth with email-OTP, Google OIDC, and a single-source-of-truth RBAC capability matrix",
-            "AES-256-GCM encryption of mailbox tokens at rest and constant-time HMAC verification of inbound webhooks",
-            "Asynq/Redis background worker for OTP email, CSV imports (S3-backed), lead rescoring, and inbox sync",
-            "Deterministic, workspace-tunable lead-scoring engine (0-100 score, cold/warm/hot bands)",
-            "Stripe billing (checkout, customer portal, webhook-driven subscription state)"
+            "Provider-synced email inbox with OAuth authorization, incremental delta sync, and live webhooks",
+            "Idempotency-aware request retry engine preventing duplicate message deliveries",
+            "Secure JWT authentication with email-OTP, Google OIDC, and role-based access control (RBAC)",
+            "Asynchronous background worker queues for background tasks, CSV imports, and lead scoring",
+            "Deterministic, workspace-configurable lead scoring and pipeline management",
+            "Automated Stripe subscription billing, customer portal, and webhook event handling"
           ],
           "technologies": [
             "Go 1.26",
