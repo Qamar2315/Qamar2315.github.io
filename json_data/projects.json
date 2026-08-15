@@ -261,9 +261,9 @@
   {
     "id": "ask-sunnah-online",
     "title": "Ask Sunnah - AI Islamic Scholar",
-    "project_type": "Personal Project",
+    "project_type": "Founder / Production SaaS",
     "status": "Live",
-    "role": "Creator - Full-Stack & AI Architect",
+    "role": "Founder & Lead AI Architect",
     "date_range": "May 2024 - Present",
     "short_description": "A production-deployed RAG platform (asksunnah.online) that answers Hadith questions in any language from seven authentic collections with cited sources, plus an image/OCR Hadith authenticity verifier - built end-to-end across an async FastAPI backend, a MySQL->OpenAI->Pinecone ingestion pipeline, and a Next.js 16 frontend.",
     "long_description": "Ask Sunnah is a solo-built, three-repository RAG system that answers Hadith questions in natural language, grounded in retrieved excerpts from seven collections (Bukhari, Muslim, Mishkat, Nasa'i, Abu Dawood, Tirmidhi, Ibn Majah), each traceable to a sunnah.com reference. An offline Python pipeline extracts Hadith from a MySQL database, strips HTML, counts tokens with tiktoken, generates 3072-dimension embeddings with OpenAI's text-embedding-3-large, and upserts them into per-collection namespaces of a serverless Pinecone index.\n\nThe async FastAPI backend serves a multi-gate RAG pipeline: for non-English queries a single combined LLM call detects the language, translates to English, and classifies the query; the English query is embedded (Redis-cached) and all selected Pinecone namespaces are queried concurrently via asyncio.gather over a thread pool (wrapping Pinecone's synchronous client) so N collection lookups overlap instead of running serially; an answer is generated with gpt-5-nano and translated back into the user's original language and script. Beyond retrieval it is a fairly complete SaaS - email/OTP signup with bcrypt hashing and opaque session tokens, free/basic/pro plus anonymous tiers with Redis-cached per-day/per-month quotas, and IP-keyed rate limiting - plus a second pipeline that verifies the authenticity of an uploaded Hadith image via gpt-5-nano vision with OpenAI structured outputs. The Next.js 16 / React 19 frontend delivers the chat UI, verifier, account flows, an isolated admin dashboard, and production SEO/PWA.",
