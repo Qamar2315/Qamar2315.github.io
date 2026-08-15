@@ -2,14 +2,14 @@
   {
     "id": "devaxl-swe",
     "date_range": "Feb 2024 - Present",
-    "title": "Lead Backend & AI Engineer",
+    "title": "Backend & AI Engineer",
     "company": "DevAxl",
     "responsibilities": [
       {
-        "summary": "Lead backend engineer and core architect of the Go backend for Nrtur, DevAxl's flagship multi-tenant SaaS CRM - a chi HTTP API plus an Asynq background worker, with tenant isolation enforced at the database layer, Twilio VoIP softphone/dialer with real-time call states, SSE notifications, provider-synced email inbox, Stripe billing, and a rule-based lead-scoring engine.",
+        "summary": "Core backend engineer for Nrtur, DevAxl's flagship multi-tenant SaaS CRM - a chi HTTP API plus an Asynq background worker, with tenant isolation enforced at the database layer, Twilio VoIP softphone/dialer with real-time call states, SSE notifications, provider-synced email inbox, Stripe billing, and a rule-based lead-scoring engine.",
         "details": {
           "title": "Nrtur - Multi-Tenant SaaS CRM Backend (Go)",
-          "role": "Lead Backend Engineer & Core Architect",
+          "role": "Core Backend Architect & Engineer",
           "short_description": "A Go modular-monolith backend (HTTP API + background worker) for a multi-tenant CRM, isolated per workspace at the database layer with integrated Twilio VoIP and real-time event streams.",
           "long_description": "Architected and led the development of the Go backend for Nrtur - an enterprise multi-tenant SaaS CRM. It is designed as a modular monolith split into a high-performance HTTP API and an asynchronous background worker across 11 isolated business domains (billing, companies, contacts, files, imports, inbox, leads, pipelines, tasks, users, workspaces). Multi-tenancy is enforced directly at the database layer with strict composite foreign keys, guaranteeing complete data isolation per workspace.\n\nKey subsystems include an integrated VoIP softphone dialer with real-time call phase tracking (connecting, ringing, connected, ended) and recording webhooks; a Server-Sent Events (SSE) realtime notifications engine; a provider-synced email inbox with incremental delta synchronization and secure token management; Stripe subscription billing; asynchronous queue processing for batch imports and lead scoring; and integration test suites backed by Docker and testcontainers.",
           "key_features": [
