@@ -2,7 +2,7 @@
   "personal_info": {
     "name": "Qamar Ul Islam",
     "title": "Backend & AI Systems Engineer | Go • Python • TypeScript",
-    "description": "I architect high-performance backend systems and production-grade AI/ML solutions. With deep expertise in <strong>Go</strong>, <strong>Python</strong>, and <strong>TypeScript</strong>, I build everything from database-isolated <strong>multi-tenant SaaS backends</strong> (~73k+ LOC) and <strong>VoIP/telephony platforms</strong> to high-accuracy <strong>hybrid RAG knowledge engines</strong>.",
+    "description": "I architect high-performance backend systems and production-grade AI/ML solutions. With deep expertise in <strong>Go</strong>, <strong>Python</strong>, and <strong>TypeScript</strong>, I build everything from database-isolated <strong>multi-tenant SaaS backends</strong> and <strong>VoIP/telephony platforms</strong> to high-accuracy <strong>hybrid RAG knowledge engines</strong>.",
     "resume_file": "resume.pdf",
     "profile_image": "dev.png",
     "bio_details": {
