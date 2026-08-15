@@ -1,8 +1,8 @@
 {
   "personal_info": {
     "name": "Qamar Ul Islam",
-    "title": "Software Engineer | Backend & AI/ML Specialist",
-    "description": "I build scalable backend systems and intelligent AI/ML solutions. With expertise in <strong>Python</strong>, <strong>Go</strong>, and <strong>Node.js</strong>, I architect everything from robust <strong>microservices</strong> for high-engagement platforms to sophisticated <strong>RAG pipelines</strong> that leverage <strong>LLMs</strong> to solve real-world problems.",
+    "title": "Backend & AI Systems Engineer | Go • Python • TypeScript",
+    "description": "I architect high-performance backend systems and production-grade AI/ML solutions. With deep expertise in <strong>Go</strong>, <strong>Python</strong>, and <strong>TypeScript</strong>, I build everything from database-isolated <strong>multi-tenant SaaS backends</strong> (~73k+ LOC) and <strong>VoIP/telephony platforms</strong> to high-accuracy <strong>hybrid RAG knowledge engines</strong>.",
     "resume_file": "resume.pdf",
     "profile_image": "dev.png",
     "bio_details": {
@@ -29,8 +29,8 @@
         }
       ],
       "career_aspirations": {
-        "summary": "To evolve into a dedicated AI Engineer role by deepening my expertise at the intersection of backend development and artificial intelligence.",
-        "details": "My primary career focus for the next five years is to specialize in building scalable, production-grade AI systems. I am passionate about creating practical AI-powered solutions and automation tools that solve real-world problems. My goal is to leverage my strong backend foundation to architect and deploy robust AI/ML models and infrastructure."
+        "summary": "To lead the architecture of high-scale backend infrastructure and applied AI systems at the intersection of distributed systems and machine intelligence.",
+        "details": "My primary career focus is to specialize in building scalable, production-grade backend and AI systems. I am passionate about creating resilient multi-tenant architectures, high-accuracy RAG workflows, and real-time communication infrastructure. My goal is to leverage my deep Go, Python, and cloud foundation to architect robust, mission-critical platforms."
       },
       "key_strengths": [
         "Problem-Solving",
